@@ -38,3 +38,6 @@ linear_extrude(height = 2) {translate([120,270,0]) text("Odroid-N1");}
 
 translate ([240,0,0]) sbc("h2");
 linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H2+");}
+
+translate ([380,0,0]) sbc("rockpro64");
+linear_extrude(height = 2) {translate([380,-20,0]) text("RockPro 64");}

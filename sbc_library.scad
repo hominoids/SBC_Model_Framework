@@ -259,6 +259,19 @@ module button(x,y,rotation,side,type,pcbsize_z) {
             color("black") translate([5,5,3.5]) sphere(d=1);
         }
     }
+    if(type=="momentary_6x6x4_90") {
+        size_x = 6;
+        size_y = 6;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        rotate([90, 0, 0]) union() {
+            color("silver") translate([0,0,0]) cube([size_x,size_y,3.5]);
+            color("black") translate([3,3,3.5]) cylinder(r=1.6,h=2.5,$fn=30);
+            color("black") translate([1,1,3.5]) sphere(d=1);
+            color("black") translate([1,5,3.5]) sphere(d=1);
+            color("black") translate([5,1,3.5]) sphere(d=1);
+            color("black") translate([5,5,3.5]) sphere(d=1);
+        }
+    }
     if(type=="momentary_4x2x1") {
         size_x = 4;
         size_y = 2;                
@@ -1497,5 +1510,16 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z+soc1size_z)
         color("gray") import("Odroid-H2_Heatsink.stl", convexity=3);
 
+    }
+}
+
+// pcie class
+module pcie(x,y,rotation,side,type,pcbsize_z) {
+    // PCIE-X4
+    if (type=="x4") {
+        size_x = 38.8;
+        size_y = 8.5;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("black") cube([size_x, size_y, 11.1]);
     }
 }

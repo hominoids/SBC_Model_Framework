@@ -186,7 +186,12 @@ module sbc(model) {
             if (loc_x!=0 || loc_y!=0) {
                 heatsink(loc_x,loc_y,rotation,side,type,pcbsize_z,sbc_data[s[0]][39]);
             }   
-        }   
+        }
+        if (class == "pcie") {
+            if(loc_x!=0 || loc_y!=0) {
+                pcie(loc_x, loc_y, rotation, side, type, pcbsize_z);
+            }
+        }
     }
 }   
   
