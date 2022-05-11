@@ -1532,8 +1532,8 @@ module jst_ph(x,y,rotation,side,type,pcbsize_z) {
     union() {
         difference() {
             color("white") cube([size_x, size_y, 6]);
-            translate([.5, .5, .5]) cube([size_x-1, size_y-1, 6]);
-            translate([size_x/2-(0.5*type)/2, 0,.5]) cube([0.5*type, size_y-2, 6]);
+            color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, 6]);
+            color("white") translate([size_x/2-(0.5*type)/2, -.1,.5]) cube([0.5*type, size_y-2, 6]);
         }
         translate([1.95, 0, 0]) union() {
             for(ind=[0:type-1]) {
