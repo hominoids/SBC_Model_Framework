@@ -613,7 +613,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
             difference() {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 19]);
                 translate([2,-.7,1.5]) color("dimgray") cube([14.5, 11.5, 5.5]);
-                translate([1.5,-.7,12.5]) color("dimgray") cube([15, 18.5, 5.5]);
+                translate([1.5,-.7,12.5]) color("dimgray") cube([15, 17.5, 5.5]);
             }         
             translate([2,-.7,1.5]){
                 difference() {
@@ -642,7 +642,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
                 color("black") translate([2.5,.5,2.25]) cube([9.25,10.5,1.5]);
             }
             color("black") translate([2.5,.5,14.5]) cube([13,10.5,1.5]);
-            color("silver") translate([0,0,12.5]) rotate([0,45,0]) cube([2,18.5,2]);
+            color("silver") translate([0,0,12.5]) rotate([0,45,0]) cube([2,17.5,2]);
             color("silver") translate([-.5,0,13]) cube([.6,.5,4.5]);
             color("silver") translate([17.9,0,13]) cube([.6,.5,4.5]);
             color("silver") translate([2,0,18.9]) cube([14,.5,.5]);
