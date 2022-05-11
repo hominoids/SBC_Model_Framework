@@ -192,6 +192,11 @@ module sbc(model) {
                 pcie(loc_x, loc_y, rotation, side, type, pcbsize_z);
             }
         }
+        if (class == "jst_ph") {
+            if(loc_x!=0 || loc_y!=0) {
+                jst_ph(loc_x, loc_y, rotation, side, type, pcbsize_z);
+            }
+        }
     }
 }   
   
