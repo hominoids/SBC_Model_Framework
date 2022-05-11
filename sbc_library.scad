@@ -1520,7 +1520,21 @@ module pcie(x,y,rotation,side,type,pcbsize_z) {
         size_x = 38.8;
         size_y = 8.5;
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-        color("black") cube([size_x, size_y, 11.1]);
+        union() {
+            difference() {
+                color("black") cube([size_x, size_y, 11.1]);
+                color("dimgrey") translate([1.55,(size_y/2)-.8,2]) cube([11.5,1.6,11]);
+                color("dimgrey") translate([16.5,(size_y/2)-.8,2]) cube([20.3,1.6,11]);
+            }
+            for (i=[1:1:11.5]) {
+                color("gold") translate ([i+1,2.75,2.5]) cube([.5,1,8.25]);
+                color("gold") translate ([i+1,4.75,2.5]) cube([.5,1,8.25]);
+            }
+            for (i=[17:1:36.5]) {
+                color("gold") translate ([i,2.75,2.5]) cube([.5,1,8.25]);
+                color("gold") translate ([i,4.75,2.5]) cube([.5,1,8.25]);
+            }
+        }
     }
 }
 
