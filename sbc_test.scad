@@ -40,4 +40,7 @@ translate ([240,0,0]) sbc("h2");
 linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H2+");}
 
 translate ([380,0,0]) sbc("rockpro64");
-linear_extrude(height = 2) {translate([380,-20,0]) text("RockPro 64");}
+linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}
+
+translate ([390,120,0]) sbc("jetsonnano");
+linear_extrude(height = 2) {translate([400,100,0]) text("Jetson Nano");}

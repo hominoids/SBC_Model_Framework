@@ -1636,10 +1636,14 @@ module cm(x,y,rotation,side,type,pcbsize_z) {
                 color("dimgrey") translate([51,41,22]) cylinder(d=3, h=5);
                     
             }
+            difference() {
+                union() {
+                    color("silver") translate([size_x-3,size_y-3,0]) cylinder(d=5.2,h=7, $fn=6);
+                    color("silver") translate([3,size_y-3,0]) cylinder(d=5.2,h=7, $fn=6);
+                }
+                color("silver") translate([size_x-3,size_y-3,-.1]) cylinder(d=3,h=13);
+                color("silver") translate([3,size_y-3,-.1]) cylinder(d=3,h=13);
+            }
         }
     }   
-}
-
-module stud() {
-    
 }
