@@ -197,6 +197,16 @@ module sbc(model) {
                 jst_ph(loc_x, loc_y, rotation, side, type, pcbsize_z);
             }
         }
+        if (class == "cm_holder") {
+            if(loc_x!=0 || loc_y!=0) {
+                cm_holder(loc_x, loc_y, rotation, side, type, pcbsize_z);
+            }
+        }
+        if (class == "cm") {
+            if(loc_x!=0 || loc_y!=0) {
+                cm(loc_x, loc_y, rotation, side, type, pcbsize_z);
+            }
+        }
     }
 }   
   
