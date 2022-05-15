@@ -44,3 +44,6 @@ linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}
 
 translate ([390,120,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([400,100,0]) text("Jetson Nano");}
+
+translate ([390,260,0]) sbc("show2");
+linear_extrude(height = 2) {translate([410,240,0]) text("Show2");}
