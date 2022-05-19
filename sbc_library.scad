@@ -49,7 +49,7 @@
     20220413 Version 1.0.6 adjusted slide_4x9, adjust m.2_header, rj45-usb2_double, rj45-usb3_double, out-in-spdif,
                            momentary_6x6x4, fixed color for usb2 micro otg, adjust all header heights, 
                            added mipi_csi, mipi_dsi, m.2_stud
-    20220515 Version 1.0.7 added pcie(), jst_ph(), cm(), cm_holder() and other fixes and adjustments
+    20220515 Version 1.0.7 added pcie(), jst_ph(), cm(), cm_holder(), corrected odroid-m1 heatsink height and sbc location, and other fixes and adjustments
     
     see https://github.com/hominoids/SBC_Case_Builder
 
