@@ -50,7 +50,7 @@
                            momentary_6x6x4, fixed color for usb2 micro otg, adjust all header heights, 
                            added mipi_csi, mipi_dsi, m.2_stud
     20220515 Version 1.0.7 added pcie(), jst_ph(), cm(), cm_holder(), corrected odroid-m1 heatsink height and sbc location, and other fixes and adjustments
-    
+    20220623 Version 1.0.7 added pwr5.5_9.5x7
     see https://github.com/hominoids/SBC_Case_Builder
 
     place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
@@ -61,7 +61,7 @@
     memory(x,y,rotation,side,type,pcbsize_z) - "emmc","emmc_plug","sodimm_5.2","sodimm_9.2"
     switch(x,y,rotation,side,type,pcbsize_z) - "slide_4x9"
     button(x,y,rotation,side,type,pcbsize_z) - "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1"
-    plug(x,y,rotation,side,type,pcbsize_z) - "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","rtc_micro","audio_micro","uart_micro","molex_4x1","small_encl_satapwr"
+    plug(x,y,rotation,side,type,pcbsize_z) - "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","pwr5.5_9.5x7","rtc_micro","audio_micro","uart_micro","molex_4x1","small_encl_satapwr"
     usb2(x,y,rotation,side,type,pcbsize_z) - "single_vert_a","double_stacked_a","micro"
     usb3(x,y,rotation,side,type,pcbsize_z) - "double_stacked_a"
     network(x,y,rotation,side,type,pcbsize_z) - "rj45_single"
@@ -362,6 +362,21 @@ module plug(x,y,rotation,side,type,pcbsize_z) {
             }
             color("white") translate([5,10,5]) rotate([90,0,0]) 
             cylinder(d=1.5, h=9,$fn=30);
+        }
+    }
+    // 5.5mm power plug 9.5mm x 7mm
+    if(type=="pwr5.5_9.5x7") {
+        size_x = 9.5;
+        size_y = 9.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference () {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 7]);
+                color("black") translate([5.7,8.49,3.5]) rotate([90,0,0]) 
+                cylinder(d=3.35, h=8.5, $fn=30);
+            }
+            color("white") translate([5.7,8.5,3.5]) rotate([90,0,0]) 
+            cylinder(d=1.4, h=8.5,$fn=30);
         }
     }
 
