@@ -177,6 +177,8 @@ storage(295,115,0,"top","sata_encl_power",0);
 linear_extrude(height = 1) {translate([295,110,0]) text("sata_encl_power",size=5, halign="left");}
 storage(295,138,0,"top","sata_power_vrec",0);
 linear_extrude(height = 1) {translate([295,130,0]) text("sata_power_vrec",size=5, halign="left");}
+storage(295, 153, 0, "top", "microsdcard", 0);
+linear_extrude(height = 1) {translate([295,145,0]) text("microsdcard",size=5, halign="left");}
 
 // combo class
 linear_extrude(height = 2) {translate([360,-5,0]) rotate([0,0,90]) text("combo", size=8, halign="right");}

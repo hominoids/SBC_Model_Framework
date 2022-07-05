@@ -47,3 +47,6 @@ linear_extrude(height = 2) {translate([400,100,0]) text("Jetson Nano");}
 
 translate ([390,260,0]) sbc("show2");
 linear_extrude(height = 2) {translate([410,240,0]) text("Show2");}
+
+translate([530, 0, 0]) sbc("rpi3b+");
+linear_extrude(height = 2) { translate([530, -20, 0]) text("RPi 3 B+"); }

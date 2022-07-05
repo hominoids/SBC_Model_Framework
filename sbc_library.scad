@@ -71,7 +71,7 @@
     ic(x,y,rotation,side,type,pcbsize_z) - "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.7x4.7","ic_5x5","ic_5.75x5.75","ic_6x6","ic_6.4x6.4",ic_6.75x6.75",
                                            "ic_7x7","ic_4.3x5.1","ic_5.4x5.3","ic_6.7x8.4","ic_9x9","ic_11x8","ic_13x8","ic_13x9","ic_16x10"
     audio(x,y,rotation,side,type,pcbsize_z) - "out-in-spdif","jack_3.5"
-    storage(x,y,rotation,side,type,pcbsize_z) - "sdcard","sdcard_i","sata_header","sata_power_vrec","sata_encl_power","sata_encl_header","m.2_header","m.2_stud"
+    storage(x,y,rotation,side,type,pcbsize_z) - "sdcard","sdcard_i","microsdcard","sata_header","sata_power_vrec","sata_encl_power","sata_encl_header","m.2_header","m.2_stud"
     combo(x,y,rotation,side,type,pcbsize_z) - "rj45-usb2_double","rj45-usb3_double"
     jumper(x,y,rotation,side,type,pcbsize_z) - "header_2x1","header_3x2","header_5x1","header_6x1","header_7x1"
     misc(x,y,rotation,side,type,pcbsize_z) - "ir_1","led_3x1.5","lcd_2.2","bat_hold_1"
@@ -1044,6 +1044,24 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
                 color("black") translate([.5,-.5,2]) cube([10.5, 5.5, 1]);
             }
         }
+    }
+
+    // micro sd card
+    if (type == "microsdcard") {
+        size_x = 13.2;
+        size_y = 14.1;
+        place(x, y, size_x, size_y, rotation, side, type, pcbsize_z)
+        union() {
+            for(loc_x = [3.4:1.2:12]) {
+                color("silver") translate([loc_x, 0, 0]) cube([0.7, 13.5, 0.4]);
+            }
+            difference() {
+                color("silver") translate([0, 0, 0]) cube([size_x, size_y, 1.4]);
+                translate([2.6, 10.31, -1]) cube([9.6, 3.8, 5]);
+                translate([0.2, 0.5, 0.2]) cube([12.8, 13.7, 1]);
+            }
+        }
+
     }
     
     // sata single header type
