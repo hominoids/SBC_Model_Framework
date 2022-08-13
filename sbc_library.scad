@@ -579,9 +579,9 @@ module usb2(x,y,rotation,side,type,pcbsize_z) {
         union() {    
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 7]);
-                color("dimgray") translate([.5,-.1,.5]) cube([13, 15.5, 6]);
+                color("dimgray") translate([.5,-.1,1]) cube([13, 13.5, 5.5]);
             }
-            color("white") translate([1.5,1,4]) cube([10, 12.5, 1.5]);
+            color("white") translate([2,1,4]) cube([10, 12.5, 1.5]);
             color("silver") translate([-.65,0,1]) cube([.65,.5,5]);    
             color("silver") translate([13.99,0,1]) cube([.65,.5,5]);
             color("silver") translate([1,0,6.99]) cube([11.5,.5,.65]);            
@@ -620,9 +620,9 @@ module usb3(x,y,rotation,side,type,pcbsize_z) {
         union() {    
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 7]);
-                color("dimgray") translate([.5,-.1,.5]) cube([13, 15.5, 6]);
+                color("dimgray") translate([.5,-.1,1]) cube([13, 13.5, 5.5]);
             }
-            color("royalblue") translate([1.5,1,4]) cube([10, 12.5, 1.5]);
+            color("royalblue") translate([2,1,4]) cube([10, 12.5, 1.5]);
             color("silver") translate([-.65,0,1]) cube([.65,.5,5]);    
             color("silver") translate([13.99,0,1]) cube([.65,.5,5]);
             color("silver") translate([1,0,6.99]) cube([11.5,.5,.65]);            
