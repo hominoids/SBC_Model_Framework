@@ -22,7 +22,8 @@
     button - "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1"
     plug - "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","rtc_micro","audio_micro","uart_micro","molex_4x1","small_encl_satapwr"
     usb2 - "single_vert_a","double_stacked_a","micro"
-    usb3 - double_stacked_a
+    usb3 - "double_stacked_a"
+    usbc - "usbc_horizontal", "usbc_vertical"
     network - rj45_single
     video - "hdmi_a","dp-hdmi_a","mipi_csi","mipi_dsi"
     fan - "micro","encl_pmw","encl_pmw_h"
@@ -118,7 +119,14 @@ linear_extrude(height = 1) {translate([-20,72,0]) text("double_stacked_a",size=5
 // usb3 class
 linear_extrude(height = 2) {translate([35,-5,0]) rotate([0,0,90]) text("usb3", size=8, halign="right");}
 usb3(25,20,0,"top","double_stacked_a",0);
-linear_extrude(height = 1) {translate([20,10,0]) text("double_stacked_a",size=5, halign="left");}
+linear_extrude(height = 1) {translate([5,10,0]) text("double_stacked_a",size=5, halign="left");}
+
+// usbc class
+linear_extrude(height = 2) {translate([65,-5,0]) rotate([0,0,90]) text("usbc", size=8, halign="right");}
+usbc(55,20,0,"top","usbc_horizontal",0);
+linear_extrude(height = 1) {translate([40,2,0]) text("usbc_horizontal",size=5, halign="left");}
+usbc(55,40,0,"top","usbc_vertical",0);
+linear_extrude(height = 1) {translate([42,32,0]) text("usbc_vertical",size=5, halign="left");}
 
 // network class
 linear_extrude(height = 2) {translate([95,-5,0]) rotate([0,0,90]) text("network", size=8, halign="right");}
@@ -131,10 +139,12 @@ video(120,20,0,"top","hdmi_a",0);
 linear_extrude(height = 1) {translate([120,10,0]) text("hdmi_a",size=5, halign="left");}
 video(120,50,0,"top","dp-hdmi_a",0);
 linear_extrude(height = 1) {translate([120,42,0]) text("dp-hdmi_a",size=5, halign="left");}
-video(155,60,0,"top","mipi_csi",0);
-linear_extrude(height = 1) {translate([155,52,0]) text("mipi_csi",size=5, halign="left");}
-video(155,80,0,"top","mipi_dsi",0);
-linear_extrude(height = 1) {translate([155,72,0]) text("mipi_dsi",size=5, halign="left");}
+video(120,90,0,"top","mipi_csi",0);
+linear_extrude(height = 1) {translate([120,82,0]) text("mipi_csi",size=5, halign="left");}
+video(120,107,0,"top","mipi_dsi",0);
+linear_extrude(height = 1) {translate([120,100,0]) text("mipi_dsi",size=5, halign="left");}
+video(120,122,0,"top","hdmi_micro",0);
+linear_extrude(height = 1) {translate([120,115,0]) text("hdmi_micro",size=5, halign="left");}
 
 // fan class
 linear_extrude(height = 2) {translate([160,-5,0]) rotate([0,0,90]) text("fan", size=8, halign="right");}

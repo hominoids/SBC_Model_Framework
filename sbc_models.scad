@@ -28,13 +28,14 @@
     20220202 Version 1.0.5  Added HK Show2 as "show2"
     20220413 Version 1.0.6  Added Odroid-M1 as "m1"
     20220515 Version 1.0.7  Added rockpro64, jetsonnano, updated sbc_test.scad, sbc_test_components.scad and other fixes and adjustments
-
+    2022xxxx Version 1.0.8  "rpi3a+","rpi4b","rpizero","rock64","rockpi4b+","rockpi4c+"
+    
     see https://github.com/hominoids/SBC_Case_Builder
     
     USE: sbc(model)
-             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","h2"
-                     "rpi3b+","a64","rock64","rockpro64","atomicpi","jetsonnano","show2"
-
+             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","h2",
+                     "rpi3b+","a64","rock64","rockpro64","atomicpi","jetsonnano","show2",
+                     "rpi3a+","rpi4b","rpizero","rock64","rockpi4b+","rockpi4c+"
 */
 
 include <./sbc_models.cfg>
@@ -132,6 +133,11 @@ module sbc(model) {
         if (class == "usb3") {
             if (loc_x!=0 || loc_y!=0) {
                 usb3(loc_x,loc_y,rotation,side,type,pcbsize_z);
+            }           
+        }
+        if (class == "usbc") {
+            if (loc_x!=0 || loc_y!=0) {
+                usbc(loc_x,loc_y,rotation,side,type,pcbsize_z);
             }           
         }
         if (class == "network") {

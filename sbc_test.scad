@@ -27,6 +27,9 @@ linear_extrude(height = 2) {translate([0,180,0]) text("Odroid-HC1/HC2");}
 translate ([0,290,0]) sbc("mc1");
 linear_extrude(height = 2) {translate([0,270,0]) text("Odroid-MC1");}
 
+translate ([0,370,0]) sbc("show2");
+linear_extrude(height = 2) {translate([0,350,0]) text("Show2");}
+
 translate ([120,0,12]) sbc("n2+");
 linear_extrude(height = 2) {translate([120,-20,0]) text("Odroid-N2+");}
 
@@ -42,11 +45,26 @@ linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H2+");}
 translate ([380,0,0]) sbc("rockpro64");
 linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}
 
-translate ([390,120,0]) sbc("jetsonnano");
-linear_extrude(height = 2) {translate([400,100,0]) text("Jetson Nano");}
+translate ([380,120,0]) sbc("rock64");
+linear_extrude(height = 2) {translate([400,100,0]) text("Rock 64");}
 
-translate ([390,260,0]) sbc("show2");
-linear_extrude(height = 2) {translate([410,240,0]) text("Show2");}
+translate([535,0,0]) sbc("rpi4b");
+linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 4B"); }
 
-translate([530, 0, 0]) sbc("rpi3b+");
-linear_extrude(height = 2) { translate([530, -20, 0]) text("RPi 3 B+"); }
+translate([535,90,0]) sbc("rpi3b+");
+linear_extrude(height = 2) { translate([535,70,0]) text("RPi 1B+/3B/3B+"); }
+
+translate([535, 180, 0]) sbc("rpi3a+");
+linear_extrude(height = 2) { translate([535,160,0]) text("RPi 1A+/3A+"); }
+
+translate([535,270,0]) sbc("rpizero");
+linear_extrude(height = 2) { translate([535,250,0]) text("RPi zero/zero2w"); }
+
+translate ([645,0,0]) sbc("jetsonnano");
+linear_extrude(height = 2) {translate([655,-20,0]) text("Jetson Nano");}
+
+translate([770,90,0]) sbc("rockpi4b+");
+linear_extrude(height = 2) { translate([780,70,0]) text("RockPi4 A/B+"); }
+
+translate([770,0,0]) sbc("rockpi4c+");
+linear_extrude(height = 2) { translate([780,-20,0]) text("RockPi4C+"); }
