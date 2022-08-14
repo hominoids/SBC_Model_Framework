@@ -64,7 +64,7 @@
     switch(x,y,rotation,side,type,pcbsize_z) - "slide_4x9"
     button(x,y,rotation,side,type,pcbsize_z) - "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1"
     plug(x,y,rotation,side,type,pcbsize_z) - "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","pwr5.5_9.5x7","rtc_micro","audio_micro","uart_micro","molex_4x1","small_encl_satapwr"
-    usb2(x,y,rotation,side,type,pcbsize_z) - "single_vert_a","double_stacked_a","micro","single_horizontal_a"
+    usb2(x,y,rotation,side,type,pcbsize_z) - "single_vertical_a","double_stacked_a","micro","single_horizontal_a"
     usb3(x,y,rotation,side,type,pcbsize_z) - "double_stacked_a",single_horizontal_a
     usbc(x,y,rotation,side,type,pcbsize_z) - "single_horizontal"
     network(x,y,rotation,side,type,pcbsize_z) - "rj45_single"
@@ -1221,13 +1221,13 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
         size_y = 14.1;
         place(x, y, size_x, size_y, rotation, side, type, pcbsize_z)
         union() {
-            for(loc_x = [3.4:1.2:12]) {
-                color("silver") translate([loc_x, 0, 0]) cube([0.7, 13.5, 0.4]);
+            for(loc_x = [.8:1.2:12]) {
+                color("gold") translate([loc_x, 0, 0]) cube([0.7, 13.5, 0.4]);
             }
             difference() {
                 color("silver") translate([0, 0, 0]) cube([size_x, size_y, 1.4]);
-                translate([2.6, 10.31, -1]) cube([9.6, 3.8, 5]);
-                translate([0.2, 0.5, 0.2]) cube([12.8, 13.7, 1]);
+                color("silver") translate([1, -.01, -1]) cube([9.6, 3.8, 5]);
+                color("silver") translate([0.2, -.1, 0.2]) cube([12.8, 13.7, 1]);
             }
         }
 
