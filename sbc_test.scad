@@ -63,8 +63,11 @@ linear_extrude(height = 2) { translate([535,250,0]) text("RPi zero/zero2w"); }
 translate ([645,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([655,-20,0]) text("Jetson Nano");}
 
-translate([770,90,0]) sbc("rockpi4b+");
-linear_extrude(height = 2) { translate([780,70,0]) text("RockPi4 A/B+"); }
+translate([770,185,0]) sbc("rockpi4b+");
+linear_extrude(height = 2) { translate([770,165,0]) text("ROCKPi 4A/B+"); }
+
+translate([770,90,0]) sbc("rockpi4c");
+linear_extrude(height = 2) { translate([775,70,0]) text("ROCKPi 4C"); }
 
 translate([770,0,0]) sbc("rockpi4c+");
-linear_extrude(height = 2) { translate([780,-20,0]) text("RockPi4C+"); }
+linear_extrude(height = 2) { translate([775,-20,0]) text("ROCKPi 4C+"); }
