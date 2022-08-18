@@ -51,7 +51,8 @@
                            added mipi_csi, mipi_dsi, m.2_stud
     20220515 Version 1.0.7 added pcie(), jst_ph(), cm(), cm_holder(), corrected odroid-m1 heatsink height and sbc location, and other fixes and adjustments
     20220623 Version 1.0.7 added pwr5.5_9.5x7
-    2022xxxx Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini
+    2022xxxx Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
+                           ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -317,6 +318,15 @@ module button(x,y,rotation,side,type,pcbsize_z) {
         union() {    
             color("silver") translate([0,0,0]) cube([size_x, size_y, 2]);
             color("white") translate([1,size_y,.5]) cube([2, 1.5, 1]);
+        }
+    }
+    if(type=="momentary_7x3x3_90") {
+        size_x = 7;
+        size_y = 3;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {    
+            color("silver") translate([0,0,0]) cube([size_x, size_y, 3]);
+            color("black") translate([1.5,-1.4,.5]) cube([4, 1.5, 1.5]);
         }
     }
 
@@ -695,6 +705,20 @@ module network(x,y,rotation,side,type,pcbsize_z) {
             }
             color("green") translate([2,-.1,10]) cube([3, 2, 2]);
             color("orange") translate([11,-.1,10]) cube([3, 2, 2]);
+        }
+    }
+    if(type == "rj45_single_short") {    
+        size_x = 14.4;
+        size_y = 12.67;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) 
+        union() {
+            difference () {
+                color("lightgray") translate([0,0,-1.6]) cube([size_x,size_y,13]);
+                color("darkgray") translate([.675,-1,.1]) cube([13, 12, 8]);
+                color("darkgray") translate([4.6755,-2,5.6]) cube([5, 12, 5]);
+            }
+            color("green") translate([1,-.1,8.6]) cube([3, 2, 2]);
+            color("orange") translate([10.375,-.1,8.6]) cube([3, 2, 2]);
         }
     }
 }
@@ -1183,10 +1207,38 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
+    // ic 13mm x 7.5mm
+    if (type=="ic_13x7.5") {
+        size_x = 13;
+        size_y = 7.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
     // ic 13mm x 9mm
     if (type=="ic_13x9") {
         size_x = 13;
         size_y = 9;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 13mm x 11.5mm
+    if (type=="ic_13x11.5") {
+        size_x = 13;
+        size_y = 11.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 15mm x 7mm
+    if (type=="ic_15x7") {
+        size_x = 15;
+        size_y = 7;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 15mm x 13mm
+    if (type=="ic_15x13") {
+        size_x = 15;
+        size_y = 13;        
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    

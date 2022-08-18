@@ -52,13 +52,25 @@ translate([535,0,0]) sbc("rpi4b");
 linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 4B"); }
 
 translate([535,90,0]) sbc("rpi3b+");
-linear_extrude(height = 2) { translate([535,70,0]) text("RPi 1B+/3B/3B+"); }
+linear_extrude(height = 2) { translate([535,70,0]) text("RPi 3B+"); }
 
-translate([535, 180, 0]) sbc("rpi3a+");
-linear_extrude(height = 2) { translate([535,160,0]) text("RPi 1A+/3A+"); }
+translate([535, 180, 0]) sbc("rpi3b");
+linear_extrude(height = 2) { translate([535,160,0]) text("RPi 3B"); }
 
-translate([535,270,0]) sbc("rpizero");
-linear_extrude(height = 2) { translate([535,250,0]) text("RPi zero/zero2w"); }
+translate([535, 270, 0]) sbc("rpi3a+");
+linear_extrude(height = 2) { translate([535,250,0]) text("RPi 3A+"); }
+
+translate([535, 360, 0]) sbc("rpi1b+");
+linear_extrude(height = 2) { translate([535,340,0]) text("RPi 1B+"); }
+
+translate([535, 450, 0]) sbc("rpi1a+");
+linear_extrude(height = 2) { translate([535,430,0]) text("RPi 1A+"); }
+
+translate([535,540,0]) sbc("rpizero2w");
+linear_extrude(height = 2) { translate([535,520,0]) text("RPi Zero2 W"); }
+
+translate([535,600,0]) sbc("rpizero");
+linear_extrude(height = 2) { translate([535,582,0]) text("RPi Zero"); }
 
 translate ([645,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([655,-20,0]) text("Jetson Nano");}
@@ -71,3 +83,25 @@ linear_extrude(height = 2) { translate([775,70,0]) text("ROCKPi 4C"); }
 
 translate([770,0,0]) sbc("rockpi4c+");
 linear_extrude(height = 2) { translate([775,-20,0]) text("ROCKPi 4C+"); }
+
+translate([885,0,0]) sbc("vim4");
+linear_extrude(height = 2) { translate([905,-20,0]) text("Vim4"); }
+
+translate([885,90,0]) sbc("vim3");
+linear_extrude(height = 2) { translate([905,70,0]) text("Vim3"); }
+
+translate([885,185,0]) sbc("vim3l");
+linear_extrude(height = 2) { translate([905,165,0]) text("Vim3l"); }
+
+translate([885,270,0]) sbc("vim2");
+linear_extrude(height = 2) { translate([905,250,0]) text("Vim2"); }
+
+translate([885,360,0]) sbc("vim1");
+linear_extrude(height = 2) { translate([905,340,0]) text("Vim1"); }
+
+translate([990,0,0]) sbc("tinkerboard");
+linear_extrude(height = 2) { translate([995,-20,0]) text("Tinkerboard"); }
+
+translate([990,90,0]) sbc("tinkerboard2");
+linear_extrude(height = 2) { translate([990,70,0]) text("Tinkerboard 2"); }
+
