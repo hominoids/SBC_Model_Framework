@@ -91,7 +91,7 @@ translate([885,90,0]) sbc("vim3");
 linear_extrude(height = 2) { translate([905,70,0]) text("Vim3"); }
 
 translate([885,185,0]) sbc("vim3l");
-linear_extrude(height = 2) { translate([905,165,0]) text("Vim3l"); }
+linear_extrude(height = 2) { translate([905,165,0]) text("Vim3L"); }
 
 translate([885,270,0]) sbc("vim2");
 linear_extrude(height = 2) { translate([905,250,0]) text("Vim2"); }
@@ -99,9 +99,15 @@ linear_extrude(height = 2) { translate([905,250,0]) text("Vim2"); }
 translate([885,360,0]) sbc("vim1");
 linear_extrude(height = 2) { translate([905,340,0]) text("Vim1"); }
 
-translate([990,0,0]) sbc("tinkerboard");
-linear_extrude(height = 2) { translate([995,-20,0]) text("Tinkerboard"); }
+translate([990,0,0]) sbc("tinkerboard-r2");
+linear_extrude(height = 2) { translate([990,-20,0]) text("Tinkerboard R2/R2S"); }
 
-translate([990,90,0]) sbc("tinkerboard2");
-linear_extrude(height = 2) { translate([990,70,0]) text("Tinkerboard 2"); }
+translate([990,90,0]) sbc("tinkerboard-2");
+linear_extrude(height = 2) { translate([990,70,0]) text("Tinkerboard 2/2S"); }
+
+translate([990,185,0]) sbc("tinkerboard-s");
+linear_extrude(height = 2) { translate([990,165,0]) text("Tinkerboard S"); }
+
+translate([990,275,0]) sbc("tinkerboard");
+linear_extrude(height = 2) { translate([990,255,0]) text("Tinkerboard"); }
 
