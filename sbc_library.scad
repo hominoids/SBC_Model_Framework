@@ -1892,7 +1892,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
         size_x = 82;
         size_y = 56;                
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z+soc1size_z)
-        color("gray",.6) import("Radax_Heatsink.stl", convexity=3);
+        color("gray",.6) import("Radxa_Heatsink.stl", convexity=3);
     }
 }
 
