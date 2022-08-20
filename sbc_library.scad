@@ -1479,12 +1479,10 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         union() {  
             difference () {
-                
                 color("dimgray") translate([0,0,0]) cube([size_x,size_y,5.2]);
                 color("dimgray") translate([.88,-1,2.48]) cube([20.15,3.5,2]);
                 color("dimgray") translate([17.65,-1,2.48]) cube([3.35,5.25,.92]);
                 color("dimgray") translate([.88,-1,2.48]) cube([15.65,5.25,.92]);
-                //color("dimgray") translate([3,1.25,3]) cube([10,2,6]);
             }
             for (i=[.88:.5:3]) {
                 color("gold") translate ([i+17.2,2,2.48]) cube([.25,2,.25]);
