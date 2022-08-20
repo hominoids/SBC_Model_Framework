@@ -6,7 +6,7 @@
 This project is a lightweight and dynamic framework for the generation of SBC and micro-controller models written in OpenSCAD.
 
 ### Current SBC
-Hardkernel Odroid: c1+,c2,c4,xu4,xu4q,mc1,hc1,hc4,n1,n2,n2+,h2,show2
+Hardkernel Odroid: c1+,c2,c4,xu4,xu4q,mc1,hc1,hc4,m1,n1,n2,n2+,h2,show2
 
 Nividia: jetsonnano
 

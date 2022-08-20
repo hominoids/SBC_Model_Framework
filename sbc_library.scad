@@ -53,7 +53,7 @@
                            and other fixes and adjustments
     20220623 Version 1.0.7 added pwr5.5_9.5x7
     2022xxxx Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
-                           ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radax_oem,
+                           ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
                            double_stacked_usb3-usbc,ic_12.5x12.5
     
     see https://github.com/hominoids/SBC_Case_Builder
@@ -86,7 +86,7 @@
     misc(x,y,rotation,side,type,pcbsize_z) - "ir_1","led_3x1.5","lcd_2.2","bat_hold_1"
     heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) - "hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem",
                                                             "xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem","khadas_oem",
-                                                            "khadas_fan_oem","radax_oem"
+                                                            "khadas_fan_oem","radxa_oem"
     pcie(x,y,rotation,side,type,pcbsize_z) - "x4"
     jst_ph(x,y,rotation,side,type,pcbsize_z) - type is #pins
     cm_holder(x,y,rotation,side,type,pcbsize_z) - jetsonnano
@@ -1888,7 +1888,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z+soc1size_z)
         color("gray",.6) import("Khadas_Heatsink_Fan.stl", convexity=3);
     }
-    if(type=="radax_oem") {
+    if(type=="radxa_oem") {
         size_x = 82;
         size_y = 56;                
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z+soc1size_z)
