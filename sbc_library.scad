@@ -1877,13 +1877,13 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
     if(type=="khadas_oem") {
         size_x = 82;
         size_y = 48;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z+soc1size_z)
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("gray",.6) import("Khadas_Heatsink.stl", convexity=3);
     }
     if(type=="khadas_fan_oem") {
         size_x = 82;
         size_y = 48;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z+soc1size_z)
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("gray",.6) import("Khadas_Heatsink_Fan.stl", convexity=3);
     }
     if(type=="radxa_oem") {
