@@ -54,7 +54,7 @@
     20220623 Version 1.0.7 added pwr5.5_9.5x7
     2022xxxx Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
-                           double_stacked_usb3-usbc,ic_12.5x12.5
+                           double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15"
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -74,15 +74,16 @@
     network(x,y,rotation,side,type,pcbsize_z) - "rj45_single"
     video(x,y,rotation,side,type,pcbsize_z - "hdmi_a","dp-hdmi_a","mipi_csi","mipi_dsi",hdmi_micro,hdmi_mini,dp_mini
     fan(x,y,rotation,side,type,pcbsize_z) - "micro","encl_pmw","encl_pmw_h"
-    gpio(x,y,rotation,side,type,pcbsize_z) - "encl_header_30","encl_header_12","header_40","header_20"
+    gpio(x,y,rotation,side,type,pcbsize_z) - "encl_header_30","encl_header_12","header_40","header_20","header_26"
     ic(x,y,rotation,side,type,pcbsize_z) - "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.5x4.5","ic_4.7x4.7","ic_5x5","ic_5.5x5.5",
                                             "ic_5.75x5.75","ic_6x6","ic_6.4x6.4",ic_6.75x6.75","ic_7x7","ic_4.3x5.1","ic_5.4x5.3",
-                                            "ic_6.7x8.4","ic_9x9","ic_11x8","ic_11.5x11.5","ic_13x8","ic_13x9","ic_16x10",ic_12.5x12.5
+                                            "ic_6.7x8.4","ic_9x9","ic_10x13","ic_11x8","ic_11.5x11.5","ic_13x8","ic_13x9","ic_16x10",
+                                            "ic_12.5x12.5","ic_12x12","ic_15x15"
     audio(x,y,rotation,side,type,pcbsize_z) - "out-in-spdif","jack_3.5"
     storage(x,y,rotation,side,type,pcbsize_z) - "sdcard","sdcard_i","microsdcard","sata_header","sata_power_vrec","sata_encl_power",
                                                 "sata_encl_header","m.2_header","m.2_stud"
     combo(x,y,rotation,side,type,pcbsize_z) - "rj45-usb2_double","rj45-usb3_double","double_stacked_usb3-usbc"
-    jumper(x,y,rotation,side,type,pcbsize_z) - "header_2x1","header_3x2","header_5x1","header_6x1","header_7x1"
+    jumper(x,y,rotation,side,type,pcbsize_z) - "header_2x1","header_3x1","header_3x2","header_5x1","header_6x1","header_7x1","header_13x1"
     misc(x,y,rotation,side,type,pcbsize_z) - "ir_1","led_3x1.5","lcd_2.2","bat_hold_1"
     heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) - "hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem",
                                                             "xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem","khadas_oem",
@@ -1045,6 +1046,19 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
             }
         }
     }   
+    // gpio 26 pin header
+    if(type=="header_26") {
+        size_x = 31.52;
+        size_y = 5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
+            for (i=[1:2.5:31]) {
+                color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
+                color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
+            }
+        }
+    }   
 }
 
 // ic class
@@ -1175,6 +1189,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
+    // ic 10mm x 13mm
+    if (type=="ic_10x13") {
+        size_x = 10;
+        size_y = 13;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
     // ic 11mm x 8mm
     if (type=="ic_11x8") {
         size_x = 11;
@@ -1200,6 +1221,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
     if (type=="ic_11.7x15") {
         size_x = 11.7;
         size_y = 15;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 12mm x 12mm
+    if (type=="ic_12x12") {
+        size_x = 12;
+        size_y = 12;        
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
@@ -1249,6 +1277,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
     if (type=="ic_15x13") {
         size_x = 15;
         size_y = 13;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 15mm x 15mm
+    if (type=="ic_15x15") {
+        size_x = 15;
+        size_y = 15;        
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
@@ -1588,6 +1623,18 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
             color("silver") translate ([3.5,1,2.5]) cube([.64,.64,5]);
         }
     }
+    // 3x1 type
+    if(type=="header_3x1") {
+        size_x = 7.5;
+        size_y = 2.5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
+            color("silver") translate ([1,1,2.5]) cube([.64,.64,5]);
+            color("silver") translate ([3.5,1,2.5]) cube([.64,.64,5]);
+            color("silver") translate ([6,1,2.5]) cube([.64,.64,5]);
+        }
+    }
     // 3x2 type
     if(type=="header_3x2") {
         size_x = 7.5;
@@ -1633,6 +1680,18 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:16]) {
+                color("silver") translate ([i,1,3]) cube([.64,.64,5]);
+            }
+        }
+    }   
+    // 13x1 type
+    if(type=="header_13x1") {
+        size_x = 32.5;
+        size_y = 2.5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
+            for (i=[1:2.5:32]) {
                 color("silver") translate ([i,1,3]) cube([.64,.64,5]);
             }
         }
