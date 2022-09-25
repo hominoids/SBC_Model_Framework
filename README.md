@@ -7,25 +7,125 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-### Current SBC: 43 modeled 47 represented
+### Current SBC: 47 represented by 43 models.
 
-Hardkernel Odroid: c1+,c2,c4,xu4,xu4q,mc1,hc1,hc4,m1,n1,n2,n2+,h2,show2
+Some SBC in SBC Model Framework have not been validated and may produce one or more aspects of the SBC incorrectly.
 
-Nividia: jetsonnano
 
-Pine64: rock64,rockpro64,quartz64a,quartz64b,h64b
+GREEN = verified to be correct using SBC Case Builder.
 
-Raspberry Pi:rpizero,rpizero2w,rpi1a+,rpi1b+,rpi3a+,rpi3b,rpi3b+,rpi4b
+YELLOW = unverified, mostlikely usable and/or missing minor information.
 
-Radxa: rockpi4b+,rockpi4c,rockpi4c+
+ORANGE = unverified, may be usable but missing component data.
 
-Khadas: vim1,vim2,vim3l,vim3,vim4
+RED = unverified, not usable due to incomplete component data.
 
-Asus: tinkerboard,tinkerboard-s,tinkerboard-2,tinkerboard-r2
 
-OrangePi: opizero,opizero2,opir1plus_lts
+
+Hardkernel Odroid:
+
+c1+,c2,c4,xu4,xu4q,mc1,hc1,hc4,m1,n1,n2,n2+,h2 - GREEN, verified.
+
+show2 - ORANGE, unverified, unknown status.
+
+
+
+Nividia:
+
+jetsonnano - GREEN, verified.
+
+
+
+Pine64:
+
+All created from mechanical drawings except rockpro64 which was contributed. The SOC data is missing for many of these SBC.
+
+rock64 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rockpro64 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+quartz64a - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+quartz64b - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+h64b - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+
+
+Raspberry Pi:
+
+All created from mechanical drawings except rpi3b+ which was contributed. The SOC data is missing for these SBC.
+
+rpizero - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpizero2w - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi1a+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi1b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi3a+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi3b - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi3b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi4b - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+
+
+Radxa:
+
+Created from mechanical drawings, the SOC data is missing for these SBC.
+
+rockpi4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rockpi4c - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rockpi4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+
+
+Khadas:
+
+Created from mechanical drawings, the height information is not correct for these SBC.
+The through RJ-45 component is not modeled correctly.
+
+vim1 - RED = unverified, not usable due to incomplete component data.
+
+vim2 - RED = unverified, not usable due to incomplete component data.
+
+vim3l - RED = unverified, not usable due to incomplete component data.
+
+vim3 - RED = unverified, not usable due to incomplete component data.
+
+vim4 - RED = unverified, not usable due to incomplete component data.
+
+
+
+Asus:
+
+tinkerboard - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tinkerboard-s - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tinkerboard-2 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tinkerboard-r2 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+
+
+OrangePi:
+
+opizero - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
+
 
 License: GPLv3.
+
 
 ### Notes
 
