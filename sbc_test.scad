@@ -112,6 +112,10 @@ translate ([645,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([655,-20,0]) text("Jetson Nano");}
 color("green",.5) translate([655,-20,-1]) cube([76,10,1]);
 
+translate([770,275,0]) sbc("rockpi5b");
+linear_extrude(height = 2) { translate([770,255,0]) text("ROCKPi 5B"); }
+color("red",.3) translate([770,255,-1]) cube([73,10,1]);
+
 translate([770,185,0]) sbc("rockpi4b+");
 linear_extrude(height = 2) { translate([770,165,0]) text("ROCKPi 4A/B+"); }
 color("yellow",.3) translate([770,165,-1]) cube([92,10,1]);

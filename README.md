@@ -84,6 +84,7 @@ rockpi4c - YELLOW, unverified mostlikely usable and/or missing minor information
 
 rockpi4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
+rockpi5b - RED, unverified, not usable due to incomplete component data.
 
 
 Khadas:
@@ -91,15 +92,15 @@ Khadas:
 Created from mechanical drawings, the height information is not correct for these SBC.
 The through RJ-45 component is not modeled correctly.
 
-vim1 - RED = unverified, not usable due to incomplete component data.
+vim1 - RED, unverified, not usable due to incomplete component data.
 
-vim2 - RED = unverified, not usable due to incomplete component data.
+vim2 - RED, unverified, not usable due to incomplete component data.
 
-vim3l - RED = unverified, not usable due to incomplete component data.
+vim3l - RED, unverified, not usable due to incomplete component data.
 
-vim3 - RED = unverified, not usable due to incomplete component data.
+vim3 - RED, unverified, not usable due to incomplete component data.
 
-vim4 - RED = unverified, not usable due to incomplete component data.
+vim4 - RED, unverified, not usable due to incomplete component data.
 
 
 

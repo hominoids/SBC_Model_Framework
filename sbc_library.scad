@@ -54,7 +54,8 @@
     20220623 Version 1.0.7 added pwr5.5_9.5x7
     2022xxxx Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
-                           double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15"
+                           double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
+                           hdmi_a_vertical
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -72,7 +73,7 @@
     usb3(x,y,rotation,side,type,pcbsize_z) - "double_stacked_a",single_horizontal_a
     usbc(x,y,rotation,side,type,pcbsize_z) - "single_horizontal"
     network(x,y,rotation,side,type,pcbsize_z) - "rj45_single"
-    video(x,y,rotation,side,type,pcbsize_z - "hdmi_a","dp-hdmi_a","mipi_csi","mipi_dsi",hdmi_micro,hdmi_mini,dp_mini
+    video(x,y,rotation,side,type,pcbsize_z - "hdmi_a","hdmi_a_vertical","dp-hdmi_a","mipi_csi","mipi_dsi",hdmi_micro,hdmi_mini,dp_mini
     fan(x,y,rotation,side,type,pcbsize_z) - "micro","encl_pmw","encl_pmw_h"
     gpio(x,y,rotation,side,type,pcbsize_z) - "encl_header_30","encl_header_12","header_40","header_20","header_26"
     ic(x,y,rotation,side,type,pcbsize_z) - "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.5x4.5","ic_4.7x4.7","ic_5x5","ic_5.5x5.5",
@@ -669,7 +670,7 @@ module usbc(x,y,rotation,side,type,pcbsize_z) {
                     translate([size_x-3.5,0,0]) cylinder(d=3,h=size_y+.2);        
                     }
             }
-            color("black") translate([0,-1.2/2,0]) cube([5.5,1.2,6]);
+            color("black") translate([0,-1.2/2,1]) cube([5.5,1.2,6]);
         }
     }
     if(type=="single_horizontal") {
@@ -760,7 +761,45 @@ module video(x,y,rotation,side,type,pcbsize_z) {
                 color("silver") translate([-1,-1,-3]) cube([16.5,13.5,3]);
                 }
             color("black") translate([2.5,.5,2.25]) cube([9.25,10.5,1.5]);
+        }
+    }
+    if(type=="hdmi_a_vertical") {
+        size_x = 14.5;
+        size_y = 11.5;
+        height = 2.4;      
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        translate([0,0,14.5+height]) rotate([0,90,0])
+        union() { 
+            difference() {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 5.5]);
+                color("dimgray") translate([.5,-.1,.5]) cube([13.5, 11, 4.5]);
+                color("silver") translate([0,-.1,0]) rotate ([-90,0,0]) 
+                    cylinder(d=4, h=13.5,$fn=30);
+                color("silver") translate([14.5,-.1,0]) rotate ([-90,0,0]) 
+                    cylinder(d=4, h=13.5,$fn=30);
             }
+            difference() {
+                union() {
+                    color("silver") translate([0,-.1,0]) rotate ([-90,0,0]) 
+                    cylinder(d=4, h=11.5,$fn=30);
+                    color("silver") translate([14.5,-.1,0]) rotate ([-90,0,0]) 
+                    cylinder(d=4, h=11.5,$fn=30);
+                }               
+                color("silver") translate([0,-.2,0]) rotate ([-90,0,0]) 
+                    cylinder(d=3, h=13.5,$fn=30);
+                color("silver") translate([14.5,-.2,0]) rotate ([-90,0,0]) 
+                    cylinder(d=3, h=13.5,$fn=30);
+                color("silver") translate([-3,-1,-3]) cube([3,13.5,7.5]);
+                color("silver") translate([14.5,-1,-3]) cube([3,13.5,7.5]);
+                color("silver") translate([-1,-1,-3]) cube([16.5,13.5,3]);
+                }
+            difference() {
+                color("silver") translate([0,4,0]) cube([17,17.75,5.5]);
+                color("silver") translate([-6,6,-.25]) rotate([0,0,45]) cube([25,10,6]);
+            }
+            color("silver") translate([14.5,4,1.75]) cube([height,17.75,3.75]);
+            color("black") translate([2.5,.5,2.25]) cube([9.25,10.5,1.5]);
+        }
     }
     // display port and hdmi stacked
     if(type=="dp-hdmi_a") {
