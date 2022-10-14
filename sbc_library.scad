@@ -1882,7 +1882,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
                 }
         }
     }
-    if(type=="xu4_oem" || type=="n1_oem") {
+    if(type=="xu4_oem") {
         $fn=60;
         size_x = 58;
         size_y = 40;                
@@ -1947,6 +1947,44 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
             color("DeepSkyBlue",.6) translate([-5.5,30,-1]) cylinder(d=3, h=4);
         }
 
+    }
+    if(type=="n1_oem" || type=="40mm_active") {
+        $fn=60;
+        size_x = 58;
+        size_y = 40;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        translate([5.5,-30,soc1size_z])
+        difference() {
+            union() {
+                color("white",.6) cube([40, 40, 9.8]);
+                color("white",.6) translate([39.99,6.5,0]) cube([5.5,7,2]);
+                color("white",.6) translate([45.5,10,0]) cylinder(d=7, h=2);
+                color("white",.6) translate([-5.49,26.5,0]) cube([5.5,7,2]);
+                color("white",.6) translate([-5.5,30,0]) cylinder(d=7, h=2);
+            }
+            // fins
+            for (i=[1.5:2.25:38.5]) {
+                    color("white",.6) translate([i,-1,2]) cube ([1.25,42,12]);
+            }
+            // cross opening
+            color("white",.6) translate([17.5,-1,2]) cube([5,42,10]);
+            color("white",.6) translate([-1,17.5,2]) cube([42,5,10]);
+            // fin elevations
+            color("white",.6) translate([4,-1,9]) cube([8,42,2]);
+            color("white",.6) translate([28,-1,9]) cube([8,42,2]);
+            color("white",.6) translate([11,-1,8]) cube([2,42,3]);
+            color("white",.6) translate([27,-1,8]) cube([2,42,3]);
+            color("white",.6) translate([13,-1,7]) cube([2.5,42,4]);
+            color("white",.6) translate([25,-1,7]) cube([2,42,4]);
+            color("white",.6) translate([16,-1,6]) cube([2,42,5]);
+            color("white",.6) translate([22,-1,6]) cube([2.5,42,5]);
+            // fan cut out
+            color("white",.6) translate([20,20,2]) cylinder(r=18, h=13.5, $fn=100);
+
+            // holes
+            color("white",.6) translate([45.5,10,-1]) cylinder(d=3, h=4);
+            color("white",.6) translate([-5.5,30,-1]) cylinder(d=3, h=4);
+        }
     }
     if(type=="n2_oem") {
         size_x = 90;

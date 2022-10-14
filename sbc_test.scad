@@ -53,8 +53,8 @@ linear_extrude(height = 2) {translate([120,270,0]) text("Odroid-N1");}
 color("green",.5) translate([120,270,-1]) cube([63,10,1]);
 
 translate ([240,0,0]) sbc("h2");
-linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H2+");}
-color("green",.5) translate([240,-20,-1]) cube([92,10,1]);
+linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H3");}
+color("green",.5) translate([240,-20,-1]) cube([84,10,1]);
 
 translate ([380,0,0]) sbc("rockpro64");
 linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}
@@ -112,20 +112,20 @@ translate ([645,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([655,-20,0]) text("Jetson Nano");}
 color("green",.5) translate([655,-20,-1]) cube([76,10,1]);
 
-translate([770,275,0]) sbc("rockpi5b");
-linear_extrude(height = 2) { translate([770,255,0]) text("ROCKPi 5B"); }
-color("red",.3) translate([770,255,-1]) cube([73,10,1]);
+translate([770,285,0]) sbc("rockpi4b+");
+linear_extrude(height = 2) { translate([770,265,0]) text("ROCKPi 4A/B+"); }
+color("yellow",.3) translate([770,265,-1]) cube([92,10,1]);
 
-translate([770,185,0]) sbc("rockpi4b+");
-linear_extrude(height = 2) { translate([770,165,0]) text("ROCKPi 4A/B+"); }
-color("yellow",.3) translate([770,165,-1]) cube([92,10,1]);
+translate([770,195,0]) sbc("rockpi4c");
+linear_extrude(height = 2) { translate([770,175,0]) text("ROCKPi 4C"); }
+color("yellow",.3) translate([770,175,-1]) cube([73,10,1]);
 
-translate([770,90,0]) sbc("rockpi4c");
-linear_extrude(height = 2) { translate([775,70,0]) text("ROCKPi 4C"); }
-color("yellow",.3) translate([775,70,-1]) cube([73,10,1]);
+translate([770,105,0]) sbc("rockpi4c+");
+linear_extrude(height = 2) { translate([775,85,0]) text("ROCKPi 4C+"); }
+color("yellow",.3) translate([775,85,-1]) cube([73,10,1]);
 
-translate([770,0,0]) sbc("rockpi4c+");
-linear_extrude(height = 2) { translate([775,-20,0]) text("ROCKPi 4C+"); }
+translate([770,0,0]) sbc("rockpi5b");
+linear_extrude(height = 2) { translate([775,-20,0]) text("ROCKPi 5b"); }
 color("yellow",.3) translate([775,-20,-1]) cube([80,10,1]);
 
 translate([885,0,0]) sbc("vim4");
