@@ -29,8 +29,8 @@
     20220413 Version 1.0.6  Added Odroid-M1 as "m1"
     20220515 Version 1.0.7  Added rockpro64, jetsonnano, updated sbc_test.scad, sbc_test_components.scad
                             and other fixes and adjustments
-    2022xxxx Version 1.0.8  rpizero,rpizero2w,rpi1a+,rpi1b+,rpi3a+,rpi3b,rpi3b+,rpi4b,rockpi4b+,
-                            rockpi4c,rockpi4c+,vim1,vim2,vim3l,vim3,vim4,
+    20221020 Version 1.0.8  rpizero,rpizero2w,rpi1a+,rpi1b+,rpi3a+,rpi3b,rpi3b+,rpi4b,rockpi4b+,
+                            rockpi4c,rockpi4c+,rockpi5b,vim1,vim2,vim3l,vim3,vim4,
                             tinkerboard,tinkerboard-s,tinkerboard-2,tinkerboard-r2
                             rock64,quartz64a,quartz64b,h64b,opizero,opizero2,opir1plus_lts
     
@@ -40,7 +40,7 @@
              model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","n1","n2","n2+","h2","show2"
                      "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b",
                      "jetsonnano","rock64","rockpro64","quartz64b","quartz64b,"h64b",
-                     "rockpi4b+","rockpi4c","rockpi4c+",
+                     "rockpi4b+","rockpi4c","rockpi4c+","rockpi5b",
                      "vim1","vim2","vim3l","vim3","vim4",
                      "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-r2",
                      "opizero","opizero2","opir1plus_lts"

@@ -52,7 +52,7 @@
     20220515 Version 1.0.7 added pcie(), jst_ph(), cm(), cm_holder(), corrected odroid-m1 heatsink height and sbc location,
                            and other fixes and adjustments
     20220623 Version 1.0.7 added pwr5.5_9.5x7
-    2022xxxx Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
+    20221020 Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
                            double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
                            hdmi_a_vertical

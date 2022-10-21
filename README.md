@@ -11,7 +11,7 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ## Using the Framework
 
-Any of the models can be called by passing the requested SBC model in the form of sbc("xu4"). 
+Any of the models can be called by passing the requested SBC model in the form of sbc("model"). 
 ```
 include <sbc_models.scad>
 sbc("rpi4b");
@@ -45,28 +45,34 @@ The last entry in the schema is for components. A component is anything that is 
 The rotation value does not rotate the component around the xy location. It is a reference to the direction that the component faces and whichever corner of the component is in the lower left after rotation, will assume the xy location specified for the component entry. This allows a uniform means to measure the placement of components regardless of their orientation on the PCB. The schema entry labeled component_side is the side of the PCB the component is to be placed on. So far we covered component_x, component_y, component_rotation and component_side. The last two entries are component_class and component_type. These entries together determine what component is placed. Each component class contains one or more component types. There are currently 17 component classes with corresponding component types.
 
 ## Component classes and types:
+
+![Image](sbc_test_components.png)
     
 ```
     memory  - "emmc","emmc_plug","sodimm_5.2","sodimm_9.2"
-    switch - slide_4x9
-    button - "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1"
-    plug - "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","rtc_micro","audio_micro","uart_micro","molex_4x1","small_encl_satapwr"
-    usb2 - "single_vert_a","double_stacked_a","micro"
-    usb3 - double_stacked_a
-    network - rj45_single
-    video - "hdmi_a","dp-hdmi_a","mipi_csi","mipi_dsi"
-    fan - "micro","encl_pmw","encl_pmw_h"
-    gpio - "encl_header_30","encl_header_12","header_40","header_20"
-    ic - "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.7x4.7","ic_5x5","ic_5.75x5.75","ic_6x6","ic_6.4x6.4","ic_6.75x6.75",
-         "ic_7x7","ic_4.3x5.1","ic_5.4x5.3","ic_6.7x8.4","ic_9x9","ic_11x8","ic_13x8","ic_13x9","ic_16x10"
-    audio - "out-in-spdif","jack_3.5"
-    storage - "sdcard","sdcard_i","sata_header","sata_power_vrec","sata_encl_power","sata_encl_header","m.2_header","m.2_stud"
-    combo - "rj45-usb2_double","rj45-usb3_double"
-    jumper - "header_2x1","header_3x2","header_5x1","header_6x1","header_7x1"
-    misc - "ir_1","led_3x1.5","lcd_2.2","bat_hold_1"
-    heatsink - "hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem","xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem"
-    pcie - "x4"
-    jst_ph - number of pins from 2-16
+    switch -  "slide_4x9"
+    button -  "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1","momentary_7x3x3_90"
+    plug -    "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","rtc_micro","audio_micro","uart_micro","molex_4x1",
+              "small_encl_satapwr"
+    usb2 -    "micro","single_vertical_a","double_stacked_a","single_horizontal_a"
+    usb3 -    "double_stacked_a","single_horizontal_a",
+    network - "rj45_single",
+    video -   "hdmi_a","hdmi_a_vertical","dp-hdmi_a","mipi_csi","mipi_dsi","hdmi_micro","dp_mini","hdmi_a_vertical"
+    fan -     "micro","encl_pmw","encl_pmw_h"
+    gpio -    "encl_header_12","encl_header_30","header_20","header_26","header_40"
+    ic -      "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.7x4.7","ic_5x5","ic_5.75x5.75","ic_6x6","ic_6.4x6.4",
+              "ic_6.75x6.75","ic_7x7","ic_4.3x5.1","ic_5.4x5.3","ic_6.7x8.4","ic_9x9","ic_11x8","ic_13x8",
+              "ic_13x9","ic_16x10"
+    audio -   "out-in-spdif","jack_3.5"
+    storage - "sdcard","sdcard_i","sata_header","sata_encl_header","m.2_header","m.2_stud","sata_encl_power",
+              "sata_power_vrec","microsdcard"
+    combo -   "rj45-usb2_double","rj45-usb3_double","double_stacked_usb3-usbc"
+    jumper -  "header_2x1","header_3x1","header_3x2","header_5x1","header_6x1","header_7x1"
+    misc -    "ir_1","bat_hold_1","led_3x1.5","lcd_2.2"
+    heatsink -"hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem","xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem",
+               "khadas_oem","khadas_fan_oem","radxa_oem"
+    pcie -     "x4"
+    jst_ph -   number of pins from 2-16
 ```
 Simply put, new SBC are defined in sbc_model.cfg and new components are added to sbc_library.scad. To add an SBC, modify sbc_models.cfg by creating or copying of an existing SBC entry. Update the relative SBC data and components for the new SBC. When a component type needs to be added, simply add code that draws that component type in the class module the component belongs to, located in sbc_library.scad. There is no checking or validation of any kind so in reality any class can contain any component type. The names are simply the ones I choose to impose some structure that makes sense for my use of the library moving forward.
 
