@@ -56,12 +56,13 @@
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
                            double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
                            hdmi_a_vertical
+    2022xxxx Version 2.0.0 
     
     see https://github.com/hominoids/SBC_Case_Builder
 
     place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-    pcb_add(size_x,size_y,loc_x,loc_y,rotation,side,type,pcbsize_z,data_1,data_2) - "square","round"
-    pcb_sub(size_x,size_y,loc_x,loc_y,rotation,side,type,pcbsize_z,data_1,data_2) - "square","round","art"
+    pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) - "rectangle","round","polygon","art"
+    pcb_sub(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) - "rectangle","round","polygon","art"
     pcb_art(scale_d1,type,dxf_file) - "dxf"
     pcb(size, radius)
     memory(x,y,rotation,side,type,pcbsize_z) - "emmc","emmc_plug","sodimm_5.2","sodimm_9.2"
@@ -128,30 +129,42 @@ module place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) {
 }
 
 /* addition module */
-module pcb_add(size_x,size_y,loc_x,loc_y,rotation,side,type,pcbsize_z,data_1,data_2) {
-    if(type == "square") {
-        rotate([0,0,rotation]) translate([loc_x,loc_y,0])
+module pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) {
+    if(type == "rectangle") {
+        rotate(rotation) translate([loc_x,loc_y,loc_z])
             cube([size_x,size_y,pcbsize_z]);
     }
     if(type == "round") {
-        translate([loc_x,loc_y,0])
+        rotate(rotation) translate([loc_x,loc_y,loc_z])
             cylinder(d=data_1,h=pcbsize_z);
     }    
+    if(type == "polygon") {
+        rotate(rotation) translate([loc_x,loc_y,loc_z])
+            polygon(data_1);
+    }    
+    if(type == "dxf") {
+        rotate(rotation) translate([loc_x,loc_y,-1])
+            pcb_art(data_1,data_2); 
+    }
 }
 
 /* subtractive module */
-module pcb_sub(size_x,size_y,loc_x,loc_y,rotation,side,type,pcbsize_z,data_1,data_2) {
+module pcb_sub(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) {
     // square
-    if(type == "square") {
-        rotate([0,0,rotation]) translate([loc_x,loc_y,-4])
+    if(type == "rectangle") {
+        rotate(rotation) translate([loc_x,loc_y,-4])
             cube([size_x,size_y,pcbsize_z+5]);
     }
     if(type == "round") {
-        translate([loc_x,loc_y,-1])
+        rotate(rotation) translate([loc_x,loc_y,-1])
             cylinder(d=data_1,h=pcbsize_z+4);
     }
-    if(type == "art") {
-        rotate([0,0,rotation]) translate([loc_x,loc_y,-1])
+    if(type == "polygon") {
+        rotate(rotation) translate([loc_x,loc_y,loc_z])
+            polygon(data_1);
+    }    
+    if(type == "dxf") {
+        rotate(rotation) translate([loc_x,loc_y,-1])
             pcb_art(data_1,data_2); 
     }
 }

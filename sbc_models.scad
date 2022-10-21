@@ -33,6 +33,7 @@
                             rockpi4c,rockpi4c+,rockpi5b,vim1,vim2,vim3l,vim3,vim4,
                             tinkerboard,tinkerboard-s,tinkerboard-2,tinkerboard-r2
                             rock64,quartz64a,quartz64b,h64b,opizero,opizero2,opir1plus_lts
+    2022xxxx Version 2.0.0  added unlimted pcb to a sbc, unlimited pcb holes, unlimited pcb soc
     
     see https://github.com/hominoids/SBC_Case_Builder
     
@@ -61,7 +62,9 @@ module sbc(model, mask) {
     else {
         for (i=[1:20:len(sbc_data[s[0]])-1]) {
             // pcb shapes
-            if(sbc_data[s[0]][i] == "pcbshape" && sbc_data[s[0]][i+1] == "rectangle") {
+            if(sbc_data[s[0]][i] == "pcbshape") {
+                type =  sbc_data[s[0]][i+1];
+                pcb_id = sbc_data[s[0]][i+2];
                 pcbloc_x = sbc_data[s[0]][i+3];
                 pcbloc_y = sbc_data[s[0]][i+4];
                 pcbloc_z = sbc_data[s[0]][i+5];
@@ -70,10 +73,20 @@ module sbc(model, mask) {
                 pcbsize_z = sbc_data[s[0]][i+10];
                 pcbcorner_radius = sbc_data[s[0]][i+11];
                 pcb_color = sbc_data[s[0]][i+14];
-                pcb_id = sbc_data[s[0]][i+2];
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     difference() {
-                        color(pcb_color) pcb([pcbsize_x, pcbsize_y, pcbsize_z], pcbcorner_radius);
+                        if(type == "rectangle") {
+                            color(pcb_color) pcb([pcbsize_x, pcbsize_y, pcbsize_z], pcbcorner_radius);
+                        }
+                        if(type == "round") {
+                            color(pcb_color) pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2);
+                        }
+                        if(type == "polygon") {
+                            color(pcb_color) pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2);
+                        }
+                        if(type == "dxf") {
+                            color(pcb_color) pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2);
+                        }
                         // pcb mounting holes
                         for (i=[1:20:len(sbc_data[s[0]])-1]) {
                             if(sbc_data[s[0]][i] == "pcbhole" && sbc_data[s[0]][i+2] == pcb_id) {
