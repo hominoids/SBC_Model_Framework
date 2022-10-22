@@ -56,6 +56,7 @@
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
                            double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
                            hdmi_a_vertical
+    2022xxxx Version x.x.x added microsdcard2
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -81,8 +82,8 @@
                                             "ic_6.7x8.4","ic_9x9","ic_10x13","ic_11x8","ic_11.5x11.5","ic_13x8","ic_13x9","ic_16x10",
                                             "ic_12.5x12.5","ic_12x12","ic_15x15"
     audio(x,y,rotation,side,type,pcbsize_z) - "out-in-spdif","jack_3.5"
-    storage(x,y,rotation,side,type,pcbsize_z) - "sdcard","sdcard_i","microsdcard","sata_header","sata_power_vrec","sata_encl_power",
-                                                "sata_encl_header","m.2_header","m.2_stud"
+    storage(x,y,rotation,side,type,pcbsize_z) - "sdcard","sdcard_i","microsdcard","microsdcard2","sata_header","sata_power_vrec",
+                                                "sata_encl_power","sata_encl_header","m.2_header","m.2_stud"
     combo(x,y,rotation,side,type,pcbsize_z) - "rj45-usb2_double","rj45-usb3_double","double_stacked_usb3-usbc"
     jumper(x,y,rotation,side,type,pcbsize_z) - "header_2x1","header_3x1","header_3x2","header_5x1","header_6x1","header_7x1","header_13x1"
     misc(x,y,rotation,side,type,pcbsize_z) - "ir_1","led_3x1.5","lcd_2.2","bat_hold_1"
@@ -766,7 +767,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_a_vertical") {
         size_x = 14.5;
         size_y = 11.5;
-        height = 2.4;      
+        height = .4;      
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         translate([0,0,14.5+height]) rotate([0,90,0])
         union() { 
@@ -794,7 +795,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
                 color("silver") translate([-1,-1,-3]) cube([16.5,13.5,3]);
                 }
             difference() {
-                color("silver") translate([0,4,0]) cube([17,17.75,5.5]);
+                color("silver") translate([0,6,0]) cube([15,15.75,5.5]);
                 color("silver") translate([-6,6,-.25]) rotate([0,0,45]) cube([25,10,6]);
             }
             color("silver") translate([14.5,4,1.75]) cube([height,17.75,3.75]);
@@ -1384,7 +1385,8 @@ module audio(x,y,rotation,side,type,pcbsize_z) {
 
 // storage class
 module storage(x,y,rotation,side,type,pcbsize_z) {
-    // standard sdcard
+
+    // raised micro sdcard
     if(type=="sdcard" || type=="sdcard_i") {
         size_x = 11.5;
         size_y = 5.5;        
@@ -1397,7 +1399,7 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
         }
     }
 
-    // micro sd card
+    // micro sd card style 1
     if (type == "microsdcard") {
         size_x = 13.2;
         size_y = 14.1;
@@ -1415,6 +1417,19 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
 
     }
     
+    // micro sdcard style 2
+    if(type == "microsdcard2") {
+        size_x = 11.5;
+        size_y = 5.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference () {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 2.5]);
+                color("black") translate([.5,-.5,.75]) cube([10.5, 5.5, 1]);
+            }
+        }
+    }
+
     // sata single header type
     if(type=="sata_header") {
         size_x = 16;

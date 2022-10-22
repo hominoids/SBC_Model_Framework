@@ -71,7 +71,7 @@ module sbc(model) {
             
             if (pcb_hole_x!=0 && pcb_hole_y!=0) {
                 translate([pcb_hole_x,pcb_hole_y,-1]) 
-                    cylinder(d=pcb_hole_size, h=5);
+                    color("tan") cylinder(d=pcb_hole_size, h=5);
             }
         }
     }
