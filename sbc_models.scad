@@ -68,24 +68,29 @@ module sbc(model, mask) {
                 pcbloc_x = sbc_data[s[0]][i+3];
                 pcbloc_y = sbc_data[s[0]][i+4];
                 pcbloc_z = sbc_data[s[0]][i+5];
+                pcb_side = sbc_data[s[0]][i+6];
+                pcb_rotation = sbc_data[s[0]][i+7];
                 pcbsize_x = sbc_data[s[0]][i+8];
                 pcbsize_y = sbc_data[s[0]][i+9];
                 pcbsize_z = sbc_data[s[0]][i+10];
                 pcbcorner_radius = sbc_data[s[0]][i+11];
-                pcb_color = sbc_data[s[0]][i+14];
+                pcb_color = sbc_data[s[0]][i+12];
+                pcb_polygon = sbc_data[s[0]][i+13];
+                dxf_scale = sbc_data[s[0]][i+14];
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     difference() {
                         if(type == "rectangle") {
                             color(pcb_color) pcb([pcbsize_x, pcbsize_y, pcbsize_z], pcbcorner_radius);
                         }
-                        if(type == "round") {
-                            color(pcb_color) pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2);
-                        }
                         if(type == "polygon") {
-                            color(pcb_color) pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2);
+                            color(pcb_color) shape(type,pcbsize_x,pcbsize_y,pcbsize_z,pcbcorner_radius,pcb_color,pcb_polygon,0);
+                        }
+                        if(type == "round") {
+                            color(pcb_color) rotate(pcb_rotation) translate([pcbsize_x/2,pcbsize_x/2,pcbsize_z,]) 
+                                shape(type,pcbsize_x,pcbsize_y,pcbsize_z,pcbcorner_radius,pcb_color,pcb_polygon,0);
                         }
                         if(type == "dxf") {
-                            color(pcb_color) pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2);
+                            color(pcb_color) shape(type,pcbsize_x,pcbsize_y,pcbsize_z,pcbcorner_radius,pcb_color,pcb_polygon,0);
                         }
                         // pcb mounting holes
                         for (i=[1:20:len(sbc_data[s[0]])-1]) {

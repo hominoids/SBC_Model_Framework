@@ -61,9 +61,7 @@
     see https://github.com/hominoids/SBC_Case_Builder
 
     place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-    pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) - "rectangle","round","polygon","art"
-    pcb_sub(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) - "rectangle","round","polygon","art"
-    pcb_art(scale_d1,type,dxf_file) - "dxf"
+    shape(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2,data_3,data_4,data_5) - "rectangle","round","polygon","dxf"
     pcb(size, radius)
     memory(x,y,rotation,side,type,pcbsize_z) - "emmc","emmc_plug","sodimm_5.2","sodimm_9.2"
     switch(x,y,rotation,side,type,pcbsize_z) - "slide_4x9"
@@ -128,51 +126,20 @@ module place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) {
    children([1:1:$children-1]);
 }
 
-/* addition module */
-module pcb_add(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) {
+/* shape module */
+module shape(type,size_x,size_y,size_z,data_1,data_2,data_3,data_4) {
+
     if(type == "rectangle") {
-        rotate(rotation) translate([loc_x,loc_y,loc_z])
-            cube([size_x,size_y,pcbsize_z]);
+        cube([size_x,size_y,size_z]);
     }
     if(type == "round") {
-        rotate(rotation) translate([loc_x,loc_y,loc_z])
-            cylinder(d=data_1,h=pcbsize_z);
+            cylinder(d=size_x, h=size_z);
     }    
     if(type == "polygon") {
-        rotate(rotation) translate([loc_x,loc_y,loc_z])
-            polygon(data_1);
+            linear_extrude(height = size_z) polygon(data_3);
     }    
     if(type == "dxf") {
-        rotate(rotation) translate([loc_x,loc_y,-1])
-            pcb_art(data_1,data_2); 
-    }
-}
-
-/* subtractive module */
-module pcb_sub(type,loc_x,loc_y,loc_z,side,rotation,size_x,size_y,size_z,data_1,data_2) {
-    // square
-    if(type == "rectangle") {
-        rotate(rotation) translate([loc_x,loc_y,-4])
-            cube([size_x,size_y,pcbsize_z+5]);
-    }
-    if(type == "round") {
-        rotate(rotation) translate([loc_x,loc_y,-1])
-            cylinder(d=data_1,h=pcbsize_z+4);
-    }
-    if(type == "polygon") {
-        rotate(rotation) translate([loc_x,loc_y,loc_z])
-            polygon(data_1);
-    }    
-    if(type == "dxf") {
-        rotate(rotation) translate([loc_x,loc_y,-1])
-            pcb_art(data_1,data_2); 
-    }
-}
-
-// art work module
-module pcb_art(scale_d1,type,dxf_file) {
-    if(type == "dxf") {
-            linear_extrude(height = pcbsize_z) import(file = dxf_file, scale=scale_d1); 
+            linear_extrude(height = size_z) import(file = data_3, scale=data_4); 
     }
 }
 
