@@ -56,7 +56,7 @@
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
                            double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
                            hdmi_a_vertical
-    2022xxxx Version 2.0.0 
+    2022xxxx Version 2.0.0 added pillar,
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -92,7 +92,7 @@
     jst_ph(x,y,rotation,side,type,pcbsize_z) - type is #pins
     cm_holder(x,y,rotation,side,type,pcbsize_z) - jetsonnano
     cm(x,y,rotation,side,type,pcbsize_z) - jetsonnano
-    
+    pillar(x,y,rotation,side,type,pcbsize_z,)
 */
 
 module place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) {
