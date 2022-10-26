@@ -18,29 +18,24 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/combo.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
+// discrete class
+module discrete(x,y,rotation,side,type,pcbsize_z) {
+    
 
+    // ir device
+    module ir(x,y,rotation,side,type,pcbsize_z) {
+        // type ir
+        if(type=="ir_1") {
+            size_x = 7;
+            size_y = 3;                
+            place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+            union() {  
+                color("silver") translate([0,0,4]) cube([size_x,size_y,8]);
+                color("dimgray") translate([3.5,.5,7.5]) sphere(d=5);
+                color("silver") translate ([1,1.25,0]) cube([.64,.5,4]);
+                color("silver") translate ([3.25,1.25,0]) cube([.64,.5,4]);
+                color("silver") translate ([5.5,1.25,0]) cube([.64,.5,4]);
+            }
+        }
+    }
+}    

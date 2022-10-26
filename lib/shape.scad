@@ -18,29 +18,19 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/combo.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
+/* shape module */
+module shape(type,size_x,size_y,size_z,data_1,data_2,data_3,data_4) {
 
+    if(type == "rectangle") {
+        cube([size_x,size_y,size_z]);
+    }
+    if(type == "round") {
+            cylinder(d=size_x, h=size_z);
+    }    
+    if(type == "polygon") {
+            linear_extrude(height = size_z) polygon(data_3);
+    }    
+    if(type == "dxf") {
+            linear_extrude(height = size_z) import(file = data_3, scale=data_4); 
+    }
+}

@@ -18,29 +18,23 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/combo.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
+// display class
+module display(x,y,rotation,side,type,pcbsize_z) {
 
+    // type lcd_2.2
+    if(type=="lcd_2.2") {
+        size_x = 56;
+        size_y = 38;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference() {
+                union() {
+                    color("white") translate([0,0,0]) cube([size_x,size_y,1.5]);
+                    color("dimgrey") translate([1,1,1.5]) cube([size_x-2,size_y-2,1.85]);
+                    }
+                color("black") translate([54.5,4,-.01]) cube([2,30,4]);
+            }
+            color("dimgrey") translate([4.25,.9,3.35]) cube([45,34,.25]);
+        }
+    }
+}

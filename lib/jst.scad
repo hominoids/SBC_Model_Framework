@@ -18,29 +18,21 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/combo.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
-
+// JST-PH connector class
+module jst_ph(x,y,rotation,side,type,pcbsize_z) {
+    size_x = 2.4+(type*2);
+    size_y = 4.5;
+    place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+    union() {
+        difference() {
+            color("white") cube([size_x, size_y, 6]);
+            color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, 6]);
+            color("white") translate([size_x/2-(0.5*type)/2, -.1,.5]) cube([0.5*type, size_y-2, 6]);
+        }
+        translate([1.95, 0, 0]) union() {
+            for(ind=[0:type-1]) {
+                color("silver") translate([ind*2, 1.4, .5]) cube([.5, .5, 4]);
+            }
+        }
+    }
+}

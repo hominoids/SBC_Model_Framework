@@ -18,29 +18,13 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/combo.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
-
+// smd class
+module smd(x,y,rotation,side,type,pcbsize_z) {
+    // type led surface mount
+    if(type=="led_3x1.5") {
+        size_x = 3;
+        size_y = 1.5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("gold") translate([0,0,0]) cube([size_x,size_y,.5]);
+    }
+}

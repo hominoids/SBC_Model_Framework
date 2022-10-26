@@ -18,29 +18,17 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/combo.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
+    // pcb board
+    module pcb(size, radius) {
+        x = size[0];
+        y = size[1];
+        z = size[2];   
+        linear_extrude(height=z)
+        hull() {
+            translate([0+radius ,0+radius, 0]) circle(r=radius);
+            translate([0+radius, y-radius, 0]) circle(r=radius);
+            translate([x-radius, y-radius, 0]) circle(r=radius);
+            translate([x-radius, 0+radius, 0]) circle(r=radius);
+        }  
+    }
 

@@ -1,5 +1,6 @@
 /*
-    SBC Models Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
+    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
     
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -234,7 +235,7 @@ echo(pcb_id=pcb_id,id=id,class=class,type=type);
                                     button(loc_x, loc_y, rotation, side, type, pcbsize_z);
                                 }           
                             }
-                            if (class == "plug") {
+                            if (class == "power") {
                                 if (loc_x!=0 || loc_y!=0) {
                                     plug(loc_x, loc_y, rotation, side, type, pcbsize_z);
                                 }           
@@ -299,9 +300,9 @@ echo(pcb_id=pcb_id,id=id,class=class,type=type);
                                     ic(loc_x, loc_y, rotation, side, type, pcbsize_z);
                                 }            
                             }
-                            if (class == "misc") {
+                            if (class == "battery") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    misc(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    battery(loc_x, loc_y, rotation, side, type, pcbsize_z);
                                 }   
                             }   
                             if (class == "heatsink") {
