@@ -177,7 +177,7 @@ module sbc(model, mask) {
                         soc1size_x = sbc_data[s[0]][i+8];
                         soc1size_y = sbc_data[s[0]][i+9];
                         soc1size_z = sbc_data[s[0]][i+10];
-                        if(class == "soc" && id == pcb_id && type == "flat") {
+                        if(class == "pcbsoc" && id == pcb_id && type == "flat") {
 echo(pcb_id=pcb_id,id=id,class=class,type=type);
                             if (soc1_side == "top" ) {
                                 color("dimgray") 
