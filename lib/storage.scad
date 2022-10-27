@@ -21,20 +21,7 @@
 // storage class
 module storage(x,y,rotation,side,type,pcbsize_z) {
     
-    // standard sdcard
-    if(type=="sdcard" || type=="sdcard_i") {
-        size_x = 11.5;
-        size_y = 5.5;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-        union() {
-            difference () {
-                color("silver") translate([0,0,0]) cube([size_x, size_y, 3.5]);
-                color("black") translate([.5,-.5,2]) cube([10.5, 5.5, 1]);
-            }
-        }
-    }
-
-    // micro sd card
+    // micro sd card style 1
     if (type == "microsdcard") {
         size_x = 13.2;
         size_y = 14.1;
@@ -51,7 +38,33 @@ module storage(x,y,rotation,side,type,pcbsize_z) {
         }
 
     }
-    
+
+    // micro sdcard style 2
+    if(type == "microsdcard2") {
+        size_x = 11.5;
+        size_y = 5.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference () {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 2.5]);
+                color("black") translate([.5,-.5,.75]) cube([10.5, 5.5, 1]);
+            }
+        }
+    }
+
+    // micro sd card style 3
+    if(type=="microsdcard3" || type=="microsdcard3_i") {
+        size_x = 11.5;
+        size_y = 5.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference () {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 3.5]);
+                color("black") translate([.5,-.5,2]) cube([10.5, 5.5, 1]);
+            }
+        }
+    }
+
     // sata single header type
     if(type=="sata_header") {
         size_x = 16;

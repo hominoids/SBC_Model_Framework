@@ -59,7 +59,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_a_vertical") {
         size_x = 14.5;
         size_y = 11.5;
-        height = 2.4;      
+        height = .4;      
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         translate([0,0,14.5+height]) rotate([0,90,0])
         union() { 
@@ -87,7 +87,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
                 color("silver") translate([-1,-1,-3]) cube([16.5,13.5,3]);
                 }
             difference() {
-                color("silver") translate([0,4,0]) cube([17,17.75,5.5]);
+                color("silver") translate([0,6,0]) cube([15,15.75,5.5]);
                 color("silver") translate([-6,6,-.25]) rotate([0,0,45]) cube([25,10,6]);
             }
             color("silver") translate([14.5,4,1.75]) cube([height,17.75,3.75]);
