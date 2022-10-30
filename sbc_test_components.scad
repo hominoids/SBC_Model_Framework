@@ -38,7 +38,7 @@
     jumper -  "header_2x1","header_3x1","header_3x2","header_5x1","header_6x1","header_7x1"
     misc -    "ir_1","bat_hold_1","led_3x1.5","lcd_2.2"
     heatsink -"hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem","xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem",
-               "khadas_oem","khadas_fan_oem","radxa_oem"
+               "h3_oem","khadas_oem","khadas_fan_oem","radxa_oem"
     pcie -     "x4"
     jst_ph -   number of pins from 2-16
 
@@ -297,6 +297,8 @@ heatsink(660,200,0,"top","m1_oem",1,1);
 linear_extrude(height = 1) {translate([660,185,0]) text("m1_oem",size=5, halign="left");}
 heatsink(565,430,0,"top","h2_oem",1,1);
 linear_extrude(height = 1) {translate([555,410,0]) text("h2_oem",size=5, halign="left");}
+heatsink(635,420,0,"top","h3_oem",1,1);
+linear_extrude(height = 1) {translate([655,410,0]) text("h3_oem",size=5, halign="left");}
 heatsink(540,510,0,"top","khadas_oem",1,1);
 linear_extrude(height = 1) {translate([555,507,0]) text("khadas_oem",size=5, halign="left");}
 heatsink(630,510,0,"top","khadas_fan_oem",1,1);

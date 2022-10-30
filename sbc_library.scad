@@ -2001,6 +2001,34 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
             color("white",.6) translate([-5.5,30,-1]) cylinder(d=3, h=4);
         }
     }
+    // h3/h3+ hk heatsink
+    if(type=="h3_oem") {
+        size_x = 77;
+        size_y = 72;                
+        size_z = 27;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        difference() {
+            union() {        
+                color("gray",.6) translate([0,0,3]) cube([size_x,size_y,size_z]);
+                }
+            // center channel and fins
+            color("gray",1) translate([13,-1,5]) cube([2,size_y+2,size_z]);
+            color("gray",1) translate([47,-1,5]) cube([2,size_y+2,size_z]);
+            for (i=[1:3.75:size_y]) {
+                color("gray",1) translate([-1,i,5]) cube([size_x+2,3,size_z]);
+            }
+            // holes
+            color("gray",.6) translate([30,14,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([73,14,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([30,51,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([73,51,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([26,10,5]) cube([8,8,size_z]);
+            color("gray",.6) translate([69,10,5]) cube([8.2,8,size_z]);
+            color("gray",.6) translate([26,47,5]) cube([8,8,size_z]);
+            color("gray",.6) translate([69,47,5]) cube([8.2,8,size_z]);
+            
+        }
+    }
     if(type=="n2_oem") {
         size_x = 90;
         size_y = 90;                

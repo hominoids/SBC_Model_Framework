@@ -53,9 +53,13 @@ translate ([120,290,0]) sbc("n1");
 linear_extrude(height = 2) {translate([120,270,0]) text("Odroid-N1");}
 color("green",.5) translate([120,270,-1]) cube([63,10,1]);
 
-translate ([240,0,0]) sbc("h2");
-linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H3");}
+translate ([240,0,0]) sbc("h3");
+linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H3/H3+");}
 color("green",.5) translate([240,-20,-1]) cube([84,10,1]);
+
+translate ([240,150,0]) sbc("h2");
+linear_extrude(height = 2) {translate([240,135,0]) text("Odroid-H2/H2+");}
+color("green",.5) translate([240,135,-1]) cube([84,10,1]);
 
 translate ([380,0,0]) sbc("rockpro64");
 linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}
