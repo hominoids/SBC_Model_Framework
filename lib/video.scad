@@ -19,13 +19,13 @@
 */
  
 // video class
-module video(x,y,rotation,side,type,pcbsize_z) {
+module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // hdmi a type connector
     if(type=="hdmi_a") {
         size_x = 14.5;
         size_y = 11.5;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([0,0,.75])
         union() { 
             difference() {
@@ -60,7 +60,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
         size_x = 14.5;
         size_y = 11.5;
         height = .4;      
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([0,0,14.5+height]) rotate([0,90,0])
         union() { 
             difference() {
@@ -99,7 +99,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="dp-hdmi_a") {
         size_x = 18;
         size_y = 17.75;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 19]);
@@ -144,7 +144,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_micro") {
         size_x = 6.5;
         size_y = 7.5;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
         union() {    
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 2.9]);
@@ -180,7 +180,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_mini") {
         size_x = 11.2;
         size_y = 8;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
         union() {    
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 3.2]);
@@ -216,7 +216,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="dp_mini") {
         size_x = 8.5;
         size_y = 13.65;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
         union() {    
             difference () {
                 difference() {
@@ -238,7 +238,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="mipi_csi") {
         size_x = 21;
         size_y = 3;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
                 color("white") cube([size_x, size_y, 5]);
@@ -256,7 +256,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="mipi_dsi") {
         size_x = 10;
         size_y = 3;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") cube([size_x, 1.5, 2]);
             color("saddlebrown") translate([0,1.5,0]) cube([size_x, 1.5, 2]);

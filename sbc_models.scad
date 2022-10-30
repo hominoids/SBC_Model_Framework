@@ -52,35 +52,220 @@
 include <./sbc_models.cfg>
 use <./sbc_library.scad>
 
-module sbc(model, mask) {
+module sbc(model, enablemask = false) {
     
     sbc_model = [model];
     s = search(sbc_model,sbc_data);
+    
     $fn=90;
     adjust = .01;
-    if(mask == true) {
-        
-    }
+    
+    if(enablemask == true) {
+        for (i=[1:20:len(sbc_data[s[0]])-1]) {
+            
+            class = sbc_data[s[0]][i];
+            type =  sbc_data[s[0]][i+1];
+            pcb_id = sbc_data[s[0]][i+2];
+            pcbloc_x = sbc_data[s[0]][i+3];
+            pcbloc_y = sbc_data[s[0]][i+4];
+            pcbloc_z = sbc_data[s[0]][i+5];
+            pcb_side = sbc_data[s[0]][i+6];
+            pcb_rotation = sbc_data[s[0]][i+7];
+            pcbsize_x = sbc_data[s[0]][i+8];
+            pcbsize_y = sbc_data[s[0]][i+9];
+            pcbsize_z = sbc_data[s[0]][i+10];
+            pcbcorner_radius = sbc_data[s[0]][i+11];
+            pcb_color = sbc_data[s[0]][i+12];
+            pcb_polygon = sbc_data[s[0]][i+13];
+            dxf_scale = sbc_data[s[0]][i+14];
+                
+            // pcb shapes
+            if(class == "pcbshape") {
+                
+                translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
+                    // component placement
+                    for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                        
+                        class = sbc_data[s[0]][i];
+                        type = sbc_data[s[0]][i+1];
+                        id = sbc_data[s[0]][i+2];
+                        loc_x = sbc_data[s[0]][i+3];
+                        loc_y = sbc_data[s[0]][i+4];
+                        loc_z = sbc_data[s[0]][i+5];
+                        side = sbc_data[s[0]][i+6];
+                        rotation = sbc_data[s[0]][i+7][2];
+                        size_x = sbc_data[s[0]][i+8];
+                        size_y = sbc_data[s[0]][i+9];
+                        size_z = sbc_data[s[0]][i+10];
+                        data_1 = sbc_data[s[0]][i+11];
+                        data_2 = sbc_data[s[0]][i+12];
+                        data_3 = sbc_data[s[0]][i+13];
+                        data_4 = sbc_data[s[0]][i+14];
+                        data_5 = sbc_data[s[0]][i+15];
+                        data_6 = sbc_data[s[0]][i+16];
+                        data_7 = sbc_data[s[0]][i+17];
+                        data_8 = sbc_data[s[0]][i+18];
+                        mask = sbc_data[s[0]][i+19];
+                            
+                        if(id == pcb_id) {  
+
+                            if (class == "audio" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }            
+                            }
+                            if (class == "battery" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }   
+                            }   
+                            if (class == "button" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "cm" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "cm_holder" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "combo" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    combo(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }            
+                            }
+                            if (class == "discrete" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "display" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "fan" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "gpio" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "heatsink" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    heatsink(loc_x, loc_y, rotation, side, type, pcbsize_z, sbc_data[s[0]][39]);
+                                }   
+                            }
+                            if (class == "ic" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    ic(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "jst_ph" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    jst_ph(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "jumper" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "memory" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }            
+                            }
+                            if (class == "network" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "pcb" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    pcb(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "pcie" && mask[0] == true) {
+                                if(loc_x!=0 || loc_y!=0) {
+                                    pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "power" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    plug(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "smd" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "storage" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "switch" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    switch(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "usb2" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }          
+                            }
+                            if (class == "usb3" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "usbc" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "video" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+                                    video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }        
     else {
         for (i=[1:20:len(sbc_data[s[0]])-1]) {
             
+            class = sbc_data[s[0]][i];
+            type =  sbc_data[s[0]][i+1];
+            pcb_id = sbc_data[s[0]][i+2];
+            pcbloc_x = sbc_data[s[0]][i+3];
+            pcbloc_y = sbc_data[s[0]][i+4];
+            pcbloc_z = sbc_data[s[0]][i+5];
+            pcb_side = sbc_data[s[0]][i+6];
+            pcb_rotation = sbc_data[s[0]][i+7];
+            pcbsize_x = sbc_data[s[0]][i+8];
+            pcbsize_y = sbc_data[s[0]][i+9];
+            pcbsize_z = sbc_data[s[0]][i+10];
+            pcbcorner_radius = sbc_data[s[0]][i+11];
+            pcb_color = sbc_data[s[0]][i+12];
+            pcb_polygon = sbc_data[s[0]][i+13];
+            dxf_scale = sbc_data[s[0]][i+14];
+            
             // pcb shapes
             if(sbc_data[s[0]][i] == "pcbshape") {
-                class = sbc_data[s[0]][i];
-                type =  sbc_data[s[0]][i+1];
-                pcb_id = sbc_data[s[0]][i+2];
-                pcbloc_x = sbc_data[s[0]][i+3];
-                pcbloc_y = sbc_data[s[0]][i+4];
-                pcbloc_z = sbc_data[s[0]][i+5];
-                pcb_side = sbc_data[s[0]][i+6];
-                pcb_rotation = sbc_data[s[0]][i+7];
-                pcbsize_x = sbc_data[s[0]][i+8];
-                pcbsize_y = sbc_data[s[0]][i+9];
-                pcbsize_z = sbc_data[s[0]][i+10];
-                pcbcorner_radius = sbc_data[s[0]][i+11];
-                pcb_color = sbc_data[s[0]][i+12];
-                pcb_polygon = sbc_data[s[0]][i+13];
-                dxf_scale = sbc_data[s[0]][i+14];
                 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     difference() {
@@ -130,13 +315,16 @@ module sbc(model, mask) {
                         }
                         // pcb mounting holes
                         for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                               
+                            class = sbc_data[s[0]][i];
+                            type = sbc_data[s[0]][i+1];
+                            id = sbc_data[s[0]][i+2];
+                            pcbhole_x = sbc_data[s[0]][i+3];
+                            pcbhole_y = sbc_data[s[0]][i+4];
+                            pcbhole_z = sbc_data[s[0]][i+5];
+                            pcbhole_size = sbc_data[s[0]][i+8];                        
                             
                             if(class == "pcbhole" && id == pcb_id) {
-                                
-                                pcbhole_x = sbc_data[s[0]][i+3];
-                                pcbhole_y = sbc_data[s[0]][i+4];
-                                pcbhole_z = sbc_data[s[0]][i+5];
-                                pcbhole_size = sbc_data[s[0]][i+8];                        
                                 
                                 translate([pcbhole_x, pcbhole_y, pcbhole_z-1]) color(pcb_color) cylinder(d=pcbhole_size, h=pcbsize_z+2);
                             }
@@ -233,52 +421,52 @@ module sbc(model, mask) {
 
                             if (class == "audio") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    audio(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }            
                             }
                             if (class == "battery") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    battery(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }   
                             }   
                             if (class == "button") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    button(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "cm") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    cm(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "cm_holder") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    cm_holder(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "combo") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    combo(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    combo(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }            
                             }
                             if (class == "discrete") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    discrete(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "display") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    display(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "fan") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    fan(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "gpio") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    gpio(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "heatsink") {
@@ -288,77 +476,77 @@ module sbc(model, mask) {
                             }
                             if (class == "ic") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    ic(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    ic(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "jst_ph") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    jst_ph(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    jst_ph(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "jumper") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    jumper(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "memory") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    memory(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }            
                             }
                             if (class == "network") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    network(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "pcb") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    pcb(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    pcb(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "pcie") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    pcie(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "power") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    plug(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    plug(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "smd") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    smd(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "storage") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    storage(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "switch") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    switch(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    switch(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "usb2") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    usb2(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }          
                             }
                             if (class == "usb3") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    usb3(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "usbc") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    usbc(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "video") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    video(loc_x, loc_y, rotation, side, type, pcbsize_z);
+                                    video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                         }

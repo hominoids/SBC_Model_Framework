@@ -19,13 +19,13 @@
 */
 
 // pcie class
-module pcie(x,y,rotation,side,type,pcbsize_z) {
+module pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // PCIE-X4
     if (type=="x4") {
         size_x = 38.8;
         size_y = 8.5;
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
                 color("black") cube([size_x, size_y, 11.1]);

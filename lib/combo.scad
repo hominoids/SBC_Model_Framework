@@ -19,13 +19,13 @@
 */
 
 // combo class
-module combo(x,y,rotation,side,type,pcbsize_z) {
+module combo(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // rj-45 and usb2 stacked type
     if(type=="rj45-usb2_double") {
         size_x = 19;
         size_y = 27.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference () {
                 color("lightgray") translate([0,0,0]) cube([size_x, size_y, 31]);
@@ -45,7 +45,7 @@ module combo(x,y,rotation,side,type,pcbsize_z) {
     if(type=="rj45-usb3_double") {
         size_x = 19;
         size_y = 27.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference () {
                 color("lightgray") translate([0,0,0]) cube([size_x, size_y, 31]);
@@ -66,7 +66,7 @@ module combo(x,y,rotation,side,type,pcbsize_z) {
         $fn = 90;
         size_x = 13.25;
         size_y = 17.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {    
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 15.5]);

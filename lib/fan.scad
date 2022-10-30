@@ -19,13 +19,13 @@
 */
  
 // fan connector class
-module fan(x,y,rotation,side,type,pcbsize_z) {
+module fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // micro connector type
     if(type=="fan_micro") {
         size_x = 7.5;
         size_y = 3.75;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 color("white") translate([0,0,0]) cube([size_x,size_y,4.75]);
@@ -43,7 +43,7 @@ module fan(x,y,rotation,side,type,pcbsize_z) {
     if(type=="encl_pmw") {
         size_x = 11.6;
         size_y = 4.3;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 color("white") translate([0,0,0]) cube([size_x,size_y,7]);
@@ -62,7 +62,7 @@ module fan(x,y,rotation,side,type,pcbsize_z) {
     if(type=="encl_pmw_h") {
         size_x = 11.6;
         size_y = 4.3;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([11.6,0,5]) rotate([-90,0,-45])
         union() {  
             difference () {

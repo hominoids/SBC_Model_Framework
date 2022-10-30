@@ -19,13 +19,13 @@
 */
 
 // storage class
-module storage(x,y,rotation,side,type,pcbsize_z) {
+module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // micro sd card style 1
     if (type == "microsdcard") {
         size_x = 13.2;
         size_y = 14.1;
-        place(x, y, size_x, size_y, rotation, side, type, pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             for(loc_x = [.8:1.2:12]) {
                 color("gold") translate([loc_x, 0, 0]) cube([0.7, 13.5, 0.4]);

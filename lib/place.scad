@@ -18,33 +18,33 @@
 
 */
 
-module place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) {
+module place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) {
 
     if (side == "top") {
        if ((rotation >= 0 && rotation < 90) || (rotation < -270 && rotation > -360))
-           translate([x,y,pcbsize_z]) rotate([0,0,-rotation]) children();
+           translate([loc_x,loc_y,pcbsize_z+loc_z]) rotate([0,0,-rotation]) children();
 
        if ((rotation >= 90 && rotation < 180) || (rotation < -180 && rotation >= -270))
-           translate([x,y+size_x,pcbsize_z]) rotate([0,0,-rotation]) children();
+           translate([loc_x,loc_y+size_x,pcbsize_z+loc_z]) rotate([0,0,-rotation]) children();
        
        if ((rotation >= 180 && rotation < 270) || (rotation < -90 && rotation >= -180))
-           translate([x+size_x,y+size_y,pcbsize_z]) rotate([0,0,-rotation]) children(0);
+           translate([loc_x+size_x,loc_y+size_y,pcbsize_z+loc_z]) rotate([0,0,-rotation]) children(0);
        
        if ((rotation >= 270 && rotation < 360) || (rotation < 0 && rotation >= -90))
-           translate([x+size_y,y,pcbsize_z]) rotate([0,0,-rotation]) children();
+           translate([loc_x+size_y,loc_y,pcbsize_z+loc_z]) rotate([0,0,-rotation]) children();
    }   
    if (side == "bottom") {
        if ((rotation >= 0 && rotation < 90) || (rotation < -270 && rotation > -360))
-           translate([x+size_x,y,0]) rotate([0,180,rotation]) children();
+           translate([loc_x+size_x,loc_y,-loc_z]) rotate([0,180,rotation]) children();
        
        if ((rotation >= 90 && rotation < 180) || (rotation < -180 && rotation >= -270))
-           translate([x+size_y,y+size_x,0]) rotate([0,180,rotation]) children();
+           translate([loc_x+size_y,loc_y+size_x,-loc_z]) rotate([0,180,rotation]) children();
            
        if ((rotation >= 180 && rotation < 270) || (rotation < -90 && rotation >= -180))
-           translate([x,y+size_y,0]) rotate([0,180,rotation]) children();
+           translate([loc_x,loc_y+size_y,-loc_z]) rotate([0,180,rotation]) children();
        
        if ((rotation >= 270 && rotation < 360) || (rotation < 0 && rotation >= -90))
-           translate([x,y,0]) rotate([0,180,rotation]) children();
+           translate([loc_x,loc_y,-loc_z]) rotate([0,180,rotation]) children();
    }    
    children([1:1:$children-1]);
 }

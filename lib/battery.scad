@@ -19,13 +19,13 @@
 */
 
 // battery class
-module battery(x,y,rotation,side,type,pcbsize_z) {
+module battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
 
     // type battery holder 1
     if(type=="bat_hold_1") {
         size_x = 22;
         size_y = 16;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
                 union() {  
@@ -81,7 +81,7 @@ module battery(x,y,rotation,side,type,pcbsize_z) {
     if(type=="rtc_micro") {
         size_x = 7.5;
         size_y = 3.75;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 color("white") translate([0,0,0]) cube([size_x,size_y,4.75]);

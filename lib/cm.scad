@@ -19,12 +19,12 @@
 */
 
 // compute module holder class
-module cm_holder(x,y,rotation,side,type,pcbsize_z) {
+module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     // jetson nano
     if(type == "jetsonnano") {        
         size_x = 73;
         size_y = 6.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 color("dimgray") translate([0,0,0]) cube([size_x,size_y,9.2]);
@@ -43,13 +43,13 @@ module cm_holder(x,y,rotation,side,type,pcbsize_z) {
 }
 
 // compute module class
-module cm(x,y,rotation,side,type,pcbsize_z) {
+module cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     $fn=90;
     // jetson nano
     if(type == "jetsonnano") {        
         size_x = 70;
         size_y = 45;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 

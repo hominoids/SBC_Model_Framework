@@ -19,13 +19,13 @@
 */
 
 // heatsink class
-module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
+module heatsink(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // hardkernel c series heatsink
     if(type=="hc4_oem" || type=="c4_oem" || type=="c2_oem" || type=="c1+_oem") {
         size_x = 58;
         size_y = 32;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([5.5,-23.5,soc1size_z])
         difference() {
             union() {        
@@ -74,7 +74,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
         $fn=60;
         size_x = 58;
         size_y = 40;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([5.5,-30,soc1size_z])
         difference() {
             union() {
@@ -113,7 +113,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
         $fn=60;
         size_x = 58;
         size_y = 40;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([5.5,-30,soc1size_z])
         difference() {
             union() {
@@ -141,7 +141,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
         $fn=60;
         size_x = 58;
         size_y = 40;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([5.5,-30,soc1size_z])
         difference() {
             union() {
@@ -211,7 +211,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
     if(type=="khadas_oem") {
         size_x = 82;
         size_y = 48;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         color("gray",.6) import("Khadas_Heatsink.stl", convexity=3);
     }
     
@@ -219,7 +219,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
     if(type=="khadas_fan_oem") {
         size_x = 82;
         size_y = 48;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         color("gray",.6) import("Khadas_Heatsink_Fan.stl", convexity=3);
     }
     

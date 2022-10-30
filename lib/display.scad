@@ -19,13 +19,13 @@
 */
 
 // display class
-module display(x,y,rotation,side,type,pcbsize_z) {
+module display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
 
     // type lcd_2.2
     if(type=="lcd_2.2") {
         size_x = 56;
         size_y = 38;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
                 union() {

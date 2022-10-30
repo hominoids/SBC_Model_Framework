@@ -19,12 +19,12 @@
 */
 
 // jumper class
-module jumper(x,y,rotation,side,type,pcbsize_z) {
+module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     // 2x1 type
     if(type=="header_2x1") {
         size_x = 5;
         size_y = 2.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             color("gold") translate ([1,1,2.5]) cube([.64,.64,5]);
@@ -35,7 +35,7 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_3x1") {
         size_x = 7.5;
         size_y = 2.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             color("gold") translate ([1,1,2.5]) cube([.64,.64,5]);
@@ -47,7 +47,7 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_3x2") {
         size_x = 7.5;
         size_y = 5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:8]) {
@@ -60,7 +60,7 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_5x1") {
         size_x = 12.5;
         size_y = 2.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:12]) {
@@ -72,7 +72,7 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_6x1") {
         size_x = 15;
         size_y = 2.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:14]) {
@@ -84,7 +84,7 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_7x1") {
         size_x = 17.5;
         size_y = 2.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:16]) {
@@ -96,7 +96,7 @@ module jumper(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_13x1") {
         size_x = 32.5;
         size_y = 2.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:32]) {

@@ -19,13 +19,13 @@
 */
  
 // gpio class
-module gpio(x,y,rotation,side,type,pcbsize_z) {
+module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // gpio 30 pin enclosed header
     if(type=="encl_header_30") {
         size_x = 37;
         size_y = 5.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference () {
                 color("black") translate([0,0,0]) cube([size_x, size_y, 6.25]);
@@ -42,7 +42,7 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
     if (type=="encl_header_12") {
         size_x = 19.5;
         size_y = 5.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {                
             difference () {
                 color("black") translate([0,0,0]) cube([size_x,size_y,6.25]);
@@ -59,7 +59,7 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_40") {
         size_x = 50;
         size_y = 5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:50]) {
@@ -73,7 +73,7 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_20") {
         size_x = 25.52;
         size_y = 5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:25]) {
@@ -87,7 +87,7 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
     if(type=="header_26") {
         size_x = 31.52;
         size_y = 5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:31]) {

@@ -19,7 +19,7 @@
 */
 
 // smd class
-module smd(x,y,rotation,side,type,pcbsize_z) {
+module smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     // type led surface mount
     if(type=="led_3x1.5") {
         size_x = 3;

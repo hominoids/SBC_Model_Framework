@@ -19,12 +19,12 @@
 */
  
 // network class
-module network(x,y,rotation,side,type,pcbsize_z) {
+module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     // rj45 single socket
     if(type == "rj45_single") {    
         size_x = 15.9;
         size_y = 21.3;
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) 
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) 
         union() {
             difference () {
                 color("lightgray") translate([0,0,0]) cube([size_x,size_y,13.5]);
@@ -38,7 +38,7 @@ module network(x,y,rotation,side,type,pcbsize_z) {
     if(type == "rj45_single_short") {    
         size_x = 14.4;
         size_y = 12.67;
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) 
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) 
         union() {
             difference () {
                 color("lightgray") translate([0,0,-1.6]) cube([size_x,size_y,13]);

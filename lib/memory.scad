@@ -19,13 +19,13 @@
 */
  
 // memory class
-module memory(x,y,rotation,side,type,pcbsize_z) {
+module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // socketed emmc
     if(type == "emmc") {
         size_x = 13.5;
         size_y = 18.5;
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union (){
                 color("darkred") translate([0,0,1.1]) cube([size_x, size_y, .8]);
                 color("dimgray") translate([1,2,1.9]) cube([11.5, 13, .9]); 
@@ -43,7 +43,7 @@ module memory(x,y,rotation,side,type,pcbsize_z) {
     if(type == "emmc_plug") {
         size_x = 8.3;
         size_y = 2.16;
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
        union (){
             difference() {
             color("black") translate([0,0,0]) cube([size_x, size_y, .82]);
@@ -61,7 +61,7 @@ module memory(x,y,rotation,side,type,pcbsize_z) {
     if(type == "sodimm_5.2") {                
         size_x = 73;
         size_y = 6.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 
@@ -83,7 +83,7 @@ module memory(x,y,rotation,side,type,pcbsize_z) {
     if(type == "sodimm_9.2") {        
         size_x = 73;
         size_y = 6.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 

@@ -19,13 +19,13 @@
 */
  
 // audio class
-module audio(x,y,rotation,side,type,pcbsize_z) {
+module audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // out in and spdif stacked type
     if(type=="out-in-spdif") {
         size_x = 12.7;
         size_y = 21.5;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 union() {
@@ -53,7 +53,7 @@ module audio(x,y,rotation,side,type,pcbsize_z) {
     if(type=="jack_3.5") {
         size_x = 6.5;
         size_y = 12;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 union() {
@@ -70,7 +70,7 @@ module audio(x,y,rotation,side,type,pcbsize_z) {
     if(type=="audio_micro") {
         size_x = 7.5;
         size_y = 3.75;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([0,0,3.75]) rotate([-90,0,0])
         union() {  
             difference () {

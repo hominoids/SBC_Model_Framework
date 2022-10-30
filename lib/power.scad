@@ -19,13 +19,13 @@
 */
  
 // power class
-module plug(x,y,rotation,side,type,pcbsize_z) {
+module plug(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     // 2.5mm power plug 7.5mm
     if(type=="pwr2.5_5x7.5") {
         size_x = 5;
         size_y = 7.5;        
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference () {
                 color("silver") translate([0,0,0]) cube([size_x, size_y, 4]);

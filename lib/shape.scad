@@ -34,3 +34,49 @@ module shape(type,size_x,size_y,size_z,data_1,data_2,data_3,data_4) {
             linear_extrude(height = size_z) import(file = data_3, scale=data_4); 
     }
 }
+
+/* slab module */
+module slab(size, radius) {
+    
+    x = size[0];
+    y = size[1];
+    z = size[2];   
+    linear_extrude(height=z)
+    hull() {
+        translate([0+radius ,0+radius, 0]) circle(r=radius);	
+        translate([0+radius, y-radius, 0]) circle(r=radius);	
+        translate([x-radius, y-radius, 0]) circle(r=radius);	
+        translate([x-radius, 0+radius, 0]) circle(r=radius);
+    }  
+}
+
+
+/* multi-radius round slab */
+module slab_r(size, radius) {
+    
+    x = size[0];
+    y = size[1];
+    z = size[2];
+    r0 = radius[0];
+    r1 = radius[1];
+    r2 = radius[2];
+    r3 = radius[3];
+    
+    linear_extrude(height=z)
+    hull() {
+        translate([0+radius[0] ,0+radius[0], 0]) circle(r=radius[0]);	
+        translate([0+radius[1], y-radius[1], 0]) circle(r=radius[1]);	
+        translate([x-radius[2], y-radius[2], 0]) circle(r=radius[2]);	
+        translate([x-radius[3], 0+radius[3], 0]) circle(r=radius[3]);
+    }  
+}
+
+
+/* slot module */
+module slot(hole,length,depth) {
+    
+    hull() {
+        translate([hole/2,0,0]) cylinder(d=hole,h=depth);
+        translate([length-hole/2,0,0]) cylinder(d=hole,h=depth);        
+        }
+    } 
