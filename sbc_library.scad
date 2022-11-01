@@ -56,7 +56,7 @@
                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
                            double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
                            hdmi_a_vertical
-    2022xxxx Version x.x.x added microsdcard2
+    20221101 Version 1.0.9 added microsdcard2
     
     see https://github.com/hominoids/SBC_Case_Builder
 

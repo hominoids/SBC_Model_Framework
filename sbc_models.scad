@@ -33,6 +33,7 @@
                             rockpi4c,rockpi4c+,rockpi5b,vim1,vim2,vim3l,vim3,vim4,
                             tinkerboard,tinkerboard-s,tinkerboard-2,tinkerboard-r2
                             rock64,quartz64a,quartz64b,h64b,opizero,opizero2,opir1plus_lts
+    20221101 Version 1.0.9  added h3/h3+ as h3, rockpi5b adjustments
     
     see https://github.com/hominoids/SBC_Case_Builder
     
