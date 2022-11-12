@@ -26,14 +26,14 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     style = mask[3];
     
     // usb2 micro otg
-    if(type=="micro") {
+    if(type == "micro") {
         
         size_x = 7;
         size_y = 4.5;
         dia =3.75;
         wide = 8.5;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // micro usb opening
             if(rotation == 0 && side == "top") {
                 place(loc_x-.75, loc_y+back, loc_z+dia/2, size_x, size_y, rotation, side, pcbsize_z) 
@@ -102,14 +102,14 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
             }
     }
     
-    if(type=="single_horizontal_a") {
+    if(type == "single_horizontal_a") {
         
         size_x = 14;
         size_y = 14;
         size_xm = 15;
         size_zm = 7.5;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // single horizontal usb opening
             if(rotation == 0 && side =="top") {
                 place(loc_x-.5, loc_y-len+back, loc_z, size_x, len, rotation, side, pcbsize_z)
@@ -160,14 +160,14 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
 
     // usb2 single vertical socket
-    if(type=="single_vertical_a") {
+    if(type == "single_vertical_a") {
         
         size_x = 5.75;
         size_y = 19.5;
         size_xm = 7.5;
         size_zm = 14;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // single horizontal usb opening
             if(rotation == 0 && side =="top") {
                 place(loc_x-.85, loc_y-len+back, loc_z, size_x, len, rotation, side, pcbsize_z)
@@ -203,7 +203,6 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
             }
         }
         else {
-        
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {   
                     // usb 2.0 port
@@ -220,14 +219,14 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // usb2 double stacked sockets
-    if(type=="double_stacked_a") {
+    if(type == "double_stacked_a") {
         
         size_x = 13.25;
         size_y = 17.5;
         size_xm = 14.75;
         size_zm = 16.25;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // single horizontal usb opening
             if(rotation == 0 && side =="top") {
                 place(loc_x-.75, loc_y-len+back, loc_z, size_x, len, rotation, side, pcbsize_z)
@@ -263,7 +262,6 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
             }
         }
         else {
-                
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
@@ -284,7 +282,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // uart micro connector type
-    if(type=="uart_micro") {
+    if(type == "uart_micro") {
         
         size_x = 12.5;
         size_y = 5;
@@ -323,14 +321,14 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     style = mask[3];
     
     // usb3 single horizontal type
-    if(type=="single_horizontal_a") {
+    if(type == "single_horizontal_a") {
         
         size_x = 14;
         size_y = 14;
         size_xm = 15;
         size_zm = 7.5;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // single horizontal usb opening
             if(rotation == 0 && side =="top") {
                 place(loc_x-.5, loc_y-len+back, loc_z, size_x, len, rotation, side, pcbsize_z)
@@ -381,14 +379,14 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // usb2 single vertical socket
-    if(type=="single_vertical_a") {
+    if(type == "single_vertical_a") {
         
         size_x = 5.75;
         size_y = 19.5;
         size_xm = 7.5;
         size_zm = 14;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // single horizontal usb opening
             if(rotation == 0 && side =="top") {
                 place(loc_x-.85, loc_y-len+back, loc_z, size_x, len, rotation, side, pcbsize_z)
@@ -424,7 +422,6 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
             }
         }
         else {
-        
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {   
                     // usb 2.0 port
@@ -441,14 +438,14 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // usb3 double stacked type
-    if(type=="double_stacked_a") {
+    if(type == "double_stacked_a") {
         
         size_x = 13.25;
         size_y = 17.5;
         size_xm = 14.75;
         size_zm = 16.25;
         
-        if(enablemask ==true) {
+        if(enablemask == true) {
             // single horizontal usb opening
             if(rotation == 0 && side =="top") {
                 place(loc_x-.75, loc_y-len+back, loc_z, size_x, len, rotation, side, pcbsize_z)
@@ -483,8 +480,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {
-        
+        else {   
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
@@ -515,7 +511,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     adjust = .01;
     
     // usbc horizontal type
-    if(type=="single_horizontal") {
+    if(type == "single_horizontal") {
         
         size_x = 9;
         size_y = 7;
@@ -562,7 +558,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
 
     // usbc vertical type
-    if(type=="single_vertical") {
+    if(type == "single_vertical") {
         
         size_x = 9;
         size_y = 7;
