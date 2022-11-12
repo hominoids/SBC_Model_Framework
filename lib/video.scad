@@ -31,33 +31,33 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_x = 14.5;
         size_y = 11.5;
         size_xm = 15;
-        size_ym = 8;
+        size_ym = len;
    
         if(enablemask ==true) {
             // hdmi opening
             if(side == "top" && rotation == 0) {
-                place(loc_x-.5, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x-.5, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-1, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x-len+5+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x, loc_y+size_ym/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x, loc_y-1.5+len-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+size_ym/2, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x-1.5+len-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x, loc_y-.5, loc_z, size_xm, size_ym, rotation,side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation,side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x+size_ym/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x-1.5+len-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x-.5, loc_y+size_ym/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x-.5, loc_y-1.5+len-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x-1, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
+                place(loc_x-len+5+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
         }
         else {
@@ -77,7 +77,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                             color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0]) 
                             cylinder(d=4, h=11.5, $fn=30);
                             color("silver") translate([14.5, -.1, 0]) rotate ([-90, 0, 0]) 
-                            cylinder(d=4, h=11.5, fn=30);
+                            cylinder(d=4, h=11.5, $fn=30);
                         }               
                         color("silver") translate([0, -.2, 0]) rotate ([-90, 0, 0]) 
                             cylinder(d=3, h=13.5, $fn=30);
@@ -98,41 +98,41 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_x = 14.5;
         size_y = 11.5;
         size_xm = 15;
-        size_ym = 8;
+        size_ym = len;
         height = .4;
    
         if(enablemask == true) {
             // hdmi vertical opening
             if(side == "top" && rotation == 0) {
-                place(loc_x-.5, loc_y-3+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x-.5, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-3+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x-len+5+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x, loc_y+2.5-back+size_ym/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x, loc_y+len-1.5-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+2.5-back+size_ym/2, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x-1.5+len-back, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x, loc_y-3+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x+2.5-back+size_ym/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x-1.5+len-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x-.5, loc_y+2.5-back+size_ym/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x-.5, loc_y-1.5+len-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x-3+back, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z) 
+                place(loc_x-len+5+back, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z) 
                     translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
 
@@ -179,49 +179,83 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
     
         size_x = 18;
         size_y = 17.75;     
+        size_xm = 19;
+        size_ym = 18;
         
-        if(enablemask ==true) {
-
+        if(enablemask == true) {
+            // dp-hdmi_a opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.5, loc_y-len+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-len+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.5, loc_y+len-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+len-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.5, loc_y-len+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+len-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.5, loc_y+len-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-len+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 19.25]);
+            }
         }
         else {     
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {
                     difference() {
-                        color("silver") translate([0,0,0]) cube([size_x, size_y, 19]);
-                        translate([2,-.7,1.5]) color("dimgray") cube([14.5, 11.5, 5.5]);
-                        translate([1.5,-.7,12.5]) color("dimgray") cube([15, 17.5, 5.5]);
+                        color("silver") translate([0, 0, 0]) cube([size_x, size_y, 19]);
+                        translate([2, -.7, 1.5]) color("dimgray") cube([14.5, 11.5, 5.5]);
+                        translate([1.5, -.7, 12.5]) color("dimgray") cube([15, 17.5, 5.5]);
                     }         
                     translate([2,-.7,1.5]){
                         difference() {
-                            color("silver") translate([0,0,0]) cube([14.5, 11.5, 5.5]);
-                            color("dimgray") translate([.5,-.1,.5]) cube([13.5, 11, 4.5]);
-                            color("silver") translate([0,-.1,0]) rotate ([-90,0,0]) 
-                                cylinder(d=4, h=13.5,$fn=30);
-                            color("silver") translate([14.5,-.1,0]) rotate ([-90,0,0]) 
-                                cylinder(d=4, h=13.5,$fn=30);
+                            color("silver") cube([14.5, 11.5, 5.5]);
+                            color("dimgray") translate([.5, -.1, .5]) cube([13.5, 11, 4.5]);
+                            color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=4, h=13.5, $fn=30);
+                            color("silver") translate([14.5, -.1, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=4, h=13.5, $fn=30);
                         }
                         difference() {
                             union() {
-                                color("silver") translate([0,-.1,0]) rotate ([-90,0,0]) 
-                                cylinder(d=4, h=11.5,$fn=30);
-                                color("silver") translate([14.5,-.1,0]) rotate ([-90,0,0]) 
-                                cylinder(d=4, h=11.5,$fn=30);
+                                color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=4, h=11.5, $fn=30);
+                                color("silver") translate([14.5, -.1, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=4, h=11.5, $fn=30);
                             }               
-                            color("silver") translate([0,-.2,0]) rotate ([-90,0,0]) 
-                                cylinder(d=3, h=13.5,$fn=30);
-                            color("silver") translate([14.5,-.2,0]) rotate ([-90,0,0]) 
-                                cylinder(d=3, h=13.5,$fn=30);
-                            color("silver") translate([-3,-1,-3]) cube([3,13.5,7.5]);
-                            color("silver") translate([14.5,-1,-3]) cube([3,13.5,7.5]);
-                            color("silver") translate([-1,-1,-3]) cube([16.5,13.5,3]);
+                            color("silver") translate([0, -.2, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=3, h=13.5, $fn=30);
+                            color("silver") translate([14.5, -.2, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=3, h=13.5, $fn=30);
+                            color("silver") translate([-3, -1, -3]) cube([3, 13.5, 7.5]);
+                            color("silver") translate([14.5, -1, -3]) cube([3, 13.5, 7.5]);
+                            color("silver") translate([-1, -1, -3]) cube([16.5, 13.5, 3]);
                             }
-                        color("black") translate([2.5,.5,2.25]) cube([9.25,10.5,1.5]);
+                        color("black") translate([2.5, .5, 2.25]) cube([9.25, 10.5, 1.5]);
                     }
-                    color("black") translate([2.5,.5,14.5]) cube([13,10.5,1.5]);
-                    color("silver") translate([0,0,12.5]) rotate([0,45,0]) cube([2,17.5,2]);
-                    color("silver") translate([-.5,0,13]) cube([.6,.5,4.5]);
-                    color("silver") translate([17.9,0,13]) cube([.6,.5,4.5]);
-                    color("silver") translate([2,0,18.9]) cube([14,.5,.5]);
+                    color("black") translate([2.5, .5, 14.5]) cube([13, 10.5, 1.5]);
+                    color("silver") translate([0, 0, 12.5]) rotate([0, 45, 0]) cube([2, 17.5, 2]);
+                    color("silver") translate([-.5, 0, 13]) cube([.6, .5, 4.5]);
+                    color("silver") translate([17.9, 0, 13]) cube([.6, .5, 4.5]);
+                    color("silver") translate([2, 0, 18.9]) cube([14, .5, .5]);
                 }
         }
     }
@@ -231,109 +265,187 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
     
         size_x = 6.5;
         size_y = 7.5;
+        size_xm = 7.25;
+        size_ym = len;
         
-        if(enablemask ==true) {
-
+        if(enablemask == true) {
+           // hdmi micro opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y-len+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-len+6+back, loc_y-.75, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.75, loc_y+1.5-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "top" && rotation == 270) {
+                #place(loc_x+1.5-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.75, loc_y-len+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "bottom" && rotation == 90) {
+                #place(loc_x+1.5-back, loc_y-.75, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y+1.5-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-len+6+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
+            }
         }
         else {   
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
-                        color("silver") translate([0,0,0]) cube([size_x, size_y, 2.9]);
-                        color("dimgray") translate([.25,-.25,.25]) cube([size_x-.5, size_y-.5, 2.4]);
-                        color("silver") translate([-.5,-.1,0]) rotate ([-90,0,0]) 
-                            cylinder(d=2.5, h=7.7,$fn=30);
-                        color("silver") translate([7,-.1,0]) rotate ([-90,0,0]) 
-                            cylinder(d=2.5, h=7.7,$fn=30);
+                        color("silver") cube([size_x, size_y, 2.9]);
+                        color("dimgray") translate([.25, -.25, .25]) cube([size_x-.5, size_y-.5, 2.4]);
+                        color("silver") translate([-.5, -.1, 0]) rotate([-90, 0, 0]) 
+                            cylinder(d=2.5, h=7.7, $fn=30);
+                        color("silver") translate([7, -.1, 0]) rotate([-90, 0, 0]) 
+                            cylinder(d=2.5, h=7.7, $fn=30);
 
                     }
                     difference() {
                         union() {
-                            color("silver") translate([-.5,0,0]) rotate ([-90,0,0]) 
-                                cylinder(d=2.5, h=8.5,$fn=30);
-                            color("silver") translate([7,0,0]) rotate ([-90,0,0]) 
-                                cylinder(d=2.5, h=8.5,$fn=30);
+                            color("silver") translate([-.5, 0, 0]) rotate([-90, 0, 0]) 
+                                cylinder(d=2.5, h=8.5, $fn=30);
+                            color("silver") translate([7, 0, 0]) rotate([-90,0,0]) 
+                                cylinder(d=2.5, h=8.5, $fn=30);
                         }               
-                        color("silver") translate([-.25,-.2,.15]) rotate ([-90,0,0]) 
-                            cylinder(d=1.5, h=8.5,$fn=30);
-                        color("silver") translate([6.75,-.2,.15]) rotate ([-90,0,0]) 
-                            cylinder(d=1.5, h=8.5,$fn=30);
+                        color("silver") translate([-.25, -.2, .15]) rotate([-90, 0, 0]) 
+                            cylinder(d=1.5, h=8.5, $fn=30);
+                        color("silver") translate([6.75, -.2, .15]) rotate([-90, 0, 0]) 
+                            cylinder(d=1.5, h=8.5, $fn=30);
                         
-                        color("silver") translate([-3,-1,-3]) cube([3,10.5,7.5]);
-                        color("silver") translate([6.5,-1,-3]) cube([3,10.5,7.5]);
-                        color("silver") translate([-1,-1,-3]) cube([9,10.5,3]);
-                        color("silver") translate([-1,7.5,-3]) cube([9,6.5,9]);
+                        color("silver") translate([-3, -1, -3]) cube([3, 10.5, 7.5]);
+                        color("silver") translate([6.5, -1, -3]) cube([3, 10.5, 7.5]);
+                        color("silver") translate([-1, -1, -3]) cube([9, 10.5, 3]);
+                        color("silver") translate([-1, 7.5, -3]) cube([9, 6.5, 9]);
                         }
-                    color("black") translate([1.375,.5,1]) cube([4,3.5,1.2]);
+                    color("black") translate([1.375, .5, 1]) cube([4, 3.5, 1.2]);
                 }
         }
     }
     
     // hdmi mini connector
-    if(type=="hdmi_mini") {
+    if(type == "hdmi_mini") {
     
         size_x = 11.2;
         size_y = 8;
+        size_xm = 11.5;
+        size_ym = len;
             
         if(enablemask ==true) {
-
+           // hdmi mini opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x+.125, loc_y-len+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-len+6+back, loc_y-.375, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.5, loc_y+2-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2-back, loc_y+.125, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.375, loc_y-len+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+2-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y+2-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-len+6+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
+            }
         }
         else {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
-                        color("silver") translate([0,0,0]) cube([size_x, size_y, 3.2]);
-                        color("dimgray") translate([.25,-.25,.25]) cube([size_x-.5, size_y-.5, 2.7]);
-                        color("silver") translate([-.5,-.1,0]) rotate ([-90,0,0]) 
-                            cylinder(d=2.5, h=8.7,$fn=30);
-                        color("silver") translate([11.75,-.1,0]) rotate ([-90,0,0]) 
-                            cylinder(d=2.5, h=8.7,$fn=30);
+                        color("silver") cube([size_x, size_y, 3.2]);
+                        color("dimgray") translate([.25, -.25, .25]) cube([size_x-.5, size_y-.5, 2.7]);
+                        color("silver") translate([-.5, -.1, 0]) rotate ([-90, 0, 0]) 
+                            cylinder(d=2.5, h=8.7, $fn=30);
+                        color("silver") translate([11.75, -.1, 0]) rotate ([-90, 0, 0]) 
+                            cylinder(d=2.5, h=8.7, $fn=30);
 
                     }
                     difference() {
                         union() {
-                            color("silver") translate([-.5,0,0]) rotate ([-90,0,0]) 
-                                cylinder(d=2.5, h=8.5,$fn=30);
-                            color("silver") translate([11.75,0,0]) rotate ([-90,0,0]) 
-                                cylinder(d=2.5, h=8.5,$fn=30);
+                            color("silver") translate([-.5, 0, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=2.5, h=8.5, $fn=30);
+                            color("silver") translate([11.75, 0, 0]) rotate ([-90, 0, 0]) 
+                                cylinder(d=2.5, h=8.5, $fn=30);
                         }               
-                        color("silver") translate([-.25,-.2,.25]) rotate ([-90,0,0]) 
-                            cylinder(d=1.25, h=8.5,$fn=30);
-                        color("silver") translate([11.4,-.2,0]) rotate ([-90,0,0]) 
-                            cylinder(d=1.25, h=9,$fn=30);
+                        color("silver") translate([-.25, -.2, .25]) rotate ([-90, 0, 0]) 
+                            cylinder(d=1.25, h=8.5, $fn=30);
+                        color("silver") translate([11.4, -.2, 0]) rotate ([-90, 0, 0]) 
+                            cylinder(d=1.25, h=9, $fn=30);
                         
-                        color("silver") translate([-3,-1,-3]) cube([3,10.5,7.5]);
-                        color("silver") translate([11.2,-1,-3]) cube([3,10.5,7.5]);
-                        color("silver") translate([-1,-1,-3]) cube([13,10.5,3]);
-                        color("silver") translate([-1,8,-3]) cube([14,6.5,9]);
+                        color("silver") translate([-3, -1, -3]) cube([3, 10.5, 7.5]);
+                        color("silver") translate([11.2, -1, -3]) cube([3, 10.5, 7.5]);
+                        color("silver") translate([-1, -1, -3]) cube([13, 10.5, 3]);
+                        color("silver") translate([-1, 8, -3]) cube([14, 6.5, 9]);
                         }
-                    color("black") translate([1.5,.5,1]) cube([8,3.5,1.2]);
+                    color("black") translate([1.5, .5, 1]) cube([8, 3.5, 1.2]);
                 }
         }
     }
     
     // display port mini connector
-    if(type=="dp_mini") {
+    if(type == "dp_mini") {
     
         size_x = 8.5;
         size_y = 13.65;
+        size_xm = 9;
+        size_ym = len;
         
-        if(enablemask ==true) {
-
+        if(enablemask == true) {
+            // dp mini opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.125, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(rotation == 180) {
+                place(loc_x-.375, loc_y+6, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+6, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.675, loc_y, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+6, loc_y-.5, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.375, loc_y+6, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-1.5, size_xm, size_ym, rotation, side) hdmi_open("dp_mini", len);
+            }
         }
         else {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
                         difference() {
-                            color("silver") translate([0,0,0]) cube([size_x, size_y, 5.6]);
-                            color("silver") translate([-7.5,-1,1]) rotate([0,45,0]) cube([size_x, size_y+2, 5.6]);
-                            color("silver") translate([10,-1,-5]) rotate([0,-45,0]) cube([size_x, size_y+2, 5.6]);                    
+                            color("silver") cube([size_x, size_y, 5.6]);
+                            color("silver") translate([-7.5, -1, 1]) rotate([0, 45, 0]) cube([size_x, size_y+2, 5.6]);
+                            color("silver") translate([10, -1, -5]) rotate([0, -45, 0]) cube([size_x, size_y+2, 5.6]);                    
                         }
                         difference() {
-                            color("dimgray") translate([.5,-.25,.5]) cube([size_x-1, size_y-.5, 4.6]);
-                            color("silver") translate([-6.75,-1,1]) rotate([0,45,0]) cube([size_x, size_y, 5.6]);
-                            color("silver") translate([9.4,-1,-5]) rotate([0,-45,0]) cube([size_x, size_y, 5.6]);
+                            color("dimgray") translate([.5, -.25, .5]) cube([size_x-1, size_y-.5, 4.6]);
+                            color("silver") translate([-6.75, -1, 1]) rotate([0, 45, 0]) cube([size_x, size_y, 5.6]);
+                            color("silver") translate([9.4, -1, -5]) rotate([0, -45, 0]) cube([size_x, size_y, 5.6]);
                         }
                     }
                     color("black") translate([1.5,.5,2.25]) cube([5.5,size_y-.5,1.2]);
@@ -387,7 +499,7 @@ module hdmi_open(hdmi_style,len) {
     if(hdmi_style == "hdmi_micro") {
         union() { 
             difference() {
-                translate([-.25,-6,-.01]) cube([7,8,3.15]);
+                translate([-.25,-6,-.01]) cube([7,len,3.15]);
                 translate([-.25,-6.2,0]) rotate ([-90,0,0]) cylinder(d=1.5, h=9.5,$fn=30);
                 translate([6.75,-6.2,0]) rotate ([-90,0,0]) cylinder(d=1.5, h=9.5,$fn=30);
             }
@@ -396,7 +508,7 @@ module hdmi_open(hdmi_style,len) {
     if(hdmi_style == "hdmi_mini") {
         union() { 
             difference() {
-                translate([-.25,-6,-.01]) cube([11.5,8,3.5]);
+                translate([-.25,-6,-.01]) cube([11.5,len,3.5]);
                 translate([-1,-6.2,-.5]) rotate ([-90,0,0]) cylinder(d=3, h=10,$fn=30);
                 translate([12.25,-6.2,-.5]) rotate ([-90,0,0]) cylinder(d=3, h=10,$fn=30);
             }
@@ -407,7 +519,7 @@ module hdmi_open(hdmi_style,len) {
         size_y = 8;        
         union() {    
             difference() {
-                translate([-.25,-6,0]) cube([size_x, size_y, 5.75]);
+                translate([-.25,-6,0]) cube([size_x, len, 5.75]);
                 translate([-7.5,-7,1]) rotate([0,45,0]) cube([size_x, size_y+2, 5.6]);
                 translate([10,-7,-5]) rotate([0,-45,0]) cube([size_x, size_y+2, 5.6]);                    
             }
