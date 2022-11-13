@@ -33,7 +33,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 15;
         size_ym = len;
    
-        if(enablemask ==true) {
+        if(enablemask == true && style == "default") {
             // hdmi opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
@@ -101,7 +101,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_ym = len;
         height = .4;
    
-        if(enablemask == true) {
+        if(enablemask == true && style == "default") {
             // hdmi vertical opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
@@ -182,7 +182,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 19;
         size_ym = 18;
         
-        if(enablemask == true) {
+        if(enablemask == true && style == "default") {
             // dp-hdmi_a opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-len+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -268,7 +268,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 7.25;
         size_ym = len;
         
-        if(enablemask == true) {
+        if(enablemask == true && style == "default") {
            // hdmi micro opening
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y-len+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
@@ -337,7 +337,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 11.5;
         size_ym = len;
             
-        if(enablemask ==true) {
+        if(enablemask == true && style == "default") {
            // hdmi mini opening
             if(side == "top" && rotation == 0) {
                 place(loc_x+.125, loc_y-len+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
@@ -406,7 +406,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 9;
         size_ym = len;
         
-        if(enablemask == true) {
+        if(enablemask == true && style == "default") {
             // dp mini opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.125, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", len);

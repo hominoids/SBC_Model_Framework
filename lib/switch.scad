@@ -20,14 +20,59 @@
  
 // switch class
 module switch(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
-    // boot selector switch
-    if(type=="slide_4x9") {
+
+    len = mask[1];
+    back = mask[2];
+    style = mask[3];    
+
+    if(type == "slide_4x9") {
+    
         size_x = 9;                
         size_y = 3.75;
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {    
-            color("silver") translate([0,0,.5]) cube([size_x, size_y, 3.5]);
-            color("white") translate([3.75,-1.99,1.75]) cube([3, 2, 1.5]);
+        size_xm = 9;
+        size_ym = 4;
+        
+        if(enablemask == true && style == "default") {
+             // switch opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y-len+back, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-len+back, loc_y+5, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x+5, loc_y-5.25+len-back, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-5.25+len-back, loc_y, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x+5, loc_y-len+back, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x-5.25+len-back, loc_y+5, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y-5.25+len-back, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-len+back, loc_y, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)
+                    cube([size_xm, len, size_ym]);
+            }
+        }
+        else {               
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                union() {    
+                    color("silver") translate([0, 0, .5]) cube([size_x, size_y, 3.5]);
+                    color("white") translate([3.75, -1.99, 1.75]) cube([3, 2, 1.5]);
+                }
         }
     }
 }
