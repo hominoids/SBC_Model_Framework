@@ -134,11 +134,6 @@ module sbc(model, enablemask = false) {
                                     cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
-                            if (class == "combo" && mask[0] == true) {
-                                if (loc_x!=0 || loc_y!=0) {
-                                    combo(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
-                                }            
-                            }
                             if (class == "discrete" && mask[0] == true) {
                                 if(loc_x!=0 || loc_y!=0) {
                                     discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
@@ -443,11 +438,6 @@ module sbc(model, enablemask = false) {
                                 if(loc_x!=0 || loc_y!=0) {
                                     cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
-                            }
-                            if (class == "combo") {
-                                if (loc_x!=0 || loc_y!=0) {
-                                    combo(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
-                                }            
                             }
                             if (class == "discrete") {
                                 if(loc_x!=0 || loc_y!=0) {
