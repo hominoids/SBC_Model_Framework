@@ -21,20 +21,41 @@
 // display class
 module display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
 
+    cmask = mask[0];
+    len = mask[1];
+    back = mask[2];
+    style = mask[3];
+    
     // type lcd_2.2
-    if(type=="lcd_2.2") {
+    if(type == "lcd_2.2") {
+    
         size_x = 56;
-        size_y = 38;                
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {
-            difference() {
-                union() {
-                    color("white") translate([0,0,0]) cube([size_x,size_y,1.5]);
-                    color("dimgrey") translate([1,1,1.5]) cube([size_x-2,size_y-2,1.85]);
-                    }
-                color("black") translate([54.5,4,-.01]) cube([2,30,4]);
+        size_y = 38;
+        size_xm = 45;
+        size_ym = 34;
+        
+        if(enablemask == true && cmask == true && style == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x+4, loc_y+1, loc_z+4, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, len]);
             }
-            color("dimgrey") translate([4.25,.9,3.35]) cube([45,34,.25]);
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x+7, loc_y+1, loc_z+4, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, len]);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                union() {
+                    difference() {
+                        union() {
+                            color("white") cube([size_x, size_y, 1.5]);
+                            color("grey") translate([1, 1, 1.5]) cube([size_x-2, size_y-2, 1.85]);
+                            }
+                        color("black") translate([54.5, 4, -.01]) cube([2, 30, 4]);
+                    }
+                    color("dimgrey") translate([4.25, .9, 3.35]) cube([45, 34, .25]);
+                }
         }
     }
 }
