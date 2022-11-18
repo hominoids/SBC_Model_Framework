@@ -20,9 +20,15 @@
 
 // pcie class
 module pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+
+    cmask = mask[0];
+    len = mask[1];
+    back = mask[2];
+    style = mask[3];
+    
     
     // PCIE-X4
-    if (type=="x4") {
+    if (type=="x4" && enablemask == false) {
         size_x = 38.8;
         size_y = 8.5;
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)

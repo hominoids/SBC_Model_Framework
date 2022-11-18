@@ -20,6 +20,7 @@
 
 // compute module holder class
 module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+
     // jetson nano
     if(type == "jetsonnano") {        
         size_x = 73;

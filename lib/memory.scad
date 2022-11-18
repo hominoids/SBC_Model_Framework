@@ -145,7 +145,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
     }
        
     // sodimm-5.2 socket
-    if(type == "sodimm_5.2") {                
+    if(type == "sodimm_5.2" && enablemask == false) {                
         size_x = 73;
         size_y = 6.5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -167,7 +167,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
     }
         
     // sodimm-9.2 socket
-    if(type == "sodimm_9.2") {        
+    if(type == "sodimm_9.2" && enablemask == false) {        
         size_x = 73;
         size_y = 6.5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)

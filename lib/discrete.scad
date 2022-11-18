@@ -81,7 +81,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask
     }
 
     // type led surface mount
-    if(type=="led_3x1.5") {
+    if(type=="led_3x1.5" && enablemask == false) {
     
         size_x = 3;
         size_y = 1.5;

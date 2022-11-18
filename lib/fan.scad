@@ -20,9 +20,14 @@
  
 // fan connector class
 module fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
-    
+
+    cmask = mask[0];
+    len = mask[1];
+    back = mask[2];
+    style = mask[3];
+            
     // micro connector type
-    if(type=="fan_micro") {
+    if(type=="fan_micro" && enablemask == false) {
         size_x = 7.5;
         size_y = 3.75;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -40,7 +45,7 @@ module fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mas
     }
     
     // pmw-standard connector type
-    if(type=="encl_pmw") {
+    if(type=="encl_pmw" && enablemask == false) {
         size_x = 11.6;
         size_y = 4.3;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -59,7 +64,7 @@ module fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mas
     }
     
     // pmw-standard connector type horizontal and 45 degrees
-    if(type=="encl_pmw_h") {
+    if(type=="encl_pmw_h" && enablemask == false) {
         size_x = 11.6;
         size_y = 4.3;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)

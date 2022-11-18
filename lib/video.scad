@@ -60,7 +60,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 place(loc_x-len+5+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             translate([0,0,.75])
                 union() { 
@@ -137,7 +137,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
             }
 
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 translate([0, 0, size_x+height]) rotate([0, 90, 0])
                     union() { 
@@ -217,7 +217,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                     cube([size_xm, len, 19.25]);
             }
         }
-        else {     
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {
                     difference() {
@@ -295,7 +295,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 place(loc_x-len+6+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", len);
             }
         }
-        else {   
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
@@ -364,7 +364,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 place(loc_x-len+6+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", len);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
@@ -433,7 +433,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 place(loc_x, loc_y, loc_z-1.5, size_xm, size_ym, rotation, side) hdmi_open("dp_mini", len);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
@@ -454,7 +454,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
     }
     
     // mipi csi port
-    if(type=="mipi_csi") {
+    if(type=="mipi_csi" && enablemask == false) {
         size_x = 21;
         size_y = 3;        
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -472,7 +472,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         }
     }
     // mipi dsi port
-    if(type=="mipi_dsi") {
+    if(type=="mipi_dsi" && enablemask == false) {
         size_x = 10;
         size_y = 3;        
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)

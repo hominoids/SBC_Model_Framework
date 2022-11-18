@@ -90,8 +90,9 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_y = 5.5;        
         size_xm = 12;
         size_ym = len;
+        size_zm = len;
         
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true &&  (style == "default" || style == "slot")) {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-len+back, loc_z+.25, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, len, 2]);
@@ -126,6 +127,40 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
             }
         
         }
+        if(enablemask == true && cmask == true && style == "block") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.25, loc_y-18+back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-18+back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.25, loc_y-18+back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-18+back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+        }
         if(enablemask == false) { 
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {
@@ -144,8 +179,9 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_y = 5.5;
         size_xm = 12;
         size_ym = len;
+        size_zm = len;
         
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && (style == "default" || style == "slot")) {
             // micro sdcard storage
              if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-len+back, loc_z+1.5, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -180,6 +216,40 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                     cube([size_xm, size_ym, 2]);
             }
         }
+        if(enablemask == true && cmask == true && style == "block") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.25, loc_y-18+back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-18+back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.25, loc_y-18+back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-18+back, loc_y-.25, loc_z, size_xm, 18, rotation, side, pcbsize_z)
+                    cube([size_xm, 18, size_zm]);
+            }
+        }
         if(enablemask == false) {         
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {
@@ -192,7 +262,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
 
     // sata single header type
-    if(type=="sata_header") {
+    if(type=="sata_header" && enablemask == false) {
     
         size_x = 16;
         size_y = 4;
@@ -216,7 +286,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // sata and power enclosed verticle recepticle
-    if(type=="sata_power_vrec") { 
+    if(type=="sata_power_vrec" && enablemask == false) { 
       
         size_x = 40.43;
         size_y = 3.5; 
@@ -269,7 +339,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // sata and power enclosed right angle
-    if(type=="sata_encl_power") {
+    if(type=="sata_encl_power" && enablemask == false) {
      
         size_x = 40.43;
         size_y = 12.87;
@@ -306,7 +376,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // sata enclosed header style
-    if(type=="sata_encl_header") {
+    if(type=="sata_encl_header" && enablemask == false) {
     
         size_x = 16.9;
         size_y = 6.45;
@@ -334,7 +404,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // m.2 header style
-    if(type=="m.2_header") {
+    if(type=="m.2_header" && enablemask == false) {
     
         size_x = 22;
         size_y = 6.5;     
@@ -358,7 +428,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // m.2 mounting stud
-    if(type=="m.2_stud") {
+    if(type=="m.2_stud" && enablemask == false) {
     
         size_x = 5;
         size_y = 5;

@@ -253,7 +253,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
     }
     
     // molex power 4x1 connector type
-    if(type=="molex_4x1") {
+    if(type=="molex_4x1" && enablemask == false) {
     
         size_x = 23;
         size_y = 8;
@@ -286,7 +286,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
     }
     
     // sata small power 4x1 connector type
-    if(type=="small_encl_satapwr") {
+    if(type=="small_encl_satapwr" && enablemask == false) {
     
         size_x = 12.7;
         size_y = 6.6;

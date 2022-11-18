@@ -68,7 +68,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     rotate([90,0,0]) slot(dia,wide,len);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
@@ -144,7 +144,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
@@ -202,7 +202,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {   
                     // usb 2.0 port
@@ -261,7 +261,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
@@ -282,7 +282,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // uart micro connector type
-    if(type == "uart_micro") {
+    if(type == "uart_micro" && enablemask == false) {
         
         size_x = 12.5;
         size_y = 5;
@@ -363,7 +363,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
@@ -421,7 +421,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {   
                     // usb 2.0 port
@@ -480,7 +480,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     cube([size_xm, len, size_zm]);
             }
         }
-        else {   
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
@@ -537,7 +537,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     rotate([90 ,0, 0]) slot(diam, size_x, len);
             }
         }
-        else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 rotate([90, 0, 0])  translate([dia/2, dia/2, -size_y]) union() {    
                     difference () {
@@ -596,7 +596,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                     rotate([90 ,90, 0]) slot(diam, size_x, len);
             }
         }
-    else {
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 rotate([90 ,90 ,0])  translate([-size_y-.25, dia/2, -size_y]) union() {    
                     difference () {

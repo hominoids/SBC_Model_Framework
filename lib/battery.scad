@@ -20,11 +20,18 @@
 
 // battery class
 module battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
-
+    
+    cmask = mask[0];
+    len = mask[1];
+    back = mask[2];
+    style = mask[3];
+    
     // type battery holder 1
-    if(type=="bat_hold_1") {
+    if(type=="bat_hold_1" && enablemask == false) {
+    
         size_x = 22;
-        size_y = 16;                
+        size_y = 16;
+        
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
@@ -78,7 +85,7 @@ module battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // rtc micro connector type
-    if(type=="rtc_micro") {
+    if(type=="rtc_micro" && enablemask == false) {
         size_x = 7.5;
         size_y = 3.75;        
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)

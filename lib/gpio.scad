@@ -20,9 +20,14 @@
  
 // gpio class
 module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
-    
+
+    cmask = mask[0];
+    len = mask[1];
+    back = mask[2];
+    style = mask[3];
+        
     // gpio 30 pin enclosed header
-    if(type=="encl_header_30") {
+    if(type=="encl_header_30" && enablemask == false) {
         size_x = 37;
         size_y = 5.5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -39,7 +44,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // gpio 12 enclosed header
-    if (type=="encl_header_12") {
+    if (type=="encl_header_12" && enablemask == false) {
         size_x = 19.5;
         size_y = 5.5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -56,7 +61,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // gpio 40 pin header
-    if(type=="header_40") {
+    if(type=="header_40" && enablemask == false) {
         size_x = 50;
         size_y = 5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -70,7 +75,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // gpio 20 pin header
-    if(type=="header_20") {
+    if(type=="header_20" && enablemask == false) {
         size_x = 25.52;
         size_y = 5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -84,7 +89,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     }
     
     // gpio 26 pin header
-    if(type=="header_26") {
+    if(type=="header_26" && enablemask == false) {
         size_x = 31.52;
         size_y = 5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
