@@ -339,39 +339,62 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     }
     
     // sata and power enclosed right angle
-    if(type=="sata_encl_power" && enablemask == false) {
+    if(type=="sata_encl_power") {
      
         size_x = 40.43;
         size_y = 12.87;
-        
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, type, pcbsize_z)
-        union() {
-            difference() {
-                union() {                
-                    difference () {
-                        color("black") translate([2.12, 0, 0]) cube([36.19, 11.17, 4.3]);
-                        color("black") translate([4.12, -1, -2]) cube([32.19, 4, 7]);
-                    }
-                    color("black") cube([2.12, 5.67, 4]);
-                    color("black") translate([38.31, 0, 0]) cube([2.12, 5.67, 4]);
-                    color("black") translate([0, 8, 1]) cube([2.12, 5.5, 2.55]);
-                    color("black") translate([38.31, 8, 1]) cube([2.12, 5.5, 2.55]);
-                }
-                color("black") translate([1.12, 5.67,-.5]) cube([38.19, 5.7, 1]);
-                color("black") translate([-1, 11.17, .69]) rotate ([0, 0, 45])
-                cube([4.12, 4, 6]);
-                color("black") translate([41.43, 11.17, .69]) rotate ([0, 0, 45])
-                cube([2.12, 4, 6]);
-                color("black") translate([0, 11.17, 4]) rotate ([-45, 0, 0])
-                cube([3.12, 4, 2]);
-                color("black") translate([37.31, 11.17, 4]) rotate ([-45, 0, 0])
-                cube([3.12, 4,2]);
-                color("dimgray ") translate([3.32, 5.67, 2.5]) cube([21.58, 6, 1.15]);
-                color("dimgray") translate([23.56, 5.67, 1.15]) cube([1.45, 6, 2.15]);
-                color("dimgray") translate([27.01, 5.67, 2.5]) cube([10, 6, 1.15]);
-                color("dimgray") translate([27.01, 5.67, 1.15]) cube([1.45, 6, 2.15]);
-                
+        size_xm = 42.5;
+        size_zm = 7.5;
+   
+        if(enablemask == true && cmask == true && style == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-1, loc_y+14, loc_z+3, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90, 0, 0]) slot(size_zm, size_xm, len);
             }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-1, loc_y+14, loc_z+3, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90,0,0]) slot(size_zm, size_xm, len);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-1, loc_y+8, loc_z+3, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90, 0, 0]) slot(size_zm, size_xm, len);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+1, loc_y+8, loc_z+3, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90, 0, 0]) slot(size_zm, size_xm, len);
+            }
+        
+        }
+        if(enablemask == false) {         
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                union() {
+                    difference() {
+                        union() {                
+                            difference () {
+                                color("black") translate([2.12, 0, 0]) cube([36.19, 11.17, 4.3]);
+                                color("black") translate([4.12, -1, -2]) cube([32.19, 4, 7]);
+                            }
+                            color("black") cube([2.12, 5.67, 4]);
+                            color("black") translate([38.31, 0, 0]) cube([2.12, 5.67, 4]);
+                            color("black") translate([0, 8, 1]) cube([2.12, 5.5, 2.55]);
+                            color("black") translate([38.31, 8, 1]) cube([2.12, 5.5, 2.55]);
+                        }
+                        color("black") translate([1.12, 5.67,-.5]) cube([38.19, 5.7, 1]);
+                        color("black") translate([-1, 11.17, .69]) rotate ([0, 0, 45])
+                            cube([4.12, 4, 6]);
+                        color("black") translate([41.43, 11.17, .69]) rotate ([0, 0, 45])
+                            cube([2.12, 4, 6]);
+                        color("black") translate([0, 11.17, 4]) rotate ([-45, 0, 0])
+                            cube([3.12, 4, 2]);
+                        color("black") translate([37.31, 11.17, 4]) rotate ([-45, 0, 0])
+                            cube([3.12, 4,2]);
+                        color("dimgray") translate([3.32, 5.67, 2.5]) cube([21.58, 6, 1.15]);
+                        color("dimgray") translate([23.56, 5.67, 1.15]) cube([1.45, 6, 2.15]);
+                        color("dimgray") translate([27.01, 5.67, 2.5]) cube([10, 6, 1.15]);
+                        color("dimgray") translate([27.01, 5.67, 1.15]) cube([1.45, 6, 2.15]);
+                        
+                    }
+                }
         }
     }
     
