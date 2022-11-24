@@ -71,8 +71,8 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
                         }
                 }
     }
-    // hardkernel xu4 heatsink
-    if(type=="xu4_oem" && enablemask ==  false) {
+    // hardkernel xu4 and n2l heatsink
+    if((type=="xu4_oem" || type=="n2l_oem") && enablemask ==  false) {
     
         $fn=60;
         size_x = 58;
@@ -112,8 +112,8 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
                 }
     }
     
-    // hardkernel xu4q heatsink
-    if(type=="xu4q_oem" && enablemask ==  false) {
+    // hardkernel xu4q and n2lq heatsink
+    if((type=="xu4q_oem"  || type=="n2lq_oem") && enablemask ==  false) {
         $fn=60;
         size_x = 58;
         size_y = 40;                
@@ -179,12 +179,41 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         }
     }
     
+    // h3/h3+ hk heatsink
+    if(type=="h3_oem") {
+        size_x = 77;
+        size_y = 72;                
+        size_z = 27;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        difference() {
+            union() {        
+                color("gray",.6) translate([0,0,3]) cube([size_x,size_y,size_z]);
+                }
+            // center channel and fins
+            color("gray",1) translate([13,-1,5]) cube([2,size_y+2,size_z]);
+            color("gray",1) translate([47,-1,5]) cube([2,size_y+2,size_z]);
+            for (i=[1:3.75:size_y]) {
+                color("gray",1) translate([-1,i,5]) cube([size_x+2,3,size_z]);
+            }
+            // holes
+            color("gray",.6) translate([30,14,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([73,14,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([30,51,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([73,51,-1]) cylinder(d=3, h=7);
+            color("gray",.6) translate([26,10,5]) cube([8,8,size_z]);
+            color("gray",.6) translate([69,10,5]) cube([8.2,8,size_z]);
+            color("gray",.6) translate([26,47,5]) cube([8,8,size_z]);
+            color("gray",.6) translate([69,47,5]) cube([8.2,8,size_z]);
+            
+        }
+    }
+    
     // hardkernel n2 heatsink
     if(type=="n2_oem" && enablemask ==  false) {
         size_x = 90;
         size_y = 90;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
-            color("gray") import("Odroid-N2_Heatsink.stl", convexity=3);
+            color("gray") import("./lib/Odroid-N2_Heatsink.stl", convexity=3);
     }
     
     // hardkernel n2+ heatsink
@@ -192,7 +221,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         size_x = 90;
         size_y = 90;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
-            color("gray") import("Odroid-N2+_Heatsink.stl", convexity=3);
+            color("gray") import("./lib/Odroid-N2+_Heatsink.stl", convexity=3);
     }
     
     // hardkernel m1 heatsink
@@ -200,7 +229,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         size_x = 90;
         size_y = 122;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
-            color("gray") translate([-.5,0,3]) import("Odroid-M1_Heatsink.stl", convexity=3);
+            color("gray") translate([-.5,0,3]) import("./lib/Odroid-M1_Heatsink.stl", convexity=3);
     }
     
     // hardkernel h2 heatsink
@@ -208,7 +237,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         size_x = 90;
         size_y = 90;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+size_z)
-        color("gray") import("Odroid-H2_Heatsink.stl", convexity=3);
+        color("gray") import("./lib/Odroid-H2_Heatsink.stl", convexity=3);
     }
     
     // khadas heatsink without fan
@@ -216,7 +245,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         size_x = 82;
         size_y = 48;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        color("gray",.6) import("Khadas_Heatsink.stl", convexity=3);
+        color("gray",.6) import("./lib/Khadas_Heatsink.stl", convexity=3);
     }
     
     // khadas heatsink with fan
@@ -224,7 +253,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         size_x = 82;
         size_y = 48;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        color("gray",.6) import("Khadas_Heatsink_Fan.stl", convexity=3);
+        color("gray",.6) import("./lib/Khadas_Heatsink_Fan.stl", convexity=3);
     }
     
     // radxa heatsink
@@ -232,6 +261,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         size_x = 82;
         size_y = 56;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+soc1size_z)
-        color("gray",.6) import("Radxa_Heatsink.stl", convexity=3);
+        color("gray",.6) import("./lib/Radxa_Heatsink.stl", convexity=3);
     }
 }
