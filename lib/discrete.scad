@@ -44,7 +44,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = len);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-1.5, loc_y-.5-back, loc_z+10.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-1.5, loc_y-.5-back, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = len);
             }
             if(side == "top" && rotation == 270) {
