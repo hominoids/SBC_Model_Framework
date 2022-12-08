@@ -14,49 +14,50 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    20190214 Version 1     Component Library for the SBC Model Framework    
-                           component classes and types:
-                           memory  - emmc, emmc_plug, sodimm_5.2, sodimm_9.2
-                           switch - slide_4x9
-                           button - momentary_6x6x9, momentary_6x6x4
-                           plug - pwr5.5_7.5x11.5, pwr2.5_5x7.5, rtc_micro, uart_micro, molex_4x1, small_encl_satapwr
-                           usb2 - single_vert_a, double_stacked_a, micro
-                           usb3 - double_stacked_a
-                           network - rj45_single
-                           video - hdmi_a, dp-hdmi_a
-                           fan - micro, encl_pmw
-                           gpio - encl_header_30, encl_header_12, header_40, header_20
-                           ic - ic_2.8x2.8, ic_4.7x4.7, ic_5x5, ic_5.75x5.75, ic_6x6, ic_6.75x6.75, ic_7x7, ic_6.7x8.4, ic_11x8, ic_13x8
-                           audio - out-in-spdif
-                           storage - sata_header, sata_encl_power, sata_encl_header, m.2_header, sdcard
-                           combo - rj45-usb2_double, rj45-usb3_double
-                           jumper - header_2x1, header_7x1
-                           misc - ir_1
+    20190214 Version 1      Component Library for the SBC Model Framework    
+                            component classes and types:
+                            memory  - emmc, emmc_plug, sodimm_5.2, sodimm_9.2
+                            switch - slide_4x9
+                            button - momentary_6x6x9, momentary_6x6x4
+                            plug - pwr5.5_7.5x11.5, pwr2.5_5x7.5, rtc_micro, uart_micro, molex_4x1, small_encl_satapwr
+                            usb2 - single_vert_a, double_stacked_a, micro
+                            usb3 - double_stacked_a
+                            network - rj45_single
+                            video - hdmi_a, dp-hdmi_a
+                            fan - micro, encl_pmw
+                            gpio - encl_header_30, encl_header_12, header_40, header_20
+                            ic - ic_2.8x2.8, ic_4.7x4.7, ic_5x5, ic_5.75x5.75, ic_6x6, ic_6.75x6.75, ic_7x7, ic_6.7x8.4, ic_11x8, ic_13x8
+                            audio - out-in-spdif
+                            storage - sata_header, sata_encl_power, sata_encl_header, m.2_header, sdcard
+                            combo - rj45-usb2_double, rj45-usb3_double
+                            jumper - header_2x1, header_7x1
+                            misc - ir_1
                         
-    20190218 Version 1.0.1 added type "jack_3.5" under class "audio"
-                           add type "ic_3x3","ic_6.4x6.4","ic_3.7x3.7","ic_4.3x5.1","ic_5.4x5.3" under class "ic"
-    20200425 Version 1.0.2 corrected HK Odroid-h2 hdmi-displayport component y size
-                           added type "ic_13x9","ic_9x9" under class "ic"
-                           added "heatsink" class with types "xu4_oem","xu4q_oem","c1+_oem","c2_oem","c4_oem","n2_oem","h2_oem"
-                           added Odroid-N2_Heatsink.stl from Hard Kernel
-                           added Odroid-H2_Heatsink.stl from HK forum user @ravelle
-    20200725 Version 1.0.3 added Odroid-N2+ Heatsink.stl from Hard Kernel as class "heatsink" type "n2+_oem" and type "batt_hold_1"
-                           under "misc" class
-    20201021 Version 1.0.4 added type "header_5x1" under "jumper" class, type "sata_power_vrec" under class "storage"
-                           and type "hc4_oem" under class "heatsink"
-    20220202 Version 1.0.5 added type "header_6x1","header_3x2"  under "jumper" class, led_3x1.5 under misc class, 
-                           momentary_3x2 under button class, fixed ir, corrected sata height, fixed header_7x1
-    20220413 Version 1.0.6 adjusted slide_4x9, adjust m.2_header, rj45-usb2_double, rj45-usb3_double, out-in-spdif,
-                           momentary_6x6x4, fixed color for usb2 micro otg, adjust all header heights, 
-                           added mipi_csi, mipi_dsi, m.2_stud
-    20220515 Version 1.0.7 added pcie(), jst_ph(), cm(), cm_holder(), corrected odroid-m1 heatsink height and sbc location,
-                           and other fixes and adjustments
-    20220623 Version 1.0.7 added pwr5.5_9.5x7
-    20221020 Version 1.0.8 added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
-                           ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
-                           double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
-                           hdmi_a_vertical
-    20221101 Version 1.0.9 added microsdcard2
+    20190218 Version 1.0.1  added type "jack_3.5" under class "audio"
+                            add type "ic_3x3","ic_6.4x6.4","ic_3.7x3.7","ic_4.3x5.1","ic_5.4x5.3" under class "ic"
+    20200425 Version 1.0.2  corrected HK Odroid-h2 hdmi-displayport component y size
+                            added type "ic_13x9","ic_9x9" under class "ic"
+                            added "heatsink" class with types "xu4_oem","xu4q_oem","c1+_oem","c2_oem","c4_oem","n2_oem","h2_oem"
+                            added Odroid-N2_Heatsink.stl from Hard Kernel
+                            added Odroid-H2_Heatsink.stl from HK forum user @ravelle
+    20200725 Version 1.0.3  added Odroid-N2+ Heatsink.stl from Hard Kernel as class "heatsink" type "n2+_oem" and type "batt_hold_1"
+                            under "misc" class
+    20201021 Version 1.0.4  added type "header_5x1" under "jumper" class, type "sata_power_vrec" under class "storage"
+                            and type "hc4_oem" under class "heatsink"
+    20220202 Version 1.0.5  added type "header_6x1","header_3x2"  under "jumper" class, led_3x1.5 under misc class, 
+                            momentary_3x2 under button class, fixed ir, corrected sata height, fixed header_7x1
+    20220413 Version 1.0.6  adjusted slide_4x9, adjust m.2_header, rj45-usb2_double, rj45-usb3_double, out-in-spdif,
+                            momentary_6x6x4, fixed color for usb2 micro otg, adjust all header heights, 
+                            added mipi_csi, mipi_dsi, m.2_stud
+    20220515 Version 1.0.7  added pcie(), jst_ph(), cm(), cm_holder(), corrected odroid-m1 heatsink height and sbc location,
+                            and other fixes and adjustments
+    20220623 Version 1.0.7  added pwr5.5_9.5x7
+    20221020 Version 1.0.8  added usbc(),usb2(single_horizontal_a),usb3(single_horizontal_a),hdmi_micro,hdmi_mini,dp_mini,
+                            ic_13x7.5,ic_13x11.5,ic_15x7,ic_15x13,momentary_7x3x3,khadas_oem,khadas_fan_oem,radxa_oem,
+                            double_stacked_usb3-usbc,ic_12.5x12.5,ic_10x13,header_26,header_3x1,"ic_12x12","ic_15x15",
+                            hdmi_a_vertical
+    20221101 Version 1.0.9  added microsdcard2
+    20221207 Version 1.0.10 added n2l_oem and n2lq_oem heatsinks
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -624,6 +625,27 @@ module usb3(x,y,rotation,side,type,pcbsize_z) {
             color("silver") translate([0,0,6.75]) cube([13.25, 17.5, 2]);
             color("royalblue") translate([1.5,1,12]) cube([10, 12.5, 1.5]);
             color("royalblue") translate([1.5,1,4]) cube([10, 12.5, 1.5]);
+            color("silver") translate([-.65,0,1]) cube([.65,.5,5]);    
+            color("silver") translate([13.25,0,1]) cube([.65,.5,5]);
+            color("silver") translate([-.65,0,9]) cube([.65,.5,5]);    
+            color("silver") translate([13.25,0,9]) cube([.65,.5,5]);
+            color("silver") translate([1,0,15.5]) cube([11.5,.5,.65]);            
+
+        }
+    }
+    // usb3 double stacked type
+    if(type=="double_stacked_usb3-usb2") {
+        size_x = 13.25;
+        size_y = 17.5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {    
+            difference () {
+                color("silver") translate([0,0,0]) cube([size_x, size_y, 15.5]);
+                color("dimgray") translate([1,-.1,1]) cube([11.25, 15.5, 13.5]);
+            }
+            color("silver") translate([0,0,6.75]) cube([13.25, 17.5, 2]);
+            color("royalblue") translate([1.5,1,12]) cube([10, 12.5, 1.5]);
+            color("white") translate([1.5,1,4]) cube([10, 12.5, 1.5]);
             color("silver") translate([-.65,0,1]) cube([.65,.5,5]);    
             color("silver") translate([13.25,0,1]) cube([.65,.5,5]);
             color("silver") translate([-.65,0,9]) cube([.65,.5,5]);    
@@ -1897,7 +1919,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
                 }
         }
     }
-    if(type=="xu4_oem") {
+    if(type=="xu4_oem" || type=="n2l_oem") {
         $fn=60;
         size_x = 58;
         size_y = 40;                
@@ -1935,7 +1957,7 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
             color("DeepSkyBlue",.6) translate([-5.5,30,-1]) cylinder(d=3, h=4);
         }
     }
-    if(type=="xu4q_oem") {
+    if(type=="xu4q_oem" || type=="n2lq_oem") {
         $fn=60;
         size_x = 58;
         size_y = 40;                

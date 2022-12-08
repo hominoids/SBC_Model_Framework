@@ -45,13 +45,21 @@ translate ([120,0,12]) sbc("n2+");
 linear_extrude(height = 2) {translate([120,-20,0]) text("Odroid-N2+");}
 color("green",.5) translate([120,-20,-1]) cube([71,10,1]);
 
-translate ([120,140,18]) sbc("n2");
-linear_extrude(height = 2) {translate([120,120,0]) text("Odroid-N2");}
-color("green",.5) translate([120,120,-1]) cube([63,10,1]);
+translate ([120,135,0]) sbc("n2l");
+linear_extrude(height = 2) {translate([120,120,0]) text("Odroid-N2L");}
+color("green",.5) translate([120,120,-1]) cube([70,10,1]);
 
-translate ([120,290,0]) sbc("n1");
-linear_extrude(height = 2) {translate([120,270,0]) text("Odroid-N1");}
-color("green",.5) translate([120,270,-1]) cube([63,10,1]);
+translate ([120,225,0]) sbc("n2lq");
+linear_extrude(height = 2) {translate([120,210,0]) text("Odroid-N2LQ");}
+color("green",.5) translate([120,210,-1]) cube([80,10,1]);
+
+translate ([120,315,18]) sbc("n2");
+linear_extrude(height = 2) {translate([120,305,0]) text("Odroid-N2");}
+color("green",.5) translate([120,305,-1]) cube([63,10,1]);
+
+translate ([120,470,0]) sbc("n1");
+linear_extrude(height = 2) {translate([120,450,0]) text("Odroid-N1");}
+color("green",.5) translate([120,450,-1]) cube([63,10,1]);
 
 translate ([240,0,0]) sbc("h3");
 linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H3/H3+");}

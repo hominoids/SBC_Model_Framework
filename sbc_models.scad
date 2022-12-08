@@ -34,11 +34,12 @@
                             tinkerboard,tinkerboard-s,tinkerboard-2,tinkerboard-r2
                             rock64,quartz64a,quartz64b,h64b,opizero,opizero2,opir1plus_lts
     20221101 Version 1.0.9  added h3/h3+ as h3, rockpi5b adjustments
+    20221207 Version 1.0.10 added n2l and n2lq
     
     see https://github.com/hominoids/SBC_Case_Builder
     
     USE: sbc(model)
-             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","n1","n2","n2+","h2","show2"
+             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","n1","n2","n2l","n2lq","n2+","h2","show2"
                      "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b",
                      "jetsonnano","rock64","rockpro64","quartz64b","quartz64b,"h64b",
                      "rockpi4b+","rockpi4c","rockpi4c+","rockpi5b",
