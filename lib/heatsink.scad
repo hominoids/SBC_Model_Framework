@@ -180,11 +180,11 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
     }
     
     // h3/h3+ hk heatsink
-    if(type=="h3_oem") {
+    if(type=="h3_oem" && enablemask ==  false) {
         size_x = 77;
         size_y = 72;                
         size_z = 27;                
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         difference() {
             union() {        
                 color("gray",.6) translate([0,0,3]) cube([size_x,size_y,size_z]);

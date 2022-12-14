@@ -291,7 +291,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_x = 40.43;
         size_y = 3.5; 
                
-        place(loc_x, loc_y, loc_zsize_x, size_y, rotation, side, pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([38.3, 0, 0]) rotate([90, 0, 180])
         union() {
             difference() {
