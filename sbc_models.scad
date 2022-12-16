@@ -201,7 +201,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "smd" && mask[0] == true) {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    smd(type, loc_x, loc_y, loc_z, side, rotation, size_x, size_y, size_z, pcbsize_z);
+                                    smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "storage" && mask[0] == true) {
@@ -506,7 +506,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "smd") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    smd(type, loc_x, loc_y, loc_z, side, rotation, size_x, size_y, size_z, pcbsize_z);
+                                    smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "storage") {

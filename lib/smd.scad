@@ -19,7 +19,7 @@
 */
 
 // smd class
-module smd(type, loc_x, loc_y, loc_z, side, rotation, size_x, size_y, size_z, pcbsize_z) {
+module smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
 
     // type led surface mount
     if(type=="led_3x1.5") {
@@ -27,7 +27,7 @@ module smd(type, loc_x, loc_y, loc_z, side, rotation, size_x, size_y, size_z, pc
         size_x = 3;
         size_y = 1.5;
         
-        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             color("gold") cube([size_x, size_y, .5]);
     }
 }
