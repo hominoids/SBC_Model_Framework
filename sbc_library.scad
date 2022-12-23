@@ -58,6 +58,7 @@
                             hdmi_a_vertical
     20221101 Version 1.0.9  added microsdcard2
     20221207 Version 1.0.10 added n2l_oem and n2lq_oem heatsinks
+    202xxxxx Version 1.0.11 added header_24
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -77,7 +78,7 @@
     network(x,y,rotation,side,type,pcbsize_z) - "rj45_single"
     video(x,y,rotation,side,type,pcbsize_z - "hdmi_a","hdmi_a_vertical","dp-hdmi_a","mipi_csi","mipi_dsi",hdmi_micro,hdmi_mini,dp_mini
     fan(x,y,rotation,side,type,pcbsize_z) - "micro","encl_pmw","encl_pmw_h"
-    gpio(x,y,rotation,side,type,pcbsize_z) - "encl_header_30","encl_header_12","header_40","header_20","header_26"
+    gpio(x,y,rotation,side,type,pcbsize_z) - "encl_header_30","encl_header_12","header_40","header_20","header_24","header_26"
     ic(x,y,rotation,side,type,pcbsize_z) - "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.5x4.5","ic_4.7x4.7","ic_5x5","ic_5.5x5.5",
                                             "ic_5.75x5.75","ic_6x6","ic_6.4x6.4",ic_6.75x6.75","ic_7x7","ic_4.3x5.1","ic_5.4x5.3",
                                             "ic_6.7x8.4","ic_9x9","ic_10x13","ic_11x8","ic_11.5x11.5","ic_13x8","ic_13x9","ic_16x10",
@@ -1103,6 +1104,19 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:25]) {
+                color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
+                color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
+            }
+        }
+    }   
+    // gpio 24 pin header
+    if(type=="header_24") {
+        size_x = 30.25;
+        size_y = 5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
+            for (i=[1:2.5:29]) {
                 color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
                 color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
