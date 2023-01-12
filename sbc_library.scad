@@ -697,11 +697,12 @@ module usbc(x,y,rotation,side,type,pcbsize_z) {
             color("black") translate([0,-1.2/2,1]) cube([5.5,1.2,6]);
         }
     }
-    if(type=="single_horizontal") {
+    if(type=="single_horizontal" || type=="single_horizontal_on_licheerv") {
         size_x = 9;
         size_y = 7;                
+        off_z = (type=="single_horizontal_on_licheerv") ? 3.3 : 0;
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-         rotate([90,0,0])  translate([3.5/2,3.5/2,-7]) union() {    
+         rotate([90,0,0])  translate([3.5/2,3.5/2 + off_z,-7]) union() {
             difference () {
                 color("silver")
                 hull() {

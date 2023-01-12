@@ -193,4 +193,8 @@ color("yellow",.3) translate([1005,165,-1]) cube([102,10,1]);
 translate ([1100,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([1110,-20,0]) text("Jetson Nano");}
 color("green",.5) translate([1110,-20,-1]) cube([76,10,1]);
+
+translate ([1240,0,0]) sbc("licheerv+dock");
+linear_extrude(height = 2) {translate([1220,-20,0]) text("LicheeRV + Dock");}
+color("green",.5) translate([1220,-20,-1]) cube([110,10,1]);
 }
