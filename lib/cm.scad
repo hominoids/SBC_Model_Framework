@@ -54,12 +54,12 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask
         union() {  
             difference () {
                 
-                color("tan") translate([0,0,7]) cube([size_x,size_y,1.4]);
-                color("tan") translate([37,-1,6]) cube([1,5,4]);
+                color("#151515") translate([0,0,7]) cube([size_x,size_y,1.4]);
+                color("black") translate([37,-1,6]) cube([1,5,4]);
                 color("dimgray") translate([-1,18,6]) cube([3,4,4]);
                 color("dimgray") translate([size_x-2,18,6]) cube([3,4,4]);
-                translate([size_x-3,size_y-3,6]) cylinder(d=3,h=3);
-                translate([3,size_y-3,6]) cylinder(d=3,h=3);
+                color("dimgray") translate([size_x-3,size_y-3,6]) cylinder(d=3,h=3);
+                color("dimgray") translate([3,size_y-3,6]) cylinder(d=3,h=3);
                 
             }
             for (i=[2:.5:36]) {

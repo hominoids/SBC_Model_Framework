@@ -260,7 +260,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
     if(type=="radxa_oem" && enablemask ==  false) {
         size_x = 82;
         size_y = 56;                
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+soc1size_z)
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+size_z)
         color("gray",.6) import("./lib/Radxa_Heatsink.stl", convexity=3);
     }
 }
