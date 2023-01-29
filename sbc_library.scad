@@ -75,7 +75,7 @@
     usb2(x,y,rotation,side,type,pcbsize_z) - "single_vertical_a","double_stacked_a","micro","single_horizontal_a"
     usb3(x,y,rotation,side,type,pcbsize_z) - "double_stacked_a",single_horizontal_a
     usbc(x,y,rotation,side,type,pcbsize_z) - "single_horizontal"
-    network(x,y,rotation,side,type,pcbsize_z) - "rj45_single"
+    network(x,y,rotation,side,type,pcbsize_z) - "rj45_single", "rj45_double_stacked"
     video(x,y,rotation,side,type,pcbsize_z - "hdmi_a","hdmi_a_vertical","dp-hdmi_a","mipi_csi","mipi_dsi",hdmi_micro,hdmi_mini,dp_mini
     fan(x,y,rotation,side,type,pcbsize_z) - "micro","encl_pmw","encl_pmw_h"
     gpio(x,y,rotation,side,type,pcbsize_z) - "encl_header_30","encl_header_12","header_40","header_20","header_24","header_26"
@@ -749,6 +749,27 @@ module network(x,y,rotation,side,type,pcbsize_z) {
             }
             color("green") translate([1,-.1,8.6]) cube([3, 2, 2]);
             color("orange") translate([10.375,-.1,8.6]) cube([3, 2, 2]);
+        }
+    }
+    if(type == "rj45_double_stacked") {
+        size_x = 17.5;
+        size_y = 28.8;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            difference () {
+                color("lightgray") translate([0,0,0]) cube([size_x,size_y,13.5]);
+                color("darkgray") translate([2,-1,4]) cube([13, 19.5, 8]);
+                color("darkgray") translate([6,-2,1.5]) cube([5, 19.5, 5]);
+            }
+            color("green") translate([2.5,-.1,1.5]) cube([3, 2, 2]);
+            color("orange") translate([11.5,-.1,1.5]) cube([3, 2, 2]);
+            difference () {
+                color("lightgray") translate([0,0,13.5]) cube([size_x,size_y,13.5]);
+                color("darkgray") translate([2,-1,15]) cube([13, 19.5, 8]);
+                color("darkgray") translate([6,-2,20.5]) cube([5, 19.5, 5]);
+            }
+            color("green") translate([2.5,-.1,23.5]) cube([3, 2, 2]);
+            color("orange") translate([11.5,-.1,23.5]) cube([3, 2, 2]);
         }
     }
 }
