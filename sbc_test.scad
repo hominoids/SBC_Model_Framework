@@ -89,6 +89,10 @@ translate ([380,410,0]) sbc("h64b");
 linear_extrude(height = 2) {translate([400,390,0]) text("H64 B");}
 color("yellow",.3) translate([400,390,-1]) cube([38,10,1]);
 
+translate ([380,500,0]) sbc("star64");
+linear_extrude(height = 2) {translate([400,485,0]) text("Star 64");}
+color("yellow",.3) translate([400,485,-1]) cube([43,10,1]);
+
 translate([535,0,0]) sbc("rpi4b");
 linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 4B"); }
 color("yellow",.3) translate([550,-20,-1]) cube([42,10,1]);
