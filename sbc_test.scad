@@ -200,5 +200,9 @@ color("green",.5) translate([1110,-20,-1]) cube([76,10,1]);
 
 translate ([1240,0,0]) sbc("licheerv+dock");
 linear_extrude(height = 2) {translate([1220,-20,0]) text("LicheeRV + Dock");}
-color("green",.5) translate([1220,-20,-1]) cube([110,10,1]);
+color("green",.5) translate([1220,-20,-1]) cube([105,10,1]);
+
+translate ([1340,0,0]) sbc("visionfive2");
+linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
+color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
 }

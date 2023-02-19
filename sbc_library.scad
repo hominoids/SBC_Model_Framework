@@ -737,6 +737,20 @@ module network(x,y,rotation,side,type,pcbsize_z) {
             color("orange") translate([11,-.1,10]) cube([3, 2, 2]);
         }
     }
+    if(type == "rj45_reverse_single") {    
+        size_x = 15.9;
+        size_y = 21.3;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z) 
+        union() {
+            difference () {
+                color("lightgray") translate([0,0,0]) cube([size_x,size_y,13.5]);
+                color("darkgray") translate([1.5,-1,4]) cube([13, 19.5, 8]);
+                color("darkgray") translate([5.5,-2,1.5]) cube([5, 19.5, 5]);
+            }
+            color("green") translate([2,-.1,1.5]) cube([3, 2, 2]);
+            color("orange") translate([11,-.1,1.5]) cube([3, 2, 2]);
+        }
+    }
     if(type == "rj45_single_short") {    
         size_x = 14.4;
         size_y = 12.67;
@@ -812,7 +826,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_a_vertical") {
         size_x = 14.5;
         size_y = 11.5;
-        height = .4;      
+        height = 1;      
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         translate([0,0,14.5+height]) rotate([0,90,0])
         union() { 
@@ -1433,9 +1447,9 @@ module audio(x,y,rotation,side,type,pcbsize_z) {
                 union() {
                     color("black") translate([0,2,0]) cube([size_x,10,4]);
                     color("silver") translate([0,0,0]) cube([size_x,2,4]);
-                    color("black") translate([3.125,-2,2]) rotate([-90,0,0]) cylinder(d=4, h=6.25);
+                    color("black") translate([3.125,-2,2]) rotate([-90,0,0]) cylinder(d=6, h=6.25);
                     }
-                color("dimgray") translate([3.125,-2.5,2]) rotate([-90,0,0]) cylinder(d=3, h=6);
+                color("dimgray") translate([3.125,-2.5,2]) rotate([-90,0,0]) cylinder(d=3.5, h=6);
             }
         }
     }

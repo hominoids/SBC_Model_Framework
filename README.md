@@ -7,7 +7,7 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-### Current SBC: 53
+### Current SBC: 56
 
 ## Using the Framework
 
@@ -108,7 +108,7 @@ jetsonnano - GREEN, verified.
 
 
 
-### Pine64: 5
+### Pine64: 6
 
 All created from mechanical drawings except rockpro64 which was contributed. The SOC data is missing for many of these SBC.
 
@@ -122,6 +122,7 @@ quartz64b - YELLOW, unverified mostlikely usable and/or missing minor informatio
 
 h64b - YELLOW, unverified mostlikely usable and/or missing minor information.
 
+star64 - yellow, unverified mostlikely usable and/or missing minor information.
 
 
 ### Raspberry Pi: 9
@@ -195,6 +196,19 @@ opizero(opizeroplus) - YELLOW, unverified mostlikely usable and/or missing minor
 opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+
+
+### StarFive: 1
+
+visonfive2 - RED, unverified, not usable due to incomplete component data.
+
+
+
+### Sipeed: 1
+
+licheerv+dock - GREEN, verified to be correct using SBC Case Builder.
+
 
 
 License: GPLv3.
