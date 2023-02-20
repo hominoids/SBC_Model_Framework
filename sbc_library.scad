@@ -826,7 +826,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_a_vertical") {
         size_x = 14.5;
         size_y = 11.5;
-        height = 1;      
+        height = 1.5;      
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         translate([0,0,14.5+height]) rotate([0,90,0])
         union() { 
