@@ -324,8 +324,8 @@ module button(x,y,rotation,side,type,pcbsize_z) {
         size_y = 2;                
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         union() {    
-            color("silver") translate([0,0,0]) cube([size_x, size_y, 2]);
-            color("white") translate([1,size_y,.5]) cube([2, 1.5, 1]);
+            color("silver") cube([size_x, size_y, 2]);
+            color("white") translate([1,-size_y+.6,.5]) cube([2, 1.5, 1]);
         }
     }
     if(type=="momentary_7x3x3_90") {
