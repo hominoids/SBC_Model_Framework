@@ -337,6 +337,15 @@ module button(x,y,rotation,side,type,pcbsize_z) {
             color("black") translate([1.5,-1.4,.5]) cube([4, 1.5, 1.5]);
         }
     }
+    if(type=="momentary_4.5x3.5x2.5_90") {
+        size_x = 4.5;
+        size_y = 3.5;
+        place(x,y-3.5,size_x,size_y,rotation,side,type,pcbsize_z)
+        rotate([90, 0, 0]) union() {
+            color("silver") translate([0,0,0]) cube([size_x,size_y,2.5]);
+            color("black") translate([2.25,1.75,2.5]) cylinder(r=1,h=1,$fn=30);
+        }
+    }
 
 
 }
