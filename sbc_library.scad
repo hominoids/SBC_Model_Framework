@@ -1014,6 +1014,24 @@ module video(x,y,rotation,side,type,pcbsize_z) {
             }
         }
     }
+    // mipi csi port
+    if(type=="mipi_csi_90") {
+        size_x = 21;
+        size_y = 3;
+        place(x,y-3,size_x,size_y,rotation,side,type,pcbsize_z)
+        rotate([90, 0, 0]) union() {
+            difference() {
+                color("white") cube([size_x, size_y, 5]);
+                color("white") translate([-1,-1,3.5]) cube([23,3.5,5]);
+                color("white") translate([-1,-1,3.5]) cube([3,5,5]);
+                color("white") translate([19,-1,3.5]) cube([3,5,5]);
+            }
+            difference() {
+                color("black") translate([-1,0,3.5]) cube([23,3.5,1]);
+                color("dimgrey") translate([2,2.9,3.49]) cube([17,3,2]);
+            }
+        }
+    }
     // mipi dsi port
     if(type=="mipi_dsi") {
         size_x = 10;
