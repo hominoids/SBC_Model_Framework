@@ -7,7 +7,7 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-### Current SBC: 56
+### Current SBC: 57
 
 ## Using the Framework
 
@@ -191,6 +191,8 @@ tinkerboard-r2(r2s) - YELLOW, unverified mostlikely usable and/or missing minor 
 
 ### OrangePi: 4
 
+opi5 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
 opizero(opizeroplus) - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
@@ -201,7 +203,7 @@ opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor inform
 
 ### StarFive: 1
 
-visonfive2 - RED, unverified, not usable due to incomplete component data.
+visonfive2 - GREEN, verified to be correct using SBC Case Builder.
 
 
 

@@ -35,7 +35,7 @@
                             rock64,quartz64a,quartz64b,h64b,opizero,opizero2,opir1plus_lts
     20221101 Version 1.0.9  added h3/h3+ as h3, rockpi5b adjustments
     20221207 Version 1.0.10 added n2l and n2lq
-    2023xxxx Version 1.0.xx added star64, licheerv+dock, visionfive2
+    2023xxxx Version 1.0.xx added star64, licheerv+dock, visionfive2, opi5
     
     see https://github.com/hominoids/SBC_Case_Builder
     
@@ -46,7 +46,7 @@
                      "rockpi4b+","rockpi4c","rockpi4c+","rockpi5b",
                      "vim1","vim2","vim3l","vim3","vim4",
                      "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-r2",
-                     "opizero","opizero2","opir1plus_lts",
+                     "opi5","opizero","opizero2","opir1plus_lts",
                      "licheerv+dock",
                      "visionfive2"
 */
