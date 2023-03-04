@@ -690,7 +690,7 @@ module usbc(x,y,rotation,side,type,pcbsize_z) {
         size_x = 9;
         size_y = 7;                
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-         rotate([90,90,0])  translate([-7.5,1.75,-7]) union() {    
+         rotate([90,90,0])  translate([-7.875,1.75,-7]) union() {    
             difference () {
                 color("silver") translate([0,0,0])
                 hull() {
