@@ -562,43 +562,46 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
         
         size_x = 9;
         size_y = 7;
+        size_xm = 9.5;
+        size_ym = 7;
         dia = 3.5;
         diam = 3.75;
+        height = .5;
         
         if(enablemask == true && style == "default") {
             // single vertical usbc opening
             if(side == "top" && rotation == 0) {       
-                place(loc_x-.125+diam/2, loc_y+back, loc_z+size_x, size_x, len, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x-.125+diam/2, loc_y+back, loc_z+size_xm+height, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
             if((rotation == 90 && side == "top") || (rotation == 270 && side == "bottom")) {
-                place(loc_x+back, loc_y+.125-diam/2, loc_z+size_x, size_x, len, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x+back, loc_y+.125-diam/2, loc_z+size_xm+height, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-.75, loc_y-2-back, loc_z+size_x, len, size_x, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x-.75, loc_y-2-back, loc_z+size_xm+height, len, size_xm, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x-2-back, loc_y-.125+diam/2, loc_z+size_x, len, size_x, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x-2-back, loc_y-.125+diam/2, loc_z+size_xm+height, len, size_xm, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
             if(side == "bottom" && rotation == 0) {       
-                place(loc_x+.125-diam/2, loc_y+back, loc_z+size_x, size_x, len, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x+.125-diam/2, loc_y+back, loc_z+size_xm+height, size_xm, len, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x-back, loc_y+.125-diam/2, loc_z+size_x, size_x, size_y, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x-back, loc_y+.125-diam/2, loc_z+size_xm+height, size_xm, size_y, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x-.125+diam/2, loc_y-2-back, loc_z+size_x, len, size_x, rotation, side, pcbsize_z)
-                    rotate([90 ,90, 0]) slot(diam, size_x, len);
+                place(loc_x-.125+diam/2, loc_y-2-back, loc_z+size_xm+height, len, size_xm, rotation, side, pcbsize_z)
+                    rotate([90 ,90, 0]) slot(diam, size_xm, len);
             }
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                rotate([90 ,90 ,0])  translate([-size_y-.25, dia/2, -size_y]) union() {    
+                rotate([90 ,90 ,0])  translate([-size_y-.25-height, dia/2, -size_y]) union() {    
                     difference () {
                         color("silver")
                         hull() {

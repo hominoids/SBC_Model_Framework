@@ -99,41 +99,41 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_y = 11.5;
         size_xm = 15;
         size_ym = len;
-        height = .4;
+        height = 1.75;
    
         if(enablemask == true && style == "default") {
             // hdmi vertical opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x-len+5+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x, loc_y+len-1.5-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-1.5+len-back, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-1.5+len-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x-.5, loc_y-1.5+len-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x-len+5+back, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z) 
-                    translate([-.25, 0, size_xm+.4]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
+                    translate([-.25, 0, size_xm+height]) rotate([0, 90, 0]) hdmi_open("hdmi_a",len);
             }
 
         }

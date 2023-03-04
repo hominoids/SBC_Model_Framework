@@ -31,7 +31,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     
         size_x = 15.9;
         size_y = 21.3;
-        size_xm = 16;
+        size_xm = 16.25;
         size_ym = len;
    
         if(enablemask == true && cmask == true && style == "default") {
