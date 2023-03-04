@@ -7,7 +7,7 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-### Current SBC: 57
+### Current SBC: 58
 
 ## Using the Framework
 
@@ -147,17 +147,19 @@ rpi4b - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 
-### Radxa: 4
+### Radxa: 5
 
 Created from mechanical drawings, the SOC data is missing for these SBC.
 
-rockpi4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rockpi4c - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock4c - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rockpi4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rockpi5b - RED, unverified, not usable due to incomplete component data.
+rock5b-v1.3 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rock5b-v1.42 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 ### Khadas: 5

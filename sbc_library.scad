@@ -685,12 +685,12 @@ module usb3(x,y,rotation,side,type,pcbsize_z) {
 // usbc port class
 module usbc(x,y,rotation,side,type,pcbsize_z) {
     $fn=90;
-    // usbc horizontal type
+    // usbc vertical type
     if(type=="single_vertical") {
         size_x = 9;
         size_y = 7;                
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
-         rotate([90,90,0])  translate([-7,3.5/2,-7]) union() {    
+         rotate([90,90,0])  translate([-7.5,1.75,-7]) union() {    
             difference () {
                 color("silver") translate([0,0,0])
                 hull() {
@@ -706,6 +706,7 @@ module usbc(x,y,rotation,side,type,pcbsize_z) {
             color("black") translate([0,-1.2/2,1]) cube([5.5,1.2,6]);
         }
     }
+    // usbc horizontal type
     if(type=="single_horizontal" || type=="single_horizontal_on_licheerv") {
         size_x = 9;
         size_y = 7;                
@@ -835,7 +836,7 @@ module video(x,y,rotation,side,type,pcbsize_z) {
     if(type=="hdmi_a_vertical") {
         size_x = 14.5;
         size_y = 11.5;
-        height = 1.5;      
+        height = 1.75;      
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         translate([0,0,14.5+height]) rotate([0,90,0])
         union() { 
