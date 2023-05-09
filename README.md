@@ -193,7 +193,7 @@ tinkerboard-r2(r2s) - YELLOW, unverified mostlikely usable and/or missing minor 
 
 
 
-### OrangePi: 4
+### OrangePi: 5
 
 opi5 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
@@ -202,6 +202,8 @@ opizero(opizeroplus) - YELLOW, unverified mostlikely usable and/or missing minor
 opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+opir1 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 

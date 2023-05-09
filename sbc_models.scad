@@ -47,7 +47,7 @@
                      "rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b-v1.42",
                      "vim1","vim2","vim3l","vim3","vim4",
                      "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-r2",
-                     "opi5","opizero","opizero2","opir1plus_lts",
+                     "opi5","opizero","opizero2","opir1plus_lts","opir1",
                      "licheerv+dock",
                      "visionfive2"
 */
