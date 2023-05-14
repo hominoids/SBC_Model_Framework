@@ -125,25 +125,29 @@ translate([535,600,0]) sbc("rpizero");
 linear_extrude(height = 2) { translate([535,582,0]) text("RPi Zero"); }
 color("yellow",.3) translate([535,582,-1]) cube([53,10,1]);
 
-translate([650,390,0]) sbc("rock4b+");
-linear_extrude(height = 2) { translate([650,370,0]) text("ROCK 4A/B+"); }
-color("yellow",.3) translate([650,370,-1]) cube([92,10,1]);
+translate([650,495,0]) sbc("rock4b+");
+linear_extrude(height = 2) { translate([650,475,0]) text("ROCK 4A/B+"); }
+color("yellow",.3) translate([650,475,-1]) cube([92,10,1]);
 
-translate([650,300,0]) sbc("rock4c");
-linear_extrude(height = 2) { translate([650,280,0]) text("ROCK 4C"); }
-color("yellow",.3) translate([650,280,-1]) cube([73,10,1]);
+translate([650,405,0]) sbc("rock4c");
+linear_extrude(height = 2) { translate([650,385,0]) text("ROCK 4C"); }
+color("yellow",.3) translate([650,385,-1]) cube([73,10,1]);
 
-translate([650,210,0]) sbc("rock4c+");
-linear_extrude(height = 2) { translate([655,190,0]) text("ROCK 4C+"); }
-color("yellow",.3) translate([655,190,-1]) cube([80,10,1]);
+translate([650,315,0]) sbc("rock4c+");
+linear_extrude(height = 2) { translate([655,295,0]) text("ROCK 4C+"); }
+color("yellow",.3) translate([655,295,-1]) cube([80,10,1]);
 
-translate([650,105,0]) sbc("rock5b-v1.3");
-linear_extrude(height = 2) { translate([655,85,0]) text("ROCK 5b v1.31"); }
-color("yellow",.3) translate([655,85,-1]) cube([95,10,1]);
+translate([650,210,0]) sbc("rock5b-v1.3");
+linear_extrude(height = 2) { translate([655,195,0]) text("ROCK 5b v1.31"); }
+color("yellow",.3) translate([655,195,-1]) cube([95,10,1]);
+
+translate([650,105,0]) sbc("rock5bq-v1.42");
+linear_extrude(height = 2) { translate([655,85,0]) text("ROCK 5bq v1.42"); }
+color("green",.3) translate([655,85,-1]) cube([102,10,1]);
 
 translate([650,0,0]) sbc("rock5b-v1.42");
 linear_extrude(height = 2) { translate([655,-20,0]) text("ROCK 5b v1.42"); }
-color("yellow",.3) translate([655,-20,-1]) cube([95,10,1]);
+color("green",.3) translate([655,-20,-1]) cube([95,10,1]);
 
 translate([775,0,0]) sbc("vim4");
 linear_extrude(height = 2) { translate([775,-20,0]) text("Vim4"); }

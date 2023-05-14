@@ -159,7 +159,9 @@ rock4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rock5b-v1.3 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rock5b-v1.42 - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock5b-v1.42 - GREEN, verified.
+
+rock5bq-v1.42 - GREEN, verified.
 
 
 ### Khadas: 5
