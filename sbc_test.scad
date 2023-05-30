@@ -200,9 +200,13 @@ translate([1005,185,0]) sbc("opizero2");
 linear_extrude(height = 2) { translate([1005,165,0]) text("OPi Zero2"); }
 color("yellow",.3) translate([1005,165,-1]) cube([63,10,1]);
 
-translate([1005,285,0]) sbc("opir1plus_lts");
-linear_extrude(height = 2) { translate([1005,265,0]) text("OPi R1 Plus LTS"); }
-color("yellow",.3) translate([1005,265,-1]) cube([102,10,1]);
+translate([1005,275,0]) sbc("opir1plus_lts");
+linear_extrude(height = 2) { translate([1005,255,0]) text("OPi R1 Plus LTS"); }
+color("yellow",.3) translate([1005,255,-1]) cube([102,10,1]);
+
+translate([1005,375,0]) sbc("opir1");
+linear_extrude(height = 2) { translate([1005,350,0]) text("OPi R1"); }
+color("yellow",.3) translate([1005,350,-1]) cube([45,10,1]);
 
 translate ([1120,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([1130,-20,0]) text("Jetson Nano");}
