@@ -1988,11 +1988,11 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
             color("gray",.6) translate([22,-1,6]) cube([2,34,5]);
             // holes
             if(type=="hc4_oem") {
-                color("gray",.6) translate([45.75,8.5,-1]) cylinder(d=3, h=4);
+                color("gray",.6) translate([45.5,8.5,-1]) cylinder(d=3, h=4);
                 color("gray",.6) translate([-5.5,28.5,-1]) cylinder(d=3, h=4);
                 }
                 else {
-                    color("gray",.6) translate([45.75,3.5,-1]) cylinder(d=3, h=4);
+                    color("gray",.6) translate([45.5,3.5,-1]) cylinder(d=3, h=4);
                     color("gray",.6) translate([-5.5,23.5,-1]) cylinder(d=3, h=4);
                 }
         }
