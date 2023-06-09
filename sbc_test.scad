@@ -206,7 +206,7 @@ color("yellow",.3) translate([1005,255,-1]) cube([102,10,1]);
 
 translate([1005,375,0]) sbc("opir1");
 linear_extrude(height = 2) { translate([1005,350,0]) text("OPi R1"); }
-color("yellow",.3) translate([1005,350,-1]) cube([45,10,1]);
+color("green",.3) translate([1005,350,-1]) cube([45,10,1]);
 
 translate ([1120,0,0]) sbc("jetsonnano");
 linear_extrude(height = 2) {translate([1130,-20,0]) text("Jetson Nano");}
