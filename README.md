@@ -203,7 +203,7 @@ opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information
 
 opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-opir1 - YELLOW, unverified mostlikely usable and/or missing minor information.
+opir1 - GREEN, verified to be correct using SBC Case Builder.
 
 
 
