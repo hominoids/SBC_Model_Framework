@@ -1,3 +1,4 @@
+
 include <sbc_models.scad>
 
 translate([-460,0,0]) {
@@ -45,17 +46,29 @@ translate ([120,0,12]) sbc("n2+");
 linear_extrude(height = 2) {translate([120,-20,0]) text("Odroid-N2+");}
 color("green",.5) translate([120,-20,-1]) cube([71,10,1]);
 
-translate ([120,140,18]) sbc("n2");
-linear_extrude(height = 2) {translate([120,120,0]) text("Odroid-N2");}
-color("green",.5) translate([120,120,-1]) cube([63,10,1]);
+translate ([120,135,0]) sbc("n2l");
+linear_extrude(height = 2) {translate([120,120,0]) text("Odroid-N2L");}
+color("green",.5) translate([120,120,-1]) cube([70,10,1]);
 
-translate ([120,290,0]) sbc("n1");
-linear_extrude(height = 2) {translate([120,270,0]) text("Odroid-N1");}
-color("green",.5) translate([120,270,-1]) cube([63,10,1]);
+translate ([120,225,0]) sbc("n2lq");
+linear_extrude(height = 2) {translate([120,210,0]) text("Odroid-N2LQ");}
+color("green",.5) translate([120,210,-1]) cube([80,10,1]);
 
-translate ([240,0,0]) sbc("h2");
-linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H2/H3");}
+translate ([120,315,18]) sbc("n2");
+linear_extrude(height = 2) {translate([120,305,0]) text("Odroid-N2");}
+color("green",.5) translate([120,305,-1]) cube([63,10,1]);
+
+translate ([120,470,0]) sbc("n1");
+linear_extrude(height = 2) {translate([120,450,0]) text("Odroid-N1");}
+color("green",.5) translate([120,450,-1]) cube([63,10,1]);
+
+translate ([240,0,0]) sbc("h3");
+linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H3/H3+");}
 color("green",.5) translate([240,-20,-1]) cube([84,10,1]);
+
+translate ([240,150,0]) sbc("h2");
+linear_extrude(height = 2) {translate([240,135,0]) text("Odroid-H2/H2+");}
+color("green",.5) translate([240,135,-1]) cube([84,10,1]);
 
 translate ([380,0,0]) sbc("rockpro64");
 linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}
@@ -76,6 +89,10 @@ color("yellow",.3) translate([380,300,-1]) cube([72,10,1]);
 translate ([380,410,0]) sbc("h64b");
 linear_extrude(height = 2) {translate([400,390,0]) text("H64 B");}
 color("yellow",.3) translate([400,390,-1]) cube([38,10,1]);
+
+translate ([380,500,0]) sbc("star64");
+linear_extrude(height = 2) {translate([400,485,0]) text("Star 64");}
+color("yellow",.3) translate([400,485,-1]) cube([43,10,1]);
 
 translate([535,0,0]) sbc("rpi4b");
 linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 4B"); }
@@ -109,21 +126,29 @@ translate([535,600,0]) sbc("rpizero");
 linear_extrude(height = 2) { translate([535,582,0]) text("RPi Zero"); }
 color("yellow",.3) translate([535,582,-1]) cube([53,10,1]);
 
-translate([650,285,0]) sbc("rockpi4b+");
-linear_extrude(height = 2) { translate([650,265,0]) text("ROCKPi 4A/B+"); }
-color("yellow",.3) translate([650,265,-1]) cube([92,10,1]);
+translate([650,495,0]) sbc("rock4b+");
+linear_extrude(height = 2) { translate([650,475,0]) text("ROCK 4A/B+"); }
+color("yellow",.3) translate([650,475,-1]) cube([92,10,1]);
 
-translate([650,195,0]) sbc("rockpi4c");
-linear_extrude(height = 2) { translate([650,175,0]) text("ROCKPi 4C"); }
-color("yellow",.3) translate([650,175,-1]) cube([73,10,1]);
+translate([650,405,0]) sbc("rock4c");
+linear_extrude(height = 2) { translate([650,385,0]) text("ROCK 4C"); }
+color("yellow",.3) translate([650,385,-1]) cube([73,10,1]);
 
-translate([650,105,0]) sbc("rockpi4c+");
-linear_extrude(height = 2) { translate([655,85,0]) text("ROCKPi 4C+"); }
-color("yellow",.3) translate([655,85,-1]) cube([80,10,1]);
+translate([650,315,0]) sbc("rock4c+");
+linear_extrude(height = 2) { translate([655,295,0]) text("ROCK 4C+"); }
+color("yellow",.3) translate([655,295,-1]) cube([80,10,1]);
 
-translate([650,0,0]) sbc("rockpi5b");
-linear_extrude(height = 2) { translate([655,-20,0]) text("ROCKPi 5b"); }
-color("yellow",.3) translate([655,-20,-1]) cube([70,10,1]);
+translate([650,210,0]) sbc("rock5b-v1.3");
+linear_extrude(height = 2) { translate([655,195,0]) text("ROCK 5B v1.31"); }
+color("yellow",.3) translate([655,195,-1]) cube([95,10,1]);
+
+translate([650,105,0]) sbc("rock5bq");
+linear_extrude(height = 2) { translate([655,85,0]) text("ROCK 5BQ"); }
+color("green",.3) translate([655,85,-1]) cube([65,10,1]);
+
+translate([650,0,0]) sbc("rock5b");
+linear_extrude(height = 2) { translate([655,-20,0]) text("ROCK 5B"); }
+color("green",.3) translate([655,-20,-1]) cube([58,10,1]);
 
 translate([775,0,0]) sbc("vim4");
 linear_extrude(height = 2) { translate([775,-20,0]) text("Vim4"); }
@@ -164,21 +189,35 @@ translate([885,275,0]) sbc("tinkerboard");
 linear_extrude(height = 2) { translate([885,255,0]) text("Tinkerboard"); }
 color("yellow",.3) translate([885,255,-1]) cube([72,10,1]);
 
-translate([1005,0,0]) sbc("opizero");
-linear_extrude(height = 2) { translate([1005,-20,0]) text("OrangePi"); }
-color("yellow",.3) translate([1005,-20,-1]) cube([58,10,1]);
-linear_extrude(height = 2) { translate([1005,-35,0]) text("Zero/ZeroPlus"); }
-color("yellow",.3) translate([1005,-35,-1]) cube([86,10,1]);
+translate([1005,0,0]) sbc("opi5");
+linear_extrude(height = 2) { translate([1005,-20,0]) text("OrangePi 5"); }
+color("yellow",.3) translate([1005,-20,-1]) cube([70,10,1]);
 
-translate([1005,90,0]) sbc("opizero2");
-linear_extrude(height = 2) { translate([1005,70,0]) text("OPi Zero2"); }
-color("yellow",.3) translate([1005,70,-1]) cube([63,10,1]);
+translate([1005,90,0]) sbc("opizero");
+linear_extrude(height = 2) { translate([1005,73,0]) text("Zero/ZeroPlus"); }
+color("yellow",.3) translate([1005,73,-1]) cube([86,10,1]);
 
-translate([1005,185,0]) sbc("opir1plus_lts");
-linear_extrude(height = 2) { translate([1005,165,0]) text("OPi R1 Plus LTS"); }
-color("yellow",.3) translate([1005,165,-1]) cube([102,10,1]);
+translate([1005,185,0]) sbc("opizero2");
+linear_extrude(height = 2) { translate([1005,165,0]) text("OPi Zero2"); }
+color("yellow",.3) translate([1005,165,-1]) cube([63,10,1]);
 
-translate ([1100,0,0]) sbc("jetsonnano");
-linear_extrude(height = 2) {translate([1110,-20,0]) text("Jetson Nano");}
-color("green",.5) translate([1110,-20,-1]) cube([76,10,1]);
+translate([1005,275,0]) sbc("opir1plus_lts");
+linear_extrude(height = 2) { translate([1005,255,0]) text("OPi R1 Plus LTS"); }
+color("yellow",.3) translate([1005,255,-1]) cube([102,10,1]);
+
+translate([1005,375,0]) sbc("opir1");
+linear_extrude(height = 2) { translate([1005,350,0]) text("OPi R1"); }
+color("green",.3) translate([1005,350,-1]) cube([45,10,1]);
+
+translate ([1120,0,0]) sbc("jetsonnano");
+linear_extrude(height = 2) {translate([1130,-20,0]) text("Jetson Nano");}
+color("green",.5) translate([1130,-20,-1]) cube([76,10,1]);
+
+translate ([1250,0,0]) sbc("licheerv+dock");
+linear_extrude(height = 2) {translate([1230,-20,0]) text("LicheeRV + Dock");}
+color("green",.5) translate([1230,-20,-1]) cube([105,10,1]);
+
+translate ([1340,0,0]) sbc("visionfive2");
+linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
+color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
 }
