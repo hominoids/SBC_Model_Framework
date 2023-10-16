@@ -220,4 +220,8 @@ color("green",.5) translate([1230,-20,-1]) cube([105,10,1]);
 translate ([1340,0,0]) sbc("visionfive2");
 linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
 color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
+
+translate ([1440,0,0]) sbc("atomicpi");
+linear_extrude(height = 2) {translate([1450,-20,0]) text("AtomicPi");}
+color("red",.5) translate([1448,-20,-1]) cube([73,10,1]);
 }

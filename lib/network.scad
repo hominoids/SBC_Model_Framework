@@ -137,6 +137,77 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                 }
         }
     }
+    
+    if(type == "rj45_low_profile") {
+    
+        size_x = 13.5;
+        size_y = 12.67;
+        size_xm = 15;
+        size_ym = len;
+        offset_z = -5.1;
+        
+        if(enablemask == true && cmask == true && style == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.0625, loc_y-size_ym+back, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+back, loc_y-.0625, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.0625, loc_y+size_y-back, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.0625, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.0625, loc_y-size_ym+back, loc_z-offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y-.0625, loc_z-offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.0625, loc_y+size_y-back, loc_z-offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-size_ym+back, loc_y-.0625, loc_z-offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }    
+        
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z+offset_z, size_x, size_y, rotation, side, pcbsize_z) 
+                union() {
+                    difference () {
+                        union() {
+                        color("lightgray") translate([0.5, -0.375, 0]) cube([size_x, size_y, 11.375]);
+                        color("#353535") translate([0, 1.375, 0.1]) cube([size_x+1, 9.375, 11.5]);
+                        color("#353535") translate([-1.25, 1.3, 5]) cube([1.25, 2.25, 3.5]);
+                        color("#353535") translate([-1.25, 6, 5]) cube([1.25, 1.9, 3.5]);
+                        color("#353535") translate([-1.25, 7.5, 5]) cube([1.25, 2, .75]);
+                        color("#353535") translate([14.5, 1.3, 5]) cube([1.25, 2.25, 3.5]);
+                        color("#353535") translate([14.5, 6, 5]) cube([1.25, 1.9, 3.5]);
+                        color("#353535") translate([14.5, 7.5, 5]) cube([1.25, 2, .75]);
+                        }
+                        color("darkgray") translate([1.3, -1, 2.5]) cube([12, 9.5, 7.25]);
+                        color("darkgray") translate([4, -2, .875]) cube([6.675, 12, 2]);
+                        color("darkgray") translate([5, -2, -.1]) cube([4.5, 12, 1]);
+                        color("darkgray") translate([2, 9.5, 3]) cube([10.5, 5, 8.4]);
+                    }
+                    for(i=[0:7]){ 
+                        color("gold") translate([3.5+i, 8.5, 7]) rotate([70,0,0]) cube([.5, .5, 8]);
+                    }
+//                    color("green") translate([1, -.1, 9.2]) cube([3, 2, 2]);
+//                    color("orange") translate([10.375, -.1, 9.2]) cube([3, 2, 2]);
+                }
+        }
+    }
 
     // rj-45 and usb2 stacked type
     if(type == "rj45-usb2_double") {
