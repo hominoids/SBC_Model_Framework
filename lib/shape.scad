@@ -27,6 +27,9 @@ module shape(type,size_x,size_y,size_z,data_1,data_2,data_3,data_4) {
     if(type == "round") {
             cylinder(d=size_x, h=size_z);
     }    
+    if(type == "slot") {
+            slot(size_x,size_y,size_z);
+    }    
     if(type == "polygon") {
             linear_extrude(height = size_z) polygon(data_3);
     }    

@@ -80,6 +80,57 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask
         }
     }
 
+    if(type=="ir_dual") {
+    
+        size_x = 6.5;
+        size_y = 2;
+        size_xm = 3;
+        size_ym = 6.5;
+   
+        if(enablemask == true && cmask == true && style == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x+size_x/2, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x+back, loc_y-1.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-5.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-1.5, loc_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-5,4.5,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-back, loc_y+3.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-1.5, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-5.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x-back, loc_y-1.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x+size_x/2, loc_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-3.25,4.5,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x+back, loc_y+3.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, len);
+            }    
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                union() {  
+                    color("silver") translate([0, 0, 0]) cube([size_x, size_y, 3.25]);
+                    color("dimgray") translate([1.5, .5, 1.75]) sphere(d=3);
+                    color("dimgray") translate([5, .5, 1.75]) sphere(d=3);
+                }
+        }
+    }
+
     // type led surface mount
     if(type=="led_3x1.5" && enablemask == false) {
     
@@ -88,6 +139,14 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask
                    
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         color("gold") cube([size_x, size_y, .5]);
+    }
+    if(type=="led_1.5x.62" && enablemask == false) {
+    
+        size_x = 1.5;
+        size_y = .62;
+                   
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        color("red") cube([size_x, size_y, .5]);
     }
 }
 

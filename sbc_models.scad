@@ -303,7 +303,7 @@ module sbc(model, enablemask = false) {
                                 mask = sbc_data[s[0]][i+19];
                                 
                                 if(class == "pcbadd" && id == pcb_id) {
-                                    color(data_2) rotate(rotation) translate([loc_x, loc_y, loc_z])
+                                    color(data_2) translate([loc_x, loc_y, loc_z]) rotate(rotation) 
                                             shape(type, size_x, size_y, size_z, data_1, data_2, data_3, data_4);
                                 }
                             }
@@ -349,7 +349,7 @@ module sbc(model, enablemask = false) {
                             mask = sbc_data[s[0]][i+19];
                             
                             if(class == "pcbsub" && id == pcb_id) {
-                                color(data_2) rotate(rotation) translate([loc_x, loc_y, loc_z-adjust])
+                                color(data_2) translate([loc_x, loc_y, loc_z-adjust]) rotate(rotation) 
                                         shape(type, size_x, size_y, size_z+2*adjust, data_1, data_2, data_3, data_4);
                             }
                         }

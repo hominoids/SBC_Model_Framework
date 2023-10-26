@@ -62,7 +62,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     
     // gpio 40 pin header
     if(type=="header_40" || type=="header_40_sm" && enablemask == false) {
-        size_x = 50;
+        size_x = 51;
         size_y = 5;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
