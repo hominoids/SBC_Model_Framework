@@ -59,7 +59,8 @@ module sbc(model, enablemask = false) {
     
     $fn=90;
     adjust = .01;
-
+    
+    // create mask set
     if(enablemask == true) {
         for (i=[1:11:len(sbc_data[s[0]])-1]) {
             
@@ -83,7 +84,7 @@ module sbc(model, enablemask = false) {
             if(class == "pcbshape") {
                 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
-                    // component placement
+                    // mask placement
                     for (i=[1:11:len(sbc_data[s[0]])-1]) {
                         
                         class = sbc_data[s[0]][i];
@@ -94,17 +95,8 @@ module sbc(model, enablemask = false) {
                         loc_z = sbc_data[s[0]][i+5];
                         side = sbc_data[s[0]][i+6];
                         rotation = sbc_data[s[0]][i+7][2];
-                        size_x = sbc_data[s[0]][i+8][0];
-                        size_y = sbc_data[s[0]][i+8][1];
-                        size_z = sbc_data[s[0]][i+8][2];
-                        data_1 = sbc_data[s[0]][i+9][0];
-                        data_2 = sbc_data[s[0]][i+9][1];
-                        data_3 = sbc_data[s[0]][i+9][2];
-                        data_4 = sbc_data[s[0]][i+9][3];
-                        data_5 = sbc_data[s[0]][i+9][4];
-                        data_6 = sbc_data[s[0]][i+9][5];
-                        data_7 = sbc_data[s[0]][i+9][6];
-                        data_8 = sbc_data[s[0]][i+9][7];
+                        size = sbc_data[s[0]][i+8];
+                        data = sbc_data[s[0]][i+9];
                         mask = sbc_data[s[0]][i+10];
                             
                         if(id == pcb_id) {  
@@ -131,7 +123,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "cm_holder" && mask[0] == true) {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "discrete" && mask[0] == true) {
@@ -156,17 +148,17 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "heatsink" && mask[0] == true) {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, enablemask, mask);
+                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size[2], pcbsize_z, enablemask, mask);
                                 }   
                             }
                             if (class == "ic" && mask[0] == true) {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    ic(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    ic(type, loc_x, loc_y, loc_z, side, rotation, size[0], size[1], size[2], pcbsize_z);
                                 }           
                             }
-                            if (class == "jst_ph" && mask[0] == true) {
+                            if (class == "jst" && mask[0] == true) {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    jst_ph(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "jumper" && mask[0] == true) {
@@ -201,7 +193,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "smd" && mask[0] == true) {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    smd(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "storage" && mask[0] == true) {
@@ -234,6 +226,11 @@ module sbc(model, enablemask = false) {
                                     video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
+                            if (class == "pcbhole" && mask[0] == true) {
+                                if (loc_x!=0 || loc_y!=0) {
+//                                    pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                            }      
                         }
                     }
                 }
@@ -241,6 +238,7 @@ module sbc(model, enablemask = false) {
         }
     }        
     else {
+        // create pcb
         for (i=[1:11:len(sbc_data[s[0]])-1]) {
             
             class = sbc_data[s[0]][i];
@@ -260,7 +258,7 @@ module sbc(model, enablemask = false) {
             dxf_scale = sbc_data[s[0]][i+9][3];
             
             // pcb shapes
-            if(sbc_data[s[0]][i] == "pcbshape") {
+            if(class == "pcbshape") {
                 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     difference() {

@@ -152,23 +152,23 @@ color("green",.3) translate([655,-20,-1]) cube([58,10,1]);
 
 translate([775,0,0]) sbc("vim4");
 linear_extrude(height = 2) { translate([775,-20,0]) text("Vim4"); }
-color("red",.3) translate([775,-20,-1]) cube([32,10,1]);
+color("yellow",.3) translate([775,-20,-1]) cube([32,10,1]);
 
 translate([775,90,0]) sbc("vim3");
 linear_extrude(height = 2) { translate([775,70,0]) text("Vim3"); }
-color("red",.3) translate([775,70,-1]) cube([32,10,1]);
+color("yellow",.3) translate([775,70,-1]) cube([32,10,1]);
 
 translate([775,185,0]) sbc("vim3l");
 linear_extrude(height = 2) { translate([775,165,0]) text("Vim3L"); }
-color("red",.3) translate([775,165,-1]) cube([39,10,1]);
+color("yellow",.3) translate([775,165,-1]) cube([39,10,1]);
 
 translate([775,270,0]) sbc("vim2");
 linear_extrude(height = 2) { translate([775,250,0]) text("Vim2"); }
-color("red",.3) translate([775,250,-1]) cube([32,10,1]);
+color("yellow",.3) translate([775,250,-1]) cube([32,10,1]);
 
 translate([775,360,0]) sbc("vim1");
 linear_extrude(height = 2) { translate([775,340,0]) text("Vim1"); }
-color("red",.3) translate([775,340,-1]) cube([32,10,1]);
+color("yellow",.3) translate([775,340,-1]) cube([32,10,1]);
 
 translate([885,0,0]) sbc("tinkerboard-r2");
 linear_extrude(height = 2) { translate([885,-20,0]) text("Tinkerboard"); }
