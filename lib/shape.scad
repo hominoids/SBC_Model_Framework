@@ -19,22 +19,22 @@
 */
 
 /* shape module */
-module shape(type,size_x,size_y,size_z,data_1,data_2,data_3,data_4) {
-
+module shape(type, size, data) {
+echo(size, data);
     if(type == "rectangle") {
-        cube([size_x,size_y,size_z]);
+        cube([size[0],size[1],size[2]]);
     }
     if(type == "round") {
-            cylinder(d=size_x, h=size_z);
+            cylinder(d=size[0], h=size[2]);
     }    
     if(type == "slot") {
-            slot(size_x,size_y,size_z);
+            slot(size[0],size[1],size[2]);
     }    
     if(type == "polygon") {
-            linear_extrude(height = size_z) polygon(data_3);
+            linear_extrude(height = size[2]) polygon(data[2]);
     }    
     if(type == "dxf") {
-            linear_extrude(height = size_z) import(file = data_3, scale=data_4); 
+            linear_extrude(height = size[2]) import(file = data[2], scale=data[3]); 
     }
 }
 

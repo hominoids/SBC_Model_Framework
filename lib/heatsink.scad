@@ -113,7 +113,9 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
     }
     
     // hardkernel xu4q and n2lq heatsink
-    if((type=="xu4q_oem"  || type=="n2lq_oem") && enablemask ==  false) {
+    if((type == "xu4q_oem"  || type =="n2lq_oem") && enablemask ==  false) {
+
+echo("HERE");
         $fn=60;
         size_x = 58;
         size_y = 40;                
@@ -141,7 +143,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
 
     }
     // hardkernel n1 heatsink
-    if((type=="n1_oem" || type=="40mm_active") && enablemask ==  false) {
+    if((type == "n1_oem" || type == "40mm_active") && enablemask ==  false) {
         $fn=60;
         size_x = 58;
         size_y = 40;                

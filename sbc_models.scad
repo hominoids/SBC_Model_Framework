@@ -59,9 +59,9 @@ module sbc(model, enablemask = false) {
     
     $fn=90;
     adjust = .01;
-    
+
     if(enablemask == true) {
-        for (i=[1:20:len(sbc_data[s[0]])-1]) {
+        for (i=[1:11:len(sbc_data[s[0]])-1]) {
             
             class = sbc_data[s[0]][i];
             type =  sbc_data[s[0]][i+1];
@@ -71,20 +71,20 @@ module sbc(model, enablemask = false) {
             pcbloc_z = sbc_data[s[0]][i+5];
             pcb_side = sbc_data[s[0]][i+6];
             pcb_rotation = sbc_data[s[0]][i+7];
-            pcbsize_x = sbc_data[s[0]][i+8];
-            pcbsize_y = sbc_data[s[0]][i+9];
-            pcbsize_z = sbc_data[s[0]][i+10];
-            pcbcorner_radius = sbc_data[s[0]][i+11];
-            pcb_color = sbc_data[s[0]][i+12];
-            pcb_polygon = sbc_data[s[0]][i+13];
-            dxf_scale = sbc_data[s[0]][i+14];
+            pcbsize_x = sbc_data[s[0]][i+8][0];
+            pcbsize_y = sbc_data[s[0]][i+8][1];
+            pcbsize_z = sbc_data[s[0]][i+8][2];
+            pcbcorner_radius = sbc_data[s[0]][i+9][0];
+            pcb_color = sbc_data[s[0]][i+9][1];
+            pcb_polygon = sbc_data[s[0]][i+9][2];
+            dxf_scale = sbc_data[s[0]][i+9][3];
                 
             // pcb shapes
             if(class == "pcbshape") {
                 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     // component placement
-                    for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
                         
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
@@ -94,18 +94,18 @@ module sbc(model, enablemask = false) {
                         loc_z = sbc_data[s[0]][i+5];
                         side = sbc_data[s[0]][i+6];
                         rotation = sbc_data[s[0]][i+7][2];
-                        size_x = sbc_data[s[0]][i+8];
-                        size_y = sbc_data[s[0]][i+9];
-                        size_z = sbc_data[s[0]][i+10];
-                        data_1 = sbc_data[s[0]][i+11];
-                        data_2 = sbc_data[s[0]][i+12];
-                        data_3 = sbc_data[s[0]][i+13];
-                        data_4 = sbc_data[s[0]][i+14];
-                        data_5 = sbc_data[s[0]][i+15];
-                        data_6 = sbc_data[s[0]][i+16];
-                        data_7 = sbc_data[s[0]][i+17];
-                        data_8 = sbc_data[s[0]][i+18];
-                        mask = sbc_data[s[0]][i+19];
+                        size_x = sbc_data[s[0]][i+8][0];
+                        size_y = sbc_data[s[0]][i+8][1];
+                        size_z = sbc_data[s[0]][i+8][2];
+                        data_1 = sbc_data[s[0]][i+9][0];
+                        data_2 = sbc_data[s[0]][i+9][1];
+                        data_3 = sbc_data[s[0]][i+9][2];
+                        data_4 = sbc_data[s[0]][i+9][3];
+                        data_5 = sbc_data[s[0]][i+9][4];
+                        data_6 = sbc_data[s[0]][i+9][5];
+                        data_7 = sbc_data[s[0]][i+9][6];
+                        data_8 = sbc_data[s[0]][i+9][7];
+                        mask = sbc_data[s[0]][i+10];
                             
                         if(id == pcb_id) {  
 
@@ -136,7 +136,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "discrete" && mask[0] == true) {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "display" && mask[0] == true) {
@@ -241,7 +241,7 @@ module sbc(model, enablemask = false) {
         }
     }        
     else {
-        for (i=[1:20:len(sbc_data[s[0]])-1]) {
+        for (i=[1:11:len(sbc_data[s[0]])-1]) {
             
             class = sbc_data[s[0]][i];
             type =  sbc_data[s[0]][i+1];
@@ -251,13 +251,13 @@ module sbc(model, enablemask = false) {
             pcbloc_z = sbc_data[s[0]][i+5];
             pcb_side = sbc_data[s[0]][i+6];
             pcb_rotation = sbc_data[s[0]][i+7];
-            pcbsize_x = sbc_data[s[0]][i+8];
-            pcbsize_y = sbc_data[s[0]][i+9];
-            pcbsize_z = sbc_data[s[0]][i+10];
-            pcbcorner_radius = sbc_data[s[0]][i+11];
-            pcb_color = sbc_data[s[0]][i+12];
-            pcb_polygon = sbc_data[s[0]][i+13];
-            dxf_scale = sbc_data[s[0]][i+14];
+            pcbsize_x = sbc_data[s[0]][i+8][0];
+            pcbsize_y = sbc_data[s[0]][i+8][1];
+            pcbsize_z = sbc_data[s[0]][i+8][2];
+            pcbcorner_radius = sbc_data[s[0]][i+9][0];
+            pcb_color = sbc_data[s[0]][i+9][1];
+            pcb_polygon = sbc_data[s[0]][i+9][2];
+            dxf_scale = sbc_data[s[0]][i+9][3];
             
             // pcb shapes
             if(sbc_data[s[0]][i] == "pcbshape") {
@@ -269,17 +269,17 @@ module sbc(model, enablemask = false) {
                                 color(pcb_color) pcb([pcbsize_x, pcbsize_y, pcbsize_z], pcbcorner_radius);
                             }
                             if(type == "polygon") {
-                                color(pcb_color) shape(type, pcbsize_x, pcbsize_y, pcbsize_z, pcbcorner_radius, pcb_color, pcb_polygon, 0);
+                                color(pcb_color) shape(type, [pcbsize_x, pcbsize_y, pcbsize_z], [pcbcorner_radius, pcb_color, pcb_polygon, 0]);
                             }
                             if(type == "round") {
                                 color(pcb_color) rotate(pcb_rotation) 
-                                    shape(type, pcbsize_x, pcbsize_y, pcbsize_z, pcbcorner_radius, pcb_color, pcb_polygon,0);
+                                    shape(type, [pcbsize_x, pcbsize_y, pcbsize_z], [pcbcorner_radius, pcb_color, pcb_polygon, 0]);
                             }
                             if(type == "dxf") {
-                                color(pcb_color) shape(type, pcbsize_x, pcbsize_y, pcbsize_z, pcbcorner_radius, pcb_color, pcb_polygon,0);
+                                color(pcb_color) shape(type, [pcbsize_x, pcbsize_y, pcbsize_z], [pcbcorner_radius, pcb_color, pcb_polygon,0]);
                             }
                             // pcb additions
-                            for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                            for (i=[1:11:len(sbc_data[s[0]])-1]) {
                                 
                                 class = sbc_data[s[0]][i];
                                 type = sbc_data[s[0]][i+1];
@@ -287,29 +287,18 @@ module sbc(model, enablemask = false) {
                                 loc_x = sbc_data[s[0]][i+3];
                                 loc_y = sbc_data[s[0]][i+4];
                                 loc_z = sbc_data[s[0]][i+5];
-                                side = sbc_data[s[0]][i+6];
                                 rotation = sbc_data[s[0]][i+7][2];
-                                size_x = sbc_data[s[0]][i+8];
-                                size_y = sbc_data[s[0]][i+9];
-                                size_z = sbc_data[s[0]][i+10];
-                                data_1 = sbc_data[s[0]][i+11];
-                                data_2 = sbc_data[s[0]][i+12];
-                                data_3 = sbc_data[s[0]][i+13];
-                                data_4 = sbc_data[s[0]][i+14];
-                                data_5 = sbc_data[s[0]][i+15];
-                                data_6 = sbc_data[s[0]][i+16];
-                                data_7 = sbc_data[s[0]][i+17];
-                                data_8 = sbc_data[s[0]][i+18];
-                                mask = sbc_data[s[0]][i+19];
+                                size = sbc_data[s[0]][i+8];
+                                data = sbc_data[s[0]][i+9];
                                 
                                 if(class == "pcbadd" && id == pcb_id) {
-                                    color(data_2) translate([loc_x, loc_y, loc_z]) rotate(rotation) 
-                                            shape(type, size_x, size_y, size_z, data_1, data_2, data_3, data_4);
+                                    color(data[1]) translate([loc_x, loc_y, loc_z]) rotate(rotation) 
+                                            shape(type, size, data);
                                 }
                             }
                         }
                         // pcb mounting holes
-                        for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                        for (i=[1:11:len(sbc_data[s[0]])-1]) {
                                
                             class = sbc_data[s[0]][i];
                             type = sbc_data[s[0]][i+1];
@@ -317,7 +306,7 @@ module sbc(model, enablemask = false) {
                             pcbhole_x = sbc_data[s[0]][i+3];
                             pcbhole_y = sbc_data[s[0]][i+4];
                             pcbhole_z = sbc_data[s[0]][i+5];
-                            pcbhole_size = sbc_data[s[0]][i+8];                        
+                            pcbhole_size = sbc_data[s[0]][i+8][0];                        
                             
                             if(class == "pcbhole" && id == pcb_id) {
                                 
@@ -325,7 +314,7 @@ module sbc(model, enablemask = false) {
                             }
                         }
                         // pcb subtractions
-                        for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                        for (i=[1:11:len(sbc_data[s[0]])-1]) {
                             
                             class = sbc_data[s[0]][i];
                             type = sbc_data[s[0]][i+1];
@@ -335,22 +324,22 @@ module sbc(model, enablemask = false) {
                             loc_z = sbc_data[s[0]][i+5];
                             side = sbc_data[s[0]][i+6];
                             rotation = sbc_data[s[0]][i+7][2];
-                            size_x = sbc_data[s[0]][i+8];
-                            size_y = sbc_data[s[0]][i+9];
-                            size_z = sbc_data[s[0]][i+10];
-                            data_1 = sbc_data[s[0]][i+11];
-                            data_2 = sbc_data[s[0]][i+12];
-                            data_3 = sbc_data[s[0]][i+13];
-                            data_4 = sbc_data[s[0]][i+14];
-                            data_5 = sbc_data[s[0]][i+15];
-                            data_6 = sbc_data[s[0]][i+16];
-                            data_7 = sbc_data[s[0]][i+17];
-                            data_8 = sbc_data[s[0]][i+18];
-                            mask = sbc_data[s[0]][i+19];
+                            size_x = sbc_data[s[0]][i+8][0];
+                            size_y = sbc_data[s[0]][i+8][1];
+                            size_z = sbc_data[s[0]][i+8][2];
+                            data_1 = sbc_data[s[0]][i+9][0];
+                            data_2 = sbc_data[s[0]][i+9][1];
+                            data_3 = sbc_data[s[0]][i+9][2];
+                            data_4 = sbc_data[s[0]][i+9][3];
+                            data_5 = sbc_data[s[0]][i+9][4];
+                            data_6 = sbc_data[s[0]][i+9][5];
+                            data_7 = sbc_data[s[0]][i+9][6];
+                            data_8 = sbc_data[s[0]][i+9][7];
+                            mask = sbc_data[s[0]][i+10];
                             
                             if(class == "pcbsub" && id == pcb_id) {
                                 color(data_2) translate([loc_x, loc_y, loc_z-adjust]) rotate(rotation) 
-                                        shape(type, size_x, size_y, size_z+2*adjust, data_1, data_2, data_3, data_4);
+                                        shape(type, [size_x, size_y, size_z+2*adjust], [data_1, data_2, data_3, data_4]);
                             }
                         }
 
@@ -358,7 +347,7 @@ module sbc(model, enablemask = false) {
                         
                     }
                     // soc placement
-                    for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
                         
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
@@ -368,9 +357,9 @@ module sbc(model, enablemask = false) {
                         soc1loc_z = sbc_data[s[0]][i+5];
                         soc1_side = sbc_data[s[0]][i+6];
                         soc1_rotation = sbc_data[s[0]][i+7][2];                       
-                        soc1size_x = sbc_data[s[0]][i+8];
-                        soc1size_y = sbc_data[s[0]][i+9];
-                        soc1size_z = sbc_data[s[0]][i+10];
+                        soc1size_x = sbc_data[s[0]][i+8][0];
+                        soc1size_y = sbc_data[s[0]][i+8][1];
+                        soc1size_z = sbc_data[s[0]][i+8][2];
                         
                         if(class == "pcbsoc" && id == pcb_id && type == "flat") {
                             if (soc1_side == "top" ) {
@@ -380,7 +369,7 @@ module sbc(model, enablemask = false) {
                                             cube([soc1size_x,soc1size_y,soc1size_z]);
                             }
                             if (soc1_side == "bottom") {               
-                                color("dimgray",1) 
+                                color("dimgray") 
                                     translate([soc1loc_x,soc1loc_y,-pcbsize_z]) 
                                         rotate([0,0,soc1_rotation]) 
                                             cube([soc1size_x, soc1size_y, soc1size_z]);
@@ -389,7 +378,7 @@ module sbc(model, enablemask = false) {
                     }
                 
                     // component placement
-                    for (i=[1:20:len(sbc_data[s[0]])-1]) {
+                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
                         
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
@@ -399,18 +388,9 @@ module sbc(model, enablemask = false) {
                         loc_z = sbc_data[s[0]][i+5];
                         side = sbc_data[s[0]][i+6];
                         rotation = sbc_data[s[0]][i+7][2];
-                        size_x = sbc_data[s[0]][i+8];
-                        size_y = sbc_data[s[0]][i+9];
-                        size_z = sbc_data[s[0]][i+10];
-                        data_1 = sbc_data[s[0]][i+11];
-                        data_2 = sbc_data[s[0]][i+12];
-                        data_3 = sbc_data[s[0]][i+13];
-                        data_4 = sbc_data[s[0]][i+14];
-                        data_5 = sbc_data[s[0]][i+15];
-                        data_6 = sbc_data[s[0]][i+16];
-                        data_7 = sbc_data[s[0]][i+17];
-                        data_8 = sbc_data[s[0]][i+18];
-                        mask = sbc_data[s[0]][i+19];
+                        size = sbc_data[s[0]][i+8];
+                        data = sbc_data[s[0]][i+9];
+                        mask = sbc_data[s[0]][i+10];
 
                         if(id == pcb_id) {  
 
@@ -441,7 +421,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "discrete") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    discrete(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "display") {
@@ -461,17 +441,17 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "heatsink") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, enablemask, mask);
+                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size[2], pcbsize_z, enablemask, mask);
                                 }   
                             }
                             if (class == "ic") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    ic(type, loc_x, loc_y, loc_z, side, rotation, size_x, size_y, size_z, pcbsize_z);
+                                    ic(type, loc_x, loc_y, loc_z, side, rotation, size[0], size[1], size[2], pcbsize_z);
                                 }           
                             }
-                            if (class == "jst_ph") {
+                            if (class == "jst") {
                                 if(loc_x!=0 || loc_y!=0) {
-                                    jst_ph(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "jumper") {
@@ -506,7 +486,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "smd") {
                                 if (loc_x!=0 || loc_y!=0) {
-                                    smd(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    smd(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "storage") {
@@ -537,6 +517,11 @@ module sbc(model, enablemask = false) {
                             if (class == "video") {
                                 if (loc_x!=0 || loc_y!=0) {
                                     video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }           
+                            }
+                            if (class == "pcbhole") {
+                                if (loc_x!=0 || loc_y!=0) {
+//                                    pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                         }

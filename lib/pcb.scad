@@ -18,17 +18,21 @@
 
 */
 
-    // pcb board
-    module pcb(size, radius) {
-        x = size[0];
-        y = size[1];
-        z = size[2];   
-        linear_extrude(height = z)
-        hull() {
-            translate([0+radius ,0+radius, 0]) circle(r = radius);
-            translate([0+radius, y-radius, 0]) circle(r = radius);
-            translate([x-radius, y-radius, 0]) circle(r = radius);
-            translate([x-radius, 0+radius, 0]) circle(r = radius);
-        }  
-    }
+// pcb board
+module pcb(size, radius) {
+    x = size[0];
+    y = size[1];
+    z = size[2];   
+    linear_extrude(height = z)
+    hull() {
+        translate([0+radius ,0+radius, 0]) circle(r = radius);
+        translate([0+radius, y-radius, 0]) circle(r = radius);
+        translate([x-radius, y-radius, 0]) circle(r = radius);
+        translate([x-radius, 0+radius, 0]) circle(r = radius);
+    }  
+}
 
+// pcb hole additions
+module pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
+
+}
