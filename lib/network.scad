@@ -137,6 +137,61 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                 }
         }
     }
+
+    if(type == "rj45_reverse_single") {
+    
+        size_x = 15.9;
+        size_y = 21.3;
+        size_xm = 16.25;
+        size_ym = len;
+   
+        if(enablemask == true && cmask == true && style == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.0625, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.0625, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-size_ym+back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 14]);
+            }    
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) 
+            union() {
+                difference () {
+                    color("lightgray") translate([0,0,0]) cube([size_x,size_y,13.5]);
+                    color("darkgray") translate([1.5,-1,4]) cube([13, 19.5, 8]);
+                    color("darkgray") translate([5.5,-2,1.5]) cube([5, 19.5, 5]);
+                }
+                color("green") translate([2,-.1,1.5]) cube([3, 2, 2]);
+                color("orange") translate([11,-.1,1.5]) cube([3, 2, 2]);
+            }
+        }
+    }
     
     if(type == "rj45_low_profile") {
     
@@ -208,6 +263,71 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                 }
         }
     }
+
+
+    if(type == "rj45_double_stacked") {
+    
+        size_x = 17.5;
+        size_y = 28.8;
+        size_xm = 15;
+        size_ym = len;
+   
+        if(enablemask == true && cmask == true && style == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.0625, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.0625, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-size_ym+back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12]);
+            }    
+        
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) 
+            union() {
+                difference () {
+                    color("lightgray") translate([0,0,0]) cube([size_x,size_y,13.5]);
+                    color("darkgray") translate([2,-1,4]) cube([13, 19.5, 8]);
+                    color("darkgray") translate([6,-2,1.5]) cube([5, 19.5, 5]);
+                }
+                color("green") translate([2.5,-.1,1.5]) cube([3, 2, 2]);
+                color("orange") translate([11.5,-.1,1.5]) cube([3, 2, 2]);
+                difference () {
+                    color("lightgray") translate([0,0,13.5]) cube([size_x,size_y,13.5]);
+                    color("darkgray") translate([2,-1,15]) cube([13, 19.5, 8]);
+                    color("darkgray") translate([6,-2,20.5]) cube([5, 19.5, 5]);
+                }
+                color("green") translate([2.5,-.1,23.5]) cube([3, 2, 2]);
+                color("orange") translate([11.5,-.1,23.5]) cube([3, 2, 2]);
+            }
+        }
+    }
+
 
     // rj-45 and usb2 stacked type
     if(type == "rj45-usb2_double") {
