@@ -20,7 +20,7 @@
 
 /* shape module */
 module shape(type, size, data) {
-echo(size, data);
+
     if(type == "rectangle") {
         cube([size[0],size[1],size[2]]);
     }
