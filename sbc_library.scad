@@ -58,7 +58,7 @@
                             hdmi_a_vertical
     20221101 Version 1.0.9  added microsdcard2
     20221207 Version 1.0.10 added n2l_oem and n2lq_oem heatsinks
-    202xxxxx Version 1.0.11 added header_24
+    202xxxxx Version 1.0.11 added header_24, jst_sh
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -1231,6 +1231,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
+    // ic 4mm x 6mm
+    if (type=="ic_4x6") {
+        size_x = 4;
+        size_y = 6;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
     // ic 4.3mm x 5.1mm
     if (type=="ic_4.3x5.1") {
         size_x = 4.3;
@@ -1403,6 +1410,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
     if (type=="ic_13x11.5") {
         size_x = 13;
         size_y = 11.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 14mm x 10mm
+    if (type=="ic_14x10") {
+        size_x = 14;
+        size_y = 10;        
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
@@ -2212,6 +2226,33 @@ module jst_ph(x,y,rotation,side,type,pcbsize_z) {
         translate([1.95, 0, 0]) union() {
             for(ind=[0:type-1]) {
                 color("silver") translate([ind*2, 1.4, .5]) cube([.5, .5, 4]);
+            }
+        }
+    }
+}
+
+
+// JST-SH connector class
+module jst_sh(x,y,rotation,side,type,pcbsize_z) { 
+    size_x = 1+(type);
+    size_y = 2.9;
+    place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+    union() {
+        difference() {
+            color("white") cube([size_x, size_y, 4.25]);
+            color("white") translate([.25, .25, .25]) cube([size_x-.5, size_y-.5, 4.25]);
+        }
+        difference() {
+            color("white") translate([-.4, 0, 2.75]) cube([.5, 1, 1.5]);
+            color("white") translate([-1, .5, 2.25]) cube([1, 1, 1.5]);            
+        }
+        difference() {
+            color("white") translate([size_x-.1, 0, 2.75]) cube([.5, 1, 1.5]);
+            color("white") translate([size_x, .5, 2.25]) cube([1, 1, 1.5]);            
+        }
+        translate([1, 0, 0]) union() {
+            for(ind=[0:type-1]) {
+                color("silver") translate([(ind*1)-.125, 1, .5]) cube([.25, .25, 3.5]);
             }
         }
     }

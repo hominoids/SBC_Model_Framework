@@ -7,14 +7,14 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-### Current SBC: 58
+### Current SBC: 61
 
 ## Using the Framework
 
 Any of the models can be called by passing the requested SBC model in the form of sbc("model"). 
 ```
 include <sbc_models.scad>
-sbc("rpi4b");
+sbc("rpi5");
 ```
 
 ## Modifying and Adding Components
@@ -94,9 +94,9 @@ ORANGE = unverified, may be usable but missing component data.
 RED = unverified, not usable due to incomplete component data.
 ```
 
-### Hardkernel Odroid: 19
+### Hardkernel Odroid: 20
 
-c1+, c2, c4, xu4, xu4q, mc1, hc1, hc4, m1, n1, n2, n2l, n2q, n2+, h2(h2+), h3(h3+) - GREEN, verified.
+c1+, c2, c4, xu4, xu4q, mc1, hc1, hc4, m1, n1, n2/n2+, n2l, n2q, n2+, h2/h2+, h3/h3+ - GREEN, verified.
 
 show2 - ORANGE, unverified, unknown status.
 
@@ -125,11 +125,11 @@ h64b - YELLOW, unverified mostlikely usable and/or missing minor information.
 star64 - yellow, unverified mostlikely usable and/or missing minor information.
 
 
-### Raspberry Pi: 9
+### Raspberry Pi: 10
 
 All created from mechanical drawings except rpi3b+ which was contributed. The SOC data is missing for these SBC.
 
-rpizero(rpizerow) - YELLOW, unverified mostlikely usable and/or missing minor information.
+rpizero/rpizerow - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpizero2w - YELLOW, unverified mostlikely usable and/or missing minor information.
 
@@ -144,6 +144,8 @@ rpi3b - YELLOW, unverified mostlikely usable and/or missing minor information.
 rpi3b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpi4b - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rpi5 - green, verified.
 
 
 
@@ -187,17 +189,17 @@ tinkerboard - YELLOW, unverified mostlikely usable and/or missing minor informat
 
 tinkerboard-s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-tinkerboard-2(2s) - YELLOW, unverified mostlikely usable and/or missing minor information.
+tinkerboard-2/2s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-tinkerboard-r2(r2s) - YELLOW, unverified mostlikely usable and/or missing minor information.
+tinkerboard-r2/r2s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 
-### OrangePi: 5
+### OrangePi: 6
 
 opi5 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-opizero(opizeroplus) - YELLOW, unverified mostlikely usable and/or missing minor information.
+opizero/opizeroplus - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
 

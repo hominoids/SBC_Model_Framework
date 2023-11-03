@@ -36,7 +36,7 @@
     20221101 Version 1.0.9  added h3/h3+ as h3, rockpi5b adjustments
     20221207 Version 1.0.10 added n2l and n2lq
     2023xxxx Version 1.0.xx added star64, licheerv+dock, visionfive2, opi5, rock5b-v1.3, rock5b-v1.42, rock5bq-v1.42
-                            changed radxa rockpi to rock, expanded sbc information comments, added opir1   
+                            changed radxa rockpi to rock, expanded sbc information comments, added opir1, added RPi5   
     
     see https://github.com/hominoids/SBC_Case_Builder
     
@@ -217,6 +217,11 @@ module sbc(model) {
         if (class == "jst_ph") {
             if(loc_x!=0 || loc_y!=0) {
                 jst_ph(loc_x, loc_y, rotation, side, type, pcbsize_z);
+            }
+        }
+        if (class == "jst_sh") {
+            if(loc_x!=0 || loc_y!=0) {
+                jst_sh(loc_x, loc_y, rotation, side, type, pcbsize_z);
             }
         }
         if (class == "cm_holder") {
