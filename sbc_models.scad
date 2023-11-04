@@ -41,8 +41,8 @@
     see https://github.com/hominoids/SBC_Case_Builder
     
     USE: sbc(model)
-             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","n1","n2","n2l","n2lq","n2+","h2","show2"
-                     "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1_noheatsink","n1","n2","n2l","n2lq","n2+","n2+_noheatsink","h2","show2"
+                     "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpi5_noheatsink",
                      "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
                      "rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b-v1.42",
                      "vim1","vim2","vim3l","vim3","vim4",

@@ -96,7 +96,7 @@ RED = unverified, not usable due to incomplete component data.
 
 ### Hardkernel Odroid: 20
 
-c1+, c2, c4, xu4, xu4q, mc1, hc1, hc4, m1, n1, n2/n2+, n2l, n2q, n2+, h2/h2+, h3/h3+ - GREEN, verified.
+c1+, c2, c4, xu4, xu4q, mc1, hc1, hc4, m1, m1_noheatsink, n1, n2, n2+, n2+_noheatsink, n2l, n2q, n2+, h2/h2+, h3/h3+ - GREEN, verified.
 
 show2 - ORANGE, unverified, unknown status.
 
@@ -145,7 +145,7 @@ rpi3b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpi4b - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rpi5 - green, verified.
+rpi5, rpi5_noheatsink - green, verified.
 
 
 
