@@ -2143,6 +2143,36 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
             
         }
     }
+    // RPi5 heatsink
+    if(type=="rpi5_oem") {
+        size_x = 58;
+        size_y = 32;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        translate([.5,5.25,soc1size_z+1])
+        difference() {
+            union() {        
+                color("lightgray",.6) linear_extrude(height = 2) import("rpi5_oem.dxf");
+                translate([6,2.5,2-.01])color("lightgray",.6) cube([20,40,8]);
+                difference() {
+                    union() {
+                        translate([27,11.75,2-.01])color("black",.6) cube([30,30,8]);
+                        translate([27,11.75,10-.01])color("lightgray",.6) cube([30,30,.25]);
+                    }
+                    translate([42,26.75,2-.01])color("black",.6) cylinder(d=21, h=9);
+                    translate([31,39,2-.01])color("black",.6) cylinder(d=3, h=9);
+                    translate([54,14,2-.01])color("black",.6) cylinder(d=3, h=9);
+                    translate([54,39,2-.01])color("black",.6) cylinder(d=3, h=9);
+                    }
+                }
+            // fins
+            for (i=[4.75:3.5:25]) {
+                color("lightgray",.6) translate([i,-1,2]) cube([1.75,44,8]);
+            }
+            for (i=[5.35:4.625:40]) {
+                color("lightgray",.6) translate([-1,i,3]) cube([28,2,8]);
+            }
+        } 
+    }
     if(type=="n2_oem") {
         size_x = 90;
         size_y = 90;                
