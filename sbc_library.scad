@@ -339,15 +339,13 @@ module button(x,y,rotation,side,type,pcbsize_z) {
     }
     if(type=="momentary_4.5x3.5x2.5_90") {
         size_x = 4.5;
-        size_y = 3.5;
-        place(x,y-3.5,size_x,size_y,rotation,side,type,pcbsize_z)
-        rotate([90, 0, 0]) union() {
-            color("silver") translate([0,0,0]) cube([size_x,size_y,2.5]);
-            color("black") translate([2.25,1.75,2.5]) cylinder(r=1,h=1,$fn=30);
+        size_y = 2.5;
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {    
+            color("silver") cube([size_x,size_y,3.5]);
+            color("black") translate([2.25,0,3.5/2]) rotate([90,0,0]) cylinder(r=1,h=1,$fn=30);
         }
     }
-
-
 }
 
 // plug-connector class
