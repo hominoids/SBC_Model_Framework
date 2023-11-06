@@ -18,31 +18,28 @@
 
 */
 
-include <./lib/place.scad>
-include <./lib/soc.scad>
-include <./lib/antenna.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pad.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
+// single row pcb pad
+module pcb_pad(pads, style) {
 
+    adjust = .01;
+    $fn = 90;
+    pad_size = 1.25;
+    size_y = 2.54;
+    size_x = 2.54 * (pads-1);                
+    union() {
+        for (i=[0:2.54:size_x]) {
+            if(style == "round") {
+                difference() {
+                    color("#fee5a6") translate ([i,0,0]) cylinder(d=pad_size, h=.125);
+                    color("dimgray") translate([i,0,-adjust]) cylinder(d=.625, h=.125+2*adjust);
+                }
+            }
+            if(style == "square") {
+                difference() {
+                    color("#fee5a6") translate ([i-pad_size/2,-pad_size/2,0]) cube([pad_size, pad_size, .125]);
+                    color("dimgray") translate([i,0,-adjust]) cylinder(d=.625, h=.125+2*adjust);
+                }
+            }
+        }
+    }
+}
