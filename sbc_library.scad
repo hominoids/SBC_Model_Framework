@@ -20,6 +20,7 @@
 
 include <./lib/place.scad>
 include <./lib/soc.scad>
+include <./lib/antenna.scad>
 include <./lib/audio.scad>
 include <./lib/battery.scad>
 include <./lib/button.scad>

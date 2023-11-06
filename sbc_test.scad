@@ -94,6 +94,10 @@ translate ([380,500,0]) sbc("star64");
 linear_extrude(height = 2) {translate([400,485,0]) text("Star 64");}
 color("yellow",.3) translate([400,485,-1]) cube([43,10,1]);
 
+translate ([380,610,0]) sbc("a64");
+linear_extrude(height = 2) {translate([400,595,0]) text("A64");}
+color("red",.3) translate([400,595,-1]) cube([25,10,1]);
+
 translate([535,0,0]) sbc("rpi4b");
 linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 4B"); }
 color("yellow",.3) translate([550,-20,-1]) cube([42,10,1]);
@@ -221,7 +225,7 @@ translate ([1340,0,0]) sbc("visionfive2");
 linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
 color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
 
-translate ([1440,0,0]) sbc("atomicpi");
-linear_extrude(height = 2) {translate([1450,-20,0]) text("AtomicPi");}
-color("red",.5) translate([1448,-20,-1]) cube([73,10,1]);
+translate ([1460,0,0]) sbc("atomicpi");
+linear_extrude(height = 2) {translate([1500,-20,0]) text("AtomicPi");}
+color("red",.5) translate([1498,-20,-1]) cube([58,10,1]);
 }

@@ -453,13 +453,13 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
     // m.2 mounting stud
     if(type=="m.2_stud" && enablemask == false) {
     
-        size_x = 5;
-        size_y = 5;
+        size_x = 4;
+        size_y = 4;
                 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
 
         difference () {
-            color("silver") cylinder(d=5, h=2);
+            color("silver") cylinder(d=4, h=2.5);
             color("silver") translate([0, 0, -1]) cylinder(d=2, h=5);
         }
     }

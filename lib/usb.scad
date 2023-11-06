@@ -19,7 +19,7 @@
 */
  
 // usb 2.0 port class
-module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     len = mask[1];
     back = mask[2];
@@ -105,7 +105,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     if(type == "single_horizontal_a") {
         
         size_x = 14;
-        size_y = 14;
+        size_y = size[1];
         size_xm = 15;
         size_zm = 7.5;
         
@@ -148,10 +148,10 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     difference () {
-                        color("silver") translate([0, 0, 0]) cube([size_x, size_y, 7]);
+                        color("silver") cube([size_x, size_y, 7]);
                         color("dimgray") translate([.5,-.1, 1]) cube([size_x-1, size_y-.5, 5.5]);
                     }
-                    color("white") translate([2, 1, 4]) cube([10, 12.5, 1.5]);
+                    color("white") translate([2, 1, 4]) cube([10, size_y-1.5, 1.5]);
                     color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);    
                     color("silver") translate([13.99, 0, 1]) cube([.65, .5, 5]);
                     color("silver") translate([1, 0, 6.99]) cube([11.5, .5, .65]);            
@@ -314,7 +314,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
 }
 
 // usb 3.0 port class
-module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     len = mask[1];
     back = mask[2];
@@ -570,7 +570,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
 }
 
 // usbc port class
-module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     len = mask[1];
     back = mask[2];
@@ -669,7 +669,8 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                rotate([90 ,90 ,0])  translate([-size_y-.25-height, dia/2, -size_y]) union() {    
+                rotate([90 ,90 ,0])  translate([-size_y-.25-height, dia/2, -size_y])
+                union() {    
                     difference () {
                         color("silver")
                         hull() {

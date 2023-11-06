@@ -54,8 +54,8 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
                 color ("darkgray") translate ([.5,.5,.6]) cube([18.5,4.5,5.75]);
             }
             for (i=[4.5:2:16]) {
-                color("gold") translate ([i,1.5,1]) cube([.5,.5,5]);
-                color("gold") translate ([i,3.5,1]) cube([.5,.5,5]);
+                color("#fee5a6") translate ([i,1.5,1]) cube([.5,.5,5]);
+                color("#fee5a6") translate ([i,3.5,1]) cube([.5,.5,5]);
             }
         }
     }
@@ -68,11 +68,11 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
         union() {
             color("black") translate([0,0.135,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.54:50]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
-                color("gold") translate ([i,3.5,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,3.5,3]) cube([.64,.64,5]);
                 if(type=="header_40_sm") {
-                    color("gold") translate ([i,-.99,0]) cube([.64,1,.64]);
-                    color("gold") translate ([i,4.99,0]) cube([.64,1,.64]);
+                    color("#fee5a6") translate ([i,-.99,0]) cube([.64,1,.64]);
+                    color("#fee5a6") translate ([i,4.99,0]) cube([.64,1,.64]);
                 }
             }
         }
@@ -86,8 +86,8 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
         union() {
             color("black") translate([0,0.135,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.54:25]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
-                color("gold") translate ([i,3.5,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
         }
     }
@@ -100,8 +100,8 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
         union() {
             color("black") translate([0,0.135,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.54:31]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
-                color("gold") translate ([i,3.5,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
         }
     }   

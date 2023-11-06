@@ -7,14 +7,14 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-### Current SBC: 51
+### Current SBC: 61
 
 ## Using the Framework
 
 Any of the models can be called by passing the requested SBC model in the form of sbc("model"). 
 ```
 include <sbc_models.scad>
-sbc("rpi4b");
+sbc("rpi5");
 ```
 
 ## Modifying and Adding Components
@@ -94,9 +94,9 @@ ORANGE = unverified, may be usable but missing component data.
 RED = unverified, not usable due to incomplete component data.
 ```
 
-### Hardkernel Odroid: 17
+### Hardkernel Odroid: 20
 
-c1+,c2,c4,xu4,xu4q,mc1,hc1,hc4,m1,n1,n2,n2+,h2(h2+,h3,h3+) - GREEN, verified.
+c1+, c2, c4, xu4, xu4q, mc1, hc1, hc4, m1, m1_noheatsink, n1, n2, n2+, n2+_noheatsink, n2l, n2q, n2+, h2/h2+, h3/h3+ - GREEN, verified.
 
 show2 - ORANGE, unverified, unknown status.
 
@@ -108,7 +108,7 @@ jetsonnano - GREEN, verified.
 
 
 
-### Pine64: 5
+### Pine64: 6
 
 All created from mechanical drawings except rockpro64 which was contributed. The SOC data is missing for many of these SBC.
 
@@ -122,13 +122,16 @@ quartz64b - YELLOW, unverified mostlikely usable and/or missing minor informatio
 
 h64b - YELLOW, unverified mostlikely usable and/or missing minor information.
 
+star64 - yellow, unverified mostlikely usable and/or missing minor information.
+
+a64 - red, unverified, not usable due to incomplete component data.
 
 
-### Raspberry Pi: 9
+### Raspberry Pi: 10
 
 All created from mechanical drawings except rpi3b+ which was contributed. The SOC data is missing for these SBC.
 
-rpizero(rpizerow) - YELLOW, unverified mostlikely usable and/or missing minor information.
+rpizero/rpizerow - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpizero2w - YELLOW, unverified mostlikely usable and/or missing minor information.
 
@@ -144,19 +147,25 @@ rpi3b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpi4b - YELLOW, unverified mostlikely usable and/or missing minor information.
 
+rpi5, rpi5_noheatsink - green, verified.
 
 
-### Radxa: 4
+
+### Radxa: 5
 
 Created from mechanical drawings, the SOC data is missing for these SBC.
 
-rockpi4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rockpi4c - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock4c - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rockpi4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+rock4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rockpi5b - RED, unverified, not usable due to incomplete component data.
+rock5b-v1.3 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rock5b-v1.42 - GREEN, verified.
+
+rock5bq-v1.42 - GREEN, verified.
 
 
 ### Khadas: 5
@@ -182,19 +191,47 @@ tinkerboard - YELLOW, unverified mostlikely usable and/or missing minor informat
 
 tinkerboard-s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-tinkerboard-2(2s) - YELLOW, unverified mostlikely usable and/or missing minor information.
+tinkerboard-2/2s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-tinkerboard-r2(r2s) - YELLOW, unverified mostlikely usable and/or missing minor information.
+tinkerboard-r2/r2s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 
-### OrangePi: 4
+### OrangePi: 6
 
-opizero(opizeroplus) - YELLOW, unverified mostlikely usable and/or missing minor information.
+opi5 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+opizero/opizeroplus - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+opir1 - GREEN, verified to be correct using SBC Case Builder.
+
+
+
+### StarFive: 1
+
+visonfive2 - GREEN, verified to be correct using SBC Case Builder.
+
+
+
+### Sipeed: 1
+
+licheerv+dock - GREEN, verified to be correct using SBC Case Builder.
+
+
+
+### Digital Loggers, Inc.: 1
+
+atomicpi - RED, unverified, not usable due to incomplete component data.
+
+
+
+### RAK WisBlock: 1
+
+rak19007 - RED, unverified, not usable due to incomplete component data.
 
 
 License: GPLv3.

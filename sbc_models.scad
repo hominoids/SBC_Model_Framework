@@ -103,7 +103,7 @@ module sbc(model, enablemask = false) {
 
                             if (class == "audio" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }            
                             }
                             if (class == "battery" && mask[0] == true) {
@@ -208,17 +208,17 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "usb2" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }          
                             }
                             if (class == "usb3" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "usbc" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "video" && mask[0] == true) {
@@ -372,9 +372,14 @@ module sbc(model, enablemask = false) {
 
                         if(id == pcb_id) {  
 
+                            if (class == "antenna") {
+                                if (loc_x != 0 || loc_y != 0) {
+                                    antenna(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }            
+                            }
                             if (class == "audio") {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }            
                             }
                             if (class == "battery") {
@@ -479,17 +484,17 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "usb2") {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    usb2(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }          
                             }
                             if (class == "usb3") {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    usb3(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "usbc") {
                                 if (loc_x != 0 || loc_y != 0) {
-                                    usbc(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                    usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                             if (class == "video") {
@@ -499,7 +504,7 @@ module sbc(model, enablemask = false) {
                             }
                             if (class == "pcbhole") {
                                 if (loc_x != 0 || loc_y != 0) {
-//                                    pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                    pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }           
                             }
                         }

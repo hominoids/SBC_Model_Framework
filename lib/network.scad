@@ -256,7 +256,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                         color("darkgray") translate([2, 9.5, 3]) cube([10.5, 5, 8.4]);
                     }
                     for(i=[0:7]){ 
-                        color("gold") translate([3.5+i, 8.5, 7]) rotate([70,0,0]) cube([.5, .5, 8]);
+                        color("#fee5a6") translate([3.5+i, 8.5, 7]) rotate([70,0,0]) cube([.5, .5, 8]);
                     }
 //                    color("green") translate([1, -.1, 9.2]) cube([3, 2, 2]);
 //                    color("orange") translate([10.375, -.1, 9.2]) cube([3, 2, 2]);

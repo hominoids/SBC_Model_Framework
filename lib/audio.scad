@@ -19,7 +19,7 @@
 */
  
 // audio class
-module audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     cmask = mask[0];
     len = mask[1];
@@ -219,18 +219,32 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         }
         if(enablemask == false) {                     
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                translate([size_xm, size_y+1.5, 3.75]) rotate([-90, 0, 180])
-                union() {  
-                    difference () {
-                        color("white") cube([size_x, size_y, 4.75]);
-                        color("darkgray") translate([1.5, .5, 1]) cube([4.5, 2.75, 6]);
-                        color("white") translate([-.5, .75, -.5]) cube([1, 2.5, 6]);
-                        color("white") translate([7, .75, -.5]) cube([1, 2.5, 6]);
-                        color("darkgray") translate([2.25, -.5, 1]) cube([3, 2, 6]);
-                    }
-                    color("silver") translate ([2.75, 2, .5]) cube([.6, .6, 4]);
-                    color("silver") translate ([4.5, 2, .5]) cube([.6, .6, 4]);
+            translate([size_xm, size_y+1.5, 3.75]) rotate([-90, 0, 180])
+            union() {  
+                difference () {
+                    color("white") cube([size_x, size_y, 4.75]);
+                    color("darkgray") translate([1.5, .5, 1]) cube([4.5, 2.75, 6]);
+                    color("white") translate([-.5, .75, -.5]) cube([1, 2.5, 6]);
+                    color("white") translate([7, .75, -.5]) cube([1, 2.5, 6]);
+                    color("darkgray") translate([2.25, -.5, 1]) cube([3, 2, 6]);
                 }
+                color("silver") translate ([2.75, 2, .5]) cube([.6, .6, 4]);
+                color("silver") translate ([4.5, 2, .5]) cube([.6, .6, 4]);
+            }
         }
-    }    
+    }
+    
+    // mic_round type
+    if(type=="mic_round" && enablemask == false) {
+    
+        size_x = size[0];
+        size_y = size[0];
+        size_z = size[2];
+   
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {  
+            color("silver") cylinder(d=size_x, h=size_z);
+            color("#353535") translate ([0, 0, size_z-.01]) cylinder(d=size_x-.5, h=.15);
+        }
+}
 }

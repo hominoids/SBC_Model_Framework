@@ -35,4 +35,20 @@ module pcb(size, radius) {
 // pcb hole additions
 module pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
+    // pcbhole class
+    if(type == "round") {
+    
+        trace = data[3];
+        size_x = size[0]+trace;
+        size_y = size[0]+trace;
+        style = data[0];
+        hcolor = data[1];
+        shape = data[2];
+        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        difference() {
+            color(hcolor) translate([0, 0, -.0625-pcbsize_z]) cylinder(d=size_x, pcbsize_z+.125);
+            color(hcolor) translate([0, 0, -1.125-pcbsize_z]) cylinder(d=size[0]-.125, pcbsize_z+2);
+        }
+    }
 }

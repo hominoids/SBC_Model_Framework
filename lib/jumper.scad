@@ -33,8 +33,8 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
-            color("gold") translate ([1,1,2.5]) cube([.64,.64,5]);
-            color("gold") translate ([3.5,1,2.5]) cube([.64,.64,5]);
+            color("#fee5a6") translate ([1,1,2.5]) cube([.64,.64,5]);
+            color("#fee5a6") translate ([3.5,1,2.5]) cube([.64,.64,5]);
         }
     }
     // 3x1 type
@@ -44,9 +44,9 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
-            color("gold") translate ([1,1,2.5]) cube([.64,.64,5]);
-            color("gold") translate ([3.5,1,2.5]) cube([.64,.64,5]);
-            color("gold") translate ([6,1,2.5]) cube([.64,.64,5]);
+            color("#fee5a6") translate ([1,1,2.5]) cube([.64,.64,5]);
+            color("#fee5a6") translate ([3.5,1,2.5]) cube([.64,.64,5]);
+            color("#fee5a6") translate ([6,1,2.5]) cube([.64,.64,5]);
         }
     }
     // 3x2 type
@@ -57,8 +57,8 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:8]) {
-                color("gold") translate ([i,.5,3]) cube([.64,.64,5]);
-                color("gold") translate ([i,3.5,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,.5,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
         }
     }   
@@ -70,7 +70,7 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:12]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
             }
         }
     }       
@@ -82,7 +82,7 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:14]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
             }
         }
     }       
@@ -94,7 +94,7 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:16]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
             }
         }
     }   
@@ -106,7 +106,7 @@ module jumper(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
             for (i=[1:2.5:32]) {
-                color("gold") translate ([i,1,3]) cube([.64,.64,5]);
+                color("#fee5a6") translate ([i,1,3]) cube([.64,.64,5]);
             }
         }
     }   
