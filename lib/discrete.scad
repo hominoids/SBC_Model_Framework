@@ -15,7 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-
+    discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
+             type = "ir_1", "ir_dual"
 */
 
 // discrete class
@@ -70,13 +71,13 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {  
-                    color("silver") translate([0, 0, 4]) cube([size_x, size_y, 8]);
-                    color("dimgray") translate([3.5, .5, 7.5]) sphere(d=5);
-                    color("silver") translate ([1, 1.25, 0]) cube([.64, .5, 4]);
-                    color("silver") translate ([3.25, 1.25, 0]) cube([.64, .5, 4]);
-                    color("silver") translate ([5.5, 1.25, 0]) cube([.64, .5, 4]);
-                }
+            union() {  
+                color("silver") translate([0, 0, 4]) cube([size_x, size_y, 8]);
+                color("dimgray") translate([3.5, .5, 7.5]) sphere(d=5);
+                color("silver") translate ([1, 1.25, 0]) cube([.64, .5, 4]);
+                color("silver") translate ([3.25, 1.25, 0]) cube([.64, .5, 4]);
+                color("silver") translate ([5.5, 1.25, 0]) cube([.64, .5, 4]);
+            }
         }
     }
 
@@ -123,11 +124,11 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {  
-                    color("silver") translate([0, 0, 0]) cube([size_x, size_y, 3.25]);
-                    color("dimgray") translate([1.5, .5, 1.75]) sphere(d=3);
-                    color("dimgray") translate([5, .5, 1.75]) sphere(d=3);
-                }
+            union() {  
+                color("silver") translate([0, 0, 0]) cube([size_x, size_y, 3.25]);
+                color("dimgray") translate([1.5, .5, 1.75]) sphere(d=3);
+                color("dimgray") translate([5, .5, 1.75]) sphere(d=3);
+            }
         }
     }
 }

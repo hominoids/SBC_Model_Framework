@@ -15,10 +15,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    pillar() size[0] = outside dia
-             size[1] = inside dia
-             size[2] = height
-             data[1] = color
+    pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
+           size[0] = outside dia
+           size[1] = inside dia
+           size[2] = height
+           data[1] = color
 */
 
 // pillar class

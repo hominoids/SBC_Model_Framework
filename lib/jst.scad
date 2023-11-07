@@ -15,6 +15,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
+    jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask))
+        type = "xh","ph","zh","sh"
+        data[0] = #pins
+
 */
 
 // JST connector class
@@ -25,16 +29,17 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     
         size_x = 2.45+(data[0]*2.5);
         size_y = 5.75;
+        size_z = 7;
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
-                color("white") cube([size_x, size_y, 7]);
-                color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, 7]);
+                color("white") cube([size_x, size_y, size_z]);
+                color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, size_z]);
                 color("white") translate([2, -.1,2.875]) cube([1.5, size_y-2, 5]);
                 color("white") translate([size_x-3.5, -.1,2.875]) cube([1.5, size_y-2, 5]);
-                color("white") translate([-.1,1,6]) cube([size_y-2,0.25*data[0],7]);
-                color("white") translate([size_x-2,1,6]) cube([size_y-2,0.25*data[0],7]);
+                color("white") translate([-.1,1,6]) cube([size_y-2,0.25*data[0],size_z]);
+                color("white") translate([size_x-2,1,6]) cube([size_y-2,0.25*data[0],size_z]);
             }
             translate([2.45-.64/2, 0, 0]) union() {
                 for(ind=[0:data[0]-1]) {
@@ -50,12 +55,13 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     
         size_x = 1+(data[0]);
         size_y = 2.9;
+        size_z = 4.25;
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
-                color("white") cube([size_x, size_y, 4.25]);
-                color("white") translate([.25, .25, .25]) cube([size_x-.5, size_y-.5, 4.25]);
+                color("white") cube([size_x, size_y, size_z]);
+                color("white") translate([.25, .25, .25]) cube([size_x-.5, size_y-.5, size_z]);
             }
             difference() {
                 color("white") translate([-.4, 0, 2.75]) cube([.5, 1, 1.5]);
@@ -78,17 +84,39 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     
         size_x = 2.4+(data[0]*2);
         size_y = 4.5;
+        size_z = 6;
         
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
-                color("white") cube([size_x, size_y, 6]);
-                color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, 6]);
-                color("white") translate([size_x/2-(0.5*data[0])/2, -.1,.5]) cube([0.5*data[0], size_y-2, 6]);
+                color("white") cube([size_x, size_y, size_z]);
+                color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, size_z]);
+                color("white") translate([size_x/2-(0.5*data[0])/2, -.1,.5]) cube([0.5*data[0], size_y-2, size_z]);
             }
             translate([1.95, 0, 0]) union() {
                 for(ind=[0:data[0]-1]) {
                     color("silver") translate([ind*2, 1.4, .5]) cube([.5, .5, 4]);
+                }
+            }
+        }
+    }
+    // JST-ZH connector type
+    if(type == "zh") {
+    
+        size_x = 1.5+(data[0]*1.5);
+        size_y = 3.5;
+        size_z = 4.5;
+        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {
+            difference() {
+                color("white") cube([size_x, size_y, size_z]);
+                color("white") translate([.5, .5, .5]) cube([size_x-1, size_y-1, size_z]);
+                color("white") translate([size_x/2-(0.5*data[0])/2, -.1,.5]) cube([0.5*data[0], size_y-2, size_z]);
+            }
+            translate([1.95, 0, 0]) union() {
+                for(ind=[0:data[0]-1]) {
+                    color("silver") translate([ind*2, 1.4, .5]) cube([.5, .45, 4]);
                 }
             }
         }
