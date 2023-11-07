@@ -17,33 +17,21 @@
 
 
 */
-
-include <./lib/place.scad>
-include <./lib/soc.scad>
-include <./lib/antenna.scad>
-include <./lib/audio.scad>
-include <./lib/battery.scad>
-include <./lib/button.scad>
-include <./lib/cm.scad>
-include <./lib/discrete.scad>
-include <./lib/display.scad>
-include <./lib/fan.scad>
-include <./lib/gpio.scad>
-include <./lib/heatsink.scad>
-include <./lib/ic.scad>
-include <./lib/jst.scad>
-include <./lib/jumper.scad>
-include <./lib/memory.scad>
-include <./lib/network.scad>
-include <./lib/pad.scad>
-include <./lib/pcb.scad>
-include <./lib/pcie.scad>
-include <./lib/pillar.scad>
-include <./lib/power.scad>
-include <./lib/shape.scad>
-include <./lib/smd.scad>
-include <./lib/storage.scad>
-include <./lib/switch.scad>
-include <./lib/usb.scad>
-include <./lib/video.scad>
-
+ 
+// antenna class
+module antenna(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+        
+    // type led surface mount
+    if(type == "ipex" && enablemask == false) {
+    
+        place(loc_x, loc_y, loc_z, 2.5, 2.75, rotation, side, pcbsize_z)
+        union() {
+            color("white") cube([2.5,2.75,.35]);
+            difference() {
+                color("silver") translate([2.5/2, 2.75/2, .45]) cylinder(d=2, h=.8);
+                color("silver") translate([2.5/2, 2.75/2, .6]) cylinder(d=1.8, h=1);
+            }
+            color("gold") translate([2.5/2, 2.75/2, .6]) cylinder(d=.5, h=.6);
+        }
+    }  
+}

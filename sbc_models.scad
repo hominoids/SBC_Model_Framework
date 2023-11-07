@@ -226,11 +226,6 @@ module sbc(model, enablemask = false) {
                                     video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
-                            if (class == "pcbhole" && mask[0] == true) {
-                                if (loc_x != 0 || loc_y != 0) {
-//                                    pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
-                                }
-                            }      
                         }
                     }
                 }
@@ -460,6 +455,11 @@ module sbc(model, enablemask = false) {
                             if (class == "pcie") {
                                 if(loc_x != 0 || loc_y != 0) {
                                     pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "pillar") {
+                                if(loc_x != 0 || loc_y != 0) {
+                                    pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "power") {
