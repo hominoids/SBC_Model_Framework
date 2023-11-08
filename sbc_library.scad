@@ -45,6 +45,7 @@ include <./lib/shape.scad>
 include <./lib/smd.scad>
 include <./lib/storage.scad>
 include <./lib/switch.scad>
+include <./lib/terminal.scad>
 include <./lib/usb.scad>
 include <./lib/video.scad>
 

@@ -39,12 +39,12 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     pitch = data[3];
     pcolor = data[4];
 
-    size_x = pitch * column;
-    size_y = pitch * rows;
     adj = .01;
     $fn = 90;
 
-    if(type=="default" && enablemask == false) {
+    if(type=="default" && style == "thruhole" && enablemask == false) {
+        size_x = pitch * column;
+        size_y = pitch * rows;
         if(gender == "male") {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
             union() {
@@ -63,7 +63,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                     color(hcolor) cube([size_x, size_y, height]);
                     for(c=[1:pitch:size_x]) {
                         for(r=[1:pitch:size_y]) {
-                            color("dimgray") translate ([c,r,height-5+adj]) cube([.64,.64,5]);
+                            color("dimgray") translate ([c,r,height-5+adj]) cube([.64,.64,height-1]);
                             color(pcolor) translate ([c,r,-3.2]) cube([.64,.64,3.3]);
                         }
                     }
@@ -71,6 +71,48 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                 for(c=[1:pitch:size_x]) {
                     for(r=[1:pitch:size_y]) {
                         color(pcolor) translate ([c,r,-3.2]) cube([.64,.64,3.3]);
+                    }
+                }
+            }
+        }
+    }
+    if(type=="default" && style == "smt" && enablemask == false) {
+        size_x = 2.5 * column;
+        size_y = 2.5 * rows;
+        height = 7.1;
+        
+        if(gender == "male") {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
+            union() {
+                color(hcolor) cube([size_x, size_y, 2.5]);
+                for(c=[1:pitch:size_x]) {
+                    for(r=[1:pitch:size_y]) {
+                        color(pcolor) translate ([c,r,.5]) cube([.64,.64,height]);
+                    } 
+                }
+                for(c=[1:pitch:size_x]) {
+                    for(r=[1:pitch:size_y]) {
+                        color(pcolor) translate ([-.99,r,0]) cube([.925,.64,.64]);
+                        color(pcolor) translate ([(column*2.5)-.01,r,0]) cube([.925,.64,.64]);
+                    }
+                }
+            }
+        }
+        if(gender == "female") {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
+            union() {
+                difference() {
+                    color(hcolor) cube([size_x, size_y, height]);
+                    for(c=[1:pitch:size_x]) {
+                        for(r=[1:pitch:size_y]) {
+                            color("dimgray") translate ([c,r,height-5+adj]) cube([.64,.64,height-1]);
+                        }
+                    }
+                }
+                for(c=[1:pitch:size_x]) {
+                    for(r=[1:pitch:size_y]) {
+                        color(pcolor) translate ([-.99,r,0]) cube([.925,.64,.64]);
+                        color(pcolor) translate ([(column*2.5)-.01,r,0]) cube([.925,.64,.64]);
                     }
                 }
             }
