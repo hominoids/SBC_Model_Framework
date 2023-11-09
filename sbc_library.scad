@@ -58,7 +58,7 @@
                             hdmi_a_vertical
     20221101 Version 1.0.9  added microsdcard2
     20221207 Version 1.0.10 added n2l_oem and n2lq_oem heatsinks
-    202xxxxx Version 1.0.11 added header_24, jst_sh
+    20231109 Version 1.0.11 added header_24, jst_sh
     
     see https://github.com/hominoids/SBC_Case_Builder
 
