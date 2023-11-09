@@ -266,8 +266,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                             color("white") cube([size_x, size_y, 10]);
                             color("darkgray") translate([.5, .5, 2]) cube([22, 7, 11]);
                         }
-                        color("white") translate([-.9, 5.5, 0]) rotate([0, 0, -45]) 
-                        cube([1, 4, 10]);
+                        color("white") translate([-.9, 5.5, 0]) rotate([0, 0, -45]) cube([1, 4, 10]);
                         color("white") translate([23, 5, 0]) rotate([0, 0, 45]) cube([1, 4, 10]);
                     }               
                     color("white") translate([-1, 0, -.5]) cube([1, 9, 11]);
@@ -278,7 +277,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                     color("white") translate([23.1, 6, -.5]) rotate([0, 0, 45]) cube([3, 4, 11]);
                 }
                 for (i=[3.75:5:20]) {
-                    color("silver") translate ([i, 4, 2]) cylinder(d=2, h=7, $fn=30);
+                    color("silver") translate ([i, 4, -3.2]) cylinder(d=2, h=13, $fn=30);
                 }
             }
     }

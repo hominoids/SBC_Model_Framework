@@ -15,8 +15,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
-             type = "ir_1", "ir_dual"
+    discrete(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+             type = "ir_1", "ir_dual", 
+                    "capacitor"
+                      size[0] = diameter
+                      size[2] = height
+                    "led"
+                      size[0] = diameter
+                      size[2] = height
+                      data[0] = style
+                      data[1] = led color
+
 */
 
 // discrete class
@@ -26,6 +35,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
     len = mask[1];
     back = mask[2];
     style = mask[3];
+    pcolor = "#fee5a6";
        
     // type ir
     if(type=="ir_1") {
@@ -131,4 +141,38 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
             }
         }
     }
+    // can capacitor
+    if(type=="capacitor") {
+    
+        size_x = size[0];
+        size_y = size[0];
+        height = size[2];
+   
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {  
+            color("dimgray") cylinder(d=size_x+.5, h=.5);
+            color("silver") translate([0,0,.5]) cylinder(d=size_x+.5, h=.5);
+            color("silver") translate([0,0,1]) cylinder(d=size_x, h=height-1);
+            color(pcolor) translate([-size_x/3,-.32,-3.2]) cube([.64,.64,3.3]);
+            color(pcolor) translate([(size_x/2)-(size_x/4),-.32,-3.2]) cube([.64,.64,3.3]);
+        }
+    }  
+    // led 
+    if(type=="led") {
+    
+        size_x = size[0];
+        size_y = size[0];
+        height = size[2];
+        style = data[0];
+        lcolor = data[1];
+   
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {  
+            color(lcolor, .6) cylinder(d=size_x+1, h=.5);
+            color(lcolor, .6) translate([0,0,.4]) cylinder(d=size_x, h=height-size_x/2-.6);
+            color(lcolor, .6) translate([0,0,height-size_x/2]) sphere(d=size_x);
+            color(pcolor) translate([-size_x/3,-.32,-3.2]) cube([.64,.64,3.3]);
+            color(pcolor) translate([(size_x/2)-(size_x/4),-.32,-3.2]) cube([.64,.64,3.3]);
+        }
+    }  
 }

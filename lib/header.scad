@@ -90,10 +90,10 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                         color(pcolor) translate ([c,r,.5]) cube([.64,.64,height]);
                     } 
                 }
-                for(c=[1:pitch:size_x]) {
-                    for(r=[1:pitch:size_y]) {
-                        color(pcolor) translate ([-.99,r,0]) cube([.925,.64,.64]);
-                        color(pcolor) translate ([(column*2.5)-.01,r,0]) cube([.925,.64,.64]);
+                for(r=[1:pitch:size_x]) {
+                    for(c=[1:pitch:size_y]) {
+                        color(pcolor) translate ([r,-.99,0]) cube([.64,.925,.64]);
+                        color(pcolor) translate ([r,(rows*2.5)-.01,0]) cube([.64,.925,.64]);
                     }
                 }
             }
@@ -109,10 +109,10 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                         }
                     }
                 }
-                for(c=[1:pitch:size_x]) {
-                    for(r=[1:pitch:size_y]) {
-                        color(pcolor) translate ([-.99,r,0]) cube([.925,.64,.64]);
-                        color(pcolor) translate ([(column*2.5)-.01,r,0]) cube([.925,.64,.64]);
+                for(r=[1:pitch:size_x]) {
+                    for(c=[1:pitch:size_y]) {
+                        color(pcolor) translate ([r,-.99,0]) cube([.64,.925,.64]);
+                        color(pcolor) translate ([r,(rows*2.5)-.01,0]) cube([.64,.925,.64]);
                     }
                 }
             }

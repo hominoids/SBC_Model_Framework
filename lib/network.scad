@@ -76,6 +76,9 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                         color("darkgray") translate([1.5, -1, 1.5]) cube([13, 19.5, 8]);
                         color("darkgray") translate([5.5, -2, 7]) cube([5, 19.5, 5]);
                     }
+                    for(i=[0:7]){ 
+                        color("#fee5a6") translate([4+i, 1, 1]) rotate([-70,0,0]) cube([.5, .5, 10]);
+                    }
                     color("green") translate([2, -.1, 10]) cube([3, 2, 2]);
                     color("orange") translate([11, -.1, 10]) cube([3, 2, 2]);
                 }
@@ -134,6 +137,9 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                     }
                     color("green") translate([1, -.1, 9.2]) cube([3, 2, 2]);
                     color("orange") translate([10.375, -.1, 9.2]) cube([3, 2, 2]);
+                    for(i=[0:7]){ 
+                        color("#fee5a6") translate([4+i, 1, 1]) rotate([-70,0,0]) cube([.5, .5, 10]);
+                    }
                 }
         }
     }
@@ -433,19 +439,19 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) 
-               union() {
-                    difference () {
-                        color("lightgray") cube([size_x, size_y, 31]);
-                        color("darkgray") translate([3, -1, 19]) cube([13, 19.5, 8]);
-                        color("darkgray") translate([7, -2, 24.5]) cube([5, 19.5, 5]);
-                        color("dimgray") translate([3, -.1, 1.5]) cube([13, 7.5, 7]);
-                        color("dimgray") translate([3, -.1, 10.5]) cube([13, 7.5, 7]);                
-                    }
-                    color("green") translate([3, -.1, 27.5]) cube([3, 2, 2]);
-                    color("orange") translate([13, -.1, 27.5]) cube([3, 2, 2]);
-                    color("royalblue") translate([4, 1, 5]) cube([11, 12.5, 1.5]);
-                    color("royalblue") translate([4, 1, 14]) cube([11, 12.5, 1.5]);
+            union() {
+                difference () {
+                    color("lightgray") cube([size_x, size_y, 31]);
+                    color("darkgray") translate([3, -1, 19]) cube([13, 19.5, 8]);
+                    color("darkgray") translate([7, -2, 24.5]) cube([5, 19.5, 5]);
+                    color("dimgray") translate([3, -.1, 1.5]) cube([13, 7.5, 7]);
+                    color("dimgray") translate([3, -.1, 10.5]) cube([13, 7.5, 7]);                
                 }
+                color("green") translate([3, -.1, 27.5]) cube([3, 2, 2]);
+                color("orange") translate([13, -.1, 27.5]) cube([3, 2, 2]);
+                color("royalblue") translate([4, 1, 5]) cube([11, 12.5, 1.5]);
+                color("royalblue") translate([4, 1, 14]) cube([11, 12.5, 1.5]);
+            }
         }
     }    
 }
