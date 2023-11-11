@@ -15,9 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask))
-        type = "xh","ph","zh","sh"
-        data[0] = #pins
+    DESCRIPTION: creates jst headers in multiple style, size and pitch.
+           TODO: 90 degree headers
+           
+          USAGE: jst(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask
+                     type = "xh","ph","zh","sh"
+                    style = "default", "angled"
+                  data[0] = #pins
 
 */
 

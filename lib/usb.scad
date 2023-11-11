@@ -166,7 +166,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
     if(type == "single_vertical_a") {
         
         size_x = 5.75;
-        size_y = 19.5;
+        size_y = size[1];
         size_xm = 7.5;
         size_zm = 14;
         
@@ -211,12 +211,12 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 // usb 2.0 port
                 difference () {
                     color("silver") cube([size_x, size_y, 14]);
-                    color("dimgray") translate([.5, -1, .75]) cube([4.75, 12.5, 13]);
+                    color("dimgray") translate([.5, -1, .75]) cube([4.75, size[1]-2, 13]);
                 }
                 color("silver") translate([-.65, 0, 1]) cube([.65, .5, 12]);    
                 color("silver") translate([size_x, 0, 1]) cube([.65, .5, 12]);
                 color("silver") translate([1, 0, 14]) cube([3.8, .5, .65]);            
-                color("white") translate([1, 0, 1.5]) cube([2, 17.5, 11]);
+                color("white") translate([1, 0, 1.5]) cube([2, size[1]-.5, 11]);
                 for(i=[0:2:6]){ 
                     color("#fee5a6") translate([2.75, .5, 4.4+i]) rotate([-90,0,0]) cube([.5, .64, 10]);
                 }
@@ -379,7 +379,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                         color("silver") translate([0, 0, 0]) cube([size_x, size_y, 7]);
                         color("dimgray") translate([.5,-.1, 1]) cube([size_x-1, size_y-.5, 5.5]);
                     }
-                    color("royalblue") translate([2, 1, 4]) cube([10, 12.5, 1.5]);
+                    color("royalblue") translate([2, 1, 4]) cube([10, size[1]-1, 1.5]);
                     color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);    
                     color("silver") translate([13.99, 0, 1]) cube([.65, .5, 5]);
                     color("silver") translate([1, 0, 6.99]) cube([11.5, .5, .65]);            
@@ -394,7 +394,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
     if(type == "single_vertical_a") {
         
         size_x = 5.75;
-        size_y = 19.5;
+        size_y = size[1];
         size_xm = 7.5;
         size_zm = 14;
         
@@ -436,15 +436,15 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {   
-                // usb 2.0 port
+                // usb 3.0 port
                 difference () {
                     color("silver") cube([size_x, size_y, 14]);
-                    color("dimgray") translate([.5, -1, .75]) cube([4.75, 12.5, 13]);
+                    color("dimgray") translate([.5, -1, .75]) cube([4.75, size[1]-2, 13]);
                 }
                 color("silver") translate([-.65, 0, 1]) cube([.65, .5, 12]);    
                 color("silver") translate([size_x, 0, 1]) cube([.65, .5, 12]);
                 color("silver") translate([1, 0, 14]) cube([3.8, .5, .65]);            
-                color("royalblue") translate([1, 0, 1.5]) cube([2, 17.5, 11]);
+                color("royalblue") translate([1, 0, 1.5]) cube([2, size[1]-.5, 11]);
                 for(i=[0:2:6]){ 
                     color("#fee5a6") translate([2.75, .5, 4.4+i]) rotate([-90,0,0]) cube([.5, .64, 10]);
                 }

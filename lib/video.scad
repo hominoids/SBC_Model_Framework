@@ -222,34 +222,48 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 union() {
                     difference() {
                         color("silver") translate([0, 0, 0]) cube([size_x, size_y, 19]);
-                        translate([2, -.7, 1.5]) color("dimgray") cube([14.5, 11.5, 5.5]);
+//                        translate([2, -.7, 1.5]) color("dimgray") cube([14.5, 11.5, 5.5]);
+//                        translate([1.75, -.7, 1.5]) color("dimgray") hdmi_open("hdmi_a",16);
+                        translate([1.75, -.7, 1.5]) {
+                            union() {
+                                difference() {
+                                    color("silver") cube([14.5, 11.5, 5.5]);
+                                    color("silver") translate([-.25, -.1, -.25]) rotate ([-90, 0, 0]) 
+                                        cylinder(d=4, h=13.5, $fn=30);
+                                    color("silver") translate([15, -.1, -.25]) rotate ([-90, 0, 0]) 
+                                        cylinder(d=4, h=13.5, $fn=30);
+                                }
+                            }
+                        }
                         translate([1.5, -.7, 12.5]) color("dimgray") cube([15, 17.5, 5.5]);
                     }         
-                    translate([2,-.7,1.5]){
-                        difference() {
-                            color("silver") cube([14.5, 11.5, 5.5]);
-                            color("dimgray") translate([.5, -.1, .5]) cube([13.5, 11, 4.5]);
-                            color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0]) 
-                                cylinder(d=4, h=13.5, $fn=30);
-                            color("silver") translate([14.5, -.1, 0]) rotate ([-90, 0, 0]) 
-                                cylinder(d=4, h=13.5, $fn=30);
-                        }
-                        difference() {
-                            union() {
+                    translate([1.75,-.7,1.5]){
+                        union() {
+                            difference() {
+                                color("silver") cube([14.5, 11.5, 5.5]);
+                                color("dimgray") translate([.5, -.1, .5]) cube([13.5, 11, 4.5]);
                                 color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0]) 
-                                cylinder(d=4, h=11.5, $fn=30);
+                                    cylinder(d=4, h=13.5, $fn=30);
                                 color("silver") translate([14.5, -.1, 0]) rotate ([-90, 0, 0]) 
-                                cylinder(d=4, h=11.5, $fn=30);
-                            }               
-                            color("silver") translate([0, -.2, 0]) rotate ([-90, 0, 0]) 
-                                cylinder(d=3, h=13.5, $fn=30);
-                            color("silver") translate([14.5, -.2, 0]) rotate ([-90, 0, 0]) 
-                                cylinder(d=3, h=13.5, $fn=30);
-                            color("silver") translate([-3, -1, -3]) cube([3, 13.5, 7.5]);
-                            color("silver") translate([14.5, -1, -3]) cube([3, 13.5, 7.5]);
-                            color("silver") translate([-1, -1, -3]) cube([16.5, 13.5, 3]);
+                                    cylinder(d=4, h=13.5, $fn=30);
                             }
-                        color("black") translate([2.5, .5, 2.25]) cube([9.25, 10.5, 1.5]);
+                            difference() {
+                                union() {
+                                    color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0]) 
+                                    cylinder(d=4, h=11.5, $fn=30);
+                                    color("silver") translate([14.5, -.1, 0]) rotate ([-90, 0, 0]) 
+                                    cylinder(d=4, h=11.5, $fn=30);
+                                }               
+                                color("silver") translate([0, -.2, 0]) rotate ([-90, 0, 0]) 
+                                    cylinder(d=3, h=13.5, $fn=30);
+                                color("silver") translate([14.5, -.2, 0]) rotate ([-90, 0, 0]) 
+                                    cylinder(d=3, h=13.5, $fn=30);
+                                color("silver") translate([-3, -1, -3]) cube([3, 13.5, 7.5]);
+                                color("silver") translate([14.5, -1, -3]) cube([3, 13.5, 7.5]);
+                                color("silver") translate([-1, -1, -3]) cube([16.5, 13.5, 3]);
+                                }
+                        }
+//                        color("black") translate([2.5, .5, 2.25]) cube([9.25, 10.5, 1.5]);
                     }
                     color("black") translate([2.5, .5, 14.5]) cube([13, 10.5, 1.5]);
                     color("silver") translate([0, 0, 12.5]) rotate([0, 45, 0]) cube([2, 17.5, 2]);

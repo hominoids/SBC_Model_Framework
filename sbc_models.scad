@@ -417,12 +417,7 @@ module sbc(model, enablemask = false) {
                                     fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
-                            if (class == "gpio") {
-                                if (loc_x != 0 || loc_y != 0) {
-                                    gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
-                                }           
-                            }
-                            if (class == "header") {
+                           if (class == "header" || class == "gpio") {
                                 if(loc_x != 0 || loc_y != 0) {
                                     header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
