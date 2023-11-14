@@ -34,7 +34,6 @@ module soc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
                 color("silver") translate([data[0],data[1],size_z-.01]) rotate([90,0,90]) slot(data[5],data[3],data[4]);
-                echo(data[3],data[4],data[5]);
             }
     }
 }
