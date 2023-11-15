@@ -1,9 +1,12 @@
 include <sbc_models.scad>
 
 translate([-460,0,0]) {
-translate ([-365,0,12]) sbc("m1");
-linear_extrude(height = 2) {translate([-355,-20,0]) text("Odroid-M1");}
-color("green",.5) translate([-355,-20,-1]) cube([65,10,1]);
+translate ([-365,0,12]) sbc("m1s");
+linear_extrude(height = 2) {translate([-360,-20,0]) text("Odroid-M1s");}
+linear_extrude(height = 2) {translate([-355,100,0]) text("Odroid-M1");}
+translate ([-365,115,12]) sbc("m1");
+linear_extrude(height = 2) {translate([-355,100,0]) text("Odroid-M1");}
+color("green",.5) translate([-355,100,-1]) cube([65,10,1]);
 
 translate ([-240,0,0]) sbc("hc4");
 linear_extrude(height = 2) {translate([-240,-20,0]) text("Odroid-HC4");}

@@ -59,6 +59,7 @@
     20221101 Version 1.0.9  added microsdcard2
     20221207 Version 1.0.10 added n2l_oem and n2lq_oem heatsinks
     20231109 Version 1.0.11 added header_24, jst_sh
+    20231115 Version 1.0.12 added heatsink m1s_oem, rj45_low_profile, uart_micro_h, header_14
     
     see https://github.com/hominoids/SBC_Case_Builder
 
@@ -811,13 +812,7 @@ module network(x,y,rotation,side,type,pcbsize_z) {
                 difference () {
                     union() {
                     color("lightgray") translate([0.5, -0.375, 0]) cube([size_x, size_y, 11.375]);
-                    color("#353535") translate([0, 1.375, 0.1]) cube([size_x+1, 9.375, 11.5]);
-                    color("#353535") translate([-1.25, 1.3, 5]) cube([1.25, 2.25, 3.5]);
-                    color("#353535") translate([-1.25, 6, 5]) cube([1.25, 1.9, 3.5]);
-                    color("#353535") translate([-1.25, 7.5, 5]) cube([1.25, 2, .75]);
-                    color("#353535") translate([14.5, 1.3, 5]) cube([1.25, 2.25, 3.5]);
-                    color("#353535") translate([14.5, 6, 5]) cube([1.25, 1.9, 3.5]);
-                    color("#353535") translate([14.5, 7.5, 5]) cube([1.25, 2, .75]);
+                    color("silver") translate([0, 1.375, 0.1]) cube([size_x+1, 9.375, 11.5]);
                     }
                     color("darkgray") translate([1.3, -1, 2.5]) cube([12, 9.5, 7.25]);
                     color("darkgray") translate([4, -2, .875]) cube([6.675, 12, 2]);
@@ -2206,6 +2201,34 @@ module heatsink(x,y,rotation,side,type,pcbsize_z,soc1size_z) {
             // holes
             color("white",.6) translate([45.5,10,-1]) cylinder(d=3, h=4);
             color("white",.6) translate([-5.5,30,-1]) cylinder(d=3, h=4);
+        }
+    }
+    if(type=="m1s_oem") {
+        $fn=60;
+        size_x = 40;
+        size_y = 40;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        translate([0,0,soc1size_z]) 
+        difference() {
+            union() {
+                color("grey",.6) cube([40, 40, 8.35]);
+                color("grey",.6) translate([5.15,39.99,0]) cube([6.2,4.16,2]);
+                color("grey",.6) translate([8.25,44.15,0]) cylinder(d=6.2, h=2);
+                color("grey",.6) translate([29.4,-4.14,0]) cube([6.2,4.16,2]);
+                color("grey",.6) translate([32.55,-4.15,0]) cylinder(d=6.2, h=2);
+            }
+            // fins
+            for (i=[1.35:2.25:38.5]) {
+                    color("grey",.6) translate([-1,i,2]) cube ([42,1.25,12]);
+            }
+            // cross opening
+            color("grey",.6) translate([-1,17.5,2]) cube([42,4.8,10]);
+            // fin elevations
+            color("grey",.6) translate([-1,16,6.11]) cube([42,8,3]);
+
+            // holes
+            color("grey",.6) translate([8.25,44.15,-1]) cylinder(d=3, h=4);
+            color("grey",.6) translate([32.55,-4.15,-1]) cylinder(d=3, h=4);
         }
     }
     // h3/h3+ hk heatsink
