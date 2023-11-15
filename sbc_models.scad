@@ -81,6 +81,9 @@ module sbc(model) {
                     color("tan") cylinder(d=pcb_hole_size, h=5);
             }
         }
+        if(model == "m1s") {
+            color("tan") translate([4,-1,-1]) cube([12.5,11,4]);
+        }
     }
 
     // soc placement

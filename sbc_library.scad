@@ -477,6 +477,33 @@ module plug(x,y,rotation,side,type,pcbsize_z) {
         }
     }
 
+    if(type=="uart_micro_h") {
+        size_x = 12.5;
+        size_y = 5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        rotate([90,0,0]) union() {
+            difference() {
+                union() {
+                
+                    difference () {
+                        color("white") translate([0,0,0]) cube([size_x,size_y,6]);
+                        color("darkgray") translate([.5,.5,2]) cube([11.5,4,6]);
+                    }
+                    color("white") translate([12,3.75,.5]) rotate([0,0,45]) cube([1,2,5.5]);
+                    color("white") translate([-0.2,4,.5]) rotate([0,0,-45]) cube([1,2,5.5]);
+                }
+                color("white") translate([12.5,0,-.5]) cube([2,6,7]);
+                color("white") translate([-1,0,-.5]) cube([1,6,7]);
+                color("white") translate([-1,5,-.5]) cube([14,2,7]);
+                color("white") translate([-0.7,4.5,-.1]) rotate([0,0,-45]) cube([1,2,7]);
+                color("darkgray") translate([-1,1.5,2]) cube([14,1,7]);
+            }
+            for (i=[2.5:2.5:10]) {
+                color("silver") translate ([i,3,.5]) cube([.6,.6,5]);
+            }
+        }
+    }
+
     // molex power 4x1 connector type
     if(type=="molex_4x1") {
         size_x = 23;
@@ -772,6 +799,37 @@ module network(x,y,rotation,side,type,pcbsize_z) {
             color("green") translate([1,-.1,8.6]) cube([3, 2, 2]);
             color("orange") translate([10.375,-.1,8.6]) cube([3, 2, 2]);
         }
+    }
+    if(type == "rj45_low_profile") {
+    
+        size_x = 13.5;
+        size_y = 12.67;
+        offset_z = -3.1;
+        
+        place(x, y, size_x, size_y, rotation, side, type, pcbsize_z) 
+            translate([0,0,offset_z]) {
+                difference () {
+                    union() {
+                    color("lightgray") translate([0.5, -0.375, 0]) cube([size_x, size_y, 11.375]);
+                    color("#353535") translate([0, 1.375, 0.1]) cube([size_x+1, 9.375, 11.5]);
+                    color("#353535") translate([-1.25, 1.3, 5]) cube([1.25, 2.25, 3.5]);
+                    color("#353535") translate([-1.25, 6, 5]) cube([1.25, 1.9, 3.5]);
+                    color("#353535") translate([-1.25, 7.5, 5]) cube([1.25, 2, .75]);
+                    color("#353535") translate([14.5, 1.3, 5]) cube([1.25, 2.25, 3.5]);
+                    color("#353535") translate([14.5, 6, 5]) cube([1.25, 1.9, 3.5]);
+                    color("#353535") translate([14.5, 7.5, 5]) cube([1.25, 2, .75]);
+                    }
+                    color("darkgray") translate([1.3, -1, 2.5]) cube([12, 9.5, 7.25]);
+                    color("darkgray") translate([4, -2, .875]) cube([6.675, 12, 2]);
+                    color("darkgray") translate([5, -2, -.1]) cube([4.5, 12, 1]);
+                    color("darkgray") translate([2, 9.5, 3]) cube([10.5, 5, 8.4]);
+                }
+                for(i=[0:7]){ 
+                    color("#fee5a6") translate([3.5+i, 8.5, 7]) rotate([70,0,0]) cube([.5, .5, 8]);
+                }
+//                    color("green") translate([1, -.1, 9.2]) cube([3, 2, 2]);
+//                    color("orange") translate([10.375, -.1, 9.2]) cube([3, 2, 2]);
+            }
     }
     if(type == "rj45_double_stacked") {
         size_x = 17.5;
@@ -1072,6 +1130,23 @@ module fan(x,y,rotation,side,type,pcbsize_z) {
             color("silver") translate ([4.5,2,.5]) cube([.6,.6,4]);
         }
     }
+    // micro connector type
+    if(type=="micro_h") {
+        size_x = 7.5;
+        size_y = 3.75;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        translate([0,0,0]) rotate([90,0,0]) union() {  
+            difference () {
+                color("white") translate([0,0,0]) cube([size_x,size_y,4.75]);
+                color("darkgray") translate([1.5,.5,1]) cube([4.5,2.75,6]);
+                color("white") translate([-.5,.75,-.5]) cube([1,2.5,6]);
+                color("white") translate([7,.75,-.5]) cube([1,2.5,6]);
+                color("darkgray") translate([2.25,-.5,1]) cube([3,2,6]);
+            }
+            color("silver") translate ([2.75,2,.5]) cube([.6,.6,4]);
+            color("silver") translate ([4.5,2,.5]) cube([.6,.6,4]);
+        }
+    }
     // pmw-standard connector type
     if(type=="encl_pmw") {
         size_x = 11.6;
@@ -1147,12 +1222,25 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
     }
     // gpio 40 pin header
     if(type=="header_40") {
-        size_x = 50;
+        size_x = 51;
         size_y = 5;                
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
-            for (i=[1:2.5:50]) {
+            for (i=[1:2.54:50]) {
+                color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
+                color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
+            }
+        }
+    }   
+    // gpio 14 pin header
+    if(type=="header_14") {
+        size_x = 18;
+        size_y = 5;                
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        union() {
+            color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
+            for (i=[1:2.54:17]) {
                 color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
                 color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
@@ -1165,7 +1253,7 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
-            for (i=[1:2.5:25]) {
+            for (i=[1:2.54:25]) {
                 color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
                 color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
@@ -1178,7 +1266,7 @@ module gpio(x,y,rotation,side,type,pcbsize_z) {
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         union() {
             color("black") translate([0,0,0]) cube([size_x, size_y, 3]);
-            for (i=[1:2.5:29]) {
+            for (i=[1:2.54:29]) {
                 color("silver") translate ([i,.5,3]) cube([.64,.64,5]);
                 color("silver") translate ([i,3.5,3]) cube([.64,.64,5]);
             }
@@ -1408,6 +1496,13 @@ module ic(x,y,rotation,side,type,pcbsize_z) {
     if (type=="ic_13x11.5") {
         size_x = 13;
         size_y = 11.5;        
+        place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
+        color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
+    }    
+    // ic 14mm x 8mm
+    if (type=="ic_14x8") {
+        size_x = 14;
+        size_y = 8;        
         place(x,y,size_x,size_y,rotation,side,type,pcbsize_z)
         color("dimgray") translate([0,0,0]) cube([size_x,size_y,.8]);
     }    
