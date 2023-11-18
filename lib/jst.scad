@@ -15,12 +15,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    DESCRIPTION: creates jst connectors of various type and pitch.
+    DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa.
            TODO: flange for sh
            
           USAGE: jst(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
                      type = "xh","ph","zh","sh","pa"
-                     size[0] = #row
+                     size[0] = #pins
                      data[0] = "thruhole", "smt"
                      data[1] = "top", "side"
 
@@ -35,25 +35,30 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     hcolor = "white";
     pcolor = "silver";
     
-/*    
-                                              w
-                             b                a    p     p     p    p    p
-                             o                l    i     i     b    t    i    
-                             d      s   s     l    n     n     h    h    n
+/*
+                                                               p    p
+                                                               i    i
+                                                               n    n
+                                                                
+                                                               b    t
+                                               w               o    o
+                             b                 a   p     p     t    p    p
+                             o                 l   i     i               i    
+                             d      s   s      l   n     n     h    h    n
                         p    y      i   i                      e    e    
-                   t    i           z   z     s    x     y     i    i    s
-                   y    t    a      e   e     i    a     a     g    g    i
-                   p    c    d                z    d     d     h    h    z
-                   e    h    j      y   z     e    j     j     t    t    e
+                   t    i           z   z      s   x     y     i    i    s
+                   y    t    a      e   e      i   a     a     g    g    i
+                   p    c    d                 z   d     d     h    h    z
+                   e    h    j      y   z      e   j     j     t    t    e
 */
     jst_data = [
-                ["xh", 2.5, 2.45, 5.75, 7,   .5,  2.35, 2.4,  3.4, 7,   .64],
-                ["ph", 2,   1.95, 4.5,  6,   .5,  1.95, 1.7,  3.4, 5,   .5],
-                ["zh", 1.5, 1.5,  3.5, 4.5,  .35, 1.5,  1.3,  3.4, 3.5, .5],
-                ["sh", 1,   1,    2.9, 4.25, .35, 1,    1.25, 3.4, 4,   .25],
-                ["pa", 2,   2,    4,   8,    .35, 2,    2,    3.4, 4.5, .5]
+                ["xh", 2.5, 2.45, 5.75, 7,    .5,  2.35, 2.4,  3.4, 7,   .64],
+                ["ph", 2,   1.95, 4.5,  6,    .5,  1.95, 1.7,  3.4, 5,   .5],
+                ["zh", 1.5, 1.5,  3.5,  4.5,  .35, 1.5,  1.3,  3.4, 3.5, .5],
+                ["sh", 1,   1,    2.9,  4.25, .35, 1,    1.25, 3.4, 4,   .25],
+                ["pa", 2,   2,    4,    8,    .35, 2,    2,    3.4, 4.5, .5]
                ];
-    
+
     adj = .01;
     $fn = 90;
 
@@ -216,39 +221,3 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
         }
     }
 }
-
-
-enablemask = false;
-mask=0;
-
-// thruhole side entry
-translate([-15,0,0]) jst("xh",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([-30,0,0]) jst("ph",0,0,0,"top",[0,0,0],[4,0,0],["thruhole","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([-40,0,0]) jst("zh",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([-50,0,0]) jst("sh",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-
-// thruhole top entry
-translate([-15,20,0]) jst("xh",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([-30,20,0]) jst("ph",0,0,0,"top",[0,0,0],[4,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([-40,20,0]) jst("zh",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([-50,20,0]) jst("sh",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-
-translate([0,-30,0]) jst("pa",0,0,0,"top",[0,0,0],[7,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([0,-40,0]) jst("pa",0,0,0,"top",[0,0,0],[6,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([0,-50,0]) jst("pa",0,0,0,"top",[0,0,0],[5,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([0,-60,0]) jst("pa",0,0,0,"top",[0,0,0],[4,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([0,-70,0]) jst("pa",0,0,0,"top",[0,0,0],[3,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([0,-80,0]) jst("pa",0,0,0,"top",[0,0,0],[2,0,0],["thruhole","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-
-
-// smt side entry
-translate([0,0,0]) jst("xh",0,0,0,"top",[0,0,0],[3,0,0],["smt","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([15,0,0]) jst("ph",0,0,0,"top",[0,0,0],[4,0,0],["smt","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([30,0,0]) jst("zh",0,0,0,"top",[0,0,0],[3,0,0],["smt","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([40,0,0]) jst("sh",0,0,0,"top",[0,0,0],[3,0,0],["smt","side",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-
-// smt top entry
-translate([0,20,0]) jst("xh",0,0,0,"top",[0,0,0],[3,0,0],["smt","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([15,20,0]) jst("ph",0,0,0,"top",[0,0,0],[4,0,0],["smt","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([30,20,0]) jst("zh",0,0,0,"top",[0,0,0],[3,0,0],["smt","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);
-translate([40,20,0]) jst("sh",0,0,0,"top",[0,0,0],[3,0,0],["smt","top",0,0,0,0,0,0],0,enablemask,[10,2,"default"]);

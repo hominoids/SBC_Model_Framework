@@ -33,7 +33,6 @@ include <./lib/header.scad>
 include <./lib/heatsink.scad>
 include <./lib/ic.scad>
 include <./lib/jst.scad>
-include <./lib/jumper.scad>
 include <./lib/memory.scad>
 include <./lib/network.scad>
 include <./lib/pad.scad>
