@@ -22,6 +22,7 @@ include <./lib/place.scad>
 include <./lib/soc.scad>
 include <./lib/antenna.scad>
 include <./lib/audio.scad>
+include <./lib/b2b.scad>
 include <./lib/battery.scad>
 include <./lib/button.scad>
 include <./lib/cm.scad>
