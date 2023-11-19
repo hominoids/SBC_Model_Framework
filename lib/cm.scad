@@ -15,37 +15,80 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
+    DESCRIPTION: creates compute modules
+           TODO: 
+           
+          USAGE: cm(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
+                     type = "cm1","cm3","cm3l","jetsonnano"
+                     data[0] = pcb color
 
 */
 
-// compute module holder class
-module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+// compute module class
+module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
-    // jetson nano
-    if(type == "jetsonnano") {        
-        size_x = 73;
-        size_y = 6.5;                
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+    $fn=90;
+    if(type == "cm1" || type == "cm3" || type == "cm3l") {
+    
+        pcbcolor = data[0];
+        size_x = 67.6;
+        size_y = type == "cm1" ? 30 : 31;
+        size_z = 1;
+        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation[2], side, pcbsize_z)
         union() {  
             difference () {
-                color("dimgray") translate([0,0,0]) cube([size_x,size_y,9.2]);
-                color("dimgray") translate([1.5,-1,5.7]) cube([70,3,5]);
-                color("dimgray") translate([3.5,-1,5.7]) cube([28.5,5.25,.92]);
-                color("dimgray") translate([34.5,-1,5.7]) cube([35,5.25,.92]);
+                union() {
+                    color(pcbcolor) cube([size_x,size_y,size_z]);
+                    color("#fee5a6") translate([3,27,.99]) cylinder(d=5,h=.2);
+                    color("#fee5a6") translate([3,27,-.01]) cylinder(d=5,h=.2);
+                    color("#fee5a6") translate([64.6,27,.99]) cylinder(d=5,h=.2);
+                    color("#fee5a6") translate([64.6,27,-.01]) cylinder(d=5,h=.2);
+                }
+                color(pcbcolor) translate([15.75+.5,-1,-1]) rotate([0,0,90]) slot(1,5,3);
+                color(pcbcolor) translate([0,21,-1]) cylinder(d=3,h=3);
+                color(pcbcolor) translate([size_x,21,-1]) cylinder(d=3,h=3);
+                color(pcbcolor) translate([3,27,-1]) cylinder(d=2.3,h=3);
+                color(pcbcolor) translate([64.6,27,-1]) cylinder(d=2.3,h=3);
+                
             }
-            for (i=[2:.5:31]) {
-                color("gold") translate ([i+.5,2,5.7]) cube([.25,2,.25]);
+            for (i=[0:.5:14.5]) {
+                color("#fee5a6") translate ([i+.5,0,-.24]) cube([.25,2,.25]);
+                color("#fee5a6") translate ([i+.5,0,.99]) cube([.25,2,.25]);
             }
-            for (i=[34:.5:69]) {
-                color("gold") translate ([i+.5,2,5.7]) cube([.25,2,.25]);
+            for (i=[16.75:.5:66.5]) {
+                color("#fee5a6") translate ([i+.5,0,-.24]) cube([.25,2,.25]);
+                color("#fee5a6") translate ([i+.5,0,.99]) cube([.25,2,.25]);
             }
         }
-    }   
-}
-
-// compute module class
-module cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
-    $fn=90;
+    }
+    if(type == "cm4") {
+    
+        pcbcolor = data[0];
+        size_x = 55;
+        size_y = 40;
+        size_z = 1.2;
+        
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation[2], side, pcbsize_z)
+        union() {  
+            difference () {
+                union() {
+                    color(pcbcolor) slab([size_x,size_y,size_z],3.5);
+                    color("#fee5a6") translate([3.5,3.5,-.01]) cylinder(d=5,h=size_z+.2);
+                    color("#fee5a6") translate([3.5,size_y-3.5,-.01]) cylinder(d=5,h=size_z+.2);
+                    color("#fee5a6") translate([size_x-3.5,3.5,-.01]) cylinder(d=5,h=size_z+.2);
+                    color("#fee5a6") translate([size_x-3.5,size_y-3.5,-.01]) cylinder(d=5,h=size_z+.2);
+                }
+                color(pcbcolor) translate([-1,18.5,-1]) cube([7.5,11,3]);
+                color(pcbcolor) translate([2.56,31,-1]) cylinder(d=1.5,h=3);
+                color(pcbcolor) translate([3.5,3.5,-1]) cylinder(d=2.5,h=3);
+                color(pcbcolor) translate([3.5,size_y-3.5,-1]) cylinder(d=2.5,h=3);
+                color(pcbcolor) translate([size_x-3.5,3.5,-1]) cylinder(d=2.5,h=3);
+                color(pcbcolor) translate([size_x-3.5,size_y-3.5,-1]) cylinder(d=2.5,h=3);
+            }
+        }
+    }
+    
     // jetson nano
     if(type == "jetsonnano") {        
         size_x = 70;
@@ -108,3 +151,30 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask
         }
     }   
 }
+
+
+// compute module holder class
+module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+
+    // jetson nano
+    if(type == "jetsonnano") {        
+        size_x = 73;
+        size_y = 6.5;                
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {  
+            difference () {
+                color("dimgray") translate([0,0,0]) cube([size_x,size_y,9.2]);
+                color("dimgray") translate([1.5,-1,5.7]) cube([70,3,5]);
+                color("dimgray") translate([3.5,-1,5.7]) cube([28.5,5.25,.92]);
+                color("dimgray") translate([34.5,-1,5.7]) cube([35,5.25,.92]);
+            }
+            for (i=[2:.5:31]) {
+                color("gold") translate ([i+.5,2,5.7]) cube([.25,2,.25]);
+            }
+            for (i=[34:.5:69]) {
+                color("gold") translate ([i+.5,2,5.7]) cube([.25,2,.25]);
+            }
+        }
+    }   
+}
+

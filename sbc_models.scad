@@ -106,6 +106,11 @@ module sbc(model, enablemask = false) {
                                     audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }            
                             }
+                           if (class == "b2b") {
+                                if(loc_x != 0 || loc_y != 0) {
+                                    b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                            }
                             if (class == "battery" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
@@ -276,6 +281,9 @@ module sbc(model, enablemask = false) {
                             if(type == "dxf") {
                                 color(pcb_color) shape(type, [pcbsize_x, pcbsize_y, pcbsize_z], [pcbcorner_radius, pcb_color, pcb_polygon,0]);
                             }
+                            if(type == "cm1" || type == "cm3" || type == "cm3l" || type == "cm4") {
+                                cm(type, pcbloc_x, pcbloc_y, pcbloc_z, pcb_side, pcb_rotation, sbc_data[s[0]][i+8], sbc_data[s[0]][i+9], pcbsize_z, false, 0);
+                            }
                             // pcb additions
                             for (i=[1:11:len(sbc_data[s[0]])-1]) {
                                 
@@ -381,6 +389,11 @@ module sbc(model, enablemask = false) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }            
+                            }
+                           if (class == "b2b") {
+                                if(loc_x != 0 || loc_y != 0) {
+                                    b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
                             }
                             if (class == "battery") {
                                 if (loc_x != 0 || loc_y != 0) {

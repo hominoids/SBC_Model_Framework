@@ -22,7 +22,6 @@
                         
                         type = "df40"
                         size[0] = #pins
-                        size[1] = body width
                         size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)
                         data[0] = "default","shielded"
                         data[1] = header color
@@ -50,7 +49,6 @@ module b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
         wallthick = .25;
         pcolor = "#fee5a6";
 
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
         if(gender == "female") {
             
             lead_in = 1.3;
@@ -59,6 +57,7 @@ module b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             size_x = pitch * (pins/2) + (2*lead_in);
             size_y = 2.88;
 
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
             union() {
                 difference() {
                     color(hcolor) cube([size_x, size_y, height]);
@@ -92,6 +91,7 @@ module b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             size_y = 1.85;
             height = 1.14;
             
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
             union() {
                 difference() {
                     color(hcolor) cube([size_x, size_y, height]);
