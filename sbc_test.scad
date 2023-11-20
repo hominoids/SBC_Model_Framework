@@ -1,10 +1,14 @@
-
 include <sbc_models.scad>
 
 translate([-460,0,0]) {
-translate ([-365,0,12]) sbc("m1");
-linear_extrude(height = 2) {translate([-355,-20,0]) text("Odroid-M1");}
-color("green",.5) translate([-355,-20,-1]) cube([65,10,1]);
+ 
+translate ([-365,0,12]) sbc("m1s");
+linear_extrude(height = 2) {translate([-360,-20,0]) text("Odroid-M1s");}
+linear_extrude(height = 2) {translate([-355,100,0]) text("Odroid-M1");}
+
+translate ([-365,115,12]) sbc("m1");
+linear_extrude(height = 2) {translate([-355,100,0]) text("Odroid-M1");}
+color("green",.5) translate([-355,100,-1]) cube([65,10,1]);
 
 translate ([-240,0,0]) sbc("hc4");
 linear_extrude(height = 2) {translate([-240,-20,0]) text("Odroid-HC4");}
@@ -143,36 +147,36 @@ linear_extrude(height = 2) { translate([655,295,0]) text("ROCK 4C+"); }
 color("yellow",.3) translate([655,295,-1]) cube([80,10,1]);
 
 translate([650,210,0]) sbc("rock5b-v1.3");
-linear_extrude(height = 2) { translate([655,195,0]) text("ROCK 5B v1.31"); }
+linear_extrude(height = 2) { translate([655,195,0]) text("ROCK 5b v1.31"); }
 color("yellow",.3) translate([655,195,-1]) cube([95,10,1]);
 
 translate([650,105,0]) sbc("rock5bq");
-linear_extrude(height = 2) { translate([655,85,0]) text("ROCK 5BQ"); }
-color("green",.3) translate([655,85,-1]) cube([65,10,1]);
+linear_extrude(height = 2) { translate([655,85,0]) text("ROCK 5bq v1.42"); }
+color("green",.3) translate([655,85,-1]) cube([102,10,1]);
 
 translate([650,0,0]) sbc("rock5b");
-linear_extrude(height = 2) { translate([655,-20,0]) text("ROCK 5B"); }
-color("green",.3) translate([655,-20,-1]) cube([58,10,1]);
+linear_extrude(height = 2) { translate([655,-20,0]) text("ROCK 5b v1.42"); }
+color("green",.3) translate([655,-20,-1]) cube([95,10,1]);
 
 translate([775,0,0]) sbc("vim4");
 linear_extrude(height = 2) { translate([775,-20,0]) text("Vim4"); }
-color("yellow",.3) translate([775,-20,-1]) cube([32,10,1]);
+color("red",.3) translate([775,-20,-1]) cube([32,10,1]);
 
 translate([775,90,0]) sbc("vim3");
 linear_extrude(height = 2) { translate([775,70,0]) text("Vim3"); }
-color("yellow",.3) translate([775,70,-1]) cube([32,10,1]);
+color("red",.3) translate([775,70,-1]) cube([32,10,1]);
 
 translate([775,185,0]) sbc("vim3l");
 linear_extrude(height = 2) { translate([775,165,0]) text("Vim3L"); }
-color("yellow",.3) translate([775,165,-1]) cube([39,10,1]);
+color("red",.3) translate([775,165,-1]) cube([39,10,1]);
 
 translate([775,270,0]) sbc("vim2");
 linear_extrude(height = 2) { translate([775,250,0]) text("Vim2"); }
-color("yellow",.3) translate([775,250,-1]) cube([32,10,1]);
+color("red",.3) translate([775,250,-1]) cube([32,10,1]);
 
 translate([775,360,0]) sbc("vim1");
 linear_extrude(height = 2) { translate([775,340,0]) text("Vim1"); }
-color("yellow",.3) translate([775,340,-1]) cube([32,10,1]);
+color("red",.3) translate([775,340,-1]) cube([32,10,1]);
 
 translate([885,0,0]) sbc("tinkerboard-r2");
 linear_extrude(height = 2) { translate([885,-20,0]) text("Tinkerboard"); }
@@ -225,7 +229,4 @@ translate ([1340,0,0]) sbc("visionfive2");
 linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
 color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
 
-translate ([1460,0,0]) sbc("atomicpi");
-linear_extrude(height = 2) {translate([1500,-20,0]) text("AtomicPi");}
-color("yellow",.5) translate([1498,-20,-1]) cube([58,10,1]);
 }

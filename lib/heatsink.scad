@@ -208,6 +208,34 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
             
         }
     }
+
+    if(type=="m1s_oem") {
+        $fn=60;
+        size_x = 40;
+        size_y = 40;                
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+size_z)
+        difference() {
+            union() {
+                color("grey",.6) cube([40, 40, 8.35]);
+                color("grey",.6) translate([5.15,39.99,0]) cube([6.2,4.16,2]);
+                color("grey",.6) translate([8.25,44.15,0]) cylinder(d=6.2, h=2);
+                color("grey",.6) translate([29.4,-4.14,0]) cube([6.2,4.16,2]);
+                color("grey",.6) translate([32.55,-4.15,0]) cylinder(d=6.2, h=2);
+            }
+            // fins
+            for (i=[1.35:2.25:38.5]) {
+                    color("grey",.6) translate([-1,i,2]) cube ([42,1.25,12]);
+            }
+            // cross opening
+            color("grey",.6) translate([-1,17.5,2]) cube([42,4.8,10]);
+            // fin elevations
+            color("grey",.6) translate([-1,16,6.11]) cube([42,8,3]);
+
+            // holes
+            color("grey",.6) translate([8.25,44.15,-1]) cylinder(d=3, h=4);
+            color("grey",.6) translate([32.55,-4.15,-1]) cylinder(d=3, h=4);
+        }
+    }
     
     // hardkernel n2 heatsink
     if(type=="n2_oem" && enablemask ==  false) {
