@@ -29,6 +29,7 @@ include <./lib/cm.scad>
 include <./lib/discrete.scad>
 include <./lib/display.scad>
 include <./lib/fan.scad>
+include <./lib/fpc.scad>
 include <./lib/gpio.scad>
 include <./lib/header.scad>
 include <./lib/heatsink.scad>

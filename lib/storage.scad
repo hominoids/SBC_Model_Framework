@@ -72,7 +72,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {
                     for(loc_x = [.8:1.2:12]) {
-                        color("gold") translate([loc_x, 0, 0]) cube([0.7, 13.5, 0.4]);
+                        color("#fee5a6") translate([loc_x, 0, 0]) cube([0.7, 13.5, 0.4]);
                     }
                     difference() {
                         color("silver") cube([size_x, size_y, 1.4]);

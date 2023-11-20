@@ -28,7 +28,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
     // usb2 micro otg
     if(type == "micro") {
         
-        size_x = 7;
+        size_x = 7.5;
         size_y = 4.5;
         dia =3.75;
         wide = 8.5;
@@ -72,11 +72,11 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
                 union() {    
                     difference () {
-                        color("silver") translate([0,0,0]) cube([size_x, size_y, 3.5]);
-                        color("dimgray") translate([.5,-.1,.5]) cube([6, 3.5, 2.5]);
+                        color("silver") translate([0,0,0]) cube([size_x, size_y, 3]);
+                        color("dimgray") translate([.25,-.1,.5]) cube([7, 3.5, 2.25]);
                         color("silver") translate([0,-.1,0]) rotate ([-90,0,0]) 
                             cylinder(d=2.5, h=6.5,$fn=30);
-                        color("silver") translate([7,-.1,0]) rotate ([-90,0,0]) 
+                        color("silver") translate([7.375,-.1,0]) rotate ([-90,0,0]) 
                             cylinder(d=2.5, h=6.5,$fn=30);
 
                     }
@@ -84,16 +84,16 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                         union() {
                             color("silver") translate([0,-.1,0]) rotate ([-90,0,0]) 
                             cylinder(d=2.5, h=4.5,$fn=30);
-                            color("silver") translate([7,-.1,0]) rotate ([-90,0,0]) 
+                            color("silver") translate([7.375,-.1,0]) rotate ([-90,0,0]) 
                             cylinder(d=2.5, h=4.5,$fn=30);
                         }               
-                        color("silver") translate([0,-.2,0]) rotate ([-90,0,0]) 
-                            cylinder(d=1.25, h=6.5,$fn=30);
-                        color("silver") translate([7,-.2,0]) rotate ([-90,0,0]) 
-                            cylinder(d=1.25, h=6.5,$fn=30);
+                        color("silver") translate([.125,-.2,0]) rotate ([-90,0,0]) 
+                            cylinder(d=1.5, h=6.5,$fn=30);
+                        color("silver") translate([7.375,-.2,0]) rotate ([-90,0,0]) 
+                            cylinder(d=1.5, h=6.5,$fn=30);
                         
                         color("silver") translate([-3,-1,-3]) cube([3,6.5,7.5]);
-                        color("silver") translate([7,-1,-3]) cube([3,6.5,7.5]);
+                        color("silver") translate([7.5,-1,-3]) cube([3,6.5,7.5]);
                         color("silver") translate([0,-1,-3]) cube([9,6.5,3]);
                         color("silver") translate([-1,-1,-3]) cube([9,6.5,3]);
                         }
