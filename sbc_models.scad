@@ -148,6 +148,11 @@ module sbc(model, enablemask = false) {
                                     fan(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }           
                             }
+                            if (class == "fpc" && mask[0] == true) {
+                                if (loc_x != 0 || loc_y != 0) {
+                                    fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }           
+                            }
                             if (class == "gpio" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
@@ -157,11 +162,6 @@ module sbc(model, enablemask = false) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size[2], pcbsize_z, enablemask, mask);
                                 }   
-                            }
-                            if (class == "ic" && mask[0] == true) {
-                                if (loc_x != 0 || loc_y != 0) {
-                                    ic(type, loc_x, loc_y, loc_z, side, rotation, size[0], size[1], size[2], pcbsize_z);
-                                }           
                             }
                             if (class == "jst" && mask[0] == true) {
                                 if(loc_x != 0 || loc_y != 0) {

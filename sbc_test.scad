@@ -134,6 +134,10 @@ translate([535,680,0]) sbc("rpizero");
 linear_extrude(height = 2) { translate([535,662,0]) text("RPi Zero"); }
 color("yellow",.3) translate([535,662,-1]) cube([53,10,1]);
 
+translate([535,750,0]) sbc("cm4-ioboard");
+linear_extrude(height = 2) { translate([535,732,0]) text("RPi CM4 IO Board"); }
+color("yellow",.3) translate([535,732,-1]) cube([53,10,1]);
+
 translate([650,495,0]) sbc("rock4b+");
 linear_extrude(height = 2) { translate([650,475,0]) text("ROCK 4A/B+"); }
 color("yellow",.3) translate([650,475,-1]) cube([92,10,1]);
@@ -160,23 +164,23 @@ color("green",.3) translate([655,-20,-1]) cube([95,10,1]);
 
 translate([775,0,0]) sbc("vim4");
 linear_extrude(height = 2) { translate([775,-20,0]) text("Vim4"); }
-color("red",.3) translate([775,-20,-1]) cube([32,10,1]);
+color("green",.3) translate([775,-20,-1]) cube([32,10,1]);
 
 translate([775,90,0]) sbc("vim3");
 linear_extrude(height = 2) { translate([775,70,0]) text("Vim3"); }
-color("red",.3) translate([775,70,-1]) cube([32,10,1]);
+color("green",.3) translate([775,70,-1]) cube([32,10,1]);
 
 translate([775,185,0]) sbc("vim3l");
 linear_extrude(height = 2) { translate([775,165,0]) text("Vim3L"); }
-color("red",.3) translate([775,165,-1]) cube([39,10,1]);
+color("green",.3) translate([775,165,-1]) cube([39,10,1]);
 
 translate([775,270,0]) sbc("vim2");
 linear_extrude(height = 2) { translate([775,250,0]) text("Vim2"); }
-color("red",.3) translate([775,250,-1]) cube([32,10,1]);
+color("green",.3) translate([775,250,-1]) cube([32,10,1]);
 
 translate([775,360,0]) sbc("vim1");
 linear_extrude(height = 2) { translate([775,340,0]) text("Vim1"); }
-color("red",.3) translate([775,340,-1]) cube([32,10,1]);
+color("green",.3) translate([775,340,-1]) cube([32,10,1]);
 
 translate([885,0,0]) sbc("tinkerboard-r2");
 linear_extrude(height = 2) { translate([885,-20,0]) text("Tinkerboard"); }
@@ -199,7 +203,7 @@ color("yellow",.3) translate([885,255,-1]) cube([72,10,1]);
 
 translate([1005,0,0]) sbc("opi5");
 linear_extrude(height = 2) { translate([1005,-20,0]) text("OrangePi 5"); }
-color("yellow",.3) translate([1005,-20,-1]) cube([70,10,1]);
+color("green",.3) translate([1005,-20,-1]) cube([70,10,1]);
 
 translate([1005,90,0]) sbc("opizero");
 linear_extrude(height = 2) { translate([1005,73,0]) text("Zero/ZeroPlus"); }
@@ -228,5 +232,9 @@ color("green",.5) translate([1230,-20,-1]) cube([105,10,1]);
 translate ([1340,0,0]) sbc("visionfive2");
 linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
 color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
+
+translate ([1455,0,0]) sbc("atomicpi");
+linear_extrude(height = 2) {translate([1490,-20,0]) text("AtomicPi");}
+color("green",.5) translate([1488,-20,-1]) cube([56,10,1]);
 
 }

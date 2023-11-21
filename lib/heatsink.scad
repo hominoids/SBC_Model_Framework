@@ -237,6 +237,22 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         }
     }
     
+    if(type=="atomicpi") {
+        $fn=60;
+        size_x = 70;
+        size_y = 64;                
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z+size_z)
+        difference() {
+            color("grey",.8) cube([size_x, size_y, 32]);
+            color("grey",.8) translate([-1,-1,-1]) cube([72,16,3.5]);
+            color("grey",.8) translate([-1,size_y-15,-1]) cube([72,16,3.5]);
+            // fins
+            for (i=[1.5:4.5:size_y]) {
+                    color("silver",.6) translate([-1,i,11]) cube ([72,2.75,22]);
+            }
+        }
+    }
+    
     // hardkernel n2 heatsink
     if(type=="n2_oem" && enablemask ==  false) {
         size_x = 90;

@@ -19,7 +19,7 @@
            TODO: add other styles
            
           USAGE: fpc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-                     type = "fh19","fh12"
+                     type = "fh19"
                      size[0] = #pins
                      data[0] = "thruhole", "smt"
                      data[1] = "top", "side"
@@ -37,7 +37,11 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     bcolor = data[2];
     tcolor = data[3];
     pcolor = "#fee5a6";
-    
+    cmask = mask[0];
+    len = mask[1];
+    back = mask[2];
+    mstyle = mask[3];
+        
 /*
                                                              p    p
                                                              i    i
@@ -55,7 +59,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                    e      h    j   y     z   e   j     j     t    t    e
 */
     fpc_data = [
-                ["fh19", .5,   2, 3,  .9, .25, 1.25, 2.4,  3.4, 1,  .2],
+                ["fh19", .5,   2, 2.5,  .9, .25, 1.25, 2.4,  3.4, 1,  .15],
                 ["fh12", .5, 1.9, 3.5, 3.6, .25, 1.9, 2.4,  3.4, 1,  .15]
                ];
     
@@ -75,9 +79,12 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     pbheight = fpc_data[s[0]][8];
     ptheight = fpc_data[s[0]][9];
     pinsize = fpc_data[s[0]][10];
-    smtlead = [pinsize,.5,.32];
+    smtlead = [pinsize,.5,.15];
+    size_xm = size_x;
+    size_ym = size_y;
+    size_zm = 2;
 
-    if(entry == "top") {
+    if(entry == "top" && enablemask == false) {
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
@@ -104,7 +111,41 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             }
         }
     }
-    if(entry == "side") {
+    if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+            }    
+    }
+    if(entry == "side" && enablemask == false) {
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
             difference() {
@@ -114,7 +155,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             }
             if(type == "fh19") {
                 difference() {
-                    color(tcolor) translate([.125+body_adj/2, -.5,.5]) cube([size_x-body_adj-.25, size_y, size_z-.5]);
+                    color(tcolor) translate([.125+body_adj/2, -.5,.5]) cube([size_x-body_adj-.25, 2.625, .25]);
                     color(tcolor) translate([.115+body_adj/2, -.55,0]) cube([(size_x-body_adj-.25)/3, .25, 3]);
                     color(tcolor) translate([(.135+body_adj/2)+(size_x-body_adj-.25)/1.5, -.55,0]) 
                         cube([(size_x-body_adj-.25)/3, .25, 3]);                    
