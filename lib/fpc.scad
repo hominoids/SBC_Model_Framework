@@ -145,6 +145,12 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                     translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
             }    
     }
+    if(entry == "side" && enablemask == true && cmask == true && mstyle == "block") {
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,-1.5+back,size_zm-5.5]) rotate([90, 0, 0]) cube([size_x,size_zm+3.5,len]);
+            }
+    }
     if(entry == "side" && enablemask == false) {
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {

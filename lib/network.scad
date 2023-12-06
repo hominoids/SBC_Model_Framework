@@ -280,8 +280,8 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x-.0625, loc_y-size_ym+back, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, len, 12]);
+                place(loc_x+.25, loc_y-size_ym+back, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, len, 12.125]);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x-size_ym+back, loc_y-1.0625, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)

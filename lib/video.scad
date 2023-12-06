@@ -60,6 +60,17 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 place(loc_x-len+5+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",len);
             }
         }
+        if(enablemask == true && style == "m1s") {
+            // hdmi opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.5, loc_y-len+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
+                union() {
+                    hdmi_open("hdmi_a",len);
+                    translate([.5,0,2]) cube([15.5,10,5]);
+                    translate([1.875,0,-.1]) cube([12.375,10,2]);
+                    }
+            }
+        }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             translate([0,0,.75])
@@ -522,7 +533,7 @@ module hdmi_open(hdmi_style,len) {
     if(hdmi_style == "hdmi_a") {
         union() { 
             difference() {
-                translate([.25,-5,1]) cube([15,len,5.5]);
+                translate([.25,-5,1]) cube([15,len,5.75]);
                 translate([0.5,-5.2,.5]) rotate ([-90,0,0]) cylinder(d=3, h=13.5,$fn=30);
                 translate([15,-5.2,.5]) rotate ([-90,0,0]) cylinder(d=3, h=13.5,$fn=30);
             }

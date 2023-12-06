@@ -209,7 +209,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         }
     }
 
-    if(type=="m1s_oem") {
+    if(type=="m1s_oem" && enablemask ==  false) {
         $fn=60;
         size_x = 40;
         size_y = 40;                
@@ -237,7 +237,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         }
     }
     
-    if(type=="atomicpi") {
+    if(type=="atomicpi" && enablemask ==  false) {
         $fn=60;
         size_x = 70;
         size_y = 64;                
@@ -310,7 +310,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
     }
     
     // RPi5 heatsink
-    if(type=="rpi5_oem") {
+    if(type=="rpi5_oem" && enablemask ==  false) {
         size_x = 58;
         size_y = 32;                
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+size_z)
