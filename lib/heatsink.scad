@@ -237,6 +237,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
         }
     }
     
+    // AtomicPi heatsink
     if(type=="atomicpi" && enablemask ==  false) {
         $fn=60;
         size_x = 70;
@@ -338,4 +339,5 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size_z, pcbsize_z, en
                 color("lightgray",.6) translate([-1,i,3]) cube([28,2,8]);
             }
         } 
-    }}
+    }
+}
