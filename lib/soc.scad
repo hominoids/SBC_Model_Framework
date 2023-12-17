@@ -29,6 +29,20 @@ module soc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             color("dimgray") cube([size_x, size_y, size_z]);
     }
+    if(type == "rk3399") {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("silver") cube([size_x, size_y, size_z]);
+                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],2);
+            }
+    }
+    if(type == "rk3588") {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("silver") cube([size_x, size_y, size_z]);
+                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
+            }
+    }
     if(type == "mid-raised") {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {

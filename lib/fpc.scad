@@ -60,7 +60,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
 */
     fpc_data = [
                 ["fh19", .5,   2, 2.5,  .9, .25, 1.25, 2.4,  3.4, 1,  .15],
-                ["fh12", .5, 1.9, 3.5, 3.6, .25, 1.9, 2.4,  3.4, 1,  .15]
+                ["fh12", .5, 1.9, 3.5, 3.6, .25, 1.9,  2.4,  3.4, 1,  .15]
                ];
     
     adj = .01;
@@ -92,10 +92,14 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                 translate([-2,-1,size_z-.5]) color(bcolor) cube([3, size_y+2, 3]);
                 translate([size_x-1,-1,size_z-.5]) color(bcolor) cube([3, size_y+2, 3]);
                 translate([-2,-1,size_z-.5]) color(bcolor) cube([size_x+2, size_y, 3]);
+                translate([-.5,-5.25,-adj]) color(bcolor) cylinder(d=12, h=4);
+                translate([size_x+.5,-5.25,-adj]) color(bcolor) cylinder(d=12, h=4);
              }
             difference() {
                 translate([-.5,-.25,size_z-.5-adj]) color(tcolor) cube([size_x+1, size_y+.5, .45+adj]);
                 translate([.5,size_y-.1,size_z-2]) color(tcolor) cube([size_x-1, size_y, 3]);
+                translate([-.5,-5.5,-adj]) color(tcolor) cylinder(d=12, h=4);
+                translate([size_x+.5,-5.5,-adj]) color(tcolor) cylinder(d=12, h=4);
             }
             if(style == "thruhole") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-pitch]) {

@@ -19,7 +19,7 @@
 */
 
 // pcie class
-module pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module pcie(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     len = mask[1];
@@ -27,24 +27,29 @@ module pcie(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, ma
     style = mask[3];
     
     
-    // PCIE-X4
-    if (type=="x4" && enablemask == false) {
-        size_x = 38.8;
+    // PCIE
+    if (enablemask == false) {
+        size_x = type == "x1" ? 25 : 39;
+        pin = type == "x1" ? 36/2 : 64/2;
         size_y = 8.5;
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
                 color("black") cube([size_x, size_y, 11.1]);
                 color("dimgrey") translate([1.55,(size_y/2)-.8,2]) cube([11.5,1.6,11]);
-                color("dimgrey") translate([16.5,(size_y/2)-.8,2]) cube([20.3,1.6,11]);
+                color("dimgrey") translate([15.5,(size_y/2)-.8,2]) cube([pin-10.5,1.6,11]);
             }
             for (i=[1:1:11.5]) {
-                color("#fee5a6") translate ([i+1,2.75,2.5]) cube([.5,1,8.25]);
-                color("#fee5a6") translate ([i+1,4.75,2.5]) cube([.5,1,8.25]);
+                color("#fee5a6") translate ([i+1,2.75,-3]) cube([.5,.7,13.75]);
+                color("#fee5a6") translate ([i+1,4.75,-3]) cube([.5,.7,13.75]);
+                color("#fee5a6") translate ([i+1,1.375,-3]) cube([.5,.7,3.5]);
+                color("#fee5a6") translate ([i+1,6.125,-3]) cube([.5,.7,3.5]);
             }
-            for (i=[17:1:36.5]) {
-                color("#fee5a6") translate ([i,2.75,2.5]) cube([.5,1,8.25]);
-                color("#fee5a6") translate ([i,4.75,2.5]) cube([.5,1,8.25]);
+            for (i=[16:1:pin+4]) {
+                color("#fee5a6") translate ([i,2.75,-3]) cube([.5,.7,13.75]);
+                color("#fee5a6") translate ([i,4.75,-3]) cube([.5,.7,13.75]);
+                color("#fee5a6") translate ([i,1.375,-3]) cube([.5,.7,3.5]);
+                color("#fee5a6") translate ([i,6.125,-3]) cube([.5,.7,3.5]);
             }
         }
     }
