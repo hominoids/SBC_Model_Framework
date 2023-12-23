@@ -16,7 +16,7 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
     DESCRIPTION: creates compute modules
-           TODO: 
+           TODO: CM1,CM3 SOC data
            
           USAGE: cm(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
                      type = "cm1","cm3","cm3l","jetsonnano"
@@ -34,7 +34,7 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
         size_x = 67.6;
         size_y = type == "cm1" ? 30 : 31;
         size_z = 1;
-        
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation[2], side, pcbsize_z)
         union() {  
             difference () {
@@ -68,24 +68,31 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
         size_x = 55;
         size_y = 40;
         size_z = 1.2;
-        
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation[2], side, pcbsize_z)
+
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
                 union() {
-                    color(pcbcolor) slab([size_x,size_y,size_z],3.5);
+                    color(pcbcolor) slab([size_x,size_y,size_z],3);
                     color("#fee5a6") translate([3.5,3.5,-.01]) cylinder(d=5,h=size_z+.2);
                     color("#fee5a6") translate([3.5,size_y-3.5,-.01]) cylinder(d=5,h=size_z+.2);
                     color("#fee5a6") translate([size_x-3.5,3.5,-.01]) cylinder(d=5,h=size_z+.2);
                     color("#fee5a6") translate([size_x-3.5,size_y-3.5,-.01]) cylinder(d=5,h=size_z+.2);
                 }
-                color(pcbcolor) translate([-1,18.5,-1]) cube([7.5,11,3]);
+                //color(pcbcolor) translate([-1,18.5,-1]) cube([7.5,11,3]);
                 color(pcbcolor) translate([2.56,31,-1]) cylinder(d=1.5,h=3);
                 color(pcbcolor) translate([3.5,3.5,-1]) cylinder(d=2.5,h=3);
                 color(pcbcolor) translate([3.5,size_y-3.5,-1]) cylinder(d=2.5,h=3);
                 color(pcbcolor) translate([size_x-3.5,3.5,-1]) cylinder(d=2.5,h=3);
                 color(pcbcolor) translate([size_x-3.5,size_y-3.5,-1]) cylinder(d=2.5,h=3);
             }
+            soc("raised", 25, 10, 0, "top", 0, [13,13,1.25], data, size_z, false, [false,10,2,"default"]);
+            ic("generic", 20.9, 27, 0, "top", 0, 13, 11.75, .8, size_z);
+            ic("generic", 42.5, 9.5, 0, "top", 0, 10, 15, .8, size_z);
+            ic("generic", 38, 30.5, 0, "top", 0, 7, 7, 1.5, size_z);
+            ic("generic", 4.5, 9.25, 0, "top", 0, 5.25, 5.25, .8, size_z);
+            ic("generic", 8.75, 21, 0, "top", 0, 11, 14, .8, size_z);
+            antenna("ipex", 1.315, 29.675, 0, "top", 0, size_z, false, [false,10,2,"default"]);
         }
     }
     

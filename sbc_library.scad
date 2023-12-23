@@ -36,6 +36,7 @@ include <./lib/heatsink.scad>
 include <./lib/ic.scad>
 include <./lib/jst.scad>
 include <./lib/memory.scad>
+include <./lib/molex.scad>
 include <./lib/network.scad>
 include <./lib/pad.scad>
 include <./lib/pcb.scad>

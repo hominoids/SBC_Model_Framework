@@ -178,6 +178,11 @@ module sbc(model, enablemask = false) {
                                     memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
                                 }            
                             }
+                            if (class == "molex") {
+                                if (loc_x != 0 || loc_y != 0) {
+                                    molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }            
+                            }
                             if (class == "network" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
@@ -465,6 +470,11 @@ module sbc(model, enablemask = false) {
                             if (class == "memory") {
                                 if (loc_x != 0 || loc_y != 0) {
                                     memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask);
+                                }            
+                            }
+                            if (class == "molex") {
+                                if (loc_x != 0 || loc_y != 0) {
+                                    molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }            
                             }
                             if (class == "network") {

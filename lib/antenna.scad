@@ -21,9 +21,8 @@
 // antenna class
 module antenna(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
         
-    // type led surface mount
-    if(type == "ipex" && enablemask == false) {
-    
+    // type ipex surface mount
+    if(type == "ipex" && enablemask == false) {    
         place(loc_x, loc_y, loc_z, 2.5, 2.75, rotation, side, pcbsize_z)
         union() {
             color("white") cube([2.5,2.75,.35]);
