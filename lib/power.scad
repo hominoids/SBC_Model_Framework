@@ -27,12 +27,12 @@
 */
  
 // power class
-module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
         
     // 2.5mm power plug 5 x 7.5mm
     if(type == "pwr2.5_5x7.5") {
@@ -42,7 +42,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 3;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+2.75, loc_y+back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z) 
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
@@ -99,7 +99,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 7;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+3.75, loc_y+back, loc_z+6.5, size_xm, mlen, rotation, side, pcbsize_z) 
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
@@ -155,7 +155,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 10.5;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, size_xm]);
@@ -211,7 +211,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 10;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, 7.5]);

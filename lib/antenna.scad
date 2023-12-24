@@ -26,7 +26,7 @@
 */
  
 // antenna class
-module antenna(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module antenna(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
         
     // type ipex surface mount
     if(type == "ipex" && enablemask == false) {    

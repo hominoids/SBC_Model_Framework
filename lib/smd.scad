@@ -36,10 +36,6 @@ module smd(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     size_y = size[1];
     size_z = size[2];
     bcolor = data[0];
-    cmask = mask[0];
-    mlen = mask[1];
-    back = mask[2];
-    mstyle = mask[3];
     adj = .01;
     
     // type led surface mount

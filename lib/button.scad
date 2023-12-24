@@ -19,7 +19,7 @@
     DESCRIPTION: creates buttons
            TODO: 
            
-          USAGE: buttons(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
+          USAGE: buttons(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[]))
           
                          type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
                                 "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
@@ -27,12 +27,12 @@
 */
  
 // button class
-module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module button(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     
     // tall button type
     if(type=="momentary_6x6x9") {
@@ -42,7 +42,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 5;
         size_ym = 5;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cylinder(d = size_xm, h = mlen+13);
@@ -96,7 +96,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 5;
         size_ym = 5;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cylinder(d = size_xm, h = mlen+6.5);
@@ -150,7 +150,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 5;
         size_ym = 3.5;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+back, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
@@ -204,7 +204,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 4;
         size_ym = 4;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+.5, loc_y+back, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) slot(2, 3, mlen);
@@ -254,7 +254,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 4;
         size_ym = 4;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+.5, loc_y+1, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
                       slot(2, 3, mlen);
@@ -304,7 +304,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 7;
         size_ym = 3;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+1, loc_y+back, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) slot(2.5, 5, mlen);
@@ -354,7 +354,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 4.5;
         size_ym = 3.5;
 
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+(size_x/2), loc_y+back, loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);

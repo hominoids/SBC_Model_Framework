@@ -38,7 +38,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     pcolor = "#fee5a6";
        
     // type ir
@@ -49,7 +49,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_xm = 5;
         size_ym = 3.5;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+back, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
@@ -102,7 +102,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_xm = 3;
         size_ym = 6.5;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                       translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
@@ -146,7 +146,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
     }
     // can capacitor
-    if(type=="capacitor") {
+    if(type=="capacitor" && enablemask == false) {
     
         size_x = size[0];
         size_y = size[0];
@@ -162,7 +162,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
     }  
     // led 
-    if(type=="led") {
+    if(type=="led" && enablemask == false) {
     
         size_x = size[0];
         size_y = size[0];

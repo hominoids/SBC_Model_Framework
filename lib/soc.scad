@@ -35,7 +35,7 @@ module soc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     size_y = size[1];
     size_z = size[2];
 
-    if(type == "flat") {
+    if(type == "flat" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             color("dimgray") cube([size_x, size_y, size_z]);
     }
@@ -46,21 +46,21 @@ module soc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                 translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],2);
             }
     }
-    if(type == "raised") {
+    if(type == "raised" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
                 translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
             }
     }
-    if(type == "rk3588") {
+    if(type == "rk3588" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
                 translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
             }
     }
-    if(type == "mid-raised") {
+    if(type == "mid-raised" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);

@@ -27,12 +27,12 @@
 */
  
 // network class
-module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module network(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     
     // rj45 single socket
     if(type == "rj45_single") {
@@ -42,7 +42,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 16.25;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 14]);
@@ -100,7 +100,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 15;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 12]);
@@ -159,7 +159,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 16.25;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 14]);
@@ -215,7 +215,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_ym = mlen;
         offset_z = -5.1;
         
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.0625, loc_y-size_ym+back, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 12]);
@@ -286,7 +286,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_ym = mlen;
         offset_z = -3.1;
         
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+.25, loc_y-size_ym+back, loc_z+offset_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 12.125]);
@@ -351,7 +351,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 15;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 12]);
@@ -416,7 +416,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 19;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 31]);
@@ -476,7 +476,7 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 19;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 31]);

@@ -37,6 +37,7 @@
 // usb 2.0 port class
 module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
+    cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
@@ -49,7 +50,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         dia =3.75;
         wide = 8.5;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // micro usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.75, loc_y+back, loc_z+dia/2, size_x, size_y, rotation, side, pcbsize_z) 
@@ -125,7 +126,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 16;
         size_zm = 7.75;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -160,7 +161,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                     cube([size_xm, mlen, size_zm]);
             }
         }
-        if(enablemask == true && mstyle == "m1s") {
+        if(enablemask == true && cmask == true && mstyle == "m1s") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.75, loc_y-mlen+back, loc_z+1, size_x, mlen, rotation, side, pcbsize_z)
@@ -193,7 +194,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 7.5;
         size_zm = 14;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.85, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -255,7 +256,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 14.75;
         size_zm = 16.25;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.75, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -376,6 +377,7 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
 // usb 3.0 port class
 module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
+    cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
@@ -388,7 +390,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 16;
         size_zm = 7.75;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -456,7 +458,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 7.5;
         size_zm = 14;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.85, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -518,7 +520,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 14.75;
         size_zm = 16.25;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.75, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -585,7 +587,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 14.75;
         size_zm = 16.25;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usb opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.75, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
@@ -651,6 +653,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
 // usbc port class
 module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
+    cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
@@ -665,7 +668,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         dia = 3.5;
         diam = 4.5;
 
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single horizontal usbc opening
             if(rotation == 0) {       
                 place(loc_x, loc_y+back, loc_z-.125+diam/2, size_x, mlen, rotation, side, pcbsize_z)
@@ -715,7 +718,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         diam = 3.75;
         height = .5;
         
-        if(enablemask == true && mstyle == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // single vertical usbc opening
             if(side == "top" && rotation == 0) {       
                 place(loc_x-.125+diam/2, loc_y+back, loc_z+size_xm+height, size_xm, mlen, rotation, side, pcbsize_z)

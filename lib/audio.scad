@@ -31,7 +31,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     
     // out in and spdif stacked type
     if(type=="out-in-spdif") {
@@ -41,7 +41,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         size_xm = 13;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 35.5]);
@@ -109,7 +109,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         size_xm = 7.5;
         size_ym = size_y;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-2.5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
@@ -190,7 +190,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         size_xm = 7.5;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 4]);

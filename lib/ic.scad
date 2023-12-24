@@ -26,10 +26,14 @@
 */
  
 // ic class
-module ic(type, loc_x, loc_y, loc_z, side, rotation, size_x, size_y, size_z, pcbsize_z) {
+module ic(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
+
+    size_x = size[0];
+    size_y = size[1];
+    size_z = size[2];
 
     // generic ic
-    if (type == "generic") {
+    if (type == "generic" && enablemask == false) {
     
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             color("dimgray") cube([size_x, size_y, size_z]);

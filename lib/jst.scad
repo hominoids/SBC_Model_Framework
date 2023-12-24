@@ -80,7 +80,7 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     pinsize = jst_data[s[0]][10];
     smtlead = [pinsize,.925,.32];
 
-    if(entry == "top") {
+    if(entry == "top" && enablemask == false) {
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference() {
@@ -149,7 +149,7 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             }
         }
     }
-    if(entry == "side") {
+    if(entry == "side" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
             difference() {

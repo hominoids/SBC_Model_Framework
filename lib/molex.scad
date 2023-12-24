@@ -118,9 +118,11 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         }
     }
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
+    
         size_xm = size_x;
         size_ym = size_y+.5;
         size_zm = 5;
+        
         if(side == "top" && rotation == 0) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                 translate([0,back,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
@@ -155,6 +157,7 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         }    
     }
     if(entry == "side" && enablemask == false) {
+    
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
             difference() {

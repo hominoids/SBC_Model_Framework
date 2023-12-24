@@ -26,12 +26,12 @@
 */
  
 // memory class
-module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     
     // socketed emmc
     if(type == "emmc") {
@@ -42,7 +42,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_ym = 19.5;
         size_zm = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, size_zm]);
@@ -101,7 +101,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_ym = 19.5;
         size_zm = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
 //                place(loc_x-.5, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
 //                    cube([size_xm, size_ym, size_zm]);

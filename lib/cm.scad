@@ -19,10 +19,18 @@
     DESCRIPTION: creates compute modules
            TODO: CM1,CM3 SOC data
            
-          USAGE: cm(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[])
+          USAGE: cm(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
           
                     type = "cm1","cm3","cm3l","jetsonnano"
                     data[0] = pcb color
+
+    DESCRIPTION: creates compute module holder
+           TODO: 
+           
+          USAGE: cm_holder(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+          
+                    type = "jetsonnano"
+
 
 */
 
@@ -89,12 +97,12 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
                 color(pcbcolor) translate([size_x-3.5,size_y-3.5,-1]) cylinder(d=2.5,h=3);
             }
             soc("raised", 25, 10, 0, "top", 0, [13,13,1.25], data, size_z, false, [false,10,2,"default"]);
-            ic("generic", 20.9, 27, 0, "top", 0, 13, 11.75, .8, size_z);
-            ic("generic", 42.5, 9.5, 0, "top", 0, 10, 15, .8, size_z);
-            ic("generic", 38, 30.5, 0, "top", 0, 7, 7, 1.5, size_z);
-            ic("generic", 4.5, 9.25, 0, "top", 0, 5.25, 5.25, .8, size_z);
-            ic("generic", 8.75, 21, 0, "top", 0, 11, 14, .8, size_z);
-            antenna("ipex", 1.315, 29.675, 0, "top", 0, size_z, false, [false,10,2,"default"]);
+            ic("generic", 20.9, 27, 0, "top", 0, [13, 11.75, .8], [0], size_z, false, [false,10,2,"default"]);
+            ic("generic", 42.5, 9.5, 0, "top", 0, [10, 15, .8], [0], size_z, false, [false,10,2,"default"]);
+            ic("generic", 38, 30.5, 0, "top", 0, [7, 7, 1.5], [0], size_z, false, [false,10,2,"default"]);
+            ic("generic", 4.5, 9.25, 0, "top", 0, [5.25, 5.25, .8], [0], size_z, false, [false,10,2,"default"]);
+            ic("generic", 8.75, 21, 0, "top", 0, [11, 14, .8], [0], size_z, false, [false,10,2,"default"]);
+            antenna("ipex", 1.315, 29.675, 0, "top", 0, [0,0,0], [0], size_z, false, [false,10,2,"default"]);
         }
     }
     
@@ -162,8 +170,8 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
 }
 
 
-// compute module holder class
-module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+// compute module holder
+module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     // jetson nano
     if(type == "jetsonnano") {        

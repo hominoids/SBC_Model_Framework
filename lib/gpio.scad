@@ -26,13 +26,8 @@
 */
  
 // gpio class
-module gpio(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
-    cmask = mask[0];
-    mlen = mask[1];
-    back = mask[2];
-    style = mask[3];
-        
     // gpio 30 pin enclosed header
     if(type=="encl_header_30" && enablemask == false) {
         size_x = 37;

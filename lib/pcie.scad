@@ -28,14 +28,8 @@
 // pcie class
 module pcie(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
-    cmask = mask[0];
-    mlen = mask[1];
-    back = mask[2];
-    style = mask[3];
-    
-    
     // PCIE
-    if (enablemask == false) {
+    if ((type == "x1" || type == "x4") && enablemask == false) {
         size_x = type == "x1" ? 25 : 39;
         pin = type == "x1" ? 36/2 : 64/2;
         size_y = 8.5;

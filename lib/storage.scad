@@ -27,12 +27,12 @@
 */
 
 // storage class
-module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     
     // micro sd card style 1
     if (type == "microsdcard") {
@@ -42,7 +42,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 13.5;
         size_ym = mlen;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.125, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 2]);
@@ -100,7 +100,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_ym = mlen;
         size_zm = mlen;
         
-        if(enablemask == true && cmask == true &&  (style == "default" || style == "slot")) {
+        if(enablemask == true && cmask == true &&  (mstyle == "default" || mstyle == "slot")) {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z+.25, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 2]);
@@ -135,7 +135,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
             }
         
         }
-        if(enablemask == true && cmask == true && style == "block") {
+        if(enablemask == true && cmask == true && mstyle == "block") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-18+back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
                     cube([size_xm, 18, size_zm]);
@@ -189,7 +189,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_ym = mlen;
         size_zm = mlen;
         
-        if(enablemask == true && cmask == true && (style == "default" || style == "slot")) {
+        if(enablemask == true && cmask == true && (mstyle == "default" || mstyle == "slot")) {
             // micro sdcard storage
              if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z+1.5, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -224,7 +224,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
                     cube([size_xm, size_ym, 2]);
             }
         }
-        if(enablemask == true && cmask == true && style == "block") {
+        if(enablemask == true && cmask == true && mstyle == "block") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-18+back, loc_z, size_xm, 18, rotation, side, pcbsize_z)
                     cube([size_xm, 18, size_zm]);
@@ -354,7 +354,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 42.5;
         size_zm = 7.5;
    
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-1, loc_y+14, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) slot(size_zm, size_xm, mlen);

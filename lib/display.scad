@@ -19,7 +19,7 @@
     DESCRIPTION: creates flat panel displays
            TODO: 
            
-          USAGE: display(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
+          USAGE: display(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
           
                          type = "lcd_2.2"
                      
@@ -27,12 +27,12 @@
 */
 
 // display class
-module display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module display(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
     
     // type lcd_2.2
     if(type == "lcd_2.2") {
@@ -42,7 +42,7 @@ module display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         size_xm = 45;
         size_ym = 34;
         
-        if(enablemask == true && cmask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+4, loc_y+1, loc_z+4, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, mlen]);

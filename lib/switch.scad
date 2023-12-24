@@ -26,11 +26,12 @@
 */
  
 // switch class
-module switch(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module switch(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
+    cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];    
+    mstyle = mask[3];    
 
     if(type == "slide_4x9") {
     
@@ -39,7 +40,7 @@ module switch(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_xm = 9;
         size_ym = 4;
         
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
              // switch opening
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y-mlen+back, loc_z+.25, size_ym, size_xm, rotation, side, pcbsize_z)

@@ -31,12 +31,12 @@
 */
  
 // video class
-module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
+module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    style = mask[3];
+    mstyle = mask[3];
 
     // hdmi a type connector
     if(type == "hdmi_a") {
@@ -46,7 +46,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 15;
         size_ym = mlen;
    
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // hdmi opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-mlen+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",mlen);
@@ -73,7 +73,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
                 place(loc_x-mlen+5+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",mlen);
             }
         }
-        if(enablemask == true && style == "m1s") {
+        if(enablemask == true && cmask == true && mstyle == "m1s") {
             // hdmi opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-mlen+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
@@ -125,7 +125,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_ym = mlen;
         height = 1.75;
    
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // hdmi vertical opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-mlen+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) 
@@ -206,7 +206,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 19;
         size_ym = 18;
         
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // dp-hdmi_a opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -306,7 +306,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 7.25;
         size_ym = mlen;
         
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
            // hdmi micro opening
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y-mlen+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_micro", mlen);
@@ -375,7 +375,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 11.5;
         size_ym = mlen;
             
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
            // hdmi mini opening
             if(side == "top" && rotation == 0) {
                 place(loc_x+.125, loc_y-mlen+6+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_mini", mlen);
@@ -444,7 +444,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, m
         size_xm = 9;
         size_ym = mlen;
         
-        if(enablemask == true && style == "default") {
+        if(enablemask == true && cmask == true && mstyle == "default") {
             // dp mini opening
             if(side == "top" && rotation == 0) {
                 place(loc_x-.125, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);

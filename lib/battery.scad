@@ -26,12 +26,7 @@
 */
 
 // battery class
-module battery(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
-    
-    cmask = mask[0];
-    mlen = mask[1];
-    back = mask[2];
-    style = mask[3];
+module battery(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
     
     // type battery holder 1
     if(type=="bat_hold_1" && enablemask == false) {

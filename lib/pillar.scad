@@ -32,7 +32,7 @@
 module pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     // type hex
-    if(type=="hex") {
+    if(type=="hex" && enablemask == false) {
     
         size_x = size[0];
         size_y = size[1];
@@ -48,7 +48,7 @@ module pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
         }
     }
     // type hex
-    if(type=="round") {
+    if(type=="round" && enablemask == false) {
     
         size_x = size[0];
         size_y = size[1];
