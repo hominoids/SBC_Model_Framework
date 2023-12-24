@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,10 +20,11 @@
            TODO: 
            
           USAGE: molex(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-                     type = "7478",
-                     size[0] = #pins
-                     data[0] = "thruhole", "smt"
-                     data[1] = "top", "side"
+          
+                       type = "7478",
+                       size[0] = #pins
+                       data[0] = "thruhole", "smt"
+                       data[1] = "top", "side"
 
 */
 

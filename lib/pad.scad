@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,12 +16,20 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+    DESCRIPTION: creates pcb pads
+           TODO: casteel edge hole
+           
+          USAGE: pcb_pad(pads, style)
+
+                         pads = #pads
+                         style = "round", "square"
+
 */
 
 // single row pcb pad
 module pcb_pad(pads, style) {
 
-    adjust = .01;
+    adj = .01;
     $fn = 90;
     pad_size = 1.25;
     size_y = 2.54;
@@ -31,13 +39,13 @@ module pcb_pad(pads, style) {
             if(style == "round") {
                 difference() {
                     color("#fee5a6") translate ([i,0,0]) cylinder(d=pad_size, h=.125);
-                    color("dimgray") translate([i,0,-adjust]) cylinder(d=.625, h=.125+2*adjust);
+                    color("dimgray") translate([i,0,-adj]) cylinder(d=.625, h=.125+2*adj);
                 }
             }
             if(style == "square") {
                 difference() {
                     color("#fee5a6") translate ([i-pad_size/2,-pad_size/2,0]) cube([pad_size, pad_size, .125]);
-                    color("dimgray") translate([i,0,-adjust]) cylinder(d=.625, h=.125+2*adjust);
+                    color("dimgray") translate([i,0,-adj]) cylinder(d=.625, h=.125+2*adj);
                 }
             }
         }

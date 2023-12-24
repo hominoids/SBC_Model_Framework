@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,13 +16,21 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+    DESCRIPTION: creates flat panel displays
+           TODO: 
+           
+          USAGE: display(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
+          
+                         type = "lcd_2.2"
+                     
+
 */
 
 // display class
 module display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
-    len = mask[1];
+    mlen = mask[1];
     back = mask[2];
     style = mask[3];
     
@@ -37,11 +45,11 @@ module display(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask,
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+4, loc_y+1, loc_z+4, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, len]);
+                    cube([size_xm, size_ym, mlen]);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x+7, loc_y+1, loc_z+4, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, len]);
+                    cube([size_xm, size_ym, mlen]);
             }
         }
         if(enablemask == false) {

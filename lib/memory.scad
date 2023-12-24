@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,13 +16,20 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+    DESCRIPTION: creates memory components
+           TODO: 
+           
+          USAGE: memory(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+          
+                        type = "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+
 */
  
 // memory class
 module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
     
     cmask = mask[0];
-    len = mask[1];
+    mlen = mask[1];
     back = mask[2];
     style = mask[3];
     
@@ -33,7 +40,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_y = 18.5;
         size_xm = 14.5;
         size_ym = 19.5;
-        size_zm = len;
+        size_zm = mlen;
    
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
@@ -92,7 +99,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         size_y = 2.16;
         size_xm = 14.5;
         size_ym = 19.5;
-        size_zm = len;
+        size_zm = mlen;
    
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {

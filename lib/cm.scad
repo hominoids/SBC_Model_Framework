@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,12 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
+
     DESCRIPTION: creates compute modules
            TODO: CM1,CM3 SOC data
            
-          USAGE: cm(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
-                     type = "cm1","cm3","cm3l","jetsonnano"
-                     data[0] = pcb color
+          USAGE: cm(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[])
+          
+                    type = "cm1","cm3","cm3l","jetsonnano"
+                    data[0] = pcb color
 
 */
 

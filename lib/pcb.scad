@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -14,6 +14,25 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
+
+
+    DESCRIPTION: creates pcb and features
+           TODO: 
+           
+          USAGE: pcb(size[], radius)
+          
+                     size[0] = size_x
+                     size[1] = size_y
+                     size[2] = size_z
+                     radius = corner radius
+
+          USAGE: pcbhole(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+          
+                         type = "led"
+                         size[0] = hole diameter
+                         size[1] = size_y
+                         size[2] = size_z
+                         data[1] = hole color
 
 
 */

@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,14 +15,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
+
     DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa.
            TODO: flange for sh
            
           USAGE: jst(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+          
                      type = "xh","ph","zh","sh","pa"
                      size[0] = #pins
                      data[0] = "thruhole", "smt"
                      data[1] = "top", "side"
+                     data[2] = body color
 
 */
 
@@ -32,7 +35,7 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     row = size[0];
     style = data[0];
     entry = data[1];
-    bcolor = "white";
+    bcolor = data[2];
     pcolor = "silver";
     
 /*

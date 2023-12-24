@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,11 +15,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
-           size[0] = outside dia
-           size[1] = inside dia
-           size[2] = height
-           data[1] = color
+    DESCRIPTION: creates smd components
+           TODO: add other styles
+           
+          USAGE: pillar(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+                   
+                        type = "hex", "round"
+                        size[0] = outside dia
+                        size[1] = inside dia
+                        size[2] = height
+                        data[1] = body color
+
 */
 
 // pillar class

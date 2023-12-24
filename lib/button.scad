@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,13 +16,21 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+    DESCRIPTION: creates buttons
+           TODO: 
+           
+          USAGE: buttons(type, loc_x, loc_y, loc_z, side[], rotation[], pcbsize_z, enablemask, mask[]))
+          
+                         type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
+                                "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+                     
 */
  
 // button class
 module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
-    len = mask[1];
+    mlen = mask[1];
     back = mask[2];
     style = mask[3];
     
@@ -37,35 +45,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+size_x/2, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-size_x/3, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-size_x/3, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-size_x/3, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-size_x/3, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+size_x/2, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+size_x/2, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+13);
+                    cylinder(d = size_xm, h = mlen+13);
             }    
         }
         if(enablemask == false) {
@@ -91,35 +99,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+size_x/2, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-size_x/3, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-size_x/3, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-size_x/3, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-size_x/3, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+size_x/2, loc_y-size_y/3, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+size_x/2, loc_y+size_y/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cylinder(d = size_xm, h = len+6.5);
+                    cylinder(d = size_xm, h = mlen+6.5);
             }    
         }
         if(enablemask == false) {
@@ -145,35 +153,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+size_x/2, loc_y+back, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+back, loc_y-size_y/3, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-size_x/3, loc_y-back, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-back, loc_y+size_y/2, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-size_x/3, loc_y+back, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-back, loc_y-size_y/3, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+size_x/2, loc_y-back, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+back, loc_y+size_y/2, loc_z+3, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d = size_xm, h = len+6.5);
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen+6.5);
             }    
         }
         if(enablemask == false) {
@@ -199,35 +207,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+.5, loc_y+back, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+back, loc_y-.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-.5, loc_y-size_y-back, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-size_y-back, loc_y+.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-.5, loc_y+back, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-size_y-back, loc_y-.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+.5, loc_y-size_y-back, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+back, loc_y+.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2, 3, len);
+                      rotate([90, 0, 0]) slot(2, 3, mlen);
             }    
         }
         if(enablemask == false) {
@@ -249,35 +257,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+.5, loc_y+1, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      slot(2, 3, len);
+                      slot(2, 3, mlen);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+1, loc_y-.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      slot(2, 3, len);
+                      slot(2, 3, mlen);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-.5, loc_y-size_y-1, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      slot(2, 3, len);
+                      slot(2, 3, mlen);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-size_y-1, loc_y+.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      slot(2, 3, len);
+                      slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-.5, loc_y+1, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([0, 0, 0]) slot(2, 3, len);
+                      rotate([0, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-size_y-1, loc_y-.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([0, 0, 0]) slot(2, 3, len);
+                      rotate([0, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+.5, loc_y-size_y-1, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([0, 0, 0]) slot(2, 3, len);
+                      rotate([0, 0, 0]) slot(2, 3, mlen);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+1, loc_y+.5, loc_z+1, size_xm, size_ym, rotation, side, pcbsize_z)
-                      slot(2, 3, len);
+                      slot(2, 3, mlen);
             }    
         }
         if(enablemask == false) {
@@ -299,35 +307,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+1, loc_y+back, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) slot(2.5, 5, len);
+                      rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+back, loc_y-1, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-1, loc_y-back, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-back, loc_y+1, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-1, loc_y+back, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-back, loc_y-1, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+1, loc_y-back, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+back, loc_y+1, loc_z+1.65, size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) slot(2.5, 5, len);
+                     rotate([90, 0, 0]) slot(2.5, 5, mlen);
             }    
         }
         if(enablemask == false) {
@@ -349,35 +357,35 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, pcbsize_z, enablemask, 
         if(enablemask == true && cmask == true && style == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+(size_x/2), loc_y+back, loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                      rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                      rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x+back, loc_y-(size_x/2), loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-(size_x/2), loc_y-back, loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-back, loc_y+(size_x/2), loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-(size_x/2), loc_y+back, loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-back, loc_y-(size_x/2), loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x+(size_x/2), loc_y-back, loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x+back, loc_y+(size_x/2), loc_z+(size_z/2), size_xm, size_ym, rotation, side, pcbsize_z)
-                     rotate([90, 0, 0]) cylinder(d=3.5, h=len);
+                     rotate([90, 0, 0]) cylinder(d=3.5, h=mlen);
             }    
         }
         if(enablemask == false) {

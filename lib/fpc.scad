@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,11 +15,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
+
     DESCRIPTION: creates fpc connectors
            TODO: add other styles
            
           USAGE: fpc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-                     type = "fh19"
+          
+                     type = "fh19", "fh12"
                      size[0] = #pins
                      data[0] = "thruhole", "smt"
                      data[1] = "top", "side"
@@ -38,7 +40,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     tcolor = data[3];
     pcolor = "#fee5a6";
     cmask = mask[0];
-    len = mask[1];
+    mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
         
@@ -118,41 +120,41 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,len);
+                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
             }    
     }
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "block") {
             if(side == "top" && rotation == 270) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,-1.5+back,size_zm-5.5]) rotate([90, 0, 0]) cube([size_x,size_zm+3.5,len]);
+                    translate([0,-1.5+back,size_zm-5.5]) rotate([90, 0, 0]) cube([size_x,size_zm+3.5,mlen]);
             }
     }
     if(entry == "side" && enablemask == false) {
