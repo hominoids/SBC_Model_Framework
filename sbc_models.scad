@@ -312,7 +312,7 @@ module sbc(model, enablemask = false) {
                         mask = sbc_data[s[0]][i+10];
                         
                         if(class == "pcbsoc" && id == pcb_id) {                        
-                            soc(type, socloc_x, socloc_y, socloc_z, soc_side, soc_rotation, soc_size, soc_data, pcbsize_z, enablemask, mask);
+                            pcbsoc(type, socloc_x, socloc_y, socloc_z, soc_side, soc_rotation, soc_size, soc_data, pcbsize_z, enablemask, mask);
                         }
                     }
                 

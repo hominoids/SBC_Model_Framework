@@ -29,7 +29,7 @@
            
           USAGE: cm_holder(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
           
-                    type = "jetsonnano"
+                    type = "jetsonnano","cm1","cm3","cm3l","cm4"
 
 
 */
@@ -96,7 +96,7 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
                 color(pcbcolor) translate([size_x-3.5,3.5,-1]) cylinder(d=2.5,h=3);
                 color(pcbcolor) translate([size_x-3.5,size_y-3.5,-1]) cylinder(d=2.5,h=3);
             }
-            soc("raised", 25, 10, 0, "top", 0, [13,13,1.25], data, size_z, false, [false,10,2,"default"]);
+            pcbsoc("raised", 25, 10, 0, "top", 0, [13,13,1.25], data, size_z, false, [false,10,2,"default"]);
             ic("generic", 20.9, 27, 0, "top", 0, [13, 11.75, .8], [0], size_z, false, [false,10,2,"default"]);
             ic("generic", 42.5, 9.5, 0, "top", 0, [10, 15, .8], [0], size_z, false, [false,10,2,"default"]);
             ic("generic", 38, 30.5, 0, "top", 0, [7, 7, 1.5], [0], size_z, false, [false,10,2,"default"]);

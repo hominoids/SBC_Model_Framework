@@ -1,6 +1,6 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
-    Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,7 +19,6 @@
 */
 
 include <./lib/place.scad>
-include <./lib/soc.scad>
 include <./lib/antenna.scad>
 include <./lib/audio.scad>
 include <./lib/b2b.scad>

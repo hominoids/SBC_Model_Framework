@@ -38,6 +38,15 @@
                          data[2] = shape
                          data[3] = trace diameter
                          
+    DESCRIPTION: creates soc components
+           TODO: add other styles
+           
+          USAGE: pcbsoc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+          
+                     type = "flat", "raised", "mid-raised", "rk3399", "rk3588"
+                     size[0] = size_x
+                     size[1] = size_y
+                     size[2] = size_z
 
     DESCRIPTION: creates pcb pads
            TODO: casteel edge hole
@@ -82,6 +91,48 @@ module pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             color(hcolor) translate([0, 0, -.0625-pcbsize_z]) cylinder(d=trace, pcbsize_z+.125);
             color(hcolor) translate([0, 0, -1.125-pcbsize_z]) cylinder(d=size_x-.125, pcbsize_z+2);
         }
+    }
+}
+
+
+// pcb soc class
+module pcbsoc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
+
+    size_x = size[0];
+    size_y = size[1];
+    size_z = size[2];
+
+    if(type == "flat" && enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            color("dimgray") cube([size_x, size_y, size_z]);
+    }
+    if(type == "rk3399") {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("silver") cube([size_x, size_y, size_z]);
+                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],2);
+            }
+    }
+    if(type == "raised" && enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("silver") cube([size_x, size_y, size_z]);
+                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
+            }
+    }
+    if(type == "rk3588" && enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("silver") cube([size_x, size_y, size_z]);
+                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
+            }
+    }
+    if(type == "mid-raised" && enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("silver") cube([size_x, size_y, size_z]);
+                color("silver") translate([data[0],data[1],size_z-.01]) rotate([90,0,90]) slot(data[5],data[3],data[4]);
+            }
     }
 }
 

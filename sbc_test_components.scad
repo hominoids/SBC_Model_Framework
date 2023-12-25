@@ -1,5 +1,5 @@
 /*
-    SBC Library Copyright 2016,2017,2018,2019,2020,2021,2022 Edward A. Kisiel hominoid@cablemi.com
+    SBC Library Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
 
     This program is free software: you can redistribute it and/or modify`
     it under the terms of the GNU General Public License as published by
@@ -16,33 +16,48 @@
 
     20190214 Version 1  Component Library for the SBC Model Framework
     
-    component classes and types:
-    memory  - "emmc","emmc_plug","sodimm_5.2","sodimm_9.2"
-    switch -  "slide_4x9"
-    button -  "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1","momentary_7x3x3_90"
-    plug -    "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","rtc_micro","audio_micro","uart_micro","molex_4x1",
-              "small_encl_satapwr"
-    usb2 -    "micro","single_vertical_a","double_stacked_a","single_horizontal_a"
-    usb3 -    "double_stacked_a","single_horizontal_a",
-    network - "rj45_single",
-    video -   "hdmi_a","hdmi_a_vertical","dp-hdmi_a","mipi_csi","mipi_dsi","hdmi_micro","dp_mini","hdmi_a_vertical"
-    fan -     "micro","encl_pmw","encl_pmw_h"
-    gpio -    "encl_header_12","encl_header_30","header_20","header_26","header_40"
-    ic -      "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.7x4.7","ic_5x5","ic_5.75x5.75","ic_6x6","ic_6.4x6.4",
-              "ic_6.75x6.75","ic_7x7","ic_4.3x5.1","ic_5.4x5.3","ic_6.7x8.4","ic_9x9","ic_11x8","ic_13x8",
-              "ic_13x9","ic_16x10"
-    audio -   "out-in-spdif","jack_3.5"
-    storage - "sdcard","sdcard_i","sata_header","sata_encl_header","m.2_header","m.2_stud","sata_encl_power",
-              "sata_power_vrec","microsdcard"
-    combo -   "rj45-usb2_double","rj45-usb3_double","double_stacked_usb3-usbc"
-    jumper -  "header_2x1","header_3x1","header_3x2","header_5x1","header_6x1","header_7x1"
-    misc -    "ir_1","bat_hold_1","led_3x1.5","lcd_2.2"
-    heatsink -"hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem","xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem",
-               "khadas_oem","khadas_fan_oem","radxa_oem"
-    pcie -     "x4"
-    jst_ph -   number of pins from 2-16
+Component Classes and Types Version 2:
+    antenna  - "ipex"
+    audio    - "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
+    b2b      - "df40"(parametric)
+    battery  - "bat_hold_1", "rtc_micro"
+    button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
+               "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+    cm       - "jetsonnano","cm1","cm3","cm3l","cm4"
+    discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
+    display  - "lcd_2.2"
+    fan      - "micro","encl_pmw","encl_pmw_h"
+    fpc      - "fh19"(parametric), "fh12"(parametric)
+    gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
+    header   - "open"(parametric)
+    heatsink - "hc4_oem", c4_oem", "c2_oem", "c1+_oem", "xu4_oem", xu4q_oem", "n2l_oem", "n2lq_oem",
+               "n1_oem", "40mm_active", "h3_oem", "m1s_oem", "atomicpi", "n2_oem", "n2+_oem",
+               "m1_oem", "h2_oem", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem"
+    ic       - "generic"(parametric)
+    jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
+    memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+    molex    - "7478"(parametric)
+    network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
+               "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
+    pcbshape - "round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"
+    pcbhole  - "round"
+    pcbadd   - "round", "slot", "rectangle", "polygon", "dxf"
+    pcbsub   - "round", "slot", "rectangle", "polygon", "dxf"
+    pcbsoc   - "flat"(parametric), "raised"(parametric), "mid-raised", "rk3399", "rk3588"
+    pcie     - "x1","x4"
+    pillar   - "hex"(parametric), "round"(parametric)
+    power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", "small_encl_satapwr"
+    smd      - "led"(parametric)
+    storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
+               "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
+    switch   - "slide_4x9"
+    terminal - "gtb"(parametric)
+    usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a", "uart_micro", "uart_micro_h" 
+    usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
+    usbc     - "single_horizontal_a", "single_vertical_a"
+    video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", 
+               "dp_mini", "mipi_csi", "mipi_dsi"
 
-    
 */
 
 use <sbc_library.scad>

@@ -21,7 +21,7 @@
            
           USAGE: pcie(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
           
-                      type = "x1", "x2"
+                      type = "x1", "x4"
 
 */
 
