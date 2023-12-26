@@ -12,18 +12,18 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates storage components
            TODO: add other styles
-           
+
           USAGE: storage(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                          type = "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
                                 "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
-                     
+
 */
 
 // storage class
@@ -33,15 +33,15 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
-    
+
     // micro sd card style 1
     if (type == "microsdcard") {
-    
+
         size_x = 13.2;
         size_y = 14.1;
         size_xm = 13.5;
         size_ym = mlen;
-   
+
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.125, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -74,7 +74,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             if(side == "bottom" && rotation == 270) {
                 place(loc_x-size_ym+back, loc_y-.125, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 2]);
-            }    
+            }
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
@@ -93,13 +93,13 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
 
     // micro sdcard style 2
     if(type == "microsdcard2") {
-    
+
         size_x = 11.5;
-        size_y = 5.5;        
+        size_y = 5.5;
         size_xm = 12;
         size_ym = mlen;
         size_zm = mlen;
-        
+
         if(enablemask == true && cmask == true &&  (mstyle == "default" || mstyle == "slot")) {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z+.25, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -133,7 +133,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
                 place(loc_x-mlen+back, loc_y-.25, loc_z+.25, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, 2]);
             }
-        
+
         }
         if(enablemask == true && cmask == true && mstyle == "block") {
             if(side == "top" && rotation == 0) {
@@ -181,14 +181,14 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
     }
 
     // micro sd card style 3
-    if(type=="microsdcard3" || type=="microsdcard3_i") {
-    
+    if(type == "microsdcard3" || type=="microsdcard3_i") {
+
         size_x = 11.5;
         size_y = 5.5;
         size_xm = 12;
         size_ym = mlen;
         size_zm = mlen;
-        
+
         if(enablemask == true && cmask == true && (mstyle == "default" || mstyle == "slot")) {
             // micro sdcard storage
              if(side == "top" && rotation == 0) {
@@ -270,11 +270,11 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
     }
 
     // sata single header type
-    if(type=="sata_header" && enablemask == false) {
-    
+    if(type == "sata_header" && enablemask == false) {
+
         size_x = 16;
         size_y = 4;
-                      
+
         place(loc_x,loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
@@ -289,21 +289,21 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             }
             for (i=[1:1.27:8]) {
                 color("gold") translate ([i+2.75, 1.75, 2.5]) cube([.84, .25, 5]);
-            }           
+            }
         }
     }
-    
+
     // sata and power enclosed verticle recepticle
-    if(type=="sata_power_vrec" && enablemask == false) { 
-      
+    if(type == "sata_power_vrec" && enablemask == false) { 
+
         size_x = 40.43;
         size_y = 3.5; 
-               
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([38.3, 0, 0]) rotate([90, 0, 180])
         union() {
             difference() {
-                union() {                
+                union() {
                     difference () {
                         color("black") translate([2.12, 0, 0]) cube([36.19, 8.5, 3.5]);
                         //color("black") translate([4.12, -1, -2]) cube([32.19, 4, 7]);
@@ -324,7 +324,7 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
                 cube([3.12,4,2]);
                 color("black") translate([37.31, 8.17, 4]) rotate ([-45, 0, 0])
                 cube([3.12, 4, 2]);
-                
+
                 color("black") translate([0, 8.17, -3.25]) rotate ([45, 0, 0])
                 cube([2.12, 6, 2]);
                 color("black") translate([38.31, 8.17, -3.25]) rotate ([45, 0, 0])
@@ -339,21 +339,21 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             // pins
             for (i=[1:1.27:8]) {
                 color("gold") translate ([i+28.25, 3.5, 2.25]) rotate([-90, 0, 0]) cube([.84, .25, 5]);
-            }           
+            }
             for (i=[1:1.27:20]) {
                 color("gold") translate ([i+3.25, 3.5, 2.25]) rotate([-90, 0, 0]) cube([.84, .25, 5]);
-            }           
+            }
         }
     }
-    
+
     // sata and power enclosed right angle
-    if(type=="sata_encl_power") {
-     
+    if(type == "sata_encl_power") {
+
         size_x = 40.43;
         size_y = 12.87;
         size_xm = 42.5;
         size_zm = 7.5;
-   
+
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-1, loc_y+14, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
@@ -371,13 +371,13 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
                 place(loc_x+1, loc_y+8, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) slot(size_zm, size_xm, mlen);
             }
-        
+
         }
         if(enablemask == false) {         
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {
                     difference() {
-                        union() {                
+                        union() {
                             difference () {
                                 color("black") translate([2.12, 0, 0]) cube([36.19, 11.17, 4.3]);
                                 color("black") translate([4.12, -1, -2]) cube([32.19, 4, 7]);
@@ -405,13 +405,13 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
                 }
         }
     }
-    
+
     // sata enclosed header style
-    if(type=="sata_encl_header" && enablemask == false) {
-    
+    if(type == "sata_encl_header" && enablemask == false) {
+
         size_x = 16.9;
         size_y = 6.45;
-        
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
@@ -433,15 +433,15 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             color("dimgray") translate([0, 5.45, 3]) cube([16.9, 1, 5]);
         }
     }
-    
+
     // m.2 header style
-    if(type=="m.2_header" && enablemask == false) {
-    
+    if(type == "m.2_header" && enablemask == false) {
+
         size_x = 22;
-        size_y = 6.5;     
-                   
+        size_y = 6.5;
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {  
+        union() {
             difference () {
                 color("dimgray") cube([size_x, size_y, 5.2]);
                 color("dimgray") translate([.88, -1, 2.48]) cube([20.15, 3.5, 2]);
@@ -455,15 +455,15 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
                 color("gold") translate ([i+.88, 2, 2.48]) cube([.25, 2, .25]);
             }
         }
-        
+
     }
-    
+
     // m.2 mounting stud
-    if(type=="m.2_stud" && enablemask == false) {
-    
+    if(type == "m.2_stud" && enablemask == false) {
+
         size_x = 0;
         size_y = 0;
-                
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         difference () {
             color("silver") cylinder(d=4, h=2.5);

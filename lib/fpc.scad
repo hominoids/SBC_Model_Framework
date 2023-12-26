@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates fpc connectors
-           TODO: add other styles
-           
+           TODO: add other styles 
+
           USAGE: fpc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                      type = "fh19", "fh12"
                      size[0] = #pins
                      data[0] = "thruhole", "smt"
@@ -32,7 +32,7 @@
 
 // fpc connector class
 module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {    
-    
+
     row = size[0];
     style = data[0];
     entry = data[1];
@@ -43,7 +43,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
-        
+
 /*
                                                              p    p
                                                              i    i
@@ -52,7 +52,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                                                              b    t
                                              w               o    o
                                b             a   p     p     t    p    p
-                               o             l   i     i               i    
+                               o             l   i     i               i
                                d   s     s   l   n     n     h    h    n
                           p    y   i     i                   e    e    
                    t      i        z     z   s   x     y     i    i    s
@@ -64,7 +64,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                 ["fh19", .5,   2, 2.5,  .9, .25, 1.25, 2.4,  3.4, 1,  .15],
                 ["fh12", .5, 1.9, 3.5, 3.6, .25, 1.9,  2.4,  3.4, 1,  .15]
                ];
-    
+
     adj = .01;
     $fn = 90;
 
@@ -105,7 +105,7 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             }
             if(style == "thruhole") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-pitch]) {
-                    color(pcolor) translate([r, pin_yadj-(pinsize/2), -pbheight+adj]) 
+                    color(pcolor) translate([r, pin_yadj-(pinsize/2), -pbheight+adj])
                         cube([pinsize, pinsize, pbheight+ptheight]);
                 }
             }
@@ -120,41 +120,41 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, 1+back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, .5+back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,.5+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, .5+back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,1+back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
+                    translate([0, 1+back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,back,size_zm/3]) rotate([90, 0, 0]) slot(size_zm,size_x,mlen);
-            }    
+                    translate([0, back, size_zm/3]) rotate([90, 0, 0]) slot(size_zm, size_x, mlen);
+            }
     }
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "block") {
             if(side == "top" && rotation == 270) {
                 place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,-1.5+back,size_zm-5.5]) rotate([90, 0, 0]) cube([size_x,size_zm+3.5,mlen]);
+                    translate([0, -1.5+back, size_zm-5.5]) rotate([90, 0, 0]) cube([size_x, size_zm+3.5, mlen]);
             }
     }
     if(entry == "side" && enablemask == false) {
@@ -170,14 +170,14 @@ module fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                     color(tcolor) translate([.125+body_adj/2, -.5,.5]) cube([size_x-body_adj-.25, 2.625, .25]);
                     color(tcolor) translate([.115+body_adj/2, -.55,0]) cube([(size_x-body_adj-.25)/3, .25, 3]);
                     color(tcolor) translate([(.135+body_adj/2)+(size_x-body_adj-.25)/1.5, -.55,0]) 
-                        cube([(size_x-body_adj-.25)/3, .25, 3]);                    
+                        cube([(size_x-body_adj-.25)/3, .25, 3]);
                 }
             }
             if(style == "smt") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-body_adj/2]) {
                     color(pcolor) translate([r, -adj, .21]) 
                         cube([pinsize, ptheight, pinsize]);
-                    color(pcolor) translate([r, size_y-adj, 0]) 
+                    color(pcolor) translate([r, size_y-adj, 0])
                         cube(smtlead);
                 }
             }

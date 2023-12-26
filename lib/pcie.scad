@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates pcie components
-           TODO: 
-           
+           TODO:
+
           USAGE: pcie(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                       type = "x1", "x4"
 
 */
@@ -37,20 +37,20 @@ module pcie(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         union() {
             difference() {
                 color("black") cube([size_x, size_y, 11.1]);
-                color("dimgrey") translate([1.55,(size_y/2)-.8,2]) cube([11.5,1.6,11]);
-                color("dimgrey") translate([15.5,(size_y/2)-.8,2]) cube([pin-10.5,1.6,11]);
+                color("dimgrey") translate([1.55, (size_y/2)-.8, 2]) cube([11.5, 1.6, 11]);
+                color("dimgrey") translate([15.5, (size_y/2)-.8, 2]) cube([pin-10.5, 1.6, 11]);
             }
             for (i=[1:1:11.5]) {
-                color("#fee5a6") translate ([i+1,2.75,-3]) cube([.5,.7,13.75]);
-                color("#fee5a6") translate ([i+1,4.75,-3]) cube([.5,.7,13.75]);
-                color("#fee5a6") translate ([i+1,1.375,-3]) cube([.5,.7,3.5]);
-                color("#fee5a6") translate ([i+1,6.125,-3]) cube([.5,.7,3.5]);
+                color("#fee5a6") translate ([i+1, 2.75, -3]) cube([.5, .7, 13.75]);
+                color("#fee5a6") translate ([i+1, 4.75, -3]) cube([.5, .7, 13.75]);
+                color("#fee5a6") translate ([i+1, 1.375, -3]) cube([.5, .7, 3.5]);
+                color("#fee5a6") translate ([i+1, 6.125, -3]) cube([.5, .7, 3.5]);
             }
             for (i=[16:1:pin+4]) {
-                color("#fee5a6") translate ([i,2.75,-3]) cube([.5,.7,13.75]);
-                color("#fee5a6") translate ([i,4.75,-3]) cube([.5,.7,13.75]);
-                color("#fee5a6") translate ([i,1.375,-3]) cube([.5,.7,3.5]);
-                color("#fee5a6") translate ([i,6.125,-3]) cube([.5,.7,3.5]);
+                color("#fee5a6") translate ([i, 2.75, -3]) cube([.5, .7, 13.75]);
+                color("#fee5a6") translate ([i, 4.75, -3]) cube([.5, .7, 13.75]);
+                color("#fee5a6") translate ([i, 1.375, -3]) cube([.5, .7, 3.5]);
+                color("#fee5a6") translate ([i, 6.125, -3]) cube([.5, .7, 3.5]);
             }
         }
     }

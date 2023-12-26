@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates pin headers in any size or pitch.
-           TODO: "box", "angled" headers 
-                
+           TODO: "box", "angled" headers
+
           USAGE: header(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                         type = "open", "box"
                         size[0] = #row
                         size[1] = #columns
@@ -51,56 +51,56 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     pheight = pitch == 2.54 ? 3.2 : 2;
     pinsize = pitch == 2.54 ? .64 : .3;
     theight = bheight + pheight + height;
-    smtlead = [pinsize,.925,.32];
-    
+    smtlead = [pinsize, .925, .32];
+
     adj = .01;
     $fn = 90;
     
     // thruhole headers
-    if(type=="open" && style == "thruhole" && enablemask == false) {
-       
+    if(type == "open" && style == "thruhole" && enablemask == false) {
+
         if(gender == "male") {
-            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color(hcolor) cube([size_x, size_y, bheight]);
                 for(c=[pitch/2:pitch:size_x]) {
                     for(r=[pitch/2:pitch:size_y]) {
-                        color(pcolor) translate ([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize,pinsize,theight+adj]);
-                    } 
+                        color(pcolor) translate([c-(pinsize/2), r-(pinsize/2), -pheight]) cube([pinsize, pinsize, theight+adj]);
+                    }
                 }
             }
         }
         if(gender == "female") {
-            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 difference() {
                     color(hcolor) cube([size_x, size_y, height]);
                     for(c=[pitch/2:pitch:size_x]) {
                         for(r=[pitch/2:pitch:size_y]) {
-                            color("dimgray") translate ([c-(pinsize/2),r-(pinsize/2),height-5+adj]) cube([pinsize,pinsize,height-1]);
-                            color(pcolor) translate ([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize,pinsize,pheight+adj]);
+                            color("dimgray") translate([c-(pinsize/2), r-(pinsize/2), height-5+adj]) cube([pinsize, pinsize, height-1]);
+                            color(pcolor) translate([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize, pinsize, pheight+adj]);
                         }
                     }
                 }
                 for(c=[pitch/2:pitch:size_x]) {
                     for(r=[pitch/2:pitch:size_y]) {
-                        color(pcolor) translate ([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize,pinsize,pheight+adj]);
+                        color(pcolor) translate([c-(pinsize/2), r-(pinsize/2), -pheight]) cube([pinsize, pinsize, pheight+adj]);
                     }
                 }
             }
         }
     }
     // smt headers
-    if(type=="open" && style == "smt" && enablemask == false) {
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)        
+    if(type == "open" && style == "smt" && enablemask == false) {
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             if(gender == "male") {
                 union() {
                     color(hcolor) cube([size_x, size_y, bheight]);
                     for(c=[pitch/2:pitch:size_x]) {
                         for(r=[pitch/2:pitch:size_y]) {
-                            color(pcolor) translate ([c-(pinsize/2),r-(pinsize/2),bheight-adj]) cube([pinsize,pinsize,height+adj]);
-                        } 
+                            color(pcolor) translate([c-(pinsize/2), r-(pinsize/2), bheight-adj]) cube([pinsize, pinsize, height+adj]);
+                        }
                     }
                 }
             }
@@ -110,7 +110,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                         color(hcolor) cube([size_x, size_y, height]);
                         for(c=[pitch/2:pitch:size_x]) {
                             for(r=[pitch/2:pitch:size_y]) {
-                                color("dimgray") translate ([c-(pinsize/2),r-(pinsize/2),adj]) cube([pinsize,pinsize,height]);
+                                color("dimgray") translate([c-(pinsize/2), r-(pinsize/2), adj]) cube([pinsize, pinsize, height]);
                             }
                         }
                     }
@@ -119,53 +119,53 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             if(size_x >= size_y) {
                 for(r=[pitch/2:pitch:size_x]) {
                     for(c=[pitch/2:pitch:size_y]) {
-                        color(pcolor) translate ([r-(pinsize/2),-smtlead[1],0]) cube(smtlead);
-                        color(pcolor) translate ([r-(pinsize/2),size_y-adj,0]) cube(smtlead);
+                        color(pcolor) translate ([r-(pinsize/2), -smtlead[1], 0]) cube(smtlead);
+                        color(pcolor) translate ([r-(pinsize/2), size_y-adj, 0]) cube(smtlead);
                     }
                 }
             }
             else {
                 for(r=[pitch/2:pitch:size_x]) {
                     for(c=[pitch/2:pitch:size_y]) {
-                        color(pcolor) translate ([-smtlead[1]+adj,c-(pinsize/2),0]) cube([smtlead[1],smtlead[0],smtlead[2]]);
-                        color(pcolor) translate ([size_x-adj,c-(pinsize/2),0]) cube([smtlead[1],smtlead[0],smtlead[2]]);
+                        color(pcolor) translate ([-smtlead[1]+adj, c-(pinsize/2), 0]) cube([smtlead[1], smtlead[0], smtlead[2]]);
+                        color(pcolor) translate ([size_x-adj, c-(pinsize/2), 0]) cube([smtlead[1], smtlead[0], smtlead[2]]);
                     }
                 }
-            }                    
+            }
         }
     }
-    
+
     // gpio 30 pin enclosed header
-    if(type=="encl_header_30" && enablemask == false) {
+    if(type == "encl_header_30" && enablemask == false) {
         size_x = 37;
-        size_y = 5.5;                
+        size_y = 5.5;
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
             difference () {
-                color("black") translate([0,0,0]) cube([size_x, size_y, 6.25]);
-                color ("darkgray") translate ([.5,.5,.6]) cube([36, 4.5, 5.75]);
+                color("black") cube([size_x, size_y, 6.25]);
+                color ("darkgray") translate ([.5, .5, .6]) cube([36, 4.5, 5.75]);
             }
             for (i=[4.5:2:34]) {
-                color("silver") translate ([i,1.5,1]) cube([.5,.5,5]);
-                color("silver") translate ([i,3.5,1]) cube([.5,.5,5]);
+                color("silver") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
+                color("silver") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
             }
         }
     }
-    
+
     // gpio 12 enclosed header
-    if (type=="encl_header_12" && enablemask == false) {
+    if (type == "encl_header_12" && enablemask == false) {
         size_x = 19.5;
-        size_y = 5.5;                
+        size_y = 5.5;
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {                
+        union() {
             difference () {
-                color("black") translate([0,0,0]) cube([size_x,size_y,6.25]);
-                color ("darkgray") translate ([.5,.5,.6]) cube([18.5,4.5,5.75]);
+                color("black") cube([size_x, size_y, 6.25]);
+                color ("darkgray") translate ([.5, .5, .6]) cube([18.5, 4.5, 5.75]);
             }
             for (i=[4.5:2:16]) {
-                color("#fee5a6") translate ([i,1.5,1]) cube([.5,.5,5]);
-                color("#fee5a6") translate ([i,3.5,1]) cube([.5,.5,5]);
+                color("#fee5a6") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
+                color("#fee5a6") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
             }
         }
-    }    
+    }
 }

@@ -12,24 +12,24 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
-    
-    
+
+
     DESCRIPTION: creates antenna components.
            TODO: 
-             
+
           USAGE: antenna(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-                            
+
                          type = "ipex"
 
 */
- 
+
 // antenna class
 module antenna(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
-        
+
     // type ipex surface mount
-    if(type == "ipex" && enablemask == false) {    
+    if(type == "ipex" && enablemask == false) {
         place(loc_x, loc_y, loc_z, 2.5, 2.75, rotation, side, pcbsize_z)
         union() {
             color("white") cube([2.5,2.75,.35]);
@@ -39,5 +39,5 @@ module antenna(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             }
             color("gold") translate([2.5/2, 2.75/2, .6]) cylinder(d=.5, h=.6);
         }
-    }  
+    }
 }

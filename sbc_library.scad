@@ -12,10 +12,8 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
-
-
 */
 
 include <./lib/place.scad>
@@ -48,4 +46,3 @@ include <./lib/switch.scad>
 include <./lib/terminal.scad>
 include <./lib/usb.scad>
 include <./lib/video.scad>
-

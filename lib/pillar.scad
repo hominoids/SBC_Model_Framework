@@ -12,14 +12,14 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
     DESCRIPTION: creates smd components
            TODO: add other styles
-           
+
           USAGE: pillar(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-                   
+
                         type = "hex", "round"
                         size[0] = outside dia
                         size[1] = inside dia
@@ -33,7 +33,7 @@ module pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
 
     // type hex
     if(type=="hex" && enablemask == false) {
-    
+
         size_x = size[0];
         size_y = size[1];
         size_z = size[2];
@@ -43,13 +43,13 @@ module pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             difference() {
                 color(pcolor) rotate([rotation]) cylinder(d=size_x*2/sqrt(3), h=size_z, $fn=6);
-                color(pcolor) translate([0,0,-.1]) rotate([rotation]) cylinder(d=size_y, h=size_z+.2);
+                color(pcolor) translate([0, 0, -.1]) rotate([rotation]) cylinder(d=size_y, h=size_z+.2);
             }
         }
     }
     // type hex
     if(type=="round" && enablemask == false) {
-    
+
         size_x = size[0];
         size_y = size[1];
         size_z = size[2];
@@ -59,7 +59,7 @@ module pillar(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             difference() {
                 color(pcolor) rotate([rotation]) cylinder(d=size_x, h=size_z, $fn=60);
-                color(pcolor) translate([0,0,-.1]) rotate([rotation]) cylinder(d=size_y, h=size_z+.2);
+                color(pcolor) translate([0, 0, -.1]) rotate([rotation]) cylinder(d=size_y, h=size_z+.2);
             }
         }
     }

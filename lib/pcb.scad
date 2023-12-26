@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates pcb and features
            TODO: 
-           
+
           USAGE: pcb(size[], radius)
-          
+
                      size[0] = size_x
                      size[1] = size_y
                      size[2] = size_z
@@ -28,21 +28,21 @@
 
     DESCRIPTION: creates pcb hole
            TODO: cu edge shapes
-                      
+
           USAGE: pcbhole(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                          type = "round"
                          size[0] = hole diameter
                          data[0] = style
                          data[1] = hole color
                          data[2] = shape
                          data[3] = trace diameter
-                         
+
     DESCRIPTION: creates soc components
            TODO: add other styles
-           
+
           USAGE: pcbsoc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                      type = "flat", "raised", "mid-raised", "rk3399", "rk3588"
                      size[0] = size_x
                      size[1] = size_y
@@ -62,14 +62,14 @@
 module pcb(size, radius) {
     x = size[0];
     y = size[1];
-    z = size[2];   
+    z = size[2];
     linear_extrude(height = z)
     hull() {
         translate([0+radius ,0+radius, 0]) circle(r = radius);
         translate([0+radius, y-radius, 0]) circle(r = radius);
         translate([x-radius, y-radius, 0]) circle(r = radius);
         translate([x-radius, 0+radius, 0]) circle(r = radius);
-    }  
+    }
 }
 
 
@@ -78,14 +78,14 @@ module pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
 
     // pcbhole class
     if(type == "round" && enablemask == false) {
-    
+
         size_x = size[0];
         size_y = size[0];
         style = data[0];
         hcolor = data[1];
         shape = data[2];
         trace = data[3];
-        
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         difference() {
             color(hcolor) translate([0, 0, -.0625-pcbsize_z]) cylinder(d=trace, pcbsize_z+.125);
@@ -110,28 +110,28 @@ module pcbsoc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
-                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],2);
+                translate([2, 2, size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],2);
             }
     }
     if(type == "raised" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
-                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
+                translate([2, 2, size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
             }
     }
     if(type == "rk3588" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
-                translate([2,2,size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
+                translate([2, 2, size_z-.01]) color("silver") slab([size_x-4, size_y-4, .6],.5);
             }
     }
     if(type == "mid-raised" && enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color("silver") cube([size_x, size_y, size_z]);
-                color("silver") translate([data[0],data[1],size_z-.01]) rotate([90,0,90]) slot(data[5],data[3],data[4]);
+                color("silver") translate([data[0], data[1], size_z-.01]) rotate([90,0,90]) slot(data[5], data[3], data[4]);
             }
     }
 }
@@ -144,19 +144,19 @@ module pcbpad(pads, style) {
     $fn = 90;
     pad_size = 1.25;
     size_y = 2.54;
-    size_x = 2.54 * (pads-1);                
+    size_x = 2.54 * (pads-1);
     union() {
         for (i=[0:2.54:size_x]) {
             if(style == "round") {
                 difference() {
-                    color("#fee5a6") translate ([i,0,0]) cylinder(d=pad_size, h=.125);
-                    color("dimgray") translate([i,0,-adj]) cylinder(d=.625, h=.125+2*adj);
+                    color("#fee5a6") translate ([i, 0, 0]) cylinder(d=pad_size, h=.125);
+                    color("dimgray") translate([i, 0, -adj]) cylinder(d=.625, h=.125+2*adj);
                 }
             }
             if(style == "square") {
                 difference() {
-                    color("#fee5a6") translate ([i-pad_size/2,-pad_size/2,0]) cube([pad_size, pad_size, .125]);
-                    color("dimgray") translate([i,0,-adj]) cylinder(d=.625, h=.125+2*adj);
+                    color("#fee5a6") translate ([i-pad_size/2, -pad_size/2, 0]) cube([pad_size, pad_size, .125]);
+                    color("dimgray") translate([i, 0, -adj]) cylinder(d=.625, h=.125+2*adj);
                 }
             }
         }

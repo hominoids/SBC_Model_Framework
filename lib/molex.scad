@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates molex 7478 series connectors.
            TODO: 
-           
+
           USAGE: molex(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                        type = "7478",
                        size[0] = #pins
                        data[0] = "thruhole", "smt"
@@ -29,8 +29,8 @@
 */
 
 // molex connector class
-module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {    
-    
+module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
+
     row = size[0];
     style = data[0];
     entry = data[1];
@@ -41,7 +41,6 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     back = mask[2];
     mstyle = mask[3];
 
-    
 /*
                                                                    p    p
                                                                    i    i
@@ -61,7 +60,7 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     molex_data = [
                  ["7478", 2.54, 0,   6.5,  3.18, 0,    0, 3.25,  3.4, 9.25, .64, 3, 1.17]
                  ];
-    
+
     adj = .01;
     $fn = 90;
 
@@ -90,74 +89,74 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                 union() {
                     color(bcolor) cube([size_x, size_y, size_z]);
                     if(type == "7478") {
-                        color(bcolor) translate([pitch/4,size_y-1,0]) cube([size_x-pitch/2, 1, size_z+5.5]);
-                        color(bcolor) translate([pitch/4,size_y-1, size_z+4.5]) rotate([0,90,0]) 
+                        color(bcolor) translate([pitch/4, size_y-1, 0]) cube([size_x-pitch/2, 1, size_z+5.5]);
+                        color(bcolor) translate([pitch/4, size_y-1, size_z+4.5]) rotate([0, 90, 0]) 
                             cylinder(d=2, h=size_x-pitch/2);
                     }
                 }
                 if(type == "7478") {
                     for(r=[pitch/2-(pinsize/2)-.5:pitch:size_x]) {
-                        color(bcolor) translate([r, -1,-1]) cube([1.5, size_y+2, 1.5]);
+                        color(bcolor) translate([r, -1, -1]) cube([1.5, size_y+2, 1.5]);
                     }
                 }
             }
             if(style == "thruhole") {
                 for(r=[pitch/2-(pinsize/2):pitch:size_x]) {
-                    color("silver") translate([r, pin_yadj-(pinsize/2), -pbheight+adj]) 
+                    color("silver") translate([r, pin_yadj-(pinsize/2), -pbheight+adj])
                         cube([pinsize, pinsize, pbheight+ptheight]);
                 }
             }
             if(style == "smt") {
                 for(r=[pitch/2-(pinsize/2):pitch:size_x-pitch]) {
-                    color("silver") translate([r, pin_yadj-(pinsize/2), adj]) 
+                    color("silver") translate([r, pin_yadj-(pinsize/2), adj])
                         cube([pinsize, pinsize, ptheight]);
-                    color("silver") translate([r, size_y-adj, 0]) 
+                    color("silver") translate([r, size_y-adj, 0])
                         cube(smtlead);
                 }
             }
         }
     }
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
-    
+
         size_xm = size_x;
         size_ym = size_y+.5;
         size_zm = 5;
-        
+
         if(side == "top" && rotation == 0) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen], .5);
         }
         if(side == "top" && rotation == 90) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen], .5);
         }
         if(side == "top" && rotation == 180) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back+.5,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back+.5, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen], .5);
         }
         if(side == "top" && rotation == 270) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back+.5,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back+.5, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen], .5);
         }
         if(side == "bottom" && rotation == 0) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen],.5);
         }
         if(side == "bottom" && rotation == 90) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back+.5,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back+.5, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen],.5);
         }
         if(side == "bottom" && rotation == 180) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back+.5,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
+                translate([0, back+.5, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen], .5);
         }
         if(side == "bottom" && rotation == 270) {
             place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                translate([0,back,0]) rotate([90, 0, 0]) slab([size_x,size_ym,mlen],.5);
-        }    
+                translate([0, back, 0]) rotate([90, 0, 0]) slab([size_x, size_ym, mlen], .5);
+        }
     }
     if(entry == "side" && enablemask == false) {
-    
+
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
             difference() {
@@ -165,7 +164,7 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                     color(bcolor) cube([size_x, size_z, size_y]);
                     if(type == "7478") {
                         color(bcolor) translate([pitch/4,-size_z-5.5,size_y-1]) cube([size_x-pitch/2, size_z+5.5, 1]);
-                        color(bcolor) translate([pitch/4, -size_z-4.5, size_y-1]) rotate([0,90,0]) 
+                        color(bcolor) translate([pitch/4, -size_z-4.5, size_y-1]) rotate([0, 90, 0]) 
                             cylinder(d=2, h=size_x-pitch/2);
                     }
                 }
@@ -177,19 +176,19 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             }
             if(style == "thruhole") {
                 for(r=[pitch/2-(pinsize/2):pitch:size_x]) {
-                    color("silver") translate([r, -ptheight+adj, size_y-(pin_yadj+(pinsize/2))]) 
+                    color("silver") translate([r, -ptheight+adj, size_y-(pin_yadj+(pinsize/2))])
                         cube([pinsize, ptheight+size_z+pinsize+pinsize/2, pinsize]);
-                    color("silver") translate([r, size_z+pinoffset-pinsize/2, -pbheight+adj]) 
+                    color("silver") translate([r, size_z+pinoffset-pinsize/2, -pbheight+adj])
                         cube([pinsize, pinsize, pbheight+pinsize+pinsize/2]);
-                    rotate([0,270,0]) translate([pinsize+(pinsize/2.23),size_z+pinsize,r-size_x]) color("silver") 
+                    rotate([0,270,0]) translate([pinsize+(pinsize/2.23), size_z+pinsize, r-size_x]) color("silver")
                         rotate_extrude(angle=90, convexity = 10) translate([2, 0, 0]) square([pinsize, pinsize]);
                 }
             }
             if(style == "smt") {
                 for(r=[pitch/2-(pinsize/2):pitch:size_x-pitch]) {
-                    color("silver") translate([r, -adj, size_y-(pin_yadj+(pinsize/2))]) 
+                    color("silver") translate([r, -adj, size_y-(pin_yadj+(pinsize/2))])
                         cube([pinsize, ptheight, pinsize]);
-                    color("silver") translate([r, size_z-adj, 0]) 
+                    color("silver") translate([r, size_z-adj, 0])
                         cube(smtlead);
                 }
             }

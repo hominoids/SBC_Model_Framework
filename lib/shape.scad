@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates geometric shapes
-           TODO: 
-           
+           TODO:
+
           USAGE: shape(type, size[], data[])
-          
+
                      type = "rectangle", "round", "slot", "polygon", "dxf"
                      size[0] = size_x
                      size[1] = size_y
@@ -29,14 +29,14 @@
                      data[2] = polygon data or dxf file
 
           USAGE: slab(size[], radius])
-          
+
                      size[0] = size_x
                      size[1] = size_y
                      size[2] = size_z
                      radius = corner radius
 
           USAGE: slab_r(size[], radius[]])
-          
+
                      size[0] = size_x
                      size[1] = size_y
                      size[2] = size_z
@@ -46,7 +46,7 @@
                      radius[3] = corner radius
 
           USAGE: slot(hole,length,depth)
-          
+
                      hole = radius diameter
                      length = total length
                      depth = thickness
@@ -57,13 +57,13 @@
 module shape(type, size, data) {
 
     if(type == "rectangle") {
-        cube([size[0],size[1],size[2]]);
+        cube([size[0], size[1], size[2]]);
     }
     if(type == "round") {
             cylinder(d=size[0], h=size[2]);
     }    
     if(type == "slot") {
-            slot(size[0],size[1],size[2]);
+            slot(size[0], size[1], size[2]);
     }    
     if(type == "polygon") {
             linear_extrude(height = size[2]) polygon(data[2]);
@@ -75,23 +75,23 @@ module shape(type, size, data) {
 
 /* slab module */
 module slab(size, radius) {
-    
+
     x = size[0];
     y = size[1];
-    z = size[2];   
+    z = size[2];
     linear_extrude(height=z)
     hull() {
-        translate([0+radius ,0+radius, 0]) circle(r=radius);	
-        translate([0+radius, y-radius, 0]) circle(r=radius);	
-        translate([x-radius, y-radius, 0]) circle(r=radius);	
+        translate([0+radius ,0+radius, 0]) circle(r=radius);
+        translate([0+radius, y-radius, 0]) circle(r=radius);
+        translate([x-radius, y-radius, 0]) circle(r=radius);
         translate([x-radius, 0+radius, 0]) circle(r=radius);
-    }  
+    }
 }
 
 
 /* multi-radius round slab */
 module slab_r(size, radius) {
-    
+
     x = size[0];
     y = size[1];
     z = size[2];
@@ -99,22 +99,22 @@ module slab_r(size, radius) {
     r1 = radius[1];
     r2 = radius[2];
     r3 = radius[3];
-    
+
     linear_extrude(height=z)
     hull() {
-        translate([0+radius[0] ,0+radius[0], 0]) circle(r=radius[0]);	
-        translate([0+radius[1], y-radius[1], 0]) circle(r=radius[1]);	
-        translate([x-radius[2], y-radius[2], 0]) circle(r=radius[2]);	
+        translate([0+radius[0] ,0+radius[0], 0]) circle(r=radius[0]);
+        translate([0+radius[1], y-radius[1], 0]) circle(r=radius[1]);
+        translate([x-radius[2], y-radius[2], 0]) circle(r=radius[2]);
         translate([x-radius[3], 0+radius[3], 0]) circle(r=radius[3]);
-    }  
+    }
 }
 
 
 /* slot module */
 module slot(hole,length,depth) {
-    
+
     hull() {
-        translate([hole/2,0,0]) cylinder(d=hole,h=depth);
-        translate([length-hole/2,0,0]) cylinder(d=hole,h=depth);        
+        translate([hole/2, 0, 0]) cylinder(d=hole, h=depth);
+        translate([length-hole/2, 0, 0]) cylinder(d=hole, h=depth);
         }
-    } 
+    }

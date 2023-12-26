@@ -12,36 +12,36 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates memory components
            TODO: 
-           
+
           USAGE: memory(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                         type = "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
 
 */
  
 // memory class
 module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
-    
+
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
-    
+
     // socketed emmc
     if(type == "emmc") {
-    
+
         size_x = 13.5;
         size_y = 18.5;
         size_xm = 14.5;
         size_ym = 19.5;
         size_zm = mlen;
-   
+
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -91,16 +91,16 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                 }
         }
     }
- 
+
     // emmc plug
     if(type == "emmc_plug") {
-    
+
         size_x = 8.3;
         size_y = 2.16;
         size_xm = 14.5;
         size_ym = 19.5;
         size_zm = mlen;
-   
+
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
 //                place(loc_x-.5, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -137,61 +137,61 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
         }
         if(enablemask == false) {
            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-               union (){
-                    difference() {
-                    color("black") cube([size_x, size_y, .82]);
-                    color("black") translate([1, .25, .15]) cube([6.3, 1.65, 1]); 
-                    color("black") translate([1, 0, .72]) cube([6.3, 2.5, 2]);                
-                    }
-                    for (i=[1.25:.4:7.2]) {
-                        color("gold") translate ([i, -.05, 0]) cube([.16, .3, .82]);
-                        color("gold") translate ([i, 1.9, 0]) cube([.16, .3, .82]);
-                    }
+           union (){
+                difference() {
+                color("black") cube([size_x, size_y, .82]);
+                color("black") translate([1, .25, .15]) cube([6.3, 1.65, 1]); 
+                color("black") translate([1, 0, .72]) cube([6.3, 2.5, 2]);
                 }
+                for (i=[1.25:.4:7.2]) {
+                    color("gold") translate ([i, -.05, 0]) cube([.16, .3, .82]);
+                    color("gold") translate ([i, 1.9, 0]) cube([.16, .3, .82]);
+                }
+            }
         }
     }
-       
+
     // sodimm-5.2 socket
-    if(type == "sodimm_5.2" && enablemask == false) {                
+    if(type == "sodimm_5.2" && enablemask == false) {
         size_x = 73;
-        size_y = 6.5;                
+        size_y = 6.5;
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
-                
-                color("dimgray") translate([0,0,0]) cube([size_x,size_y,5.2]);
-                color("dimgray") translate([2,-1,1.75]) cube([69,3,5]);
-                color("dimgray") translate([3.5,-1,1.75]) cube([28.5,5.25,.92]);
-                color("dimgray") translate([34.5,-1,1.75]) cube([35,5.25,.92]);
+
+                color("dimgray") cube([size_x, size_y, 5.2]);
+                color("dimgray") translate([2, -1, 1.75]) cube([69, 3, 5]);
+                color("dimgray") translate([3.5, -1, 1.75]) cube([28.5, 5.25, .92]);
+                color("dimgray") translate([34.5, -1, 1.75]) cube([35, 5.25, .92]);
             }
             for (i=[2:.5:31]) {
-                color("gold") translate ([i+.5,2,1.75]) cube([.25,2,.25]);
+                color("gold") translate ([i+.5, 2, 1.75]) cube([.25, 2, .25]);
             }
             for (i=[34:.5:69]) {
-                color("gold") translate ([i+.5,2,1.75]) cube([.25,2,.25]);
+                color("gold") translate ([i+.5, 2, 1.75]) cube([.25, 2, .25]);
             }
         }
     }
-        
+
     // sodimm-9.2 socket
-    if(type == "sodimm_9.2" && enablemask == false) {        
+    if(type == "sodimm_9.2" && enablemask == false) {
         size_x = 73;
-        size_y = 6.5;                
+        size_y = 6.5;
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {  
             difference () {
-                
-                color("dimgray") translate([0,0,0]) cube([size_x,size_y,9.2]);
-                color("dimgray") translate([2,-1,5.7]) cube([69,3,5]);
-                color("dimgray") translate([3.5,-1,5.7]) cube([28.5,5.25,.92]);
-                color("dimgray") translate([34.5,-1,5.7]) cube([35,5.25,.92]);
+
+                color("dimgray") cube([size_x, size_y, 9.2]);
+                color("dimgray") translate([2, -1, 5.7]) cube([69, 3, 5]);
+                color("dimgray") translate([3.5, -1, 5.7]) cube([28.5, 5.25, .92]);
+                color("dimgray") translate([34.5, -1, 5.7]) cube([35, 5.25, .92]);
             }
             for (i=[2:.5:31]) {
-                color("gold") translate ([i+.5,2,5.7]) cube([.25,2,.25]);
+                color("gold") translate ([i+.5, 2, 5.7]) cube([.25, 2, .25]);
             }
             for (i=[34:.5:69]) {
-                color("gold") translate ([i+.5,2,5.7]) cube([.25,2,.25]);
+                color("gold") translate ([i+.5, 2, 5.7]) cube([.25, 2, .25]);
             }
         }
-    }   
+    }
 }

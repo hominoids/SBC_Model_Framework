@@ -12,19 +12,19 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
-    
-    
+
+
     DESCRIPTION: creates intergrated circuits
            TODO: 
-           
+
           USAGE: ic(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                     type = "generic"
 
 */
- 
+
 // ic class
 module ic(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
@@ -34,8 +34,8 @@ module ic(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
 
     // generic ic
     if (type == "generic" && enablemask == false) {
-    
+
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             color("dimgray") cube([size_x, size_y, size_z]);
-    }    
+    }
 }

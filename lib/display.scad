@@ -12,17 +12,16 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates flat panel displays
            TODO: 
-           
+
           USAGE: display(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                          type = "lcd_2.2"
-                     
 
 */
 
@@ -33,15 +32,15 @@ module display(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
-    
+
     // type lcd_2.2
     if(type == "lcd_2.2") {
-    
+
         size_x = 56;
         size_y = 38;
         size_xm = 45;
         size_ym = 34;
-        
+
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x+4, loc_y+1, loc_z+4, size_xm, size_ym, rotation, side, pcbsize_z)

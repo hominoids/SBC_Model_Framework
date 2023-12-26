@@ -12,15 +12,15 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa.
-           TODO: flange for sh
-           
+           TODO: flange for sh 
+
           USAGE: jst(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                      type = "xh","ph","zh","sh","pa"
                      size[0] = #pins
                      data[0] = "thruhole", "smt"
@@ -46,7 +46,7 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                                                                b    t
                                                w               o    o
                              b                 a   p     p     t    p    p
-                             o                 l   i     i               i    
+                             o                 l   i     i               i
                              d      s   s      l   n     n     h    h    n
                         p    y      i   i                      e    e    
                    t    i           z   z      s   x     y     i    i    s
@@ -87,61 +87,61 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                 union() {
                 color(bcolor) cube([size_x, size_y, size_z]);
                     if(type == "pa") {
-                        color(bcolor) translate([0, -.75+adj,1.5]) cube([1.5, .75, size_z-3.01]);
-                        color(bcolor) translate([size_x-1.5, -.75+adj,1.5]) cube([1.5, .75, size_z-3.01]);
+                        color(bcolor) translate([0, -.75+adj, 1.5]) cube([1.5, .75, size_z-3.01]);
+                        color(bcolor) translate([size_x-1.5, -.75+adj, 1.5]) cube([1.5, .75, size_z-3.01]);
                         if(row >= 6) {
-                            color(bcolor) translate([2.5, -.75+adj,1.5]) cube([1.5, .75, size_z-3.01]);
-                            color(bcolor) translate([size_x-4, -.75+adj,1.5]) cube([1.5, .75, size_z-3.01]);
+                            color(bcolor) translate([2.5, -.75+adj, 1.5]) cube([1.5, .75, size_z-3.01]);
+                            color(bcolor) translate([size_x-4, -.75+adj, 1.5]) cube([1.5, .75, size_z-3.01]);
                         }
                     }
                 }
                 color(bcolor) translate([wall_size, wall_size, wall_size]) 
                     cube([size_x-(2*wall_size), size_y-(2*wall_size), size_z]);
                 if(type == "xh") {
-                    color(bcolor) translate([2, -.1,size_z/2]) cube([1.5, size_y-2, 4]);
-                    color(bcolor) translate([size_x-3.5, -.1,size_z/2]) cube([1.5, size_y-2, 4]);
-                    color(bcolor) translate([-1,.75,5]) cube([2,.75,3]);
-                    color(bcolor) translate([size_x-2,.75,5]) cube([size_y-2,.25*size[0],3]);
+                    color(bcolor) translate([2, -.1, size_z/2]) cube([1.5, size_y-2, 4]);
+                    color(bcolor) translate([size_x-3.5, -.1, size_z/2]) cube([1.5, size_y-2, 4]);
+                    color(bcolor) translate([-1, .75, 5]) cube([2, .75, 3]);
+                    color(bcolor) translate([size_x-2, .75, 5]) cube([size_y-2, .25*size[0], 3]);
                 }
                 if(type == "ph") {
-                    color(bcolor) translate([2, -.1,2]) cube([size_x-(2*pitch), size_y-2, 5]);
-                    color(bcolor) translate([-1,1.25,4]) cube([size_y-2,.25*size[0],size_z]);
-                    color(bcolor) translate([size_x-2,1.25,4]) cube([size_y-2,.25*size[0],size_z]);
+                    color(bcolor) translate([2, -.1, 2]) cube([size_x-(2*pitch), size_y-2, 5]);
+                    color(bcolor) translate([-1, 1.25, 4]) cube([size_y-2, .25*size[0], size_z]);
+                    color(bcolor) translate([size_x-2, 1.25, 4]) cube([size_y-2, .25*size[0], size_z]);
                 }
                 if(type == "zh") {
-                    color(bcolor) translate([-1,1.25,size_z/2]) cube([size_y-2,.25*size[0],size_z]);
-                    color(bcolor) translate([size_x-1,1.25,size_z/2]) cube([size_y-2,0.25*size[0],size_z]);
+                    color(bcolor) translate([-1, 1.25, size_z/2]) cube([size_y-2, .25*size[0], size_z]);
+                    color(bcolor) translate([size_x-1, 1.25, size_z/2]) cube([size_y-2, 0.25*size[0], size_z]);
                 }
                 if(type == "sh") {
-                    color(bcolor) translate([.25,.75,size_z/2]) cube([.25,.25,size_z]);
-                    color(bcolor) translate([size_x-.5,.75,size_z/2]) cube([.25,.25,size_z]);
+                    color(bcolor) translate([.25, .75, size_z/2]) cube([.25, .25, size_z]);
+                    color(bcolor) translate([size_x-.5, .75, size_z/2]) cube([.25, .25, size_z]);
                 }
                 if(type == "pa") {
-                    color(bcolor) translate([-1.,-2.5,6]) cube([size_x+2,5,4]);
-                    color(bcolor) translate([1.5,2,size_z-1]) cube([size_x-3,4,4]);
-                    color(bcolor) translate([wall_size, -.75+adj+wall_size,1.5]) 
+                    color(bcolor) translate([-1., -2.5, 6]) cube([size_x+2, 5, 4]);
+                    color(bcolor) translate([1.5 ,2, size_z-1]) cube([size_x-3, 4, 4]);
+                    color(bcolor) translate([wall_size, -.75+adj+wall_size, 1.5]) 
                         cube([1.5-(2*wall_size), 1, size_z-3.01]);
-                    color(bcolor) translate([size_x-1.5+wall_size, -.75+adj+wall_size,1.5]) 
-                        cube([1.5-(2*wall_size), 1, size_z-3.01]);                            
+                    color(bcolor) translate([size_x-1.5+wall_size, -.75+adj+wall_size, 1.5])
+                        cube([1.5-(2*wall_size), 1, size_z-3.01]);
                     if(row >= 6) {
-                        color(bcolor) translate([2.875, -.5+adj,1.75]) cube([1.5-(2*wall_size), 1, size_z-3.01]);
-                        color(bcolor) translate([size_x-3.675, -.5+adj,1.75]) cube([1.5-(2*wall_size), 1, size_z-3.01]);
+                        color(bcolor) translate([2.875, -.5+adj, 1.75]) cube([1.5-(2*wall_size), 1, size_z-3.01]);
+                        color(bcolor) translate([size_x-3.675, -.5+adj, 1.75]) cube([1.5-(2*wall_size), 1, size_z-3.01]);
                     }
                 }
             }
             if(type == "sh") {
-                color(bcolor) translate([.25,size_y-.75,0]) cube([.5,.5,size_z]);
-                color(bcolor) translate([size_x-.75,size_y-.75,0]) cube([.5,.5,size_z]);
+                color(bcolor) translate([.25, size_y-.75, 0]) cube([.5, .5, size_z]);
+                color(bcolor) translate([size_x-.75, size_y-.75, 0]) cube([.5, .5, size_z]);
             }
             if(style == "thruhole") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-pitch]) {
-                    color("silver") translate([r, pin_yadj-(pinsize/2), -pbheight+adj]) 
+                    color("silver") translate([r, pin_yadj-(pinsize/2), -pbheight+adj])
                         cube([pinsize, pinsize, pbheight+ptheight]);
                 }
             }
             if(style == "smt") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-pitch]) {
-                    color("silver") translate([r, pin_yadj-(pinsize/2), adj]) 
+                    color("silver") translate([r, pin_yadj-(pinsize/2), adj])
                         cube([pinsize, pinsize, ptheight]);
                     color("silver") translate([r, size_y-adj, 0]) 
                         cube(smtlead);
@@ -154,58 +154,58 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             union() {
             difference() {
                 color(bcolor) cube([size_x, size_z, size_y]);
-                color(bcolor) translate([wall_size, -wall_size, wall_size]) 
+                color(bcolor) translate([wall_size, -wall_size, wall_size])
                     cube([size_x-(2*wall_size), size_z, size_y-(2*wall_size)]);
                 if(type == "xh") {
-                    color(bcolor) translate([2, -.1,size_z/2]) cube([1.5, 4, size_y-2]);
-                    color(bcolor) translate([size_x-3.5, -.1,size_z/2]) cube([1.5, 4, size_y-2]);
-                    color(bcolor) translate([-1,-.75,4]) cube([2,3,.75]);
-                    color(bcolor) translate([size_x-1,-.75,4]) cube([2,3,.25*size[0]]);
+                    color(bcolor) translate([2, -.1, size_z/2]) cube([1.5, 4, size_y-2]);
+                    color(bcolor) translate([size_x-3.5, -.1, size_z/2]) cube([1.5, 4, size_y-2]);
+                    color(bcolor) translate([-1, -.75, 4]) cube([2, 3, .75]);
+                    color(bcolor) translate([size_x-1, -.75, 4]) cube([2, 3, .25*size[0]]);
                 }
                 if(type == "ph") {
-                    color(bcolor) translate([2, -.1,3]) cube([size_x-(2*pitch), 5, 2]);
-                    color(bcolor) translate([-1,-4,size_y-2]) cube([size_y-2,size_z,1]);
-                    color(bcolor) translate([size_x-2,-4,size_y-2]) cube([size_y-2,size_z,1]);
+                    color(bcolor) translate([2, -.1, 3]) cube([size_x-(2*pitch), 5, 2]);
+                    color(bcolor) translate([-1, -4, size_y-2]) cube([size_y-2, size_z, 1]);
+                    color(bcolor) translate([size_x-2, -4, size_y-2]) cube([size_y-2, size_z, 1]);
                 }
                 if(type == "zh") {
-                    color(bcolor) translate([-1,-size_z+1.25,size_y-1.25]) cube([size_y-2,size_z,.25*size[0]]);
-                    color(bcolor) translate([size_x-1,-size_z+1.25,size_y-1.25]) cube([size_y-2,size_z,0.25*size[0]]);
+                    color(bcolor) translate([-1, -size_z+1.25, size_y-1.25]) cube([size_y-2, size_z, .25*size[0]]);
+                    color(bcolor) translate([size_x-1, -size_z+1.25, size_y-1.25]) cube([size_y-2, size_z, 0.25*size[0]]);
                 }
                 if(type == "sh") {
-                    color(bcolor) translate([.25,0,size_z/2]) cube([.25,size_z,.25]);
-                    color(bcolor) translate([size_x-.5,0,size_z/2]) cube([.25,size_z,.25]);
+                    color(bcolor) translate([.25, 0, size_z/2]) cube([.25, size_z, .25]);
+                    color(bcolor) translate([size_x-.5, 0, size_z/2]) cube([.25, size_z, .25]);
                 }
             }
             if(type == "xh") {
                 difference() {
                     union() {
-                        color(bcolor) translate([0,size_z,0]) cube([1,3.5,4.5]);
-                        color(bcolor) translate([size_x-1,size_z,0]) cube([1,3.5,4.5]);
+                        color(bcolor) translate([0, size_z, 0]) cube([1, 3.5, 4.5]);
+                        color(bcolor) translate([size_x-1, size_z, 0]) cube([1, 3.5, 4.5]);
                     }
-                    color(bcolor) translate([-1,size_z,4.5]) rotate([-30,0,0]) cube([size_x+2,5.5,4]);
+                    color(bcolor) translate([-1, size_z, 4.5]) rotate([-30, 0, 0]) cube([size_x+2, 5.5, 4]);
                 }
             }
             if(type == "ph") {
                 difference() {
                     union() {
-                        color(bcolor) translate([0,size_z,0]) cube([.75,1.6,3]);
-                        color(bcolor) translate([size_x-.75,size_z,0]) cube([.75,1.6,3]);
+                        color(bcolor) translate([0, size_z, 0]) cube([.75, 1.6, 3]);
+                        color(bcolor) translate([size_x-.75, size_z, 0]) cube([.75, 1.6, 3]);
                     }
-                    color(bcolor) translate([-1,size_z,3]) rotate([-30,0,0]) cube([size_x+2,5.5,4]);
+                    color(bcolor) translate([-1, size_z, 3]) rotate([-30, 0,0 ]) cube([size_x+2, 5.5, 4]);
                 }
             }
             if(type == "zh") {
                 difference() {
                     union() {
-                        color(bcolor) translate([0,size_z,0]) cube([.5,1.5,2.5]);
-                        color(bcolor) translate([size_x-.5,size_z,0]) cube([.5,1.5,2.5]);
+                        color(bcolor) translate([0, size_z, 0]) cube([.5, 1.5, 2.5]);
+                        color(bcolor) translate([size_x-.5, size_z, 0]) cube([.5, 1.5, 2.5]);
                     }
-                    color(bcolor) translate([-1,size_z,2.5]) rotate([-30,0,0]) cube([size_x+2,5.5,4]);
+                    color(bcolor) translate([-1, size_z, 2.5]) rotate([-30, 0, 0]) cube([size_x+2, 5.5, 4]);
                 }
             }
             if(type == "sh") {
-                color(bcolor) translate([wall_size,0,wall_size]) cube([.5,size_z,.5]);
-                color(bcolor) translate([size_x-.75,0,wall_size]) cube([.5,size_z,.5]);
+                color(bcolor) translate([wall_size, 0, wall_size]) cube([.5, size_z, .5]);
+                color(bcolor) translate([size_x-.75, 0, wall_size]) cube([.5, size_z, .5]);
             }
             if(style == "thruhole") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-pitch]) {
@@ -216,7 +216,7 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
             }
             if(style == "smt") {
                 for(r=[pin_xadj-(pinsize/2):pitch:size_x-pitch]) {
-                    color("silver") translate([r, -adj, size_y-(pin_yadj+(pinsize/2))]) 
+                    color("silver") translate([r, -adj, size_y-(pin_yadj+(pinsize/2))])
                         cube([pinsize, ptheight, pinsize]);
                     color("silver") translate([r, size_z-adj, 0]) 
                         cube(smtlead);

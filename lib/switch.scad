@@ -12,34 +12,34 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
     DESCRIPTION: creates switches
            TODO: add other styles
-           
+
           USAGE: switch(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-          
+
                         type = "slide_4x9"
 
 */
- 
+
 // switch class
 module switch(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];
     mlen = mask[1];
     back = mask[2];
-    mstyle = mask[3];    
+    mstyle = mask[3];
 
     if(type == "slide_4x9") {
-    
-        size_x = 9;                
+
+        size_x = 9;
         size_y = 3.75;
         size_xm = 9;
         size_ym = 4;
-        
+
         if(enablemask == true && cmask == true && mstyle == "default") {
              // switch opening
             if(side == "top" && rotation == 0) {
@@ -75,9 +75,9 @@ module switch(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                     cube([size_xm, mlen, size_ym]);
             }
         }
-        if(enablemask == false) {              
+        if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {    
+                union() {
                     color("silver") translate([0, 0, .5]) cube([size_x, size_y, 3.5]);
                     color("white") translate([3.75, -1.99, 1.75]) cube([3, 2, 1.5]);
                 }
