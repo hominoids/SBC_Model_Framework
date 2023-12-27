@@ -260,6 +260,72 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         }
     }
 
+    // 5.5mm power plug 9.5mm x 7mm
+    if(type == "pj-202ah") {
+
+        size_x = 9;
+        size_y = 14.4;
+        size_z = 11;
+        size_xm = 10;
+        size_ym = mlen;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.25, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-mlen+back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.25, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-mlen+back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, size_ym, size_z+.5]);
+            }
+
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                difference () {
+                    union() {
+                        difference() {
+                            color("#252525") cube([size_x, size_y, size_z]);
+                            color("#252525") translate([-1, 3.5, 6.5]) cube([size_x+2, size_y, size_z]);
+                        }
+                        color("#252525") translate([size_x/2, size_y, 6.5]) rotate([90, 0, 0])
+                            cylinder(d=8, h=11.1, $fn=30);
+                    }
+                    color("#454545") translate([size_x/2, 8.49, 6.5]) rotate([90, 0, 0])
+                        cylinder(d=6.5, h=8.5, $fn=30);
+                }
+
+                color("white") translate([size_x/2, 8.5, 6.5]) rotate([90, 0, 0])
+                    cylinder(d=2, h=8.5, $fn=30);
+            }
+        }
+    }
+
     // molex power 4x1 connector type
     if(type=="molex_4x1" && enablemask == false) {
 
