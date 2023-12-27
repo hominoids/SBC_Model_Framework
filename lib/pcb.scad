@@ -51,10 +51,15 @@
     DESCRIPTION: creates pcb pads
            TODO: casteel edge hole
            
-          USAGE: pcbpad(pads, style)
+          USAGE: pcbpad(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                         pads = #pads
-                         style = "round", "square"
+                         type = "round", "square"
+                         size[0] = #pad x
+                         size[1] = #pad y
+                         data[0] = style
+                         data[1] = pad color
+                         data[2] = shape
+                         data[3] = pad size
 
 */
 
@@ -137,26 +142,33 @@ module pcbsoc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
 }
 
 
-// single row pcb pad
-module pcbpad(pads, style) {
+// pcb pad matrix
+module pcbpad(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
+    size_x = 2.54 * (size[0]-1);
+    size_y = 2.54 * (size[1]-1);;
+    style = data[0];
+    hcolor = data[1];
+    shape = data[2];
+    pad_size = data[3];
     adj = .01;
     $fn = 90;
-    pad_size = 1.25;
-    size_y = 2.54;
-    size_x = 2.54 * (pads-1);
+
+    place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
     union() {
-        for (i=[0:2.54:size_x]) {
-            if(style == "round") {
-                difference() {
-                    color("#fee5a6") translate ([i, 0, 0]) cylinder(d=pad_size, h=.125);
-                    color("dimgray") translate([i, 0, -adj]) cylinder(d=.625, h=.125+2*adj);
+        for (c=[0:2.54:size_x]) {
+            for (r=[0:2.54:size_y]) {
+                if(type == "round") {
+                    difference() {
+                        color(hcolor) translate ([r, c, -.0625-pcbsize_z]) cylinder(d=pad_size, h=pcbsize_z+.125);
+                        color(hcolor) translate([r, c, -1.125-pcbsize_z]) cylinder(d=1.27, h=pcbsize_z+2);
+                    }
                 }
-            }
-            if(style == "square") {
-                difference() {
-                    color("#fee5a6") translate ([i-pad_size/2, -pad_size/2, 0]) cube([pad_size, pad_size, .125]);
-                    color("dimgray") translate([i, 0, -adj]) cylinder(d=.625, h=.125+2*adj);
+                if(type == "square") {
+                    difference() {
+                        color(hcolor) translate ([r-pad_size/2, c-pad_size/2, -.0625-pcbsize_z]) cube([pad_size, pad_size, pcbsize_z+.125]);
+                        color(hcolor) translate([r, c, -1.125-pcbsize_z]) cylinder(d=1.27, h=pcbsize_z+2);
+                    }
                 }
             }
         }
