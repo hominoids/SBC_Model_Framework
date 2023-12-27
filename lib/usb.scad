@@ -25,7 +25,8 @@
 
           USAGE: usb3(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                        type = "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc" 
+                        type = "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
+                               "double_stacked_usb3-usb2" 
 
           USAGE: usbc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
@@ -87,36 +88,36 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {
-                    difference () {
-                        color("silver") cube([size_x, size_y, 3]);
-                        color("dimgray") translate([.25,-.1, .5]) cube([7, 3.5, 2.25]);
-                        color("silver") translate([0,-.1, 0]) rotate ([-90, 0, 0]) 
-                            cylinder(d=2.5, h=6.5, $fn=30);
-                        color("silver") translate([7.375, -.1, 0]) rotate ([-90, 0, 0]) 
-                            cylinder(d=2.5, h=6.5, $fn=30);
+            union() {
+                difference () {
+                    color("silver") cube([size_x, size_y, 3]);
+                    color("dimgray") translate([.25,-.1, .5]) cube([7, 3.5, 2.25]);
+                    color("silver") translate([0,-.1, 0]) rotate ([-90, 0, 0]) 
+                        cylinder(d=2.5, h=6.5, $fn=30);
+                    color("silver") translate([7.375, -.1, 0]) rotate ([-90, 0, 0]) 
+                        cylinder(d=2.5, h=6.5, $fn=30);
 
-                    }
-                    difference() {
-                        union() {
-                            color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0])
-                            cylinder(d=2.5, h=4.5, $fn=30);
-                            color("silver") translate([7.375, -.1, 0]) rotate ([-90, 0, 0])
-                            cylinder(d=2.5, h=4.5, $fn=30);
-                        }
-                        color("silver") translate([.125, -.2, 0]) rotate ([-90, 0, 0])
-                            cylinder(d=1.5, h=6.5, $fn=30);
-                        color("silver") translate([7.375, -.2, 0]) rotate ([-90, 0, 0])
-                            cylinder(d=1.5, h=6.5, $fn=30);
-
-                        color("silver") translate([-3, -1, -3]) cube([3, 6.5, 7.5]);
-                        color("silver") translate([7.5, -1, -3]) cube([3, 6.5, 7.5]);
-                        color("silver") translate([0, -1, -3]) cube([9, 6.5, 3]);
-                        color("silver") translate([-1, -1, -3]) cube([9, 6.5, 3]);
-                        }
-                    color("black") translate([1.5, .5, 1.25]) cube([4, 3.5, 1]);
                 }
+                difference() {
+                    union() {
+                        color("silver") translate([0, -.1, 0]) rotate ([-90, 0, 0])
+                        cylinder(d=2.5, h=4.5, $fn=30);
+                        color("silver") translate([7.375, -.1, 0]) rotate ([-90, 0, 0])
+                        cylinder(d=2.5, h=4.5, $fn=30);
+                    }
+                    color("silver") translate([.125, -.2, 0]) rotate ([-90, 0, 0])
+                        cylinder(d=1.5, h=6.5, $fn=30);
+                    color("silver") translate([7.375, -.2, 0]) rotate ([-90, 0, 0])
+                        cylinder(d=1.5, h=6.5, $fn=30);
+
+                    color("silver") translate([-3, -1, -3]) cube([3, 6.5, 7.5]);
+                    color("silver") translate([7.5, -1, -3]) cube([3, 6.5, 7.5]);
+                    color("silver") translate([0, -1, -3]) cube([9, 6.5, 3]);
+                    color("silver") translate([-1, -1, -3]) cube([9, 6.5, 3]);
+                    }
+                color("black") translate([1.5, .5, 1.25]) cube([4, 3.5, 1]);
             }
+        }
     }
 
     if(type == "single_horizontal_a") {
@@ -170,19 +171,19 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {
-                    difference () {
-                        color("silver") cube([size_x, size_y, 7]);
-                        color("dimgray") translate([.5,-.1, 1]) cube([size_x-1, size_y-.5, 5.5]);
-                    }
-                    color("white") translate([2, 1, 4]) cube([10, size_y-1.5, 1.5]);
-                    color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);    
-                    color("silver") translate([13.99, 0, 1]) cube([.65, .5, 5]);
-                    color("silver") translate([1, 0, 6.99]) cube([11.5, .5, .65]);
-                    for(i=[0:2:6]){
-                        color("#fee5a6") translate([4+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
-                    }
+            union() {
+                difference () {
+                    color("silver") cube([size_x, size_y, 7]);
+                    color("dimgray") translate([.5,-.1, 1]) cube([size_x-1, size_y-.5, 5.5]);
                 }
+                color("white") translate([2, 1, 4]) cube([10, size_y-1.5, 1.5]);
+                color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);    
+                color("silver") translate([13.99, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([1, 0, 6.99]) cube([11.5, .5, .65]);
+                for(i=[0:2:6]){
+                    color("#fee5a6") translate([4+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                }
+            }
         }
     }
 
@@ -433,19 +434,19 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {
-                    difference () {
-                        color("silver") cube([size_x, size_y, 7]);
-                        color("dimgray") translate([.5, -.1, 1]) cube([size_x-1, size_y-.5, 5.5]);
-                    }
-                    color("royalblue") translate([2, 1, 4]) cube([10, size[1]-1, 1.5]);
-                    color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);
-                    color("silver") translate([13.99, 0, 1]) cube([.65, .5, 5]);
-                    color("silver") translate([1, 0, 6.99]) cube([11.5, .5, .65]);
-                    for(i=[0:2:6]){
-                        color("#fee5a6") translate([4+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
-                    }
+            union() {
+                difference () {
+                    color("silver") cube([size_x, size_y, 7]);
+                    color("dimgray") translate([.5, -.1, 1]) cube([size_x-1, size_y-.5, 5.5]);
                 }
+                color("royalblue") translate([2, 1, 4]) cube([10, size[1]-1, 1.5]);
+                color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([13.99, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([1, 0, 6.99]) cube([11.5, .5, .65]);
+                for(i=[0:2:6]){
+                    color("#fee5a6") translate([4+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                }
+            }
         }
     }
 
@@ -556,24 +557,90 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                union() {    
-                    difference () {
-                        color("silver") cube([size_x, size_y, 15.5]);
-                        color("dimgray") translate([1, -.1, 1]) cube([11.25, 15.5, 13.5]);
-                    }
-                    color("silver") translate([0, 0, 6.75]) cube([size_x, size_y, 2]);
-                    color("royalblue") translate([1.5, 1, 12]) cube([10, 12.5, 1.5]);
-                    color("royalblue") translate([1.5 ,1, 4]) cube([10, 12.5, 1.5]);
-                    color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);
-                    color("silver") translate([size_x, 0, 1]) cube([.65, .5, 5]);
-                    color("silver") translate([-.65, 0, 9]) cube([.65, .5, 5]);
-                    color("silver") translate([size_x, 0, 9]) cube([.65, .5, 5]);
-                    color("silver") translate([1, 0, 15.5]) cube([11.5, .5, .65]);
-                    for(i=[0:2:6]){
-                        color("#fee5a6") translate([3.25+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
-                        color("#fee5a6") translate([3.25+i, 1.5, 12.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
-                    }
+            union() {    
+                difference () {
+                    color("silver") cube([size_x, size_y, 15.5]);
+                    color("dimgray") translate([1, -.1, 1]) cube([11.25, 15.5, 13.5]);
                 }
+                color("silver") translate([0, 0, 6.75]) cube([size_x, size_y, 2]);
+                color("royalblue") translate([1.5, 1, 12]) cube([10, 12.5, 1.5]);
+                color("royalblue") translate([1.5 ,1, 4]) cube([10, 12.5, 1.5]);
+                color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([size_x, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([-.65, 0, 9]) cube([.65, .5, 5]);
+                color("silver") translate([size_x, 0, 9]) cube([.65, .5, 5]);
+                color("silver") translate([1, 0, 15.5]) cube([11.5, .5, .65]);
+                for(i=[0:2:6]){
+                    color("#fee5a6") translate([3.25+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                    color("#fee5a6") translate([3.25+i, 1.5, 12.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                }
+            }
+        }
+    }
+
+    // usb3 double stacked type
+    if(type == "double_stacked_usb3-usb2") {
+
+        size_x = 13.25;
+        size_y = 17.5;
+        size_xm = 14.75;
+        size_zm = 16.25;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            // single horizontal usb opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.75, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-mlen+back, loc_y+.75, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x+.75, loc_y+size_y-back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-.75, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x+.75, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y+.75, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-.75, loc_y+size_y-back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-mlen+back, loc_y-.75, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {    
+                difference () {
+                    color("silver") cube([size_x, size_y, 15.5]);
+                    color("dimgray") translate([1, -.1, 1]) cube([11.25, 15.5, 13.5]);
+                }
+                color("silver") translate([0, 0, 6.75]) cube([size_x, size_y, 2]);
+                color("royalblue") translate([1.5, 1, 12]) cube([10, 12.5, 1.5]);
+                color("white") translate([1.5 ,1, 4]) cube([10, 12.5, 1.5]);
+                color("silver") translate([-.65, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([size_x, 0, 1]) cube([.65, .5, 5]);
+                color("silver") translate([-.65, 0, 9]) cube([.65, .5, 5]);
+                color("silver") translate([size_x, 0, 9]) cube([.65, .5, 5]);
+                color("silver") translate([1, 0, 15.5]) cube([11.5, .5, .65]);
+                for(i=[0:2:6]){
+                    color("#fee5a6") translate([3.25+i, 1.5, 4.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                    color("#fee5a6") translate([3.25+i, 1.5, 12.4]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                }
+            }
         }
     }
 
@@ -688,21 +755,21 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                rotate([90, 0, 0])  translate([dia/2, dia/2, -size_y]) union() {
-                    difference () {
-                        color("silver")
-                        hull() {
-                            cylinder(d=dia, h=size_y);
-                            translate([size_x-dia, 0, 0]) cylinder(d=dia, h=size_y);
-                            }
-                        color("silver") translate([0,0,1])
-                        hull() {
-                            cylinder(d=3, h=size_y+.2);
-                            translate([size_x-dia, 0, 0]) cylinder(d=3, h=size_y+.2);
-                            }
-                    }
-                    color("black") translate([0, -1.2/2, .1]) cube([5.5, 1.2, 6]);
+            rotate([90, 0, 0])  translate([dia/2, dia/2, -size_y]) union() {
+                difference () {
+                    color("silver")
+                    hull() {
+                        cylinder(d=dia, h=size_y);
+                        translate([size_x-dia, 0, 0]) cylinder(d=dia, h=size_y);
+                        }
+                    color("silver") translate([0,0,1])
+                    hull() {
+                        cylinder(d=3, h=size_y+.2);
+                        translate([size_x-dia, 0, 0]) cylinder(d=3, h=size_y+.2);
+                        }
                 }
+                color("black") translate([0, -1.2/2, .1]) cube([5.5, 1.2, 6]);
+            }
         }
     }
 
@@ -750,22 +817,22 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-                rotate([90, 90 ,0])  translate([-size_y-.25-height, dia/2, -size_y])
-                union() {
-                    difference () {
-                        color("silver")
-                        hull() {
-                            cylinder(d=dia,h=size_y);
-                            translate([size_x-dia, 0, 0]) cylinder(d=dia, h=size_y);
-                            }
-                        color("silver") translate([0 ,0, 1])
-                        hull() {
-                            cylinder(d=3, h=size_y+.2);
-                            translate([size_x-dia, 0, 0]) cylinder(d=3, h=size_y+.2);
-                            }
-                    }
-                    color("black") translate([0, -1.2/2, 1]) cube([5.5, 1.2, 6]);
+            rotate([90, 90 ,0])  translate([-size_y-.25-height, dia/2, -size_y])
+            union() {
+                difference () {
+                    color("silver")
+                    hull() {
+                        cylinder(d=dia,h=size_y);
+                        translate([size_x-dia, 0, 0]) cylinder(d=dia, h=size_y);
+                        }
+                    color("silver") translate([0 ,0, 1])
+                    hull() {
+                        cylinder(d=3, h=size_y+.2);
+                        translate([size_x-dia, 0, 0]) cylinder(d=3, h=size_y+.2);
+                        }
                 }
+                color("black") translate([0, -1.2/2, 1]) cube([5.5, 1.2, 6]);
+            }
         }
     }
 }
