@@ -15,31 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    20190214 Version 1.0.0  SBC Model Framework
-    20190218 Version 1.0.1  Added HK Odroid-N2 as "n2"
-    20200425 Version 1.0.2  Added AtomicPi as "atomicpi"
-                            Added Nvidia JetsonNano as "jetsonnano"
-                            Updated Odroid-N2 sbc data
-                            Updated Odroid-H2 sbc data
-                            Added Odroid-C4 as"c4"
-                            Added oem heatsinks
-                            Added Odroid-XU4Q as "xu4q"
-    20200725 Version 1.0.3  Added Odroid-N2+ and heatsink
-    20201021 Version 1.0.4  Added HK Odroid-HC4 as "hc4"
-    20220202 Version 1.0.5  Added HK Show2 as "show2"
-    20220413 Version 1.0.6  Added Odroid-M1 as "m1"
-    20220515 Version 1.0.7  Added rockpro64, jetsonnano, updated sbc_test.scad, sbc_test_components.scad
-                            and other fixes and adjustments
-    20221020 Version 1.0.8  rpizero,rpizero2w,rpi1a+,rpi1b+,rpi3a+,rpi3b,rpi3b+,rpi4b,rockpi4b+,
-                            rockpi4c,rockpi4c+,rockpi5b,vim1,vim2,vim3l,vim3,vim4,
-                            tinkerboard,tinkerboard-s,tinkerboard-2,tinkerboard-r2
-                            rock64,quartz64a,quartz64b,h64b,opizero,opizero2,opir1plus_lts
-    20221101 Version 1.0.9  added h3/h3+ as h3, rockpi5b adjustments
-    20221207 Version 1.0.10 added n2l and n2lq
-    20231109 Version 1.0.11 added star64, licheerv+dock, visionfive2, opi5, rock5b-v1.3, rock5b-v1.42, rock5bq-v1.42
-                            changed radxa rockpi to rock, expanded sbc information comments, added opir1, added RPi5
-    20231115 Version 1.0.12 added odroid-m1s
-    2024xxxx Version 2.0.0  added unlimted pcb to a sbc, unlimited pcb holes, unlimited pcb soc
+    20190214 Version 1.0.0  SBC Model Framework initial release
 
     see https://github.com/hominoids/SBC_Model_Framework
 
@@ -60,7 +36,7 @@
 include <./sbc_models.cfg>
 use <./sbc_library.scad>
 
-module sbc(model, enablemask = false) {
+module sbc(model, enableheatsink = true, enablemask = false) {
 
     sbc_model = [model];
     s = search(sbc_model, sbc_data);
@@ -400,7 +376,7 @@ module sbc(model, enablemask = false) {
                                     header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                            if (class == "heatsink") {
+                            if (class == "heatsink" && enableheatsink == true) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }

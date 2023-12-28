@@ -21,7 +21,14 @@
 
           USAGE: audio(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
+                       type = "out-in-spdif", "audio_micro", "mic_round"
+
+                       type = "jack_3.5"
+                       size[0] = body size_x
+                       size[1] = body size_y
+                       size[2] = body size_z
+                       data[0] = body diameter
+                       data[1] = z adjustment
 
 */
  
@@ -32,6 +39,8 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
+    adj = .01;
+    $fn = 90;
 
     // out in and spdif stacked type
     if(type == "out-in-spdif") {
@@ -104,66 +113,70 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     // 3.5mm jack type
     if(type == "jack_3.5") {
 
-        size_x = 6.5;
-        size_y = 10;
-        size_xm = 7.5;
+        size_x = size[0];
+        size_y = size[1];
+        size_z = size[2];
+        size_xm = size_x+1;
         size_ym = size_y;
+        size_zm = size_z+1;
+        bdiam = data[0];
+        badj = data[1];
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y-2.5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x-2.5+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-.5, loc_y+2.5-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x+2.5-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-.5, loc_y-2.5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x+2.5-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x-.5, loc_y+2.5-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+2, h=mlen);
                         }
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x-2.5+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        cube([size_xm, 2.5, 5]);
-                        translate([3.5, 2, 2]) rotate([90, 0, 0]) cylinder(d=6, h=mlen);
+                        cube([size_xm, 2.5, size_zm]);
+                        translate([size_xm/2, 2, (size_z/2)+badj]) rotate([90, 0, 0]) cylinder(d=bdiam+1, h=mlen);
                         }
             }    
         }
@@ -172,11 +185,11 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                 union() {  
                     difference () {
                         union() {
-                            color("silver") cube([size_x, 2, 4]);
-                            color("black") translate([0, 2, 0]) cube([size_x, size_y, 4]);
-                            color("black") translate([3.125, -2, 2]) rotate([-90, 0, 0]) cylinder(d=4, h=6.25);
+                            color("silver") cube([size_x, 2, size_z]);
+                            color("black") translate([0, 2-adj, 0]) cube([size_x, size_y, size_z]);
+                            color("black") translate([size_x/2, -2, (size_z/2)+badj]) rotate([-90, 0, 0]) cylinder(d=bdiam, h=6.25);
                             }
-                        color("dimgray") translate([3.125, -2.5, 2]) rotate([-90, 0, 0]) cylinder(d=3, h=6);
+                        color("dimgray") translate([size_x/2, -2.5, (size_z/2)+badj]) rotate([-90, 0, 0]) cylinder(d=3.5, h=6);
                     }
                 }
         }
