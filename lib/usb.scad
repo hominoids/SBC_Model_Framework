@@ -21,12 +21,16 @@
 
           USAGE: usb2(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                        type = "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a", "uart_micro", "uart_micro_h" 
+                        type = "micro", "double_stacked_a", "uart_micro", "uart_micro_h" 
+                        type = "single_horizontal_a", "single_vertical_a"
+                        size[1] = size_y
 
           USAGE: usb3(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                        type = "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
+                        type = "single_horizontal_a", "double_stacked_a", "double_stacked_usb3-usbc"
                                "double_stacked_usb3-usb2" 
+                        type = "single_vertical_a"
+                        size[1] = size_y
 
           USAGE: usbc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 

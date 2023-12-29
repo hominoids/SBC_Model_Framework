@@ -21,7 +21,9 @@
 
           USAGE: discrete(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                          type = "ir_1", "ir_dual",
+                          type = "ir_dual",
+                                 "ir_1"
+                                    size[2] = height
                                  "capacitor"
                                     size[0] = diameter
                                     size[2] = height
@@ -41,57 +43,60 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
     back = mask[2];
     mstyle = mask[3];
     pcolor = "#fee5a6";
+    adj = .01;
+    $fn = 90;
 
     // type ir
     if(type=="ir_1") {
 
         size_x = 7;
         size_y = 3;
+        size_z = size[2];
         size_xm = 5;
         size_ym = 3.5;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x+size_x/2, loc_y+back, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+size_x/2, loc_y+back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x+back, loc_y-1.5, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+back, loc_y-1.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-1.5, loc_y-.5-back, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-1.5, loc_y-.5-back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x-back, loc_y+3.5, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-back, loc_y+3.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-1.5, loc_y+back, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-1.5, loc_y+back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x-back, loc_y-1.5, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-back, loc_y-1.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x+size_x/2, loc_y-.5-back, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+size_x/2, loc_y-.5-back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x+back, loc_y+3.5, loc_z+7.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+back, loc_y+3.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
                       rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
             }
         }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
-                color("silver") translate([0, 0, 4]) cube([size_x, size_y, 8]);
-                color("dimgray") translate([3.5, .5, 7.5]) sphere(d=5);
-                color("silver") translate ([1, 1.25, 0]) cube([.64, .5, 4]);
-                color("silver") translate ([3.25, 1.25, 0]) cube([.64, .5, 4]);
-                color("silver") translate ([5.5, 1.25, 0]) cube([.64, .5, 4]);
+                color("silver") translate([0, 0, size_z]) cube([size_x, size_y, 8]);
+                color("dimgray") translate([3.5, .5, size_z+3.5]) sphere(d=5);
+                color("silver") translate ([1, 1.25, 0]) cube([.64, .5, size_z+adj]);
+                color("silver") translate ([3.25, 1.25, 0]) cube([.64, .5, size_z+adj]);
+                color("silver") translate ([5.5, 1.25, 0]) cube([.64, .5, size_z+adj]);
             }
         }
     }
@@ -109,7 +114,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                       translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x+back, loc_y-1.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+back, loc_y-1.75, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                       translate([-5.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "top" && rotation == 180) {
@@ -117,15 +122,15 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                       translate([-5,4.5,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x-back, loc_y+3.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-4.5-back, loc_y+3.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                       translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-1.5, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-1.75, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                       translate([-5.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x-back, loc_y-1.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-4.5-back, loc_y+.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                       translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "bottom" && rotation == 180) {
@@ -133,7 +138,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                       translate([-3.25,4.5,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x+back, loc_y+3.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+back, loc_y+3.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                       translate([-3.25,0,1.75]) rotate([90, 0, 0]) slot(size_xm, size_ym, mlen);
             }
         }

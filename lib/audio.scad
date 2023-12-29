@@ -47,41 +47,43 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
 
         size_x = 12.7;
         size_y = 21.5;
+        size_z = 35;
         size_xm = 13;
         size_ym = mlen;
+        size_zm = 35.5;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x-(size_xm-size_x)/2, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-size_ym+back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x-size_ym+back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-.0625, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+size_y-back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x+size_y-back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-.0625, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x-(size_xm-size_x)/2, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x+size_y-back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x+size_y-back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x-.0625, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x-size_ym+back, loc_y-.0625, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 35.5]);
+                place(loc_x-size_ym+back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
         }
         if(enablemask == false) {
@@ -89,7 +91,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                 union() {
                     difference () {
                         union() {
-                            color("silver") cube([size_x, size_y, 35]);
+                            color("silver") cube([size_x, size_y, size_z]);
                             color("black") translate([6.35, -3.2, 17]) rotate([-90, 0, 0])
                                 cylinder(d=8, h=6.25);
                             color("black") translate([6.35, -3.2, 29]) rotate([-90, 0, 0])
@@ -200,41 +202,43 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
 
         size_x = 7.5;
         size_y = 3.75;
+        size_z = 4.75;
         size_xm = 7.5;
         size_ym = mlen;
+        size_zm = 4;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x-(size_xm-size_x)/2, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-size_ym+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x-size_ym+back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+size_y-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x+size_y-back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x-(size_xm-size_x)/2, loc_y-size_ym+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x+size_y-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x+size_y-back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x-size_ym+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 4]);
+                place(loc_x-size_ym+back, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
         }
         if(enablemask == false) {
@@ -242,7 +246,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             translate([size_xm, size_y+1.5, 3.75]) rotate([-90, 0, 180])
             union() {
                 difference () {
-                    color("white") cube([size_x, size_y, 4.75]);
+                    color("white") cube([size_x, size_y, size_z]);
                     color("darkgray") translate([1.5, .5, 1]) cube([4.5, 2.75, 6]);
                     color("white") translate([-.5, .75, -.5]) cube([1, 2.5, 6]);
                     color("white") translate([7, .75, -.5]) cube([1, 2.5, 6]);

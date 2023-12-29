@@ -21,8 +21,8 @@
 
           USAGE: power(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", 
-                              "small_encl_satapwr"
+                       type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", 
+                              "molex_4x1", "small_encl_satapwr"
 
 */
  
@@ -39,20 +39,20 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
 
         size_x = 5;
         size_y = 7.5;
-        size_xm = 3;
+        size_xm = 4;
         size_ym = mlen;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x+2.75, loc_y+back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x+(size_x/2), loc_y+back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x+.25+back, loc_y-.5, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x+.25+back, loc_y-1.5, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-.75, loc_y-.75-back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x-1.5, loc_y-.75-back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
             if(side == "top" && rotation == 270) {
@@ -60,11 +60,11 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-.25, loc_y+back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x-1.5, loc_y+back, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x-.75-back, loc_y-.5, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x-.75-back, loc_y-1.5, loc_z+2, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
             if(side == "bottom" && rotation == 180) {
@@ -82,7 +82,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             union() {
                 difference () {
                     color("silver") cube([size_x, size_y, 4]);
-                    color("black") translate([2.5, -1, 2]) rotate([90, 0, 0])
+                    color("black") translate([size_x/2, -1, 2]) rotate([90, 0, 0])
                         cylinder(d=3, h=7, center=true, $fn=30);
                 }
                 color("white") translate([2.5, 3, 2]) rotate([90, 0, 0]) 
@@ -260,7 +260,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         }
     }
 
-    // 5.5mm power plug 9.5mm x 7mm
+    // PJ-202AH power plug
     if(type == "pj-202ah") {
 
         size_x = 9;
