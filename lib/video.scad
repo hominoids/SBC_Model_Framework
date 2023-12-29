@@ -79,8 +79,7 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                 place(loc_x-.5, loc_y-mlen+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                 union() {
                     hdmi_open("hdmi_a", mlen);
-                    translate([.5, 0, 2]) cube([15.5, 10, 5]);
-                    translate([1.875, 0, -.1]) cube([12.375, 10, 2]);
+                    translate([1.875, 2, -.1]) cube([11.75, 9, 2]);
                 }
             }
         }
