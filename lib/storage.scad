@@ -356,19 +356,19 @@ module storage(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x-1, loc_y+14, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x-1, loc_y+18, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) slot(size_zm, size_xm, mlen);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-1, loc_y+14, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x+19, loc_y-1, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90,0,0]) slot(size_zm, size_xm, mlen);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-1, loc_y+8, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x-1, loc_y-16, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) slot(size_zm, size_xm, mlen);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+1, loc_y+8, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
+                place(loc_x-16, loc_y-1, loc_z+3, size_xm, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) slot(size_zm, size_xm, mlen);
             }
 
