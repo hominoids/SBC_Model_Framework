@@ -288,7 +288,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
         
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
-            color("gray") import("./lib/Odroid-N2_Heatsink.stl", convexity=3);
+            color("gray") import("./lib/heatsinks/Odroid-N2_Heatsink.stl", convexity=3);
     }
     
     // hardkernel n2+ heatsink
@@ -299,7 +299,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
-            color("gray") import("./lib/Odroid-N2+_Heatsink.stl", convexity=3);
+            color("gray") import("./lib/heatsinks/Odroid-N2+_Heatsink.stl", convexity=3);
     }
 
     // hardkernel m1 heatsink
@@ -310,7 +310,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
-            color("gray") translate([-.5, 0, 3]) import("./lib/Odroid-M1_Heatsink.stl", convexity=3);
+            color("gray") translate([-.5, 0, 3]) import("./lib/heatsinks/Odroid-M1_Heatsink.stl", convexity=3);
     }
 
     // hardkernel h2 heatsink
@@ -321,7 +321,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z+size_z)
-        color("gray") import("./lib/Odroid-H2_Heatsink.stl", convexity=3);
+        color("gray") import("./lib/heatsinks/Odroid-H2_Heatsink.stl", convexity=3);
     }
 
     // khadas heatsink without fan
@@ -332,7 +332,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        color("gray", .6) import("./lib/Khadas_Heatsink.stl", convexity=3);
+        color("gray", .6) import("./lib/heatsinks/Khadas_Heatsink.stl", convexity=3);
     }
     
     // khadas heatsink with fan
@@ -342,7 +342,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        color("gray", .6) import("./lib/Khadas_Heatsink_Fan.stl", convexity=3);
+        color("gray", .6) import("./lib/heatsinks/Khadas_Heatsink_Fan.stl", convexity=3);
     }
 
     // radxa heatsink
@@ -353,7 +353,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         size_z = size[2];
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+size_z)
-        color("gray", .6) import("./lib/Radxa_Heatsink.stl", convexity=3);
+        color("gray", .6) import("./lib/heatsinks/Radxa_Heatsink.stl", convexity=3);
     }
 
     // RPi5 heatsink
@@ -366,7 +366,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z+size_z)
         difference() {
             union() {
-                color("lightgray", .6) linear_extrude(height = 2) import("lib/rpi5_oem.dxf");
+                color("lightgray", .6) linear_extrude(height = 2) import("./lib/heatsinks/rpi5_oem.dxf");
                 translate([6, 2.5, 2-.01])color("lightgray", .6) cube([20, 40, 8]);
                 difference() {
                     union() {

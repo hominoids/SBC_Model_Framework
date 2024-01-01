@@ -134,38 +134,4 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             }
         }
     }
-
-    // gpio 30 pin enclosed header
-    if(type == "encl_header_30" && enablemask == false) {
-        size_x = 37;
-        size_y = 5.5;
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {
-            difference () {
-                color("black") cube([size_x, size_y, 6.25]);
-                color ("darkgray") translate ([.5, .5, .6]) cube([36, 4.5, 5.75]);
-            }
-            for (i=[4.5:2:34]) {
-                color("silver") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
-                color("silver") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
-            }
-        }
-    }
-
-    // gpio 12 enclosed header
-    if (type == "encl_header_12" && enablemask == false) {
-        size_x = 19.5;
-        size_y = 5.5;
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {
-            difference () {
-                color("black") cube([size_x, size_y, 6.25]);
-                color ("darkgray") translate ([.5, .5, .6]) cube([18.5, 4.5, 5.75]);
-            }
-            for (i=[4.5:2:16]) {
-                color("#fee5a6") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
-                color("#fee5a6") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
-            }
-        }
-    }
 }

@@ -51,6 +51,33 @@
                      length = total length
                      depth = thickness
 
+          USAGE: knockout(width,depth,gap,thick,fillet,shape)
+
+                     width = length
+                     depth = width
+                     gap = space between 
+                     thick = thickness
+                     fillet = corner fillet
+                     shape = "slot", "rectangle", "round"
+
+          USAGE: vent(width,length,height,gap,rows,columns,orientation)
+
+                     width = coloumn size_x
+                     length = column size_y
+                     height = size_z
+                     gap = space between 
+                     rows = #row
+                     columns = #columns
+                     orientation = "horizontal", "vertical"
+
+          USAGE: vent_hex(cells_x, cells_y, thickness, cell_size, cell_spacing, orientation)
+                     cells_x = #rows
+                     cells_y = #columns
+                     thickness = 
+                     cell_size = size of hex
+                     cell_spacing = space between hex
+                     orientation = "horizontal", "vertical"
+
 */
 
 /* shape module */
@@ -116,5 +143,108 @@ module slot(hole,length,depth) {
     hull() {
         translate([hole/2, 0, 0]) cylinder(d=hole, h=depth);
         translate([length-hole/2, 0, 0]) cylinder(d=hole, h=depth);
+    }
+}
+
+
+/* knockout opening */
+module knockout(width,depth,gap,thick,fillet,shape) {
+    
+    adjust = .01;
+    $fn=90;
+
+    // slot knockout
+    if(shape == "slot") {
+        difference() {
+            slot(depth, width, thick);
+            translate([0, 0, -adjust]) slot(depth-gap, width, thick+(2*adjust));
+            // cross ties    
+            translate([-1, -(depth/2)-1, -adjust]) cube([2, depth+2, thick+(2*adjust)]);
+            translate([(width/2)-1-(width/4)+4, -(depth/2)-1, -adjust]) cube([2,depth+2, thick+(2*adjust)]);
+            translate([(width/2)-1+(width/4)-4, -(depth/2)-1, -adjust]) cube([2, depth+2, thick+(2*adjust)]);
+            translate([width-1, -(depth/2)-1, -adjust]) cube([2, depth+2, thick+(2*adjust)]);
+            }
+        }
+    if(shape == "rectangle") {
+        difference() {
+            translate([(width/2), (depth/2), thick/2]) 
+                cube_fillet_inside([width, depth, thick], 
+                    vertical=[fillet, fillet, fillet, fillet], 
+                        top=[0, 0, 0, 0], bottom=[0, 0, 0, 0], $fn=90);
+            translate([(width/2), (depth/2), (thick/2)-adjust]) 
+                cube_fillet_inside([width-gap, depth-gap, thick+(3*adjust)], 
+                    vertical=[fillet, fillet, fillet, fillet], 
+                        top=[0, 0, 0, 0], bottom=[0, 0, 0, 0], $fn=90);
+            // cross ties
+            translate([-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
+            translate([width-4, depth-gap-1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            translate([2, depth-gap-1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            translate([width-gap-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
+            translate([width-4, -1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            translate([2, -1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            }
+        }
+    if(shape == "round") {
+        difference() {
+            translate([(width/2),(width/2),0]) 
+                cylinder(d=width, h=thick); 
+            translate([(width/2), (width/2), -adjust]) 
+                cylinder(d=width-gap, h=thick+2*adjust); 
+            // cross ties    
+            translate([-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
+            translate([(width/2)-1, depth-gap-1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            translate([width-gap-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
+            translate([(width/2)-1, -1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            }
         }
     }
+
+
+/* vent opening */
+module vent(width,length,height,gap,rows,columns,orientation) {
+
+    fillet = width/2;
+    adjust = .01;
+    $fn=90;
+
+    // vertical orientation
+    if(orientation == "vertical") { rotate([90 ,0, 0])
+        for (r=[0 : length+gap:rows*(length+gap)-1]) {
+            for (c=[0 : width+(2*gap) : (columns*(width+(2*gap)))-1]) {
+                translate ([c, r, -1]) cube([width, length, height]);
+            }
+        }
+    }
+    // horizontal orientation
+    if(orientation == "horizontal") {
+        for (r=[0 : length+(2*gap) : rows*(length+gap)]) {
+            for (c=[0 : width+(2*gap) : (columns*(width+(2*gap)))-1]) {
+                translate ([c,r,-1]) cube([width, length, height]);
+            }
+        }
+    }
+}
+
+
+/* hex vent opening */
+module vent_hex(cells_x, cells_y, thickness, cell_size, cell_spacing, orientation) {
+    xs = cell_size + cell_spacing;
+    ys = xs * sqrt(3/4);
+    rot = (orientation == "vertical") ? 90 : 0;
+
+    rotate([rot, 0, 0]) translate([cell_size/2, cell_size*sqrt(1/3),-1]) {
+        for (ix=[0 : ceil(cells_x/2)-1]) {
+            for (iy = [0 : 2 : cells_y-1]) {
+                translate([ix*xs, iy*ys, 0]) rotate([0, 0, 90]) 
+                    cylinder(r=cell_size/sqrt(3), h=thickness, $fn=6);
+            }
+        }
+        for (ix=[0 : (cells_x/2)-1]) {
+            for (iy = [1 : 2 : cells_y-1]) {
+            translate([(ix+0.5)*xs, iy*ys, 0]) rotate([0, 0, 90]) 
+                cylinder(r=cell_size/sqrt(3), h=thickness, $fn=6);
+            }
+        }
+    }
+}
+

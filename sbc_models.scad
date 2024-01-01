@@ -36,7 +36,7 @@
 include <./sbc_models.cfg>
 use <./sbc_library.scad>
 
-module sbc(model, enableheatsink = true, enablemask = false) {
+module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemask = false) {
 
     sbc_model = [model];
     s = search(sbc_model, sbc_data);
@@ -65,7 +65,7 @@ module sbc(model, enableheatsink = true, enablemask = false) {
             dxf_scale = sbc_data[s[0]][i+9][3];
 
             // pcb shapes
-            if(class == "pcbshape") {
+            if(class == "pcb") {
 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     // mask placement
@@ -108,6 +108,16 @@ module sbc(model, enableheatsink = true, enablemask = false) {
                             if (class == "fpc" && mask[0] == true) {
                                 if (loc_x != 0 || loc_y != 0) {
                                     fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                           if (class == "gpio" && enablegpio != "disable" && enablegpio != "none") {
+                                if(loc_x != 0 || loc_y != 0) {
+                                    gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                            if (class == "heatsink" && enableheatsink != "disable" && enableheatsink != "none")  {
+                                if (loc_x != 0 || loc_y != 0) {
+                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "memory" && mask[0] == true) {
@@ -192,7 +202,7 @@ module sbc(model, enableheatsink = true, enablemask = false) {
             dxf_scale = sbc_data[s[0]][i+9][3];
 
             // pcb shapes
-            if(class == "pcbshape") {
+            if(class == "pcb") {
                 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     difference() {
@@ -371,12 +381,17 @@ module sbc(model, enableheatsink = true, enablemask = false) {
                                     fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                           if (class == "header" || class == "gpio") {
+                           if (class == "gpio" && enablegpio != "disable") {
+                                if(loc_x != 0 || loc_y != 0) {
+                                    gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                            }
+                           if (class == "header") {
                                 if(loc_x != 0 || loc_y != 0) {
                                     header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                            if (class == "heatsink" && enableheatsink == true) {
+                            if (class == "heatsink" && enableheatsink != "disable") {
                                 if (loc_x != 0 || loc_y != 0) {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
@@ -404,11 +419,6 @@ module sbc(model, enableheatsink = true, enablemask = false) {
                             if (class == "network") {
                                 if (loc_x != 0 || loc_y != 0) {
                                     network(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
-                                }
-                            }
-                            if (class == "pcb") {
-                                if(loc_x != 0 || loc_y != 0) {
-                                    pcb(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
                             if (class == "pcbhole") {
