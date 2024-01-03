@@ -17,12 +17,11 @@
 
 
     DESCRIPTION: creates gpio headers
-           TODO: 
+           TODO: "box"
 
           USAGE: gpio(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                      type = "encl_header_30", "encl_header_12", "header_40", "header_20", "header_26"
-                      type = "open", "box"
+                      type = "open", "encl_header_30", "encl_header_12"
                       size[0] = #row
                       size[1] = #columns
                       size[2] = pin height
@@ -694,37 +693,232 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
     }
 
     // gpio 30 pin enclosed header
-    if(type=="encl_header_30" && enablemask == false) {
-        size_x = 37;
-        size_y = 5.5;
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {
-            difference () {
-                color("black") cube([size_x, size_y, 6.25]);
-                color ("darkgray") translate ([.5, .5, .6]) cube([36, 4.5, 5.75]);
+    if(type=="encl_header_30") {
+        if(enablemask == true && cmask == true && mstyle == "open") {
+            
+            size_xt = 37;
+            size_xm = 38;
+            size_ym = 12;
+            size_zm = 9;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
-            for (i=[4.5:2:34]) {
-                color("silver") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
-                color("silver") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "block") {
+            
+            size_xt = 37;
+            size_xm = 38;
+            size_ym = 12;
+            size_zm = 27;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "knockout") {
+            
+            size_xt = 37;
+            size_xm = 39;
+            size_ym = 10;
+            size_zm = 27;
+            fillet = 3.5;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+        }
+        if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
+            
+            size_xt = 37;
+            size_xm = 38;
+            size_ym = 12;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,10,"vertical");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,10,"vertical");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,10,"vertical");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,10,"vertical");
+            }
+        }
+        if(enablemask == false) {
+            size_x = 37;
+            size_y = 5.5;
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                difference () {
+                    color("black") cube([size_x, size_y, 6.25]);
+                    color ("darkgray") translate ([.5, .5, .6]) cube([36, 4.5, 5.75]);
+                }
+                for (i=[4.5:2:34]) {
+                    color("silver") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
+                    color("silver") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
+                }
             }
         }
     }
 
     // gpio 12 enclosed header
-    if (type=="encl_header_12" && enablemask == false) {
-        size_x = 19.5;
-        size_y = 5.5;
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {
-            difference () {
-                color("black") cube([size_x, size_y, 6.25]);
-                color ("darkgray") translate ([.5, .5,.6]) cube([18.5, 4.5, 5.75]);
+    if(type=="encl_header_12") {
+        if(enablemask == true && cmask == true && mstyle == "open") {
+            
+            size_xt = 19.5;
+            size_xm = 20.5;
+            size_ym = 12;
+            size_zm = 9;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
             }
-            for (i=[4.5:2:16]) {
-                color("#fee5a6") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
-                color("#fee5a6") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "block") {
+            
+            size_xt = 19.5;
+            size_xm = 20.5;
+            size_ym = 12;
+            size_zm = 27;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "knockout") {
+            
+            size_xt = 19.5;
+            size_xm = 21.5;
+            size_ym = 10;
+            size_zm = 27;
+            fillet = 3.5;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+            }
+        }
+        if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
+            
+            size_xt = 19.5;
+            size_xm = 22.5;
+            size_ym = 12;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,6,"vertical");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,6,"vertical");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,6,"vertical");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    vent(2,10,mlen,1,1,6,"vertical");
+            }
+        }
+        if (enablemask == false) {
+            size_x = 19.5;
+            size_y = 5.5;
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                difference () {
+                    color("black") cube([size_x, size_y, 6.25]);
+                    color ("darkgray") translate ([.5, .5,.6]) cube([18.5, 4.5, 5.75]);
+                }
+                for (i=[4.5:2:16]) {
+                    color("#fee5a6") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
+                    color("#fee5a6") translate ([i, 3.5, 1]) cube([.5, .5, 5]);
+                }
             }
         }
     }
-
 }
