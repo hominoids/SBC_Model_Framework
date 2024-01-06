@@ -17,13 +17,28 @@
 
 
     DESCRIPTION: creates heatsinks
-           TODO: 
+           TODO: replace stl mesh heatsinks, custom dxf positioning
 
           USAGE: heatsink(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                           type = "hc4_oem", c4_oem", "c2_oem", "c1+_oem", "xu4_oem", xu4q_oem", "n2l_oem", "n2lq_oem",
                                  "n1_oem", "40mm_active", "h3_oem", "m1s_oem", "atomicpi", "n2_oem", "n2+_oem",
                                  "m1_oem", "h2_oem", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem"
+                       size[2] = z position
+                    enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", custom,
+                                            "m1", "n2", "n2+"
+
+    DESCRIPTION: creates heatsink masks for openings
+           TODO: 
+
+          USAGE: heatsink_mask(size, thick, style)
+
+                          style = "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", custom
+                                  "m1", "n2", "n2+"
 
 */
 
@@ -31,171 +46,386 @@
 module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     // hardkernel c series heatsink
-    if(enablemask ==  false && (type=="hc4_oem" || type=="c4_oem" || type=="c2_oem" || type=="c1+_oem")) {
+    if(type=="hc4_oem" || type=="c4_oem" || type=="c2_oem" || type=="c1+_oem") {
 
-        size_x = 58;
-        size_y = 32;
-        size_z = size[2];
+        cmask = mask[0];
+        mlen = mask[1];
+        back = mask[2];
+        mstyle = mask[3];
 
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        translate([5.5, -23.5, size_z])
-        difference() {
-            union() {
-                color("gray", .6) cube([40, 32, 10]);
+        if(enablemask == true && cmask == true && mstyle == "open") {
+            
+            size_x = 40;
+            size_y = 30;
+            size_z = size[2];
+            size_xm = 44;
+            size_ym = 34;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -24.5, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10, -24, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.5, -23, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -22.5, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.5, -24.5, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.5, -22.5, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -22.5, 0]) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -24, 0]) cube([size_xm, size_ym, mlen]);
+            }
+        }
+        if(enablemask == true && cmask == true && (mstyle == "fan_open" || mstyle == "fan_1" || mstyle == "fan_2" || mstyle == "fan_hex")) {
+            
+            size_x = 40;
+            size_y = 30;
+            size_z = size[2];
+            size_xm = 44;
+            size_ym = 34;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([5.5, -27.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-8.5, -27.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-8.5, -25.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([5.5, -25.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-8.5, -27.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-8.5, -25.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([5.5, -25.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([5.5, -27.5, 0]) heatsink_mask(40, mlen, mstyle);
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "vent") {
+            
+            size_x = 40;
+            size_y = 30;
+            size_z = size[2];
+            size_xm = 44;
+            size_ym = 34;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2, -24.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-12, -24.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-12, -22.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2, -22.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-12, -24.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-12, -22.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2, -22.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2, -24.5, 0]) vent(2, size_ym, mlen, 1.5, 1, 10, "horizontal");
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "vent_hex_5mm") {
+            
+            size_x = 40;
+            size_y = 30;
+            size_z = size[2];
+            size_xm = 44;
+            size_ym = 34;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -27.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.75, -27.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.75, -25.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -25.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.5, -27.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-10.5, -25, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -25.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([3.5, -27.5, 0]) vent_hex(13, 7, mlen, 5, 1.5, "horizontal");
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "vent_hex_8mm") {
+            
+            size_x = 40;
+            size_y = 30;
+            size_z = size[2];
+            size_xm = 44;
+            size_ym = 34;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2.5, -28.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-11.75, -28.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-11.75, -26.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2.5, -26.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-11.5, -28.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-11.75, -26.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2.5, -26.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([2.5, -28.5, 0]) vent_hex(9, 5, mlen, 8, 1.5, "horizontal");
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "custom") {
+            
+            size_x = 40;
+            size_y = 30;
+            size_z = size[2];
+            size_xm = 44;
+            size_ym = 34;
+
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([9.5, -23.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-4.5, -23.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-4.5, -21.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([9.5, -21.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-4.5, -23.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([-4.5, -21.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([9.5, -21.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                                translate([9.5, -23.5, 0]) linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+            }
+        }
+        if(enablemask == false) {
+
+            size_x = 58;
+            size_y = 32;
+            size_z = size[2];
+            fcolor = "gray";
+
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            translate([5.5, -23.5, size_z])
+            difference() {
+                union() {
+                    color(fcolor, .6) cube([40, 32, 10]);
+                    if(type=="hc4_oem") {
+                        color(fcolor, .6) translate([39.99, 5, 0]) cube([5.5, 7, 2]);
+                        color(fcolor, .6) translate([45.75, 8.5, 0]) cylinder(d=7, h=2);
+                        color(fcolor, .6) translate([-5.49, 25, 0]) cube([5.5, 7, 2]);
+                        color(fcolor, .6) translate([-5.5, 28.5, 0]) cylinder(d=7, h=2);
+                        }
+                        else {
+                            color(fcolor, .6) translate([39.99, 0, 0]) cube([5.5, 7, 2]);
+                            color(fcolor, .6) translate([45.75, 3.5, 0]) cylinder(d=7, h=2);
+                            color(fcolor, .6) translate([-5.49, 20, 0]) cube([5.5, 7, 2]);
+                            color(fcolor, .6) translate([-5.5, 23.5, 0]) cylinder(d=7, h=2);
+                        }
+                }
+                // center channel and fins
+                color(fcolor, 1) translate([17.5, -1, 2]) cube([5, 34, 9]);
+                color(fcolor, 1) translate([1.5, -1, 2]) cube([1.25, 34, 9]);
+                for (i=[3.5:2.25:38]) {
+                    color(fcolor, 1) translate([i, -1, 2]) cube([1.5, 34, 9]);
+                }
+                // fin elevations
+                color(fcolor, .6) translate([4, -1, 9]) cube([8, 34, 2]);
+                color(fcolor, .6) translate([28, -1, 9]) cube([8, 34, 2]);
+                color(fcolor, .6) translate([11, -1, 8]) cube([2, 34, 3]);
+                color(fcolor, .6) translate([27, -1, 8]) cube([2, 34, 3]);
+                color(fcolor, .6) translate([13, -1, 7]) cube([2, 34, 4]);
+                color(fcolor, .6) translate([25, -1, 7]) cube([2, 34, 4]);
+                color(fcolor, .6) translate([16, -1, 6]) cube([2, 34, 5]);
+                color(fcolor, .6) translate([22, -1, 6]) cube([2, 34, 5]);
+                // holes
                 if(type=="hc4_oem") {
-                    color("gray", .6) translate([39.99, 5, 0]) cube([5.5, 7, 2]);
-                    color("gray", .6) translate([45.75, 8.5, 0]) cylinder(d=7, h=2);
-                    color("gray", .6) translate([-5.49, 25, 0]) cube([5.5, 7, 2]);
-                    color("gray", .6) translate([-5.5, 28.5, 0]) cylinder(d=7, h=2);
-                    }
-                    else {
-                        color("gray", .6) translate([39.99, 0, 0]) cube([5.5, 7, 2]);
-                        color("gray", .6) translate([45.75, 3.5, 0]) cylinder(d=7, h=2);
-                        color("gray", .6) translate([-5.49, 20, 0]) cube([5.5, 7, 2]);
-                        color("gray", .6) translate([-5.5, 23.5, 0]) cylinder(d=7, h=2);
-                    }
-            }
-            // center channel and fins
-            color("gray", 1) translate([17.5, -1, 2]) cube([5, 34, 9]);
-            color("gray", 1) translate([1.5, -1, 2]) cube([1.25, 34, 9]);
-            for (i=[3.5:2.25:38]) {
-                color("gray", 1) translate([i, -1, 2]) cube([1.5, 34, 9]);
-            }
-            // fin elevations
-            color("gray", .6) translate([4, -1, 9]) cube([8, 34, 2]);
-            color("gray", .6) translate([28, -1, 9]) cube([8, 34, 2]);
-            color("gray", .6) translate([11, -1, 8]) cube([2, 34, 3]);
-            color("gray", .6) translate([27, -1, 8]) cube([2, 34, 3]);
-            color("gray", .6) translate([13, -1, 7]) cube([2, 34, 4]);
-            color("gray", .6) translate([25, -1, 7]) cube([2, 34, 4]);
-            color("gray", .6) translate([16, -1, 6]) cube([2, 34, 5]);
-            color("gray", .6) translate([22, -1, 6]) cube([2, 34, 5]);
-            // holes
-            if(type=="hc4_oem") {
-                color("gray", .6) translate([45.75, 8.5, -1]) cylinder(d=3, h=4);
-                color("gray", .6) translate([-5.5, 28.5, -1]) cylinder(d=3, h=4);
-            }
-            else {
-                color("gray", .6) translate([45.75, 3.5, -1]) cylinder(d=3, h=4);
-                color("gray", .6) translate([-5.5, 23.5, -1]) cylinder(d=3, h=4);
+                    color(fcolor, .6) translate([45.75, 8.5, -1]) cylinder(d=3, h=4);
+                    color(fcolor, .6) translate([-5.5, 28.5, -1]) cylinder(d=3, h=4);
+                }
+                else {
+                    color(fcolor, .6) translate([45.75, 3.5, -1]) cylinder(d=3, h=4);
+                    color(fcolor, .6) translate([-5.5, 23.5, -1]) cylinder(d=3, h=4);
+                }
             }
         }
     }
 
     // hardkernel xu4 and n2l heatsink
-    if((type=="xu4_oem" || type=="n2l_oem") && enablemask ==  false) {
+    if((type=="xu4_oem" || type=="n2l_oem" || type == "n1_oem" || type == "40mm_active_10") && enablemask ==  false) {
 
         $fn=60;
         size_x = 58;
         size_y = 40;
         size_z = size[2];
+        fcolor = (type == "n1_oem" || type == "40mm_active_10") ? "white" : "DeepSkyBlue";
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             translate([5.5, -30, size_z])
                 difference() {
                     union() {
-                        color("DeepSkyBlue", .6) cube([40, 40, 9.8]);
-                        color("DeepSkyBlue", .6) translate([39.99, 6.5, 0]) cube([5.5, 7, 2]);
-                        color("DeepSkyBlue", .6) translate([45.5, 10, 0]) cylinder(d=7, h=2);
-                        color("DeepSkyBlue", .6) translate([-5.49, 26.5, 0]) cube([5.5, 7, 2]);
-                        color("DeepSkyBlue", .6) translate([-5.5, 30, 0]) cylinder(d=7, h=2);
+                        color(fcolor, .6) cube([40, 40, 9.8]);
+                        color(fcolor, .6) translate([39.99, 6.5, 0]) cube([5.5, 7, 2]);
+                        color(fcolor, .6) translate([45.5, 10, 0]) cylinder(d=7, h=2);
+                        color(fcolor, .6) translate([-5.49, 26.5, 0]) cube([5.5, 7, 2]);
+                        color(fcolor, .6) translate([-5.5, 30, 0]) cylinder(d=7, h=2);
                     }
                     // fins
                     for (i=[1.5:2.25:38.5]) {
-                            color("DeepSkyBlue", .6) translate([i, -1, 2]) cube ([1.25, 42, 12]);
+                            color(fcolor, .6) translate([i, -1, 2]) cube ([1.25, 42, 12]);
                     }
                     // cross opening
-                    color("DeepSkyBlue", .6) translate([17.5, -1, 2]) cube([5, 42, 10]);
-                    color("DeepSkyBlue", .6) translate([-1, 17.5, 2]) cube([42, 5, 10]);
+                    color(fcolor, .6) translate([17.5, -1, 2]) cube([5, 42, 10]);
+                    color(fcolor, .6) translate([-1, 17.5, 2]) cube([42, 5, 10]);
                     // fin elevations
-                    color("DeepSkyBlue", .6) translate([4, -1, 9]) cube([8, 42, 2]);
-                    color("DeepSkyBlue", .6) translate([28, -1, 9]) cube([8, 42, 2]);
-                    color("DeepSkyBlue", .6) translate([11, -1, 8]) cube([2, 42, 3]);
-                    color("DeepSkyBlue", .6) translate([27, -1, 8]) cube([2, 42, 3]);
-                    color("DeepSkyBlue", .6) translate([13, -1, 7]) cube([2.5, 42, 4]);
-                    color("DeepSkyBlue", .6) translate([25, -1, 7]) cube([2, 42, 4]);
-                    color("DeepSkyBlue", .6) translate([16, -1, 6]) cube([2, 42, 5]);
-                    color("DeepSkyBlue", .6) translate([22, -1, 6]) cube([2.5, 42, 5]);
+                    color(fcolor, .6) translate([4, -1, 9]) cube([8, 42, 2]);
+                    color(fcolor, .6) translate([28, -1, 9]) cube([8, 42, 2]);
+                    color(fcolor, .6) translate([11, -1, 8]) cube([2, 42, 3]);
+                    color(fcolor, .6) translate([27, -1, 8]) cube([2, 42, 3]);
+                    color(fcolor, .6) translate([13, -1, 7]) cube([2.5, 42, 4]);
+                    color(fcolor, .6) translate([25, -1, 7]) cube([2, 42, 4]);
+                    color(fcolor, .6) translate([16, -1, 6]) cube([2, 42, 5]);
+                    color(fcolor, .6) translate([22, -1, 6]) cube([2.5, 42, 5]);
                     // fan cut out
-                    color("DeepSkyBlue", .6) translate([20, 20, 2]) cylinder(r=18, h=13.5, $fn=100);
+                    color(fcolor, .6) translate([20, 20, 2]) cylinder(r=18, h=13.5, $fn=100);
                     // holes
-                    color("DeepSkyBlue", .6) translate([45.5, 10, -1]) cylinder(d=3, h=4);
-                    color("DeepSkyBlue", .6) translate([-5.5, 30, -1]) cylinder(d=3, h=4);
+                    color(fcolor, .6) translate([45.5, 10, -1]) cylinder(d=3, h=4);
+                    color(fcolor, .6) translate([-5.5, 30, -1]) cylinder(d=3, h=4);
                 }
     }
 
     // hardkernel xu4q and n2lq heatsink
-    if((type == "xu4q_oem"  || type =="n2lq_oem") && enablemask ==  false) {
+    if((type == "xu4q_oem"  || type =="n2lq_oem" || type == "40mm_passive_25") && enablemask ==  false) {
 
         $fn=60;
         size_x = 58;
         size_y = 40;
         size_z = size[2];
+        fcolor = type == "40mm_passive_25" ? "white" : "DeepSkyBlue";
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         translate([5.5,-30,size_z])
         difference() {
             union() {
-                color("DeepSkyBlue", .6) cube([40, 40, 25]);
-                color("DeepSkyBlue", .6) translate([39.99, 6.5, 0]) cube([5.5, 7, 2]);
-                color("DeepSkyBlue", .6) translate([45.5, 10, 0]) cylinder(d=7, h=2);
-                color("DeepSkyBlue", .6) translate([-5.49, 26.5, 0]) cube([5.5, 7, 2]);
-                color("DeepSkyBlue", .6) translate([-5.5, 30, 0]) cylinder(d=7, h=2);
+                color(fcolor, .6) cube([40, 40, 25]);
+                color(fcolor, .6) translate([39.99, 6.5, 0]) cube([5.5, 7, 2]);
+                color(fcolor, .6) translate([45.5, 10, 0]) cylinder(d=7, h=2);
+                color(fcolor, .6) translate([-5.49, 26.5, 0]) cube([5.5, 7, 2]);
+                color(fcolor, .6) translate([-5.5, 30, 0]) cylinder(d=7, h=2);
             }
             // fins
             for (i=[1.25:3.5:38.5]) {
-                    color("DeepSkyBlue", .6) translate([i, -1, 2]) cube ([2.5, 42, 25]);
+                    color(fcolor, .6) translate([i, -1, 2]) cube ([2.5, 42, 25]);
             }
             for (i=[7.5:8:38.5]) {
-                    color("DeepSkyBlue", .6) translate([-1, i, 2]) cube ([42, 1.5, 25]);
+                    color(fcolor, .6) translate([-1, i, 2]) cube ([42, 1.5, 25]);
             }
             // holes
-            color("DeepSkyBlue", .6) translate([45.5, 10, -1]) cylinder(d=3, h=4);
-            color("DeepSkyBlue", .6) translate([-5.5, 30, -1]) cylinder(d=3, h=4);
+            color(fcolor, .6) translate([45.5, 10, -1]) cylinder(d=3, h=4);
+            color(fcolor, .6) translate([-5.5, 30, -1]) cylinder(d=3, h=4);
         }
 
-    }
-
-    // hardkernel n1 heatsink
-    if((type == "n1_oem" || type == "40mm_active") && enablemask ==  false) {
-
-        $fn=60;
-        size_x = 58;
-        size_y = 40;
-        size_z = size[2];
-
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        translate([5.5, -30, size_z])
-        difference() {
-            union() {
-                color("white", .6) cube([40, 40, 9.8]);
-                color("white", .6) translate([39.99, 6.5, 0]) cube([5.5, 7, 2]);
-                color("white", .6) translate([45.5, 10, 0]) cylinder(d=7, h=2);
-                color("white", .6) translate([-5.49, 26.5, 0]) cube([5.5, 7, 2]);
-                color("white", .6) translate([-5.5, 30, 0]) cylinder(d=7, h=2);
-            }
-            // fins
-            for (i=[1.5:2.25:38.5]) {
-                    color("white", .6) translate([i, -1, 2]) cube ([1.25, 42, 12]);
-            }
-            // cross opening
-            color("white", .6) translate([17.5, -1, 2]) cube([5, 42, 10]);
-            color("white", .6) translate([-1, 17.5, 2]) cube([42, 5, 10]);
-            // fin elevations
-            color("white", .6) translate([4, -1, 9]) cube([8, 42, 2]);
-            color("white", .6) translate([28, -1, 9]) cube([8, 42, 2]);
-            color("white", .6) translate([11, -1, 8]) cube([2, 42, 3]);
-            color("white", .6) translate([27, -1, 8]) cube([2, 42, 3]);
-            color("white", .6) translate([13, -1, 7]) cube([2.5, 42, 4]);
-            color("white", .6) translate([25, -1, 7]) cube([2, 42, 4]);
-            color("white", .6) translate([16, -1, 6]) cube([2, 42, 5]);
-            color("white", .6) translate([22, -1, 6]) cube([2.5, 42, 5]);
-            // fan cut out
-            color("white", .6) translate([20, 20, 2]) cylinder(r=18, h=13.5, $fn=100);
-            // holes
-            color("white", .6) translate([45.5, 10, -1]) cylinder(d=3, h=4);
-            color("white", .6) translate([-5.5, 30, -1]) cylinder(d=3, h=4);
-        }
     }
 
     // h3/h3+ hk heatsink
@@ -260,7 +490,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
     }
 
-    // AtomicPi heatsink
+    // atomicpi heatsink
     if(type == "atomicpi" && enablemask ==  false) {
 
         $fn=60;
@@ -385,6 +615,232 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
             }
             for (i=[5.35:4.625:40]) {
                 color("lightgray", .6) translate([-1, i, 3]) cube([28, 2, 8]);
+            }
+        }
+    }
+}
+
+
+/* heatsink mask to create opening */
+module heatsink_mask(size, thick, style) {
+
+    $fn=90;
+    
+    if(style == "fan_open") {
+        translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-2);
+        if(size == 40) {
+            // mount holes
+            translate([size-4, size-4, -1]) cylinder(h=thick+2, d=3);
+            translate([size-4, 4, -1]) cylinder(h=thick+2, d=3);
+            translate([4, size-4, -1]) cylinder(h=thick+2, d=3);
+            translate([4, 4, -1]) cylinder(h=thick+2, d=3);
+        }
+        if(size == 60) {
+            // mount holes
+            translate([size-5, size-5, -1]) cylinder(h=thick+2, d=3);
+            translate([size-5, 5, -1]) cylinder(h=thick+2, d=3);
+            translate([5, size-5, -1]) cylinder(h=thick+2, d=3);
+            translate([5, 5, -1]) cylinder(h=thick+2, d=3);
+        }
+        if(size >= 80) {
+            // mount holes
+            translate([size-3.75, size-3.75, -1]) cylinder(h=thick+2, d=3);
+            translate([size-3.75, 3.75, -1]) cylinder(h=thick+2, d=3);
+            translate([3.75, size-3.75, -1]) cylinder(h=thick+2, d=3);
+            translate([3.75, 3.75, -1]) cylinder(h=thick+2, d=3);
+        }
+    }
+    if(style == "fan_1" && size == 40) {
+        difference() {
+            union () {
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-2);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-8);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-11);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-17);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-20);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-25);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-28);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-35);
+                }
+                // mount holes
+                translate([size-4, size-4, -1]) cylinder(h=thick+2, d=3);
+                translate([size-4, 4, -1]) cylinder(h=thick+2, d=3);
+                translate([4, size-4, -1]) cylinder(h=thick+2, d=3);
+                translate([4, 4, -1]) cylinder(h=thick+2, d=3);
+            }
+            translate([6.5, 5.5, -2]) rotate([0, 0, 45]) cube([size, 1.5, thick+4]);
+            translate([5, size-6, -2]) rotate([0, 0, -45]) cube([size, 1.5, thick+4]);
+        } 
+    }
+    if(style == "fan_1" && size == 60) {
+        difference() {
+            union () {
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-2);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-14);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-18);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-30);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-34);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-46);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-50);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-59);
+                }
+                // mount holes
+                translate([size-5, size-5, -1]) cylinder(h=thick+2, d=3);
+                translate([size-5, 5, -1]) cylinder(h=thick+2, d=3);
+                translate([5, size-5, -1]) cylinder(h=thick+2, d=3);
+                translate([5, 5, -1]) cylinder(h=thick+2, d=3);
+            }
+            translate([9.5, 8, -2]) rotate([0, 0, 45]) cube([size, 2, thick+4]);
+            translate([8.5, size-10, -2]) rotate([0, 0, -45]) cube([size, 2, thick+4]);
+        } 
+    }
+    if(style == "fan_1" && size >= 80) {
+        difference() {
+            union () {
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-2);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-9);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-14);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-21);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-26);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-33);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-38);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-45);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-50);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-57);
+                }
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-62);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-68);
+                }
+                if(size == 92) {
+                difference() {
+                    translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-74);
+                    translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-80);
+                }
+                    difference() {
+                        translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-85);
+                        translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-91);
+                    }
+                }
+                // mount holes
+                translate([size-3.75, size-3.75, -1]) cylinder(h=thick+2, d=3);
+                translate([size-3.75, 3.75, -1]) cylinder(h=thick+2, d=3);
+                translate([3.75, size-3.75, -1]) cylinder(h=thick+2, d=3);
+                translate([3.75, 3.75, -1]) cylinder(h=thick+2, d=3);
+            }
+            translate([6.5, 4.25, -2]) rotate([0, 0, 45]) cube([size*1.2, 3, thick+4]);
+            translate([4.25, size-6.5, -2]) rotate([0, 0, -45]) cube([size*1.2, 3, thick+4]);
+        }
+    }
+    if(style == "fan_2") {
+        inner = size == 30 ? 24 :
+            size == 40 ? 32 :
+            size == 50 ? 40 :
+                size == 60 ? 50 :
+                size == 70 ? 61.9 :
+                    size == 80 ? 71.5 :
+                    size * 0.8; // Use 80% as default
+
+        rings = size <= 40 ? 4 : 6;
+        bar_size = size <= 40 ? 2 : 3;
+
+        screw_offset = inner / 2;
+        center_point = size * 0.5;
+        base_ring_size = size * 0.95;
+        rings_spacing = size / rings;
+
+        translate([size/2, size/2, -1])
+        union() {
+            translate([screw_offset, screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
+            translate([-screw_offset, screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
+            translate([screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
+            translate([-screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
+
+            difference() {
+            union() {
+                for(i=[inner:-rings_spacing:0]) {
+                    difference() {
+                        cylinder(d=base_ring_size - i, h=thick+2);
+                        translate([0, 0, -1]) cylinder(d=base_ring_size - i - (rings_spacing/2), h=thick+4);
+                    }
+                }
+            }
+
+            translate([0, 0, 6]) 
+                union() {
+                    cylinder(d=bar_size*2+0.1, thick+6); // Add a circle to prevent any tiny holes around cross bar
+                    rotate([0, 0, 45]) cube([size, bar_size, thick+4], center=true);
+                    rotate([0, 0, 45]) cube([bar_size, size, thick+4], center=true);
+                }
+            }
+        }
+    }
+    if(style == "fan_hex") {
+        union() {
+            difference () {
+                translate([1+(size-2)/2, 1+(size-2)/2, -1]) cylinder(h=thick+2, d=size-2);
+                union() {
+                    difference() {
+                        translate([1+(size-2)/2, 1+(size-2)/2, -1-adj]) cylinder(h=thick+3, d=size-2);
+                        if(size == 40) {
+                            translate([-14, -11.25, 0]) vent_hex(12, 5, thick+4, 12, 2, "horizontal");
+                        }
+                        if(size == 60) {
+                            translate([-11, -1.5, 0]) vent_hex(12, 5, thick+4, 12, 2, "horizontal");
+                        }
+                        if(size == 80) {
+                            translate([-8.25, -3.5, 0]) vent_hex(14, 8, thick+4, 12, 2, "horizontal");
+                        }
+                        if(size == 92) {
+                            translate([-9, -4, 0]) vent_hex(15, 8, thick+4, 12, 2, "horizontal");
+                        }
+                    
+                    }
+                }
+            }
+            if(size == 40) {
+                // mount holes
+                translate([size-4, size-4, -1]) cylinder(h=thick+2, d=3);
+                translate([size-4, 4, -1]) cylinder(h=thick+2, d=3);
+                translate([4, size-4, -1]) cylinder(h=thick+2, d=3);
+                translate([4, 4, -1]) cylinder(h=thick+2, d=3);
+            }
+            if(size == 60) {
+                // mount holes
+                translate([size-5, size-5, -1]) cylinder(h=thick+2, d=3);
+                translate([size-5, 5, -1]) cylinder(h=thick+2, d=3);
+                translate([5, size-5, -1]) cylinder(h=thick+2, d=3);
+                translate([5, 5, -1]) cylinder(h=thick+2, d=3);
+            }
+            if(size >= 80) {
+                // mount holes
+                translate([size-3.75, size-3.75, -1]) cylinder(h=thick+2, d=3);
+                translate([size-3.75, 3.75, -1]) cylinder(h=thick+2, d=3);
+                translate([3.75, size-3.75, -1]) cylinder(h=thick+2, d=3);
+                translate([3.75, 3.75, -1]) cylinder(h=thick+2, d=3);
             }
         }
     }

@@ -30,6 +30,10 @@
                       data[2] = "male", "female"
                       data[3] = pitch
                       data[4] = pin color
+                      enablemask = true produces mask, false produces model
+                      mask[0] = true enables component mask
+                      mask[1] = mask length
+                      mask[2] = mask setback
                       mask[3] = mstyle ("none", "open", "block", "knockout", "vent")
 
 
