@@ -45,6 +45,9 @@
 // heatsink class
 module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
+    $fn = 90;
+    adj = .01;
+
     // hardkernel c series heatsink
     if(type=="hc4_oem" || type=="c4_oem" || type=="c2_oem" || type=="c1+_oem" || type == "32mm_passive_10") {
 
@@ -53,7 +56,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = "gray";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
             
@@ -66,7 +68,8 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
 
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                                    translate([3.5, -24.5, 0]) cube([size_xm, size_ym, mlen]);
+//                                    translate([3.5, -24.5, 0]) cube([size_xm, size_ym, mlen]);
+                        translate([5.5-(size_xm-size_x)/2,  -22.5-(size_ym-size_y)/2, 0]) cube([size_xm, size_ym, mlen]);
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
@@ -332,7 +335,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = (type == "n1_oem" || type == "40mm_active_10") ? "silver" : "DeepSkyBlue";
-        $fn=90;
 
         if(enablemask == true && cmask == true) {
             
@@ -599,7 +601,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = type == "40mm_passive_25" ? "silver" : "DeepSkyBlue";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
             
@@ -855,7 +856,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = "gray";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
             
@@ -1159,7 +1159,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = "gray";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
             
@@ -1245,7 +1244,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         mlen = mask[1];
         back = mask[2];
         mstyle = mask[3];
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
             
@@ -1351,7 +1349,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = "gray";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
 
@@ -1437,6 +1434,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
             }
         }
     }
+
     // hardkernel n2 heatsink
     if(type == "n2_oem") {
 
@@ -1446,7 +1444,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = "gray";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
 
@@ -1524,7 +1521,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([13+(size_xm-size_x)/2, 12-(size_ym-size_y)/2, -mlen-4])
+                        translate([13+(size_xm-size_x)/2, 13.5-(size_ym-size_y)/2, -mlen-4])
                             vent_hex(15, 9, mlen, 8, 1.5, "horizontal");
                 }
             }
@@ -1537,7 +1534,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
 
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([29+(size_xm-size_x)/2, 31-(size_ym-size_y)/2, -mlen-4]) 
+                        translate([-21.5+(size_xm-size_x)/2, -21-(size_ym-size_y)/2, -mlen-4]) 
                             linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
                 }
             }
@@ -1552,8 +1549,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
     }
 
-
-
     // hardkernel n2+ heatsink
     if(type == "n2+_oem") {
 
@@ -1563,7 +1558,6 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         back = mask[2];
         mstyle = mask[3];
         fcolor = "gray";
-        $fn = 90;
 
         if(enablemask == true && cmask == true) {
 
@@ -1575,55 +1569,55 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
 
             if(mstyle == "open") {
 
-                if(side == "top" && rotation == 180) {
+                if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                     union() {
-                        translate([3, 2.5, -mlen-4]) cube([4, size_ym, mlen]);
-                        translate([18.75, 2.5, -mlen-4]) cube([66.5, size_ym, mlen]);
-                        translate([size_xm-1, 2.5, -mlen-4]) cube([4, size_ym, mlen]);
+                        translate([-5, -1.5, -mlen-4]) cube([4, size_ym, mlen]);
+                        translate([10.75, -1.5, -mlen-4]) cube([66.5, size_ym, mlen]);
+                        translate([size_xm-9, -1.5, -mlen-4]) cube([4, size_ym, mlen]);
 
-                        translate([10, 33, -mlen-4]) cylinder(d=3.5, h=mlen);
-                        translate([93.5, 33.25, -mlen-4]) cylinder(d=3.5, h=mlen);
-                        translate([10, 91, -mlen-4]) cylinder(d=3.5, h=mlen);
-                        translate([93.5, 91, -mlen-4]) cylinder(d=3.5, h=mlen);
+                        translate([2, 29, -mlen-4]) cylinder(d=3.5, h=mlen);
+                        translate([85.5, 29.25, -mlen-4]) cylinder(d=3.5, h=mlen);
+                        translate([2, 87, -mlen-4]) cylinder(d=3.5, h=mlen);
+                        translate([85.5, 87, -mlen-4]) cylinder(d=3.5, h=mlen);
 
-                        translate([16.25, 14-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
-                        translate([87.675, 14-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
-                        translate([16.25, 85.5-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
-                        translate([87.675, 85.5-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
+                        translate([8.25, 10-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
+                        translate([79.675, 10-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
+                        translate([8.25, 81.5-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
+                        translate([79.675, 81.5-slen/2, -mlen-4]) rotate([0, 0, 90]) slot(3.5, slen, mlen);
                     }
                 }
             }
             if(mstyle == "fan_open" || mstyle == "fan_1" || mstyle == "fan_2" || mstyle == "fan_hex") {
                 
-                if(side == "top" && rotation == 180) {
+                if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([(80-fsize)/2-(size_xm-size_x)/2+14, (80-fsize)/2-(size_ym-size_y)/2+11, -mlen-4]) 
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+6, (80-fsize)/2-(size_ym-size_y)/2+7.5, -mlen-4]) 
                             heatsink_mask(fsize, mlen, mstyle);
 
                 }
             }
             if(mstyle == "vent") {
                 
-                if(side == "top" && rotation == 180) {
+                if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([(size_xm-size_x)/2+14, 4.5-(size_ym-size_y)/2, -mlen-4])
+                        translate([(size_xm-size_x)/2+6, .5-(size_ym-size_y)/2, -mlen-4])
                             vent(2, size_ym, mlen, 1.5, 1, 15, "horizontal");
                 }
             }
             if(mstyle == "vent_hex_5mm") {
                 
-                if(side == "top" && rotation == 180) {
+                if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([12+(size_xm-size_x)/2, 9-(size_ym-size_y)/2, -mlen-4])
+                        translate([4+(size_xm-size_x)/2, 5-(size_ym-size_y)/2, -mlen-4])
                             vent_hex(23, 15, mlen, 5, 1.5, "horizontal");
                 }
             }
             if(mstyle == "vent_hex_8mm") {
                 
-                if(side == "top" && rotation == 180) {
+                if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([13+(size_xm-size_x)/2, 12-(size_ym-size_y)/2, -mlen-4])
+                        translate([5+(size_xm-size_x)/2, 8-(size_ym-size_y)/2, -mlen-4])
                             vent_hex(15, 9, mlen, 8, 1.5, "horizontal");
                 }
             }
@@ -1634,9 +1628,9 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 size_xm = fsize;
                 size_ym = fsize;
 
-                if(side == "top" && rotation == 180) {
+                if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([29+(size_xm-size_x)/2, 31-(size_ym-size_y)/2, -mlen-4]) 
+                        translate([8+(80-fsize)/2-(size_xm-size_x)/2, 9+(80-fsize)/2-(size_ym-size_y)/2, -mlen-4]) 
                             linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
                 }
             }
@@ -1650,6 +1644,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 color(fcolor) import("./lib/heatsinks/Odroid-N2+_Heatsink.stl", convexity=3);
         }
     }
+
     // hardkernel m1 heatsink
     if(type == "m1_oem") {
 
@@ -1737,7 +1732,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
 
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([29+(size_xm-size_x)/2, 45-(size_ym-size_y)/2, -mlen-4]) 
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+8.5, (80-fsize)/2-(size_ym-size_y)/2+25, -mlen-4]) 
                             linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
                 }
             }
@@ -1751,63 +1746,356 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 color(fcolor) translate([-.5, 0, 3]) import("./lib/heatsinks/Odroid-M1_Heatsink.stl", convexity=3);
         }
     }
+
     // khadas heatsink without fan
-    if(type == "khadas_oem" && enablemask ==  false) {
+    if(type == "khadas_oem") {
 
-        size_x = 82;
-        size_y = 48;
+        fsize = data[0];
+        cmask = mask[0];
+        mlen = mask[1];
+        back = mask[2];
+        mstyle = mask[3];
+        fcolor = "gray";
+        $fn = 90;
 
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        color("gray", .6) import("./lib/heatsinks/Khadas_Heatsink.stl", convexity=3);
+        if(enablemask == true && cmask == true) {
+
+            size_x = 82;
+            size_y = 48;
+            size_xm = 86;
+            size_ym = 52;
+
+            if(mstyle == "open") {
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([4-(size_xm-size_x)/2,  12-(size_ym-size_y)/2, 0]) cube([size_xm-11, size_ym-12, mlen]);
+
+                }
+            }
+            if(mstyle == "fan_open" || mstyle == "fan_1" || mstyle == "fan_2" || mstyle == "fan_hex") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+1, (80-fsize)/2-(size_ym-size_y)/2-8, 0]) 
+                            heatsink_mask(fsize, mlen, mstyle);
+
+                }
+            }
+            if(mstyle == "vent") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, 14-(size_ym-size_y)/2, 0])
+                            vent(2, size_ym-16, mlen, 1.5, 1, 15, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_5mm") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+2.5, 12.5-(size_ym-size_y)/2, 0])
+                            vent_hex(21, 7, mlen, 5, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_8mm") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+.5, 12.5-(size_ym-size_y)/2, 0])
+                            vent_hex(15, 5, mlen, 8, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "custom") {
+                
+                size_x = fsize;
+                size_y = fsize;
+                size_xm = fsize;
+                size_ym = fsize;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+2, (80-fsize)/2-(size_ym-size_y)/2-5, 0]) 
+                            linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+                }
+            }
+        }
+        if(enablemask ==  false) {
+
+            size_x = 82;
+            size_y = 48;
+
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                color(fcolor, .6) import("./lib/heatsinks/Khadas_Heatsink.stl", convexity=3);
+        }
     }
-    
-    // khadas heatsink with fan
-    if(type == "khadas_fan_oem" && enablemask ==  false) {
-        size_x = 82;
-        size_y = 48;
 
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        color("gray", .6) import("./lib/heatsinks/Khadas_Heatsink_Fan.stl", convexity=3);
+    // khadas heatsink with fan
+    if(type == "khadas_fan_oem") {
+
+        fsize = data[0];
+        cmask = mask[0];
+        mlen = mask[1];
+        back = mask[2];
+        mstyle = mask[3];
+        fcolor = "gray";
+
+        if(enablemask == true && cmask == true) {
+
+            size_x = 82;
+            size_y = 48;
+            size_xm = 86;
+            size_ym = 52;
+
+            if(mstyle == "open") {
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([4-(size_xm-size_x)/2,  12-(size_ym-size_y)/2, 0]) cube([size_xm-11, size_ym-12, mlen]);
+
+                }
+            }
+            if(mstyle == "fan_open" || mstyle == "fan_1" || mstyle == "fan_2" || mstyle == "fan_hex") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+19.5, (80-fsize)/2-(size_ym-size_y)/2-8, 0]) 
+                            heatsink_mask(fsize, mlen, mstyle);
+
+                }
+            }
+            if(mstyle == "vent") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, 14-(size_ym-size_y)/2, 0])
+                            vent(2, size_ym-16, mlen, 1.5, 1, 15, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_5mm") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+2.5, 12.5-(size_ym-size_y)/2, 0])
+                            vent_hex(21, 7, mlen, 5, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_8mm") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+.5, 12.5-(size_ym-size_y)/2, 0])
+                            vent_hex(15, 5, mlen, 8, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "custom") {
+                
+                size_x = fsize;
+                size_y = fsize;
+                size_xm = fsize;
+                size_ym = fsize;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+21.5, (80-fsize)/2-(size_ym-size_y)/2-6, 0]) 
+                            linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+                }
+            }
+        }
+        if(enablemask ==  false) {
+
+            size_x = 82;
+            size_y = 48;
+
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                color(fcolor, .6) import("./lib/heatsinks/Khadas_Heatsink_Fan.stl", convexity=3);
+        }
     }
 
     // radxa heatsink
-    if(type == "radxa_oem" && enablemask ==  false) {
+    if(type == "radxa_oem") {
 
-        size_x = 82;
-        size_y = 56;
+        fsize = data[0];
+        cmask = mask[0];
+        mlen = mask[1];
+        back = mask[2];
+        mstyle = mask[3];
+        fcolor = "gray";
 
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z)
-        color("gray", .6) import("./lib/heatsinks/Radxa_Heatsink.stl", convexity=3);
+        if(enablemask == true && cmask == true) {
+
+            size_x = 82;
+            size_y = 56;
+            size_xm = 86;
+            size_ym = 57;
+
+            if(mstyle == "open") {
+
+                if(side == "bottom" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([3.5-(size_xm-size_x)/2,  -.5-(size_ym-size_y)/2, 0]) cube([size_xm, size_ym, mlen]);
+
+                }
+            }
+            if(mstyle == "fan_open" || mstyle == "fan_1" || mstyle == "fan_2" || mstyle == "fan_hex") {
+                
+                if(side == "bottom" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2+7, (80-fsize)/2-(size_ym-size_y)/2-12, 0]) 
+                            heatsink_mask(fsize, mlen, mstyle);
+
+                }
+            }
+            if(mstyle == "vent") {
+                
+                if(side == "bottom" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, -(size_ym-size_y)/2, 0])
+                            vent(2, size_ym, mlen, 1.5, 1, 17, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_5mm") {
+                
+                if(side == "bottom" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, -(size_ym-size_y)/2+3, 0])
+                            vent_hex(25, 9, mlen, 5, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_8mm") {
+                
+                if(side == "bottom" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+4.5, 7.5-(size_ym-size_y)/2, 0])
+                            vent_hex(15, 5, mlen, 8, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "custom") {
+                
+                size_x = fsize;
+                size_y = fsize;
+                size_xm = fsize;
+                size_ym = fsize;
+
+                if(side == "bottom" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2-38, (80-fsize)/2-(size_ym-size_y)/2-8, 0]) 
+                            linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+                }
+            }
+        }
+        if(enablemask ==  false) {
+
+            size_x = 82;
+            size_y = 56;
+
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z)
+                color(fcolor, .6) import("./lib/heatsinks/Radxa_Heatsink.stl", convexity=3);
+        }
     }
 
     // RPi5 heatsink
-    if(type == "rpi5_oem" && enablemask ==  false) {
+    if(type == "rpi5_oem") {
 
-        size_x = 58;
-        size_y = 32;
+        fsize = data[0];
+        cmask = mask[0];
+        mlen = mask[1];
+        back = mask[2];
+        mstyle = mask[3];
+        fcolor = "gray";
 
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z)
-        difference() {
-            union() {
-                color("lightgray", .6) linear_extrude(height = 2) import("./lib/heatsinks/rpi5_oem.dxf");
-                translate([6, 2.5, 2-.01])color("lightgray", .6) cube([20, 40, 8]);
-                difference() {
-                    union() {
-                        translate([27, 11.75, 2-.01])color("black", .6) cube([30, 30, 8]);
-                        translate([27, 11.75, 10-.01])color("lightgray", .6) cube([30, 30, .25]);
-                    }
-                    translate([42, 26.75, 2-.01]) color("black", .6) cylinder(d=21, h=9);
-                    translate([31, 39, 2-.01]) color("black", .6) cylinder(d=3, h=9);
-                    translate([54, 14, 2-.01]) color("black", .6) cylinder(d=3, h=9);
-                    translate([54, 39, 2-.01]) color("black", .6) cylinder(d=3, h=9);
+        if(enablemask == true && cmask == true) {
+
+            size_x = 58;
+            size_y = 40;
+            size_xm = 59;
+            size_ym = 42;
+
+            if(mstyle == "open") {
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([3-(size_xm-size_x)/2,  -.5-(size_ym-size_y)/2, 0]) cube([size_xm, size_ym, mlen]);
+
+                }
+            }
+            if(mstyle == "fan_open" || mstyle == "fan_1" || mstyle == "fan_2" || mstyle == "fan_hex") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([-9+(80-fsize)/2-(size_xm-size_x)/2, -20+(80-fsize)/2-(size_ym-size_y)/2, 0]) 
+                            heatsink_mask(fsize, mlen, mstyle);
+
+                }
+            }
+            if(mstyle == "vent") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, -.75-(size_ym-size_y)/2, 0])
+                            vent(2, size_ym, mlen, 1.5, 1, 12, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_5mm") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, -(size_ym-size_y)/2+.5, 0])
+                            vent_hex(17, 7, mlen, 5, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "vent_hex_8mm") {
+                
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(size_xm-size_x)/2+1.5, -.75-(size_ym-size_y)/2, 0])
+                            vent_hex(11, 5, mlen, 8, 1.5, "horizontal");
+                }
+            }
+            if(mstyle == "custom") {
+                
+                size_x = fsize;
+                size_y = fsize;
+                size_xm = fsize;
+                size_ym = fsize;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([(80-fsize)/2-(size_xm-size_x)/2-7, (80-fsize)/2-(size_ym-size_y)/2-16.5, 0]) 
+                            linear_extrude(height = mlen) import(file = "dxf/customfan.dxf");
+                }
+            }
+        }
+        if(enablemask ==  false) {
+
+            size_x = 58;
+            size_y = 32;
+            fcolor = "lightgray";
+
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,pcbsize_z)
+            translate([-3,-3,0])
+            difference() {
+                union() {
+                    color(fcolor, .6) linear_extrude(height = 2) import("./lib/heatsinks/rpi5_oem.dxf");
+                    translate([6, 2.5, 2-.01])color(fcolor, .6) cube([20, 40, 8]);
+                    difference() {
+                        union() {
+                            translate([27, 11.75, 2-.01])color("black", .6) cube([30, 30, 8]);
+                            translate([27, 11.75, 10-.01])color(fcolor, .6) cube([30, 30, .25]);
+                        }
+                        translate([42, 26.75, 2-.01]) color("black", .6) cylinder(d=21, h=9);
+                        translate([31, 39, 2-.01]) color("black", .6) cylinder(d=3, h=9);
+                        translate([54, 14, 2-.01]) color("black", .6) cylinder(d=3, h=9);
+                        translate([54, 39, 2-.01]) color("black", .6) cylinder(d=3, h=9);
                     }
                 }
-            // fins
-            for (i=[4.75:3.5:25]) {
-                color("lightgray", .6) translate([i, -1, 2]) cube([1.75, 44, 8]);
-            }
-            for (i=[5.35:4.625:40]) {
-                color("lightgray", .6) translate([-1, i, 3]) cube([28, 2, 8]);
+                // fins
+                for (i=[4.75:3.5:25]) {
+                    color(fcolor, .6) translate([i, -1, 2]) cube([1.75, 44, 8]);
+                }
+                for (i=[5.35:4.625:40]) {
+                    color(fcolor, .6) translate([-1, i, 3]) cube([28, 2, 8]);
+                }
             }
         }
     }
@@ -2010,7 +2298,6 @@ module heatsink_mask(size, thick, style) {
                         if(size == 92) {
                             translate([-9, -4, 0]) vent_hex(15, 8, thick+4, 12, 2, "horizontal");
                         }
-                    
                     }
                 }
             }
