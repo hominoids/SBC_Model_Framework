@@ -19,18 +19,27 @@
 
     see https://github.com/hominoids/SBC_Model_Framework
 
-    USE: sbc(model)
-             model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1_noheatsink","m1s","n1","n2","n2l","n2lq","n2+","n2+_noheatsink","h2","show2"
-                     "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpi5_noheatsink",cm4-ioboard
-                     "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
-                     "rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b-v1.42",
-                     "vim1","vim2","vim3l","vim3","vim4",
-                     "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-r2",
-                     "opi5","opizero","opizero2","opir1plus_lts","opir1",
-                     "jetsonnano",
-                     "licheerv+dock",
-                     "visionfive2",
-                     "atomicpi"
+    DESCRIPTION: creates pin headers in any size or pitch.
+           TODO: many
+
+          USAGE: sbc(model, enableheatsink = "default", enablegpio =  "default", enablemask = false)
+
+
+                 model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1s","n1","n2","n2l","n2lq","n2+","h2","show2"
+                         "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",cm4-ioboard
+                         "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
+                         "rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
+                         "vim1","vim2","vim3l","vim3","vim4",
+                         "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-r2",
+                         "opi5","opizero","opizero2","opir1plus_lts","opir1",
+                         "jetsonnano",
+                         "licheerv+dock",
+                         "visionfive2",
+                         "atomicpi"
+                 enableheatsink = "disable", "off", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
+                 enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
+                 enablemask = true or false
+
 */
 
 include <./sbc_models.cfg>
@@ -110,12 +119,12 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
                                     fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                           if (class == "gpio" && enablegpio != "disable" && enablegpio != "none") {
+                           if (class == "gpio" && (enablegpio != "disable" || enablegpio != "none")) {
                                 if(loc_x != 0 || loc_y != 0) {
                                     gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                            if (class == "heatsink" && enableheatsink != "disable" && enableheatsink != "none")  {
+                            if (class == "heatsink" && (enableheatsink != "disable" || enableheatsink != "none"))  {
                                 if (loc_x != 0 || loc_y != 0) {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }

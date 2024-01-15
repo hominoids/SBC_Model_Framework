@@ -65,7 +65,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 20 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 54;
+                size_xm = size_xt+4;
                 size_ym = 12;
                 size_zm = 9;
 
@@ -89,7 +89,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 2 && size_y == 20) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 54;
+                size_ym = size_yt+4;
                 size_xm = 12;
                 size_zm = 9;
 
@@ -116,7 +116,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 20 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 54;
+                size_xm = size_xt+4;
                 size_ym = 12;
                 size_zm = 27;
 
@@ -140,7 +140,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 2 && size_y == 20) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 54;
+                size_ym = size_yt+4;
                 size_xm = 12;
                 size_zm = 27;
 
@@ -167,51 +167,51 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 20 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 58;
+                size_xm = size_xt+8;
                 size_ym = 10;
                 size_zm = 27;
                 fillet = 3.5;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
             }
             if(size_x == 2 && size_y == 20) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 58;
+                size_ym = size_yt+8;
                 size_xm = 10;
                 size_zm = 27;
                 fillet = 3.5;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
             }
         }
@@ -220,266 +220,53 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 20 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 54;
+                size_xm = size_xt+4;
                 size_ym = 12;
                 size_zm = 9;
 
                 if(side == "top" && rotation == 0) {
                     place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,14,"vertical");
+                        vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,14,"vertical");
+                        vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,14,"vertical");
+                        vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,14,"vertical");
+                        vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
             }
             if(size_x == 2 && size_y == 20) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 54;
+                size_ym = size_xt+4;
                 size_xm = 12;
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
                     place(loc_x-9, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,14,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x-(size_ym-size_yt)/2, loc_y+2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,14,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x+2, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,14,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x-(size_ym-size_yt)/2, loc_y-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,14,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
             }
         }
 
-        if(enablemask == false) {
-            header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
-        }
-    }
-
-    // gpio 20 pin header
-    if((size_x == 10 && size_y == 2) || (size_x == 2 && size_y == 10)) {
-        if(enablemask == true && cmask == true && mstyle == "open") {
-            
-            if(size_x == 10 && size_y == 2) {
-
-                size_xt = size_x * 2.54;
-                size_xm = 29;
-                size_ym = 12;
-                size_zm = 9;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-            }
-            if(size_x == 2 && size_y == 10) {
-
-                size_yt = size_y * 2.54;
-                size_ym = 29;
-                size_xm = 12;
-                size_zm = 9;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-            }
-        }
-        if(enablemask == true && cmask == true && mstyle == "block") {
-            
-            if(size_x == 10 && size_y == 2) {
-
-                size_xt = size_x * 2.54;
-                size_xm = 29;
-                size_ym = 12;
-                size_zm = 27;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([size_xm, mlen, size_zm]);
-                }
-            }
-            if(size_x == 2 && size_y == 10) {
-
-                size_yt = size_y * 2.54;
-                size_ym = 29;
-                size_xm = 12;
-                size_zm = 27;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        cube([mlen, size_ym,  size_zm]);
-                }
-            }
-        }
-        if(enablemask == true && cmask == true && mstyle == "knockout") {
-            
-            if(size_x == 10 && size_y == 2) {
-
-                size_xt = size_x * 2.54;
-                size_xm = 33;
-                size_ym = 10;
-                size_zm = 27;
-                fillet = 3.5;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
-                }
-            }
-            if(size_x == 2 && size_y == 10) {
-
-                size_yt = size_y * 2.54;
-                size_ym = 33;
-                size_xm = 10;
-                size_zm = 27;
-                fillet = 3.5;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
-                }
-            }
-        }
-        if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
-            
-            if(size_x == 10 && size_y == 2) {
-
-                size_xt = size_x * 2.54;
-                size_xm = 30;
-                size_ym = 12;
-                size_zm = 9;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,8,"vertical");
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,8,"vertical");
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,8,"vertical");
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,8,"vertical");
-                }
-            }
-            if(size_x == 2 && size_y == 10) {
-
-                size_yt = size_y * 2.54;
-                size_ym = 30;
-                size_xm = 12;
-                size_zm = 27;
-
-                if(side == "top" && rotation == 0) {
-                    place(loc_x-9, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,8,"vertical");
-                }
-                if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,8,"vertical");
-                }
-                if(side == "top" && rotation == 180) {
-                    place(loc_x+2, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,8,"vertical");
-                }
-                if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,8,"vertical");
-                }
-            }
-        }
         if(enablemask == false) {
             header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
         }
@@ -492,7 +279,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 13 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 36;
+                size_xm = size_xt+4;
                 size_ym = 12;
                 size_zm = 9;
 
@@ -516,7 +303,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 2 && size_y == 13) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 36;
+                size_ym = size_yt+4;
                 size_xm = 12;
                 size_zm = 9;
 
@@ -543,7 +330,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 13 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 36;
+                size_xm = size_xt+4;
                 size_ym = 12;
                 size_zm = 27;
 
@@ -567,7 +354,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 2 && size_y == 13) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 36;
+                size_ym = size_yt+4;
                 size_xm = 12;
                 size_zm = 27;
 
@@ -594,51 +381,51 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 13 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 38;
+                size_xm = size_xt+8;
                 size_ym = 10;
                 size_zm = 27;
                 fillet = 3.5;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 8, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 8, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
                 }
             }
             if(size_x == 2 && size_y == 13) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 38;
+                size_ym = size_yt+8;
                 size_xm = 10;
                 size_zm = 27;
                 fillet = 3.5;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+5, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+5, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x+5, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                    place(loc_x+5, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z+(size_xm/2)-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([90,0,90]) knockout(size_ym,size_xm,2,mlen,fillet,"slot");
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
                 }
             }
         }
@@ -647,47 +434,473 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 13 && size_y == 2) {
 
                 size_xt = size_x * 2.54;
-                size_xm = 34;
+                size_xm = size_xt+4;
                 size_ym = 12;
 
                 if(side == "top" && rotation == 0) {
                     place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,9,"vertical");
+                        vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,9,"vertical");
+                        vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,9,"vertical");
+                        vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        vent(2,10,mlen,1,1,9,"vertical");
+                        vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
             }
             if(size_x == 2 && size_y == 13) {
 
                 size_yt = size_y * 2.54;
-                size_ym = 34;
+                size_ym = size_yt+4;
                 size_xm = 12;
 
                 if(side == "top" && rotation == 0) {
                     place(loc_x-9, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,9,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x-(size_ym-size_yt)/2, loc_y+2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,9,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x+2, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,9,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 9, "vertical");
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x-(size_ym-size_yt)/2, loc_y-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                        rotate([0,0,90]) vent(2,10,mlen,1,1,9,"vertical");
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 9, "vertical");
+                }
+            }
+        }
+        if(enablemask == false) {
+            header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+        }
+    }
+
+    // gpio 20 pin header
+    if((size_x == 10 && size_y == 2) || (size_x == 2 && size_y == 10)) {
+        if(enablemask == true && cmask == true && mstyle == "open") {
+
+            if(size_x == 10 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+4;
+                size_ym = 12;
+                size_zm = 9;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+            }
+            if(size_x == 2 && size_y == 10) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+4;
+                size_xm = 12;
+                size_zm = 9;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "block") {
+            
+            if(size_x == 10 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+4;
+                size_ym = 12;
+                size_zm = 27;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+            }
+            if(size_x == 2 && size_y == 10) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+4;
+                size_xm = 12;
+                size_zm = 27;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "knockout") {
+            
+            if(size_x == 10 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+8;
+                size_ym = 10;
+                size_zm = 27;
+                fillet = 3.5;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+            }
+            if(size_x == 2 && size_y == 10) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+8;
+                size_xm = 10;
+                size_zm = 27;
+                fillet = 3.5;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+            }
+        }
+        if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
+            
+            if(size_x == 10 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+4;
+                size_ym = 12;
+                size_zm = 9;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+            }
+            if(size_x == 2 && size_y == 10) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+4;
+                size_xm = 12;
+                size_zm = 27;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-9, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+            }
+        }
+        if(enablemask == false) {
+            header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+        }
+    }
+
+    // gpio 14 pin header
+    if((size_x == 7 && size_y == 2) || (size_x == 2 && size_y == 7)) {
+        if(enablemask == true && cmask == true && mstyle == "open") {
+
+            if(size_x == 7 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+4;
+                size_ym = 12;
+                size_zm = 9;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+            }
+            if(size_x == 2 && size_y == 7) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+4;
+                size_xm = 12;
+                size_zm = 9;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "block") {
+            
+            if(size_x == 7 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+4;
+                size_ym = 12;
+                size_zm = 27;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([size_xm, mlen, size_zm]);
+                }
+            }
+            if(size_x == 2 && size_y == 7) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+4;
+                size_xm = 12;
+                size_zm = 27;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        cube([mlen, size_ym,  size_zm]);
+                }
+            }
+        }
+        if(enablemask == true && cmask == true && mstyle == "knockout") {
+            
+            if(size_x == 7 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+8;
+                size_ym = 10;
+                size_zm = 27;
+                fillet = 3.5;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
+                }
+            }
+            if(size_x == 2 && size_y == 7) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+8;
+                size_xm = 10;
+                size_zm = 27;
+                fillet = 3.5;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z+(size_xm/2)-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([90, 0, 90]) knockout(size_ym, size_xm, 2, mlen, fillet, "slot");
+                }
+            }
+        }
+        if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
+            
+            if(size_x == 7 && size_y == 2) {
+
+                size_xt = size_x * 2.54;
+                size_xm = size_xt+4;
+                size_ym = 12;
+                size_zm = 9;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+            }
+            if(size_x == 2 && size_y == 7) {
+
+                size_yt = size_y * 2.54;
+                size_ym = size_yt+4;
+                size_xm = 12;
+                size_zm = 27;
+
+                if(side == "top" && rotation == 0) {
+                    place(loc_x-9, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 90) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 180) {
+                    place(loc_x+2, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
+                }
+                if(side == "top" && rotation == 270) {
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                        rotate([0, 0, 90]) vent(2, 10, mlen, 1, 1, 8, "vertical");
                 }
             }
         }
@@ -755,20 +968,20 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             fillet = 3.5;
 
             if(side == "top" && rotation == 0) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 8, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 8, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
         }
         if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
@@ -779,19 +992,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
 
             if(side == "top" && rotation == 0) {
                 place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,10,"vertical");
+                    vent(2, 10, mlen, 1, 1, 10, "vertical");
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,10,"vertical");
+                    vent(2, 10, mlen, 1, 1, 10, "vertical");
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,10,"vertical");
+                    vent(2, 10, mlen, 1, 1, 10, "vertical");
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,10,"vertical");
+                    vent(2, 10, mlen, 1, 1, 10, "vertical");
             }
         }
         if(enablemask == false) {
@@ -870,20 +1083,20 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             fillet = 3.5;
 
             if(side == "top" && rotation == 0) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x-(size_xm-size_xt)/2, loc_y+5, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 8, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,9.5,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 9.5, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    translate([0,8,size_ym/2]) rotate([90,0,0]) knockout(size_xm,size_ym,2,mlen,fillet,"slot");
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back+2, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([0, 8, size_ym/2]) rotate([90, 0, 0]) knockout(size_xm, size_ym, 2, mlen, fillet, "slot");
             }
         }
         if(enablemask == true && cmask == true && (mstyle == "vent" || mstyle =="default")) {
@@ -894,19 +1107,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
 
             if(side == "top" && rotation == 0) {
                 place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,6,"vertical");
+                    vent(2, 10, mlen, 1, 1, 6, "vertical");
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,6,"vertical");
+                    vent(2, 10, mlen, 1, 1, 6, "vertical");
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym-9, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,6,"vertical");
+                    vent(2, 10, mlen, 1, 1, 6, "vertical");
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-6, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
-                    vent(2,10,mlen,1,1,6,"vertical");
+                    vent(2, 10, mlen, 1, 1, 6, "vertical");
             }
         }
         if (enablemask == false) {
