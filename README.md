@@ -58,44 +58,45 @@ The rotation value does not rotate the component around the xy location. It is a
     
 ```
     antenna  - "ipex"
-    audio    - "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
+ *  audio    - "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
     b2b      - "df40"(parametric)
     battery  - "bat_hold_1", "rtc_micro"
-    button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
+ *  button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
                "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
-    cm       - "jetsonnano","cm1","cm3","cm3l","cm4"
-    discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
-    display  - "lcd_2.2"
+    cm       - "jetsonnano", "cm1", "cm3", "cm3l", "cm4"
+ *  discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
+ *  display  - "lcd_2.2"
     fan      - "micro","encl_pmw","encl_pmw_h"
-    fpc      - "fh19"(parametric), "fh12"(parametric)
-    gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
+ *  fpc      - "fh19"(parametric), "fh12"(parametric)
+ *  gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
     header   - "open"(parametric)
-    heatsink - "hc4_oem", c4_oem", "c2_oem", "c1+_oem", "xu4_oem", xu4q_oem", "n2l_oem", "n2lq_oem",
-               "n1_oem", "40mm_active", "h3_oem", "m1s_oem", "atomicpi", "n2_oem", "n2+_oem",
-               "m1_oem", "h2_oem", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem"
+ *  heatsink - "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
+               "c1+_oem", "c2_oem", c4_oem", "hc4_oem", "xu4_oem", xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
+               "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
+               "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub"
     ic       - "generic"(parametric)
     jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
-    memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+ *  memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
     molex    - "7478"(parametric)
-    network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
+ *  network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
                "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
-    pcbshape - "round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"
+    pcb      - "round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"
     pcbhole  - "round"
     pcbadd   - "round", "slot", "rectangle", "polygon", "dxf"
     pcbsub   - "round", "slot", "rectangle", "polygon", "dxf"
-    pcbsoc   - "flat", "raised", "mid-raised", "rk3399", "rk3588"
+    pcbsoc   - "flat"(parametric), "raised"(parametric), "mid-raised", "rk3399", "rk3588"
     pcie     - "x1","x4"
-    pillar   - "hex", "round"(all parametric)
-    power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", "small_encl_satapwr"
+    pillar   - "hex"(parametric), "round"(parametric)
+ *  power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", "small_encl_satapwr"
     smd      - "led"(parametric)
-    storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
+ *  storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
                "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
-    switch   - "slide_4x9"
-    terminal - "gtb"(parametric)
-    usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a", "uart_micro", "uart_micro_h" 
-    usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
-    usbc     - "single_horizontal_a", "single_vertical_a"
-    video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", 
+ *  switch   - "slide_4x9"
+ *  terminal - "gtb"(parametric)
+ *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a", "uart_micro", "uart_micro_h" 
+ *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
+ *  usbc     - "single_horizontal_a", "single_vertical_a"
+ *  video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", 
                "dp_mini", "mipi_csi", "mipi_dsi"
 ```
 Simply put, new SBC are defined in sbc_model.cfg and new components are added to sbc component libraries. To add an SBC, modify sbc_models.cfg by creating or copying of an existing SBC entry. Update the relative SBC data and components for the new SBC. When a component type needs to be added, simply add code that draws that component type in the class module the component belongs to, located in sbc_library.scad. There is no checking or validation of any kind so in reality any class can contain any component type. The names are simply the ones I choose to impose some structure that makes sense for my use of the library moving forward.
@@ -155,7 +156,7 @@ a64 - red, unverified, not usable due to incomplete component data.
 
 All created from mechanical drawings and or 3D models except rpi3b+ which was contributed. The SOC data is missing for these SBC.
 
-rpicm4-ioboard - YELLOW, unverified mostlikely usable and/or missing minor information.
+rpicm4+ioboard - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpicm4,cm3,cm3l,cm1 - YELLOW, unverified mostlikely usable and/or missing minor information.
 

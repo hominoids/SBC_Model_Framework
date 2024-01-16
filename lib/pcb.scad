@@ -56,10 +56,9 @@
                          type = "round", "square"
                          size[0] = #pad x
                          size[1] = #pad y
-                         data[0] = style
+                         data[0] = style (thruhole)
                          data[1] = pad color
-                         data[2] = shape
-                         data[3] = pad size
+                         data[2] = pad size
 
 */
 
@@ -149,15 +148,14 @@ module pcbpad(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     size_y = 2.54 * (size[1]-1);;
     style = data[0];
     hcolor = data[1];
-    shape = data[2];
-    pad_size = data[3];
+    pad_size = data[2];
     adj = .01;
     $fn = 90;
 
     place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
     union() {
-        for (c=[0:2.54:size_x]) {
-            for (r=[0:2.54:size_y]) {
+        for (c=[0:2.54:size_y]) {
+            for (r=[0:2.54:size_x]) {
                 if(type == "round") {
                     difference() {
                         color(hcolor) translate ([r, c, -.0625-pcbsize_z]) cylinder(d=pad_size, h=pcbsize_z+.125);

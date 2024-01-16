@@ -134,7 +134,7 @@ translate([535,680,0]) sbc("rpizero");
 linear_extrude(height = 2) { translate([535,662,0]) text("RPi Zero"); }
 color("yellow",.3) translate([535,662,-1]) cube([53,10,1]);
 
-translate([535,750,0]) sbc("cm4-ioboard");
+translate([535,750,0]) sbc("rpicm4+ioboard");
 linear_extrude(height = 2) { translate([535,732,0]) text("RPi CM4 IO Board"); }
 color("yellow",.3) translate([535,732,-1]) cube([53,10,1]);
 

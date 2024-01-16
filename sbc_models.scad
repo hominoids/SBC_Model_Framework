@@ -26,7 +26,7 @@
 
 
                  model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1s","n1","n2","n2l","n2lq","n2+","h2","show2"
-                         "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",cm4-ioboard
+                         "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",rpicm4+ioboard
                          "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
                          "rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
                          "vim1","vim2","vim3l","vim3","vim4",
@@ -119,12 +119,12 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
                                     fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                           if (class == "gpio" && (enablegpio != "disable" || enablegpio != "none")) {
+                           if (class == "gpio" && enablegpio != "disable" && enablegpio != "none") {
                                 if(loc_x != 0 || loc_y != 0) {
                                     gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                            if (class == "heatsink" && (enableheatsink != "disable" || enableheatsink != "none"))  {
+                            if (class == "heatsink" && enableheatsink != "disable" && enableheatsink != "none")  {
                                 if (loc_x != 0 || loc_y != 0) {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
@@ -269,9 +269,19 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
                             }
                             if(class == "pcbpad" && id == pcb_id) {
                                 union() {
-                                    for(r=[0:2.54:(pcbhole_size_x-1)*2.54]) {
-                                        for(c=[0:2.54:(pcbhole_size_y-1)*2.54]) {
+                                    for(r=[0:2.54:(pcbhole_size_y-1)*2.54]) {
+                                        for(c=[0:2.54:(pcbhole_size_x-1)*2.54]) {
                                             translate([pcbhole_x+c, pcbhole_y+r, pcbhole_z-1]) color(pcb_color) cylinder(d=1.5, h=pcbsize_z+2);
+                                        }
+                                    }
+                                }
+                            }
+                            if(class == "gpio" && id == pcb_id) {
+                                union() {
+                                    for(r=[0:2.54:(pcbhole_size_y-1)*2.54]) {
+                                        for(c=[0:2.54:(pcbhole_size_x-1)*2.54]) {
+                                            translate([2.54/2+pcbhole_x+c, 2.54/2+pcbhole_y+r, pcbhole_z-1]) 
+                                                color(pcb_color) cylinder(d=1.5, h=pcbsize_z+2);
                                         }
                                     }
                                 }
@@ -315,6 +325,26 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
 
                         if(class == "pcbsoc" && id == pcb_id) {
                             pcbsoc(type, socloc_x, socloc_y, socloc_z, soc_side, soc_rotation, soc_size, soc_data, pcbsize_z, enablemask, mask);
+                        }
+                    }
+
+                    // additions
+                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                           
+                        class = sbc_data[s[0]][i];
+                        type = sbc_data[s[0]][i+1];
+                        id = sbc_data[s[0]][i+2];
+                        gpio_x = sbc_data[s[0]][i+3];
+                        gpio_y = sbc_data[s[0]][i+4];
+                        gpio_z = sbc_data[s[0]][i+5];
+                        gpio_side = sbc_data[s[0]][i+6];
+                        gpio_rotation = sbc_data[s[0]][i+7];
+                        gpio_size = sbc_data[s[0]][i+8];
+
+
+                        if(class == "gpio" && id == pcb_id) {
+                            pcbpad("round", gpio_x+2.54/2, gpio_y+2.54/2, gpio_z, gpio_side, gpio_rotation[2], 
+                                gpio_size, ["thruhole","#fee5a6",2.1], pcbsize_z, false, 0);
                         }
                     }
 
@@ -390,7 +420,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
                                     fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                           if (class == "gpio" && enablegpio != "disable") {
+                           if (class == "gpio" && enablegpio != "disable" && enablegpio != "off") {
                                 if(loc_x != 0 || loc_y != 0) {
                                     gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
@@ -400,7 +430,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
                                     header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
                             }
-                            if (class == "heatsink" && enableheatsink != "disable") {
+                            if (class == "heatsink" && enableheatsink != "disable" && enableheatsink != "off") {
                                 if (loc_x != 0 || loc_y != 0) {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                                 }
