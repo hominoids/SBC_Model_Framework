@@ -36,7 +36,7 @@
                          "licheerv+dock",
                          "visionfive2",
                          "atomicpi"
-                 enableheatsink = "disable", "off", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
+                 enableheatsink = "disable", "off", "default", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
                  enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
                  enablemask = true or false
 
@@ -120,13 +120,21 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enablemas
                                 }
                             }
                            if (class == "gpio" && enablegpio != "disable" && enablegpio != "none") {
-                                if(loc_x != 0 || loc_y != 0) {
+                                if(is_undef(enablegpio)  == true || enablegpio == "default") {
                                     gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                                else {
+                                    gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask,
+                                        [mask[0], mask[1], mask[2],enablegpio]);
                                 }
                             }
                             if (class == "heatsink" && enableheatsink != "disable" && enableheatsink != "none")  {
-                                if (loc_x != 0 || loc_y != 0) {
+                                if(is_undef(enableheatsink)  == true || enableheatsink == "default") {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                                }
+                                else {
+                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask,
+                                        [mask[0], mask[1], mask[2],enableheatsink]);
                                 }
                             }
                             if (class == "memory" && mask[0] == true) {
