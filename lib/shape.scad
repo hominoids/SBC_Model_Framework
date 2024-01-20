@@ -150,19 +150,19 @@ module slot(hole,length,depth) {
 /* knockout opening */
 module knockout(width,depth,gap,thick,fillet,shape) {
     
-    adjust = .01;
+    adj = .01;
     $fn=90;
 
     // slot knockout
     if(shape == "slot") {
         difference() {
             slot(depth, width, thick);
-            translate([0, 0, -adjust]) slot(depth-gap, width, thick+(2*adjust));
+            translate([0, 0, -adj]) slot(depth-gap, width, thick+(2*adj));
             // cross ties    
-            translate([-1, -(depth/2)-1, -adjust]) cube([2, depth+2, thick+(2*adjust)]);
-            translate([(width/2)-1-(width/4)+4, -(depth/2)-1, -adjust]) cube([2,depth+2, thick+(2*adjust)]);
-            translate([(width/2)-1+(width/4)-4, -(depth/2)-1, -adjust]) cube([2, depth+2, thick+(2*adjust)]);
-            translate([width-1, -(depth/2)-1, -adjust]) cube([2, depth+2, thick+(2*adjust)]);
+            translate([-1, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
+            translate([(width/2)-1-(width/4)+4, -(depth/2)-1, -adj]) cube([2,depth+2, thick+(2*adj)]);
+            translate([(width/2)-1+(width/4)-4, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
+            translate([width-1, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
             }
         }
     if(shape == "rectangle") {
@@ -171,30 +171,30 @@ module knockout(width,depth,gap,thick,fillet,shape) {
                 cube_fillet_inside([width, depth, thick], 
                     vertical=[fillet, fillet, fillet, fillet], 
                         top=[0, 0, 0, 0], bottom=[0, 0, 0, 0], $fn=90);
-            translate([(width/2), (depth/2), (thick/2)-adjust]) 
-                cube_fillet_inside([width-gap, depth-gap, thick+(3*adjust)], 
+            translate([(width/2), (depth/2), (thick/2)-adj]) 
+                cube_fillet_inside([width-gap, depth-gap, thick+(3*adj)], 
                     vertical=[fillet, fillet, fillet, fillet], 
                         top=[0, 0, 0, 0], bottom=[0, 0, 0, 0], $fn=90);
             // cross ties
-            translate([-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
-            translate([width-4, depth-gap-1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
-            translate([2, depth-gap-1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
-            translate([width-gap-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
-            translate([width-4, -1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
-            translate([2, -1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            translate([-1, (depth/2)-1, -adj]) cube([gap+2, 2, thick+(2*adj)]);
+            translate([width-4, depth-gap-1, -adj]) cube([2, gap+2, thick+(2*adj)]);
+            translate([2, depth-gap-1, -adj]) cube([2, gap+2, thick+(2*adj)]);
+            translate([width-gap-1, (depth/2)-1, -adj]) cube([gap+2, 2, thick+(2*adj)]);
+            translate([width-4, -1, -adj]) cube([2, gap+2, thick+(2*adj)]);
+            translate([2, -1, -adj]) cube([2, gap+2, thick+(2*adj)]);
             }
         }
     if(shape == "round") {
         difference() {
             translate([(width/2),(width/2),0]) 
                 cylinder(d=width, h=thick); 
-            translate([(width/2), (width/2), -adjust]) 
-                cylinder(d=width-gap, h=thick+2*adjust); 
+            translate([(width/2), (width/2), -adj]) 
+                cylinder(d=width-gap, h=thick+2*adj); 
             // cross ties    
-            translate([-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
-            translate([(width/2)-1, depth-gap-1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
-            translate([width-gap-1, (depth/2)-1, -adjust]) cube([gap+2, 2, thick+(2*adjust)]);
-            translate([(width/2)-1, -1, -adjust]) cube([2, gap+2, thick+(2*adjust)]);
+            translate([-1, (depth/2)-1, -adj]) cube([gap+2, 2, thick+(2*adj)]);
+            translate([(width/2)-1, depth-gap-1, -adj]) cube([2, gap+2, thick+(2*adj)]);
+            translate([width-gap-1, (depth/2)-1, -adj]) cube([gap+2, 2, thick+(2*adj)]);
+            translate([(width/2)-1, -1, -adj]) cube([2, gap+2, thick+(2*adj)]);
             }
         }
     }
@@ -204,7 +204,7 @@ module knockout(width,depth,gap,thick,fillet,shape) {
 module vent(width,length,height,gap,rows,columns,orientation) {
 
     fillet = width/2;
-    adjust = .01;
+    adj = .01;
     $fn=90;
 
     // vertical orientation

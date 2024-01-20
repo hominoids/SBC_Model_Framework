@@ -16,12 +16,12 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
-    DESCRIPTION: creates molex 7478 series connectors.
-           TODO: 
+    DESCRIPTION: creates molex series connectors.
+           TODO: "5267", "5268"
 
           USAGE: molex(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "7478",
+                       type = "7478"
                        size[0] = #pins
                        data[0] = "thruhole", "smt"
                        data[1] = "top", "side"

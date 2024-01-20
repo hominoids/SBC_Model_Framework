@@ -318,64 +318,6 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             }
         }
     }
-
-    // uart micro connector type
-    if(type == "uart_micro" && enablemask == false) {
-
-        size_x = 12.5;
-        size_y = 5;
-        
-        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        union() {
-            difference() {
-                union() {
-                
-                    difference () {
-                        color("white") cube([size_x, size_y, 6]);
-                        color("darkgray") translate([.5, .5, 2]) cube([11.5, 4, 6]);
-                    }
-                    color("white") translate([12, 3.75, .5]) rotate([0, 0, 45]) cube([1, 2, 5.5]);
-                    color("white") translate([-0.2, 4, .5]) rotate([0, 0, -45]) cube([1, 2, 5.5]);
-                }
-                color("white") translate([12.5, 0, -.5]) cube([2, 6, 7]);
-                color("white") translate([-1, 0, -.5]) cube([1, 6, 7]);
-                color("white") translate([-1, 5, -.5]) cube([14, 2, 7]);
-                color("white") translate([-0.7, 4.5, -.1]) rotate([0, 0, -45]) cube([1, 2, 7]);
-                color("darkgray") translate([-1, 1.5, 2]) cube([14, 1, 7]);
-            }
-            for (i=[2.5:2.5:10]) {
-                color("silver") translate ([i, 3, .5]) cube([.6, .6, 5]);
-            }
-        }
-    }
-
-    // uart micro connector type    
-    if(type == "uart_micro_h" && enablemask == false) {
-    size_x = 12.5;
-    size_y = 5;
-    place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        rotate([90,0,0]) union() {
-            difference() {
-                union() {
-
-                    difference () {
-                        color("white") cube([size_x, size_y, 6]);
-                        color("darkgray") translate([.5, .5, 2]) cube([11.5, 4, 6]);
-                    }
-                    color("white") translate([12, 3.75, .5]) rotate([0, 0, 45]) cube([1, 2, 5.5]);
-                    color("white") translate([-0.2, 4, .5]) rotate([0, 0, -45]) cube([1, 2, 5.5]);
-                }
-                color("white") translate([12.5, 0, -.5]) cube([2, 6, 7]);
-                color("white") translate([-1, 0, -.5]) cube([1, 6, 7]);
-                color("white") translate([-1, 5, -.5]) cube([14, 2, 7]);
-                color("white") translate([-0.7, 4.5, -.1]) rotate([0, 0, -45]) cube([1, 2, 7]);
-                color("darkgray") translate([-1, 1.5, 2]) cube([14, 1, 7]);
-            }
-            for (i=[2.5:2.5:10]) {
-                color("silver") translate ([i, 3, .5]) cube([.6, .6, 5]);
-            }
-        }
-    }
 }
 
 // usb 3.0 port class

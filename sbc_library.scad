@@ -26,6 +26,7 @@ include <./lib/cm.scad>
 include <./lib/discrete.scad>
 include <./lib/display.scad>
 include <./lib/fan.scad>
+include <./lib/fillets.scad>
 include <./lib/fpc.scad>
 include <./lib/gpio.scad>
 include <./lib/header.scad>
@@ -44,5 +45,6 @@ include <./lib/smd.scad>
 include <./lib/storage.scad>
 include <./lib/switch.scad>
 include <./lib/terminal.scad>
+include <./lib/uart.scad>
 include <./lib/usb.scad>
 include <./lib/video.scad>

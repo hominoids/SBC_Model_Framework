@@ -27,7 +27,7 @@
                                  "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub",
                                  "pine64_active_10", "pine64_passive_20", pine64_passive_30"
                        data[0] = fan size
-                    enablemask = true produces mask, false produces model
+                       enablemask = true produces mask, false produces model
                        mask[0] = true enables component mask
                        mask[1] = mask length
                        mask[2] = mask setback
@@ -402,7 +402,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         mlen = mask[1];
         back = mask[2];
         mstyle = mask[3];
-        fcolor = (type == "n1_oem" || type == "40mm_active_10") ? "silver" : "DeepSkyBlue";
+        fcolor = (type == "n1_oem" || type == "40mm_active_10") ? "gray" : "DeepSkyBlue";
         xoffset = 5.5;
         yoffset = -30;
 
@@ -735,7 +735,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         mlen = mask[1];
         back = mask[2];
         mstyle = mask[3];
-        fcolor = type == "40mm_passive_25" ? "silver" : "DeepSkyBlue";
+        fcolor = type == "40mm_passive_25" ? "gray" : "DeepSkyBlue";
         xoffset = 5.5;
         yoffset = -30;
 
