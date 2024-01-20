@@ -27,6 +27,12 @@
                           size[2] = height
                           data[0] = pitch
                           data[1] = body color
+                          enablemask = true produces mask, false produces model
+                          mask[0] = true enables component mask
+                          mask[1] = mask length
+                          mask[2] = mask setback
+                          mask[3] = mstyle "default"
+
 */
 
 // terminal block class

@@ -23,6 +23,11 @@
 
                          type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
                                 "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+                         enablemask = true produces mask, false produces model
+                         mask[0] = true enables component mask
+                         mask[1] = mask length
+                         mask[2] = mask setback
+                         mask[3] = mstyle "default"
 
 */
 

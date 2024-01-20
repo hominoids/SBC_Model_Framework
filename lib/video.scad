@@ -23,6 +23,11 @@
 
                        type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", 
                               "dp_mini", "mipi_csi", "mipi_dsi"
+                        enablemask = true produces mask, false produces model
+                        mask[0] = true enables component mask
+                        mask[1] = mask length
+                        mask[2] = mask setback
+                        mask[3] = mstyle "default"
 
           USAGE: hdmi_open(hdmi_style,mlen)
 

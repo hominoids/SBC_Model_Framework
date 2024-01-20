@@ -36,7 +36,6 @@
                       mask[2] = mask setback
                       mask[3] = mstyle ("none", "open", "block", "knockout", "vent")
 
-
 */
 
 // gpio class

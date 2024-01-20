@@ -24,6 +24,11 @@
                           type = "ir_dual",
                                  "ir_1"
                                     size[2] = height
+                                    enablemask = true produces mask, false produces model
+                                    mask[0] = true enables component mask
+                                    mask[1] = mask length
+                                    mask[2] = mask setback
+                                    mask[3] = mstyle "default"
                                  "capacitor"
                                     size[0] = diameter
                                     size[2] = height

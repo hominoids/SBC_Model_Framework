@@ -29,6 +29,11 @@
                        size[2] = body size_z
                        data[0] = body diameter
                        data[1] = z adjustment
+                       enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "default"
 
 */
  

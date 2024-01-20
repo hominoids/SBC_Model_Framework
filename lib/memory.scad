@@ -22,6 +22,11 @@
           USAGE: memory(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                         type = "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+                        enablemask = true produces mask, false produces model
+                        mask[0] = true enables component mask
+                        mask[1] = mask length
+                        mask[2] = mask setback
+                        mask[3] = mstyle "default"
 
 */
  

@@ -23,6 +23,11 @@
 
                        type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", 
                               "molex_4x1", "small_encl_satapwr"
+                       enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "default"
 
 */
  

@@ -25,6 +25,11 @@
                        size[0] = #pins
                        data[0] = "thruhole", "smt"
                        data[1] = "top", "side"
+                       enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "default"
 
 */
 

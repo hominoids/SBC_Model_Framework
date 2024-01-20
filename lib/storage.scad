@@ -23,6 +23,11 @@
 
                          type = "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
                                 "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
+                         enablemask = true produces mask, false produces model
+                         mask[0] = true enables component mask
+                         mask[1] = mask length
+                         mask[2] = mask setback
+                         mask[3] = mstyle "default"
 
 */
 

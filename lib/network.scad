@@ -23,6 +23,11 @@
 
                          type = "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
                                 "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
+                         enablemask = true produces mask, false produces model
+                         mask[0] = true enables component mask
+                         mask[1] = mask length
+                         mask[2] = mask setback
+                         mask[3] = mstyle "default"
 
 */
 
