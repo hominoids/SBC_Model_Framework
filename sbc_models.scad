@@ -23,12 +23,13 @@
     DESCRIPTION: creates SBC models and corresponding mask sets for openings.
            TODO: many
 
-          USAGE: sbc(model, enableheatsink = "default", enablegpio =  "default", enablemask = false)
+          USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enablemask = false)
 
-                     model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1","m1s","n1","n2","n2l","n2lq","n2+","n2+","h2","show2"
+                     model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
+                             "m1","m1s","h2","h2+","h3","h3+","show2",
                              "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
-                             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1"rpicm4+ioboard"
-                             "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
+                             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
+                             "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
                              "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
                              "vim1","vim2","vim3l","vim3","vim4",
                              "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
@@ -37,17 +38,19 @@
                              "licheerv+dock",
                              "visionfive2",
                              "atomicpi"
-                     enableheatsink = "disable", "off", "default", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
-                     enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
-                     enableuart = "default", "none", "open", "knockout"
-                     enablemask = true or false
+            enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
+                             "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
+                   fansize = 0, 30, 40, 50, 60, 70, 80, 92
+                enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", "vent" 
+                enableuart = "default", "none", "open", "knockout"
+                enablemask = true or false
 
 */
 
 include <./sbc_models.cfg>
 use <./sbc_library.scad>
 
-module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuart =  "default", enablemask = false) {
+module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false) {
 
     sbc_model = [model];
     s = search(sbc_model, sbc_data);
@@ -123,8 +126,14 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                             }
                             if (class == "heatsink" && mask[0] == true && enableheatsink != "disable" && enableheatsink != "none")  {
                                 if(is_undef(enableheatsink)  == false && enableheatsink != "default" && enableheatsink != "off") {
-                                    heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask,
-                                        [mask[0], mask[1], mask[2],enableheatsink]);
+                                    if(fansize > 30 && fansize <= 92) {
+                                        heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, [fansize], pcbsize_z, enablemask,
+                                            [mask[0], mask[1], mask[2],enableheatsink]);
+                                    }
+                                    else {
+                                        heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask,
+                                            [mask[0], mask[1], mask[2],enableheatsink]);
+                                    }
                                 }
                                 else {
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);                                
