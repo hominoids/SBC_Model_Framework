@@ -19,27 +19,28 @@
 
     see https://github.com/hominoids/SBC_Model_Framework
 
-    DESCRIPTION: creates pin headers in any size or pitch.
+
+    DESCRIPTION: creates SBC models and corresponding mask sets for openings.
            TODO: many
 
           USAGE: sbc(model, enableheatsink = "default", enablegpio =  "default", enablemask = false)
 
-
-                 model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1s","n1","n2","n2l","n2lq","n2+","h2","show2"
-                         "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",rpicm4+ioboard
-                         "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
-                         "rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
-                         "vim1","vim2","vim3l","vim3","vim4",
-                         "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-r2",
-                         "opi5","opizero","opizero2","opir1plus_lts","opir1",
-                         "jetsonnano",
-                         "licheerv+dock",
-                         "visionfive2",
-                         "atomicpi"
-                 enableheatsink = "disable", "off", "default", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
-                 enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
-                 enableuart = "default", "none", "open", "knockout"
-                 enablemask = true or false
+                     model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1","m1s","n1","n2","n2l","n2lq","n2+","n2+","h2","show2"
+                             "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+                             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1"rpicm4+ioboard"
+                             "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
+                             "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
+                             "vim1","vim2","vim3l","vim3","vim4",
+                             "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
+                             "opi5","opizero","opizero2","opir1plus_lts","opir1",
+                             "jetsonnano",
+                             "licheerv+dock",
+                             "visionfive2",
+                             "atomicpi"
+                     enableheatsink = "disable", "off", "default", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
+                     enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
+                     enableuart = "default", "none", "open", "knockout"
+                     enablemask = true or false
 
 */
 
@@ -51,12 +52,13 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
     sbc_model = [model];
     s = search(sbc_model, sbc_data);
 
+    sindex = 2;
     $fn=90;
     adjust = .01;
 
     // create mask set
     if(enablemask == true) {
-        for (i=[1:11:len(sbc_data[s[0]])-1]) {
+        for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
 
             class = sbc_data[s[0]][i];
             type =  sbc_data[s[0]][i+1];
@@ -79,7 +81,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
 
                 translate([pcbloc_x, pcbloc_y, pcbloc_z]) {
                     // mask placement
-                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                    for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
 
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
@@ -178,7 +180,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
     }
     else {
         // create pcb
-        for (i=[1:11:len(sbc_data[s[0]])-1]) {
+        for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
             
             class = sbc_data[s[0]][i];
             type =  sbc_data[s[0]][i+1];
@@ -219,7 +221,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                                 cm(type, pcbloc_x, pcbloc_y, pcbloc_z, pcb_side, pcb_rotation, sbc_data[s[0]][i+8], sbc_data[s[0]][i+9], pcbsize_z, false, 0);
                             }
                             // pcb additions
-                            for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                            for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
 
                                 class = sbc_data[s[0]][i];
                                 type = sbc_data[s[0]][i+1];
@@ -238,7 +240,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                             }
                         }
                         // pcb mounting holes
-                        for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                        for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
                                
                             class = sbc_data[s[0]][i];
                             type = sbc_data[s[0]][i+1];
@@ -276,7 +278,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                             }
                         }
                         // pcb subtractions
-                        for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                        for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
 
                             class = sbc_data[s[0]][i];
                             type = sbc_data[s[0]][i+1];
@@ -297,7 +299,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                         }
                     }
                     // soc placement
-                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                    for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
 
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
@@ -317,7 +319,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                     }
 
                     // additions
-                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                    for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
                            
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
@@ -337,7 +339,7 @@ module sbc(model, enableheatsink = "default", enablegpio =  "default", enableuar
                     }
 
                     // component placement
-                    for (i=[1:11:len(sbc_data[s[0]])-1]) {
+                    for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
 
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];

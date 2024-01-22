@@ -7,10 +7,11 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-###      Current SBC: 62
-###   Carrier Boards:  2
-###  Compute Modules:  5
-### Micro Controllers: 1
+##    Total Devices: 74
+##              SBC: 62
+##   Carrier Boards:  3
+##  Compute Modules:  8
+## Micro Controllers: 1
 
 ## Using the Framework
 
@@ -19,7 +20,27 @@ Any of the models can be called by passing the requested SBC model in the form o
 include <sbc_models.scad>
 sbc("rpi5");
 ```
+```
+USAGE: sbc(model, enableheatsink = "default", enablegpio =  "default", enablemask = false)
 
+
+     model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1","m1s","n1","n2","n2l","n2lq","n2+","n2+","h2","show2"
+             "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1"rpicm4+ioboard"
+             "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
+             "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
+             "vim1","vim2","vim3l","vim3","vim4",
+             "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
+             "opi5","opizero","opizero2","opir1plus_lts","opir1",
+             "jetsonnano",
+             "licheerv+dock",
+             "visionfive2",
+             "atomicpi"
+     enableheatsink = "disable", "off", "default", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
+     enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
+     enableuart = "default", "none", "open", "knockout"
+     enablemask = true or false
+```
 ## Modifying and Adding Components
 The framework is setup so that both SBC and components can be easily added or modified and the resulting models can be used regardless of the state of completion. The framework consists of three parts, the SBC data set (sbc_models.cfg), the main module(sbc_models.scad) and a library of components(sbc_library.scad).
 
@@ -158,7 +179,7 @@ All created from mechanical drawings and or 3D models except rpi3b+ which was co
 
 rpicm4+ioboard - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rpicm4,cm3,cm3l,cm1 - YELLOW, unverified mostlikely usable and/or missing minor information.
+rpicm4,rpicm4l,rpicm3+,rpicm3,cm3l,cm1 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rpizero/rpizerow - YELLOW, unverified mostlikely usable and/or missing minor information.
 
@@ -184,6 +205,12 @@ rpi5 - rpi5_noheatsink - green, verified.
 
 Created from mechanical drawings, the SOC data is missing for these SBC.
 
+rock4a - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rock4b - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+rock4a+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
 rock4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rock4c - YELLOW, unverified mostlikely usable and/or missing minor information.
@@ -192,9 +219,9 @@ rock4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 rock5b-v1.3 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-rock5b-v1.42 - GREEN, verified.
+rock5b - GREEN, verified.
 
-rock5bq-v1.42 - GREEN, verified.
+rock5bq - GREEN, verified.
 
 
 ### Khadas: 5
@@ -219,9 +246,13 @@ tinkerboard - YELLOW, unverified mostlikely usable and/or missing minor informat
 
 tinkerboard-s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-tinkerboard-2/2s - YELLOW, unverified mostlikely usable and/or missing minor information.
+tinkerboard-2 - YELLOW, unverified mostlikely usable and/or missing minor information.
 
-tinkerboard-r2/r2s - YELLOW, unverified mostlikely usable and/or missing minor information.
+tinkerboard-2s - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tinkerboard-r2 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tinkerboard-r2s - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 
