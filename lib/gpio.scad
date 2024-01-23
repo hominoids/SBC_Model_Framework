@@ -244,7 +244,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(size_x == 2 && size_y == 20) {
 
                 size_yt = size_y * 2.54;
-                size_ym = size_xt+4;
+                size_ym = size_yt+4;
                 size_xm = 12;
                 size_zm = 27;
 

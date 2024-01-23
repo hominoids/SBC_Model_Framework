@@ -37,6 +37,7 @@ module uart(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
+    knock_gap = 2;
 
     // uart micro connector straight
     if(type == "molex_5267") {
@@ -86,31 +87,31 @@ module uart(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
 
             if(side == "top" && rotation == 0) {
                 place(loc_x-(size_xm-size_x)/2, loc_y, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x, loc_y+(size_xm-size_x)/2, loc_z+5, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x+(size_xm-size_x)/2, loc_y-size_y, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-size_y, loc_y-(size_xm-size_x)/2, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x+(size_xm-size_x)/2, loc_y, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-size_y, loc_y+(size_xm-size_x)/2, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x-(size_xm-size_x)/2, loc_y-size_y, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90, 0, 0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x, loc_y-(size_xm-size_x)/2, loc_z+5+back, size_x, mlen, rotation, side, pcbsize_z)
@@ -190,23 +191,23 @@ module uart(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
 
             if(side == "top" && rotation == 0) {
                 place(loc_x-(size_xm-size_x)/2, loc_y, loc_z+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90,0,0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90,0,0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x, loc_y+(size_xm-size_x)/2, loc_z, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90,0,0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90,0,0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x+(size_xm-size_x)/2, loc_y-4, loc_z+back, size_x, mlen, rotation, side, pcbsize_z)
-                     rotate([90,0,0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                     rotate([90,0,0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x-4, loc_y-(size_xm-size_x)/2, loc_z+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90,0,0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90,0,0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x+(size_xm-size_x)/2, loc_y, loc_z+back, size_x, mlen, rotation, side, pcbsize_z)
-                     rotate([90,0,0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                     rotate([90,0,0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x-4, loc_y+(size_xm-size_x)/2, loc_z+back, size_x, mlen, rotation, side, pcbsize_z)
@@ -218,7 +219,7 @@ module uart(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x, loc_y-(size_xm-size_x)/2, loc_z+back, size_x, mlen, rotation, side, pcbsize_z)
-                    rotate([90,0,0]) knockout(size_xm, size_zm, 1, mlen, 2, "rectangle");
+                    rotate([90,0,0]) knockout(size_xm, size_zm, knock_gap, mlen, 2, "rectangle");
             }
         }
         if(enablemask == false) {

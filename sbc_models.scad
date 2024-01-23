@@ -48,7 +48,7 @@
 */
 
 include <./sbc_models.cfg>
-use <./sbc_library.scad>
+use <./sbc_models_library.scad>
 
 module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false) {
 
@@ -226,8 +226,8 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             if(type == "dxf") {
                                 color(pcb_color) shape(type, [pcbsize_x, pcbsize_y, pcbsize_z], [pcbcorner_radius, pcb_color, pcb_polygon,0]);
                             }
-                            if(type == "cm1" || type == "cm3" || type == "cm3l" || type == "cm4") {
-                                cm(type, pcbloc_x, pcbloc_y, pcbloc_z, pcb_side, pcb_rotation, sbc_data[s[0]][i+8], sbc_data[s[0]][i+9], pcbsize_z, false, 0);
+                            if(type == "cm1" || type == "cm3" || type == "cm3l" || type == "cm4" || type == "cm4l" || type == "cm4s") {
+                                cm(type, pcbloc_x, pcbloc_y, pcbloc_z, pcb_side, pcb_rotation[2], sbc_data[s[0]][i+8], sbc_data[s[0]][i+9], pcbsize_z, false, 0);
                             }
                             // pcb additions
                             for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
