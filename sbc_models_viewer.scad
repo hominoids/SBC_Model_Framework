@@ -15,13 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    20240122 Version 1.0.0  SBC Models Viewer initial release
+    20240124 Version 1.0.0  SBC Models Viewer initial release
 
     see https://github.com/hominoids/SBC_Model_Framework
 
 */
 
 include <sbc_models.scad>
+use <sbc_models_library.scad>
 
 /* [SBC Models] */
 view = "Model"; // [Model, 2D_Sections, All_Models, Odroids]
@@ -38,29 +39,48 @@ uart = "default"; // ["default", "none", "open", "knockout"]
 
 /* [Hidden] */
 s = search([sbc_model], sbc_data);
+sindex = 2;
 pcbsize_x = sbc_data[s[0]][10][0];
 pcbsize_y = sbc_data[s[0]][10][1];
-pcbsize_z = sbc_data[s[0]][10][1];
+pcbsize_z = sbc_data[s[0]][10][2];
 pcbmaxsize_z = sbc_data[s[0]][11][5];
-
-sindex = 2;
-text_offset = 5;
+text_offset = 10;
 text_height = sbc_data[s[0]][11][5] + 175;
-text_loc_x = [0,-10,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+text_indent = [0,-37,4.5,0,-24,-11,4,4.5,-16,-16.5,-2.5,-9.5,-11,-3.5,-15,3,4,1,3,11,0,-8,-11.5,-2,-8];
+text_color = "#009900";
+
 adj = .01;
 $fn=90;
 
+// class, type, loc_x, loc_y, loc_z, face, [rotation], [size_x, size_y, size_z], [data_variable_len], [mask]
+echo(str(sbc_data[s[0]][1][0]));
+echo(str("    PCB Size: ", sbc_data[s[0]][10]));
+        for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
+            class = sbc_data[s[0]][i];
+            type = sbc_data[s[0]][i+1];
+            pcbid = sbc_data[s[0]][i+2];
+            loc_x = sbc_data[s[0]][i+3];
+            loc_y = sbc_data[s[0]][i+4];
+            loc_z = sbc_data[s[0]][i+5];
+            face = sbc_data[s[0]][i+6];
+            rotation = sbc_data[s[0]][i+7];
+            size = sbc_data[s[0]][i+8];
+            data = sbc_data[s[0]][i+9];
+            mask = sbc_data[s[0]][i+10];
+            if(class == "pcbhole" && pcbid == 0) {
+                echo(str("    ", data[4], " hole: ", loc_x,", ", loc_y));
+            }
+        }
 if(view == "Model") {
     // sbc model
     if(sbc_off == false) {
         sbc(sbc_model, heatsink, fan_size, gpio, uart, false);
     }
-    // create information text
+    // create SBC information text
     if(sbc_info == true) {
         for (i=[0:1:len(sbc_data[s[0]][1])-1]) {
-            r = text_loc_x[0+i];
-            color("#009900") translate([text_offset, pcbsize_y, text_height-i*7]) 
-                rotate([90, 0, 0]) text(sbc_data[s[0]][1][i], 5);
+                color(text_color) translate([text_offset + text_indent[i], pcbsize_y, text_height-i*7]) 
+                    rotate([90, 0, 0]) text(sbc_data[s[0]][1][i], 5);
         }
     }
     // sbc mask highlight
@@ -391,4 +411,8 @@ if(view == "Odroids") {
 
     translate ([370,0,0]) sbc("show2");
     linear_extrude(height = 2) {translate([390,-20,0]) text("Show2");}
+}
+
+if(view == "All_Components") {
+
 }

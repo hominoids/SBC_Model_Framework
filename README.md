@@ -74,51 +74,51 @@ The last entry in the schema is for components. A component is anything that is 
 The rotation value does not rotate the component around the xy location. It is a reference to the direction that the component faces and whichever corner of the component is in the lower left after rotation, will assume the xy location specified for the component entry. This allows a uniform means to measure the placement of components regardless of their orientation on the PCB. The schema entry labeled component_side is the side of the PCB the component is to be placed on. So far we covered component_x, component_y, component_rotation and component_side. The last two entries are component_class and component_type. These entries together determine what component is placed. Each component class contains one or more component types. There are currently 34 component classes with corresponding component types.
 
 ## Component classes and types:
-
-![Image](sbc_test_components.png)
     
 ```
-    antenna  - "ipex"
- *  audio    - "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
-    b2b      - "df40"(parametric)
-    battery  - "bat_hold_1", "rtc_micro"
- *  button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
-               "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
-    cm       - "jetsonnano", "cm1", "cm3", "cm3l", "cm4"
- *  discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
- *  display  - "lcd_2.2"
-    fan      - "micro","encl_pmw","encl_pmw_h"
- *  fpc      - "fh19"(parametric), "fh12"(parametric)
- *  gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
-    header   - "open"(parametric)
- *  heatsink - "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
-               "c1+_oem", "c2_oem", c4_oem", "hc4_oem", "xu4_oem", xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
-               "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
-               "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub"
-    ic       - "generic"(parametric)
-    jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
- *  memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
-    molex    - "7478"(parametric)
- *  network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
-               "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
-    pcb      - "round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"
-    pcbhole  - "round"
-    pcbadd   - "round", "slot", "rectangle", "polygon", "dxf"
-    pcbsub   - "round", "slot", "rectangle", "polygon", "dxf"
-    pcbsoc   - "flat"(parametric), "raised"(parametric), "mid-raised", "rk3399", "rk3588"
-    pcie     - "x1","x4"
-    pillar   - "hex"(parametric), "round"(parametric)
- *  power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", "small_encl_satapwr"
-    smd      - "led"(parametric)
- *  storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
-               "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
- *  switch   - "slide_4x9"
- *  terminal - "gtb"(parametric)
- *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a", "uart_micro", "uart_micro_h" 
- *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
- *  usbc     - "single_horizontal_a", "single_vertical_a"
- *  video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", 
-               "dp_mini", "mipi_csi", "mipi_dsi"
+        antenna  - "ipex"
+     *  audio    - "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
+        b2b      - "df40"(parametric)
+        battery  - "bat_hold_1", "rtc_micro"
+     *  button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
+                   "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+        cm       - "jetsonnano", "cm1", "cm3", "cm3l", "cm4"
+     *  discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
+     *  display  - "lcd_2.2"
+        fan      - "micro","encl_pmw","encl_pmw_h"
+     *  fpc      - "fh19"(parametric), "fh12"(parametric)
+     *  gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
+        header   - "open"(parametric)
+     *  heatsink - "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
+                   "c1+_oem", "c2_oem", c4_oem", "hc4_oem", "xu4_oem", xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
+                   "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
+                   "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub"
+                   "pine64_active_10", "pine64_passive_20", pine64_passive_30"
+        ic       - "generic"(parametric)
+        jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
+     *  memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+        molex    - "7478"(parametric)
+     *  network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
+                   "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
+        pcb      - "round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"
+        pcbhole  - "round"
+        pcbadd   - "round", "slot", "rectangle", "polygon", "dxf"
+        pcbsub   - "round", "slot", "rectangle", "polygon", "dxf"
+        pcbsoc   - "flat"(parametric), "raised"(parametric), "mid-raised", "rk3399", "rk3588"
+        pcie     - "x1","x4"
+        pillar   - "hex"(parametric), "round"(parametric)
+     *  power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", "small_encl_satapwr"
+        smd      - "led"(parametric)
+     *  storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
+                   "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
+     *  switch   - "slide_4x9"
+     *  terminal - "gtb"(parametric)
+     *  uart     - ""molex_5267", "molex_5268" 
+     *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"
+     *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
+     *  usbc     - "single_horizontal_a", "single_vertical_a"
+     *  video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini"
+                   "dp_mini", "mipi_csi", "mipi_dsi"
 ```
 Simply put, new SBC are defined in sbc_model.cfg and new components are added to sbc component libraries. To add an SBC, modify sbc_models.cfg by creating or copying of an existing SBC entry. Update the relative SBC data and components for the new SBC. When a component type needs to be added, simply add code that draws that component type in the class module the component belongs to, located in sbc_library.scad. There is no checking or validation of any kind so in reality any class can contain any component type. The names are simply the ones I choose to impose some structure that makes sense for my use of the library moving forward.
 
