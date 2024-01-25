@@ -24,18 +24,24 @@
 include <sbc_models.scad>
 use <sbc_models_library.scad>
 
-/* [SBC Models] */
-view = "Model"; // [Model, 2D_Sections, All_Models, Odroids]
+/* [SBC and Micro-controllers] */
+view = "3D Model"; // [3D Model, 2D Sections, Components]
 
 sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","jetsonnano","licheerv+dock","visionfive2","atomicpi"]
 
 sbc_off = false;
 sbc_info = true;
 sbc_mask = false;
-heatsink = "default"; // ["disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex","vent", "vent_hex_5mm", "vent_hex_8mm", "custom"]
+
+heatsink_mask = "default"; // ["disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex","vent", "vent_hex_5mm", "vent_hex_8mm", "custom"]
 fan_size = 0; // [0,30,40,50,60,70,80,92]
-gpio = "default"; // ["disable", "off", "default", "none", "open", "block", "knockout", "vent"]
-uart = "default"; // ["default", "none", "open", "knockout"]
+
+gpio_mask = "default"; // ["disable", "off", "default", "none", "open", "block", "knockout", "vent"]
+
+uart_mask = "default"; // ["default", "none", "open", "knockout"]
+
+/* [Components] */
+Class = "heatsink"; // [antenna,audio,b2b,battery,button,cm,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbhole,pcbadd,pcbsub,pcbsoc,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
 
 /* [Hidden] */
 s = search([sbc_model], sbc_data);
@@ -52,31 +58,31 @@ text_color = "#009900";
 adj = .01;
 $fn=90;
 
-// class, type, loc_x, loc_y, loc_z, face, [rotation], [size_x, size_y, size_z], [data_variable_len], [mask]
-echo(str(sbc_data[s[0]][1][0]));
-echo(str("    PCB Size: ", sbc_data[s[0]][10]));
-        for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
-            class = sbc_data[s[0]][i];
-            type = sbc_data[s[0]][i+1];
-            pcbid = sbc_data[s[0]][i+2];
-            loc_x = sbc_data[s[0]][i+3];
-            loc_y = sbc_data[s[0]][i+4];
-            loc_z = sbc_data[s[0]][i+5];
-            face = sbc_data[s[0]][i+6];
-            rotation = sbc_data[s[0]][i+7];
-            size = sbc_data[s[0]][i+8];
-            data = sbc_data[s[0]][i+9];
-            mask = sbc_data[s[0]][i+10];
-            if(class == "pcbhole" && pcbid == 0) {
-                echo(str("    ", data[4], " hole: ", loc_x,", ", loc_y));
-            }
+if(view == "3D Model") {
+    // sbc size and holes to console
+    echo(str(sbc_data[s[0]][1][0]));
+    echo(str("    PCB Size: ", sbc_data[s[0]][10]));
+    for (i=[sindex:11:len(sbc_data[s[0]])-1]) {
+        class = sbc_data[s[0]][i];
+        type = sbc_data[s[0]][i+1];
+        pcbid = sbc_data[s[0]][i+2];
+        loc_x = sbc_data[s[0]][i+3];
+        loc_y = sbc_data[s[0]][i+4];
+        loc_z = sbc_data[s[0]][i+5];
+        face = sbc_data[s[0]][i+6];
+        rotation = sbc_data[s[0]][i+7];
+        size = sbc_data[s[0]][i+8];
+        data = sbc_data[s[0]][i+9];
+        mask = sbc_data[s[0]][i+10];
+        if(class == "pcbhole" && pcbid == 0) {
+            echo(str("    ", data[4], " hole: ", loc_x,", ", loc_y));
         }
-if(view == "Model") {
+    }
     // sbc model
     if(sbc_off == false) {
-        sbc(sbc_model, heatsink, fan_size, gpio, uart, false);
+        sbc(sbc_model, heatsink_mask, fan_size, gpio_mask, uart_mask, false);
     }
-    // create SBC information text
+    // create sbc information text
     if(sbc_info == true) {
         for (i=[0:1:len(sbc_data[s[0]][1])-1]) {
                 color(text_color) translate([text_offset + text_indent[i], pcbsize_y, text_height-i*7]) 
@@ -85,7 +91,7 @@ if(view == "Model") {
     }
     // sbc mask highlight
     if(sbc_mask == true) {
-        #sbc(sbc_model, heatsink, fan_size, gpio, uart, true);
+        #sbc(sbc_model, heatsink_mask, fan_size, gpio_mask, uart_mask, true);
     }
 }
 // create 2d mask sections
@@ -94,30 +100,31 @@ if(view == "2D_Sections") {
         // rear section
         difference() {
             translate([0, -pcbmaxsize_z, 0]) cube([pcbsize_x, pcbmaxsize_z, .1]);
-            rotate([90, 0, 0]) sbc(sbc_model, "disable", 0, gpio, uart, true);
+            rotate([90, 0, 0]) sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         }
         // left section
         difference() {
             translate([-pcbmaxsize_z-adj, 0, 0]) cube([pcbmaxsize_z, pcbsize_y, .1]);
-            translate([0, 0, -adj]) rotate([0, -90, 0]) sbc(sbc_model, "disable", 0, gpio, uart, true);
+            translate([0, 0, -adj]) rotate([0, -90, 0]) sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         }    
         // front section
         difference() {
             translate([0, pcbsize_y, 0]) cube([pcbsize_x, pcbmaxsize_z, .1]);
             translate([0, pcbsize_y, pcbsize_y+adj]) rotate([-90, 0, 0]) 
-                sbc(sbc_model, "disable", 0, gpio, uart, true);
+                sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         }
         // right section
         difference() {
             translate([pcbsize_x+adj, 0, 0]) cube([pcbmaxsize_z, pcbsize_y, .1]);
             translate([pcbsize_x, 0, pcbsize_x+adj]) rotate([0, 90, 0]) 
-                sbc(sbc_model, "disable", 0, gpio, uart, true);
+                sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         } 
         // pcb section
-        sbc(sbc_model, "disable", 0, "disable", uart, false); 
+        sbc(sbc_model, "disable", 0, "disable", uart_mask, false); 
     }
 }
 
+// display all models
 if(view == "All_Models") {
     translate([-460,0,0]) {
         translate ([-365,0,12]) sbc("m1s");
@@ -357,62 +364,153 @@ if(view == "All_Models") {
     }
 }
 
-if(view == "Odroids") {
-    translate ([-365,0,12]) sbc("m1s");
-    linear_extrude(height = 2) {translate([-360,-20,0]) text("Odroid-M1s");}
+// view component classes
+if(view == "Components") {
+    antenna =  ["ipex"];
+    audio =    ["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"];
+    b2b =      ["df40"];
+    battery =  ["bat_hold_1", "rtc_micro"];
+    button =   ["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"];
+    cm =       ["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"];
+    discrete = ["ir_1", "ir_dual", "capacitor", "led"];
+    display =  ["lcd_2.2"];
+    fan =      ["micro","encl_pmw","encl_pmw_h"];
+    fpc =      ["fh19", "fh12"];
+    gpio =     ["open", "encl_header_30", "encl_header_12"];
+    header =   ["open"];
+    heatsink = ["40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10", "c1+_oem", "c2_oem", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem", "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem", "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub", "pine64_active_10", "pine64_passive_20", "pine64_passive_30"];
+    ic =       ["generic"];
+    jst =      ["xh", "ph", "zh", "sh", "pa"];
+    memory =   ["emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"];
+    molex =    ["7478"];
+    network =  ["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"];
 
-    translate ([-365,115,12]) sbc("m1");
-    linear_extrude(height = 2) {translate([-355,100,0]) text("Odroid-M1");}
+    pcb =      ["round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"];
+    pcbhole =  ["round"];
+    pcbadd =   ["round", "slot", "rectangle", "polygon", "dxf"];
+    pcbsub =   ["round", "slot", "rectangle", "polygon", "dxf"];
+    pcbsoc =   ["flat", "raised", "mid-raised", "rk3399", "rk3588"];
 
-    translate ([-240,0,0]) sbc("hc4");
-    linear_extrude(height = 2) {translate([-240,-20,0]) text("Odroid-HC4");}
+    pcie =     ["x1","x4"];
+    pillar =   ["hex", "round"];
+    power =    ["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"];
+    shape =    ["round","rectangle","slot","knockout"];   
+    smd =      ["led"];
+    storage =  ["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"];
+    switch =   ["slide_4x9"];
+    terminal = ["gtb"];
+    uart =     ["molex_5267", "molex_5268"];
+    usb2 =     ["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"];
+    usb3 =     ["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"];
+    usbc =     ["single_horizontal_a", "single_vertical_a"];
+    video =    ["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "mipi_csi", "mipi_dsi"];
 
-    translate ([-120,0,0]) sbc("c4");
-    linear_extrude(height = 2) {translate([-120,-20,0]) text("Odroid-C4");}
-
-    translate ([-120,100,0]) sbc("c2");
-    linear_extrude(height = 2) {translate([-120,80,0]) text("Odroid-C2");}
-
-    translate ([-120,200,0]) sbc("c1+");
-    linear_extrude(height = 2) {translate([-120,180,0]) text("Odroid-C1+");}
-
-    translate ([0,0,0]) sbc("xu4");
-    linear_extrude(height = 2) {translate([0,-20,0]) text("Odroid-XU4");}
-
-    translate ([0,100,0]) sbc("xu4q");
-    linear_extrude(height = 2) {translate([0,80,0]) text("Odroid-XU4Q");}
-
-    translate ([0,200,0]) sbc("hc1");
-    linear_extrude(height = 2) {translate([0,180,0]) text("Odroid-HC1/HC2");}
-
-    translate ([0,290,0]) sbc("mc1");
-    linear_extrude(height = 2) {translate([0,270,0]) text("Odroid-MC1");}
-
-    translate ([120,0,12]) sbc("n2+");
-    linear_extrude(height = 2) {translate([120,-20,0]) text("Odroid-N2+");}
-
-    translate ([120,135,0]) sbc("n2l");
-    linear_extrude(height = 2) {translate([120,120,0]) text("Odroid-N2L");}
-
-    translate ([120,225,0]) sbc("n2lq");
-    linear_extrude(height = 2) {translate([120,210,0]) text("Odroid-N2LQ");}
-
-    translate ([120,315,18]) sbc("n2");
-    linear_extrude(height = 2) {translate([120,305,0]) text("Odroid-N2");}
-
-    translate ([120,470,0]) sbc("n1");
-    linear_extrude(height = 2) {translate([120,450,0]) text("Odroid-N1");}
-
-    translate ([240,0,0]) sbc("h3");
-    linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H3/H3+");}
-
-    translate ([240,160,0]) sbc("h2");
-    linear_extrude(height = 2) {translate([240,145,0]) text("Odroid-H2/H2+");}
-
-    translate ([370,0,0]) sbc("show2");
-    linear_extrude(height = 2) {translate([390,-20,0]) text("Show2");}
-}
-
-if(view == "All_Components") {
-
+    if(Class =="antenna") {
+        for(i=[0:1:len(antenna)-1]) {
+            translate([0+i*20, i*20, 0]) antenna(antenna[0], 0, 0, 0, "top", 0, [0,0,0], [0], 0, false, [0]);
+            color(text_color) translate([5+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(antenna[i]), direction="ltr");
+        }
+    }
+    if(Class =="audio") {
+        for(i=[0:1:len(audio)-1]) {
+            translate([0+i*20, i*20, 0]) audio(audio[i], 0, 0, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([15+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(audio[i]), direction="ltr");
+        }
+    }
+    if(Class =="b2b") {
+        
+    }
+    if(Class =="battery") {
+        
+    }
+    if(Class =="button") {
+        
+    }
+    if(Class =="cm") {
+        
+    }
+    if(Class =="discrete") {
+        
+    }
+    if(Class =="display") {
+        
+    }
+    if(Class =="fan") {
+        
+    }
+    if(Class =="fpc") {
+        
+    }
+    if(Class =="gpio") {
+        
+    }
+    if(Class =="header") {
+        
+    }
+    if(Class =="heatsink") {
+        
+    }
+    if(Class =="ic") {
+        
+    }
+    if(Class =="jst") {
+        
+    }
+    if(Class =="memory") {
+        
+    }
+    if(Class =="molex") {
+        
+    }
+    if(Class =="pcb") {
+        
+    }
+    if(Class =="pcbhole") {
+        
+    }
+    if(Class =="pcbadd") {
+        
+    }
+    if(Class =="pcbsub") {
+        
+    }
+    if(Class =="pcbsoc") {
+        
+    }
+    if(Class =="pcie") {
+        
+    }
+    if(Class =="pillar") {
+        
+    }
+    if(Class =="power") {
+        
+    }
+    if(Class =="smd") {
+        
+    }
+    if(Class =="storage") {
+        
+    }
+    if(Class =="switch") {
+        
+    }
+    if(Class =="terminal") {
+        
+    }
+    if(Class =="uart") {
+        
+    }
+    if(Class =="usb2") {
+        
+    }
+    if(Class =="usb3") {
+        
+    }
+    if(Class =="usbc") {
+        
+    }
+    if(Class =="video") {
+        
+    }
 }

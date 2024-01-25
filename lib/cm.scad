@@ -21,7 +21,7 @@
 
           USAGE: cm(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                    type = "cm1","cm3","cm3l","jetsonnano"
+                    type = "cm1","cm3","cm3l","cm4","cm4l","jetsonnano"
                     data[0] = pcb color
 
     DESCRIPTION: creates compute module holder

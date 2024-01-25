@@ -21,7 +21,7 @@
 
           USAGE: header(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                        type = "open", "box"
+                        type = "open"
                         size[0] = #row
                         size[1] = #columns
                         size[2] = pin height

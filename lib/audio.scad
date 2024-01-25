@@ -21,7 +21,7 @@
 
           USAGE: audio(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "out-in-spdif", "audio_micro", "mic_round"
+                       type = "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
 
                        type = "jack_3.5"
                        size[0] = body size_x

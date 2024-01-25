@@ -7,11 +7,11 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-##    Total Devices: 74
-##              SBC: 62
-##   Carrier Boards:  3
-##  Compute Modules:  8
-## Micro Controllers: 1
+###    Total Devices: 74
+###              SBC: 62
+###   Carrier Boards:  3
+###  Compute Modules:  8
+### Micro Controllers: 1
 
 ## Using the Framework
 
@@ -47,7 +47,7 @@ The framework is setup so that both SBC and components can be easily added or mo
 sbc_models.cfg is an ASCII file that can be modified with any text editor. It contains a data for the description of a given SBC.
 
 Version 2:
-class, type, loc_x, loc_y, loc_z, face, [rotation], [size_x, size_y, size_z], [data_1, data_2...], [mask]
+class, type, pcbid, loc_x, loc_y, loc_z, face, [rotation], [size_x, size_y, size_z], [data_1, data_2...], [mask]
 
 The schema is as follows:
 ```
