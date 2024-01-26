@@ -1,7 +1,7 @@
 /*
     This file is part of SBC Model Framework https://github.com/hominoids/SBC_Model_Framework
     Copyright 2019,2020,2021,2022,2023,2024 Edward A. Kisiel hominoid@cablemi.com
-    
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -24,8 +24,8 @@
 include <sbc_models.scad>
 use <sbc_models_library.scad>
 
-/* [SBC and Micro-controllers] */
-view = "3D Model"; // [3D Model, 2D Sections, Components]
+/* [SBC and Micro-Controllers] */
+view = "3D Model"; // [3D Model, 2D Sections, Components, All SBC Models]
 
 sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","jetsonnano","licheerv+dock","visionfive2","atomicpi"]
 
@@ -33,6 +33,7 @@ sbc_off = false;
 sbc_info = true;
 sbc_mask = false;
 
+/* [Command Line Options] */
 heatsink_mask = "default"; // ["disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex","vent", "vent_hex_5mm", "vent_hex_8mm", "custom"]
 fan_size = 0; // [0,30,40,50,60,70,80,92]
 
@@ -162,7 +163,7 @@ if(view == "Components") {
     uart =     ["molex_5267", "molex_5268"];
     usb2 =     ["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"];
     usb3 =     ["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"];
-    usbc =     ["single_horizontal_a", "single_vertical_a"];
+    usbc =     ["single_horizontal", "single_vertical"];
     video =    ["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "mipi_csi", "mipi_dsi"];
 
     if(Class =="antenna") {
@@ -272,10 +273,25 @@ if(view == "Components") {
             color(text_color) translate([50, -12, 0]) text(str(fpc[i]), direction="ltr");
             }
         }
-        
     }
     if(Class =="gpio") {
-        
+        gpio("open",0,0,0,"top",0,[20,2,6],["thruhole","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([55, 0, 0]) text(str("open 20x2"));
+        translate([0, 20, 0])
+        gpio("open",0,0,0,"top",0,[13,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([35, 20, 0]) text(str("open 13x2"));
+        translate([0, 40, 0])
+        gpio("open",0,0,0,"top",0,[10,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([30, 40, 0]) text(str("open 10x2"));
+        translate([0, 60, 0])
+        gpio("open",0,0,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([25, 60, 0]) text(str("open 7x2"));
+        translate([0, 80, 0])
+        gpio("encl_header_12",0,0,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([25, 80, 0]) text(str("encl_header_12"));
+        translate([0, 100, 0])
+        gpio("encl_header_30",0,0,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([45, 100, 0]) text(str("encl_header_30"));
     }
     if(Class =="header") {
         header("open",0,0,0,"top",0,[2,3,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
@@ -325,7 +341,7 @@ if(view == "Components") {
                     ic(ic[i], (c*4)-16, 30, 0, "top", 0, [7,c,.8],[0], 0, false, [false,10,2,"default"]);
                 }
             color(text_color) translate([0, -12, 0]) text(str(ic[i]), direction="ltr");
-            }                
+            }
         }
     }
     if(Class =="jst") {
@@ -347,7 +363,7 @@ if(view == "Components") {
         jst("pa",0,-60,0,"top",0,[4,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
         jst("pa",0,-70,0,"top",0,[3,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
         jst("pa",0,-80,0,"top",0,[2,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
-        
+
         // smt side entry
         jst("xh",0,0,0,"top",0,[3,0,0],["smt","side","white"],0,false,[10,2,"default"]);
         jst("ph",15,0,0,"top",0,[4,0,0],["smt","side","white"],0,false,[10,2,"default"]);
@@ -361,66 +377,111 @@ if(view == "Components") {
         jst("sh",40,20,0,"top",0,[3,0,0],["smt","top","white"],0,false,[10,2,"default"]);
     }
     if(Class =="memory") {
-        
+        for(i=[0:1:len(memory)-1]) {
+            memory(memory[i], 0, i*25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([80, i*25, 0]) rotate([0, 0, 0]) text(str(memory[i]), direction="ltr");
+        }
     }
     if(Class =="molex") {
-        
+        for(i=[0:1:len(molex)-1]) {
+            if(molex[i] == "7478") {
+                for(c=[3:4:12]) {
+                    molex(molex[i], 0, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","top"], 
+                            0, false, [false,10,2,"default"]);
+                    molex(molex[i], 35, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","side"], 
+                            0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([80, i*25, 0]) rotate([0, 0, 0]) text(str(molex[i]), direction="ltr");
+            }
+        }
     }
-    if(Class =="pcb") {
-        
-    }
-    if(Class =="pcbhole") {
-        
-    }
-    if(Class =="pcbadd") {
-        
-    }
-    if(Class =="pcbsub") {
-        
-    }
-    if(Class =="pcbsoc") {
-        
+    if(Class =="network") {
+        for(i=[0:1:len(network)-1]) {
+            network(network[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(network[i]), direction="ltr");
+        }
     }
     if(Class =="pcie") {
-        
+        pcie("x4", 0, 25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+        color(text_color) translate([40, 0, 0]) rotate([0, 0, 0]) text(str("x1"), direction="ltr");
+        pcie("x1", 0, 0, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+        color(text_color) translate([40, 25, 0]) rotate([0, 0, 0]) text(str("x4"), direction="ltr");
     }
     if(Class =="pillar") {
-        
+        for(c=[5:1:12]) {
+            pillar("hex", 0, (c*15)-70, 0, "top", 0, [c,3,c],[0,"#fee5a6"], 
+                    0, false, [false,10,2,"default"]);
+            pillar("round", 35, (c*15)-70, 0, "top", 0, [c,3,c],[0,"white"], 
+                    0, false, [false,10,2,"default"]);
+        }
     }
     if(Class =="power") {
-        
+        for(i=[0:1:len(power)-1]) {
+            power(power[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(power[i]), direction="ltr");
+        }
     }
     if(Class =="smd") {
-        
+        for(i=[0:1:len(smd)-1]) {
+            smd(smd[i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([6+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(smd[i]), direction="ltr");
+        }
     }
     if(Class =="storage") {
-        
+        for(i=[0:1:len(storage)-1]) {
+            storage(storage[i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([40+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(storage[i]), direction="ltr");
+        }
     }
     if(Class =="switch") {
-        
+        for(i=[0:1:len(switch)-1]) {
+            switch(switch[i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([40+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(switch[i]), direction="ltr");
+        }
     }
     if(Class =="terminal") {
-        
+        for(i=[0:1:len(terminal)-1]) {
+            for(c=[5:1:12]) {
+                terminal(terminal[i], 0, (c*20)-100, 0, "top", 0, [c,8.3,14], [5,"lightgreen"],
+                    0, false, [false,10,2,"default"]);
+            }
+            color(text_color) translate([30, 0, 0]) rotate([0, 0, 0]) text(str(terminal[i]), direction="ltr");
+        }
     }
     if(Class =="uart") {
-        
+        for(i=[0:1:len(uart)-1]) {
+            uart(uart[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([40+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(uart[i]), direction="ltr");
+        }
     }
     if(Class =="usb2") {
-        
+        for(i=[0:1:len(usb2)-1]) {
+            usb2(usb2[i], i*20, i*40, 0, "top", 0, [10,10,10], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(usb2[i]), direction="ltr");
+        }
     }
     if(Class =="usb3") {
-        
+        for(i=[0:1:len(usb3)-1]) {
+            usb3(usb3[i], i*20, i*40, 0, "top", 0, [10,10,10], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(usb3[i]), direction="ltr");
+        }
     }
     if(Class =="usbc") {
-        
+        for(i=[0:1:len(usbc)-1]) {
+            usbc(usbc[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(usbc[i]), direction="ltr");
+        }
     }
     if(Class =="video") {
-        
+        for(i=[0:1:len(video)-1]) {
+            video(video[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(video[i]), direction="ltr");
+        }
     }
 }
 
 // display all models
-if(view == "All_Models") {
+if(view == "All SBC Models") {
     translate([-460,0,0]) {
         translate ([-365,0,12]) sbc("m1s");
         linear_extrude(height = 2) {translate([-360,-20,0]) text("Odroid-M1s");}

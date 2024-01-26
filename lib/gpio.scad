@@ -1014,7 +1014,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             union() {
                 difference () {
                     color("black") cube([size_x, size_y, 6.25]);
-                    color ("darkgray") translate ([.5, .5, .6]) cube([36, 4.5, 5.75]);
+                    color ("#444444") translate ([.5, .5, .6]) cube([36, 4.5, 5.75]);
                 }
                 for (i=[4.5:2:34]) {
                     color("silver") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
@@ -1129,7 +1129,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             union() {
                 difference () {
                     color("black") cube([size_x, size_y, 6.25]);
-                    color ("darkgray") translate ([.5, .5,.6]) cube([18.5, 4.5, 5.75]);
+                    color ("#444444") translate ([.5, .5,.6]) cube([18.5, 4.5, 5.75]);
                 }
                 for (i=[4.5:2:16]) {
                     color("#fee5a6") translate ([i, 1.5, 1]) cube([.5, .5, 5]);
