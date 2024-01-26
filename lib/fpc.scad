@@ -21,10 +21,22 @@
 
           USAGE: fpc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                     type = "fh19", "fh12"
+                     type = "fh19"
                      size[0] = #pins
-                     data[0] = "thruhole", "smt"
-                     data[1] = "top", "side"
+                     data[0] = "smt"
+                     data[1] = "side"
+                     data[2] = body color
+                     data[3] = tab color
+                     enablemask = true produces mask, false produces model
+                     mask[0] = true enables component mask
+                     mask[1] = mask length
+                     mask[2] = mask setback
+                     mask[3] = mstyle "default"
+
+                     type = "fh12"
+                     size[0] = #pins
+                     data[0] = "smt"
+                     data[1] = "top"
                      data[2] = body color
                      data[3] = tab color
                      enablemask = true produces mask, false produces model

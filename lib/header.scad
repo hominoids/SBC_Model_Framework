@@ -77,7 +77,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                     color(hcolor) cube([size_x, size_y, height]);
                     for(c=[pitch/2:pitch:size_x]) {
                         for(r=[pitch/2:pitch:size_y]) {
-                            color("dimgray") translate([c-(pinsize/2), r-(pinsize/2), height-5+adj]) cube([pinsize, pinsize, height-1]);
+                            color("#888888") translate([c-(pinsize/2), r-(pinsize/2), height-5+adj]) cube([pinsize, pinsize, height-1]);
                             color(pcolor) translate([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize, pinsize, pheight+adj]);
                         }
                     }
@@ -110,7 +110,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                         color(hcolor) cube([size_x, size_y, height]);
                         for(c=[pitch/2:pitch:size_x]) {
                             for(r=[pitch/2:pitch:size_y]) {
-                                color("dimgray") translate([c-(pinsize/2), r-(pinsize/2), adj]) cube([pinsize, pinsize, height]);
+                                color("#888888") translate([c-(pinsize/2), r-(pinsize/2), adj]) cube([pinsize, pinsize, height]);
                             }
                         }
                     }

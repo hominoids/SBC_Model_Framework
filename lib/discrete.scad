@@ -16,7 +16,7 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
-    DESCRIPTION: creates intergrated circuits
+    DESCRIPTION: creates discrete components
            TODO: 
 
           USAGE: discrete(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
@@ -35,7 +35,7 @@
                                  "led"
                                     size[0] = diameter
                                     size[2] = height
-                                    data[0] = style
+                                    data[0] = style "default"
                                     data[1] = led color
 
 */

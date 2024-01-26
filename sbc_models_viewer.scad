@@ -124,6 +124,301 @@ if(view == "2D_Sections") {
     }
 }
 
+// view component classes
+if(view == "Components") {
+    antenna =  ["ipex"];
+    audio =    ["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"];
+    b2b =      ["df40"];
+    battery =  ["bat_hold_1", "rtc_micro"];
+    button =   ["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"];
+    cm =       ["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"];
+    discrete = ["ir_1", "ir_dual", "capacitor", "led"];
+    display =  ["lcd_2.2"];
+    fan =      ["fan_micro","encl_pmw","encl_pmw_h"];
+    fpc =      ["fh19", "fh12"];
+    gpio =     ["open", "encl_header_30", "encl_header_12"];
+    header =   ["open"];
+    heatsink = ["40mm_passive_10", "40mm_passive_25", "32mm_passive_10", "c1+_oem", "c2_oem", "40mm_active_10", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem", "n2_oem", "n2+_oem", "m1_oem", "h2_oem", "h3_oem", "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub", "pine64_active_10", "pine64_passive_20", "pine64_passive_30", "m1s_oem"];
+    ic =       ["generic"];
+    jst =      ["xh", "ph", "zh", "sh", "pa"];
+    memory =   ["emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"];
+    molex =    ["7478"];
+    network =  ["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"];
+
+    pcb =      ["round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"];
+    pcbhole =  ["round"];
+    pcbadd =   ["round", "slot", "rectangle", "polygon", "dxf"];
+    pcbsub =   ["round", "slot", "rectangle", "polygon", "dxf"];
+    pcbsoc =   ["flat", "raised", "mid-raised", "rk3399", "rk3588"];
+
+    pcie =     ["x1","x4"];
+    pillar =   ["hex", "round"];
+    power =    ["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"];
+    shape =    ["round","rectangle","slot","knockout"];   
+    smd =      ["led"];
+    storage =  ["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"];
+    switch =   ["slide_4x9"];
+    terminal = ["gtb"];
+    uart =     ["molex_5267", "molex_5268"];
+    usb2 =     ["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"];
+    usb3 =     ["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"];
+    usbc =     ["single_horizontal_a", "single_vertical_a"];
+    video =    ["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "mipi_csi", "mipi_dsi"];
+
+    if(Class =="antenna") {
+        for(i=[0:1:len(antenna)-1]) {
+            antenna(antenna[0], i*20, i*20, 0, "top", 0, [0,0,0], [0], 0, false, [0]);
+            color(text_color) translate([5+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(antenna[i]), direction="ltr");
+        }
+    }
+    if(Class =="audio") {
+        for(i=[0:1:len(audio)-1]) {
+            audio(audio[i], i*20, i*20, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([15+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(audio[i]), direction="ltr");
+        }
+    }
+    if(Class =="b2b") {
+        for(i=[0:1:len(b2b)-1]) {
+            if(b2b[i] == "df40") {
+                for(c=[8:10:100]) {
+                    b2b(b2b[i], 0, c-8, 0, "top", 0, [c,0,1.5],["default","black", "male"], 
+                        0, false, [false,10,2,"default"]);
+                    b2b(b2b[i], 25, c-8, 0, "top", 0, [c,0,1.5],["default","black", "female"], 
+                        0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([0, -12, 0]) text(str(b2b[i]), direction="ltr");
+            }
+        }
+    }
+    if(Class =="battery") {
+        for(i=[0:1:len(battery)-1]) {
+            battery(battery[i], i*20, i*20, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([25+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(battery[i]), direction="ltr");
+        }
+    }
+    if(Class =="button") {
+        for(i=[0:1:len(button)-1]) {
+            button(button[i], i*12, i*12, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([15+i*12, i*12, 0]) rotate([0, 0, 0]) text(str(button[i]), direction="ltr");
+        }
+    }
+    if(Class =="cm") {
+        for(i=[0:1:len(cm)-1]) {
+            cm(cm[i], 0, i*45, 0, "top", 0, [0,0,0],["#008066"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([75, i*45, 0]) rotate([0, 0, 0]) text(str(cm[i]), direction="ltr");
+        }
+    }
+    if(Class =="discrete") {
+        for(i=[0:1:len(discrete)-1]) {
+            if(discrete[i] == "ir_1") {
+                for(c=[0:2:10]) {
+                    discrete(discrete[i], 8, c*8, 0, "top", 0, [0,0,c],[0], 0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([0, -12, 0]) text(str(discrete[i]), direction="ltr");
+            }
+            if(discrete[i] == "ir_dual") {
+                discrete(discrete[i], 40, 0, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([28, -12, 0]) text(str(discrete[i]), direction="ltr");
+            }
+            if(discrete[i] == "capacitor") {
+                for(c=[0:2:10]) {
+                    discrete(discrete[i], 120, 5+(c*8), 0, "top", 0, [8,0,4+c],[0], 0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([100, -12, 0]) text(str(discrete[i]), direction="ltr");
+            }
+            if(discrete[i] == "led") {
+                for(c=[0:2:10]) {
+                    discrete(discrete[i], 75, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","red"], 
+                        0, false, [false,10,2,"default"]);
+                    discrete(discrete[i], 85, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","green"], 
+                        0, false, [false,10,2,"default"]);
+                    discrete(discrete[i], 95, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","yellow"], 
+                        0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([75, -12, 0]) text(str(discrete[i]), direction="ltr");
+            }
+        }
+    }
+    if(Class =="display") {
+        for(i=[0:1:len(display)-1]) {
+            display(display[i], 0, i*45, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([75, i*45, 0]) rotate([0, 0, 0]) text(str(display[i]), direction="ltr");
+        }
+    }
+    if(Class =="fan") {
+        for(i=[0:1:len(fan)-1]) {
+            fan(fan[i], i*20, i*20, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([15+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(fan[i]), direction="ltr");
+        }
+    }
+    if(Class =="fpc") {
+        for(i=[0:1:len(fpc)-1]) {
+            if(fpc[i] == "fh19") {
+                for(c=[8:4:28]) {
+                    fpc(fpc[i], 0, c-8, 0, "top", 0, [c,0,0],["smt","side", "#ede1ca","#a47c5b"], 
+                            0, false, [false,10,2,"default"]);
+                    fpc(fpc[i], 25, c-8, 0, "top", 0, [c,0,0],["smt","side", "white", "black"], 
+                            0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([0, -12, 0]) text(str(fpc[i]), direction="ltr");
+            }
+            if(fpc[i] == "fh12") {
+                for(c=[8:4:28]) {
+                    fpc(fpc[i], 50, (c*2)-16, 0, "top", 0, [c,0,0],["smt","top", "#ede1ca","#a47c5b"], 
+                        0, false, [false,10,2,"default"]);
+                    fpc(fpc[i], 75, (c*2)-16, 0, "top", 0, [c,0,0],["smt","top", "white", "black"], 
+                        0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([50, -12, 0]) text(str(fpc[i]), direction="ltr");
+            }
+        }
+        
+    }
+    if(Class =="gpio") {
+        
+    }
+    if(Class =="header") {
+        header("open",0,0,0,"top",0,[2,3,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",10,0,0,"top",0,[3,2,6],["thruhole","black","male",2.54,"silver",0,0,0],0,false,[10,2,"default"]);
+        header("open",22,0,0,"top",0,[3,2,6],["smt","black","female",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",32,0,0,"top",0,[1,6,6],["thruhole","black","female",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+
+        header("open",-8,0,0,"top",0,[2,8,4],["smt","black","male",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",-15,0,0,"top",0,[2,3,4],["thruhole","black","male",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",-23,0,0,"top",0,[2,8,4],["smt","black","female",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",-32,0,0,"top",0,[2,6,6],["thruhole","black","female",2,"silver",0,0,0],0,false,[10,2,"default"]);
+
+        header("open",8,-20,0,"top",0,[2,8,3],["smt","black","male",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",15,-20,0,"top",0,[2,3,3],["thruhole","black","male",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",22,-20,0,"top",0,[2,8,4],["smt","black","female",1,"silver",0,0,0],0,false,[10,2,"default"]);
+        header("open",32,-20,0,"top",0,[2,6,7],["thruhole","black","female",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);        
+    }
+    if(Class =="heatsink") {
+        for(i=[0:1:len(heatsink)-1]) {
+            if(i <= 6) {
+                heatsink(heatsink[i], 0, i*55, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([50, i*55, 0]) text(str(heatsink[i]), direction="ltr");
+            }
+            if(i > 6 && i <= 12) {
+                heatsink(heatsink[i], 180, (i*50)-320, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([240, (i*50)-320, 0]) text(str(heatsink[i]), direction="ltr");
+            }
+            if(i > 12  && i <= 15) {
+                heatsink(heatsink[i], 320, (i*100)-1300, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([420, (i*100)-1300, 0]) text(str(heatsink[i]), direction="ltr");
+            }
+            if(i > 15 && i <= 21) {
+                heatsink(heatsink[i], 520, (i*85)-1350, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([605, (i*85)-1350, 0]) text(str(heatsink[i]), direction="ltr");
+            }
+            if(i > 21) {
+                heatsink(heatsink[i], 700, (i*50)-1100, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([790, (i*50)-1100, 0]) text(str(heatsink[i]), direction="ltr");
+            }
+       }
+    }
+    if(Class =="ic") {
+        for(i=[0:1:len(ic)-1]) {
+            if(ic[i] == "generic") {
+                for(c=[4:2:16]) {
+                    ic(ic[i], (c*8)-32, 0, 0, "top", 0, [c,c,.8],[0], 0, false, [false,10,2,"default"]);
+                    ic(ic[i], (c*4)-16, 30, 0, "top", 0, [7,c,.8],[0], 0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([0, -12, 0]) text(str(ic[i]), direction="ltr");
+            }                
+        }
+    }
+    if(Class =="jst") {
+        // thruhole side entry
+        jst("xh",-15,0,0,"top",0,[3,0,0],["thruhole","side","green"],0,false,[10,2,"default"]);
+        jst("ph",-30,0,0,"top",0,[4,0,0],["thruhole","side","white"],0,false,[10,2,"default"]);
+        jst("zh",-40,0,0,"top",0,[3,0,0],["thruhole","side","white"],0,false,[10,2,"default"]);
+        jst("sh",-50,0,0,"top",0,[3,0,0],["thruhole","side","white"],0,false,[10,2,"default"]);
+
+        // thruhole top entry
+        jst("xh",-15,20,0,"top",0,[3,0,0],["thruhole","top","orange"],0,false,[10,2,"default"]);
+        jst("ph",-30,20,0,"top",0,[4,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("zh",-40,20,0,"top",0,[3,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("sh",-50,20,0,"top",0,[3,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+
+        jst("pa",0,-30,0,"top",0,[7,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("pa",0,-40,0,"top",0,[6,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("pa",0,-50,0,"top",0,[5,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("pa",0,-60,0,"top",0,[4,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("pa",0,-70,0,"top",0,[3,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        jst("pa",0,-80,0,"top",0,[2,0,0],["thruhole","top","white"],0,false,[10,2,"default"]);
+        
+        // smt side entry
+        jst("xh",0,0,0,"top",0,[3,0,0],["smt","side","white"],0,false,[10,2,"default"]);
+        jst("ph",15,0,0,"top",0,[4,0,0],["smt","side","white"],0,false,[10,2,"default"]);
+        jst("zh",30,0,0,"top",0,[3,0,0],["smt","side","white"],0,false,[10,2,"default"]);
+        jst("sh",40,0,0,"top",0,[3,0,0],["smt","side","white"],0,false,[10,2,"default"]);
+
+        // smt top entry
+        jst("xh",0,20,0,"top",0,[3,0,0],["smt","top","white"],0,false,[10,2,"default"]);
+        jst("ph",15,20,0,"top",0,[4,0,0],["smt","top","white"],0,false,[10,2,"default"]);
+        jst("zh",30,20,0,"top",0,[3,0,0],["smt","top","white"],0,false,[10,2,"default"]);
+        jst("sh",40,20,0,"top",0,[3,0,0],["smt","top","white"],0,false,[10,2,"default"]);
+    }
+    if(Class =="memory") {
+        
+    }
+    if(Class =="molex") {
+        
+    }
+    if(Class =="pcb") {
+        
+    }
+    if(Class =="pcbhole") {
+        
+    }
+    if(Class =="pcbadd") {
+        
+    }
+    if(Class =="pcbsub") {
+        
+    }
+    if(Class =="pcbsoc") {
+        
+    }
+    if(Class =="pcie") {
+        
+    }
+    if(Class =="pillar") {
+        
+    }
+    if(Class =="power") {
+        
+    }
+    if(Class =="smd") {
+        
+    }
+    if(Class =="storage") {
+        
+    }
+    if(Class =="switch") {
+        
+    }
+    if(Class =="terminal") {
+        
+    }
+    if(Class =="uart") {
+        
+    }
+    if(Class =="usb2") {
+        
+    }
+    if(Class =="usb3") {
+        
+    }
+    if(Class =="usbc") {
+        
+    }
+    if(Class =="video") {
+        
+    }
+}
+
 // display all models
 if(view == "All_Models") {
     translate([-460,0,0]) {
@@ -361,156 +656,5 @@ if(view == "All_Models") {
         translate ([1455,0,0]) sbc("atomicpi");
         linear_extrude(height = 2) {translate([1490,-20,0]) text("AtomicPi");}
         color("green",.5) translate([1488,-20,-1]) cube([56,10,1]);
-    }
-}
-
-// view component classes
-if(view == "Components") {
-    antenna =  ["ipex"];
-    audio =    ["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"];
-    b2b =      ["df40"];
-    battery =  ["bat_hold_1", "rtc_micro"];
-    button =   ["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"];
-    cm =       ["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"];
-    discrete = ["ir_1", "ir_dual", "capacitor", "led"];
-    display =  ["lcd_2.2"];
-    fan =      ["micro","encl_pmw","encl_pmw_h"];
-    fpc =      ["fh19", "fh12"];
-    gpio =     ["open", "encl_header_30", "encl_header_12"];
-    header =   ["open"];
-    heatsink = ["40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10", "c1+_oem", "c2_oem", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem", "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem", "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub", "pine64_active_10", "pine64_passive_20", "pine64_passive_30"];
-    ic =       ["generic"];
-    jst =      ["xh", "ph", "zh", "sh", "pa"];
-    memory =   ["emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"];
-    molex =    ["7478"];
-    network =  ["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"];
-
-    pcb =      ["round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"];
-    pcbhole =  ["round"];
-    pcbadd =   ["round", "slot", "rectangle", "polygon", "dxf"];
-    pcbsub =   ["round", "slot", "rectangle", "polygon", "dxf"];
-    pcbsoc =   ["flat", "raised", "mid-raised", "rk3399", "rk3588"];
-
-    pcie =     ["x1","x4"];
-    pillar =   ["hex", "round"];
-    power =    ["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"];
-    shape =    ["round","rectangle","slot","knockout"];   
-    smd =      ["led"];
-    storage =  ["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"];
-    switch =   ["slide_4x9"];
-    terminal = ["gtb"];
-    uart =     ["molex_5267", "molex_5268"];
-    usb2 =     ["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"];
-    usb3 =     ["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"];
-    usbc =     ["single_horizontal_a", "single_vertical_a"];
-    video =    ["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "mipi_csi", "mipi_dsi"];
-
-    if(Class =="antenna") {
-        for(i=[0:1:len(antenna)-1]) {
-            translate([0+i*20, i*20, 0]) antenna(antenna[0], 0, 0, 0, "top", 0, [0,0,0], [0], 0, false, [0]);
-            color(text_color) translate([5+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(antenna[i]), direction="ltr");
-        }
-    }
-    if(Class =="audio") {
-        for(i=[0:1:len(audio)-1]) {
-            translate([0+i*20, i*20, 0]) audio(audio[i], 0, 0, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([15+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(audio[i]), direction="ltr");
-        }
-    }
-    if(Class =="b2b") {
-        
-    }
-    if(Class =="battery") {
-        
-    }
-    if(Class =="button") {
-        
-    }
-    if(Class =="cm") {
-        
-    }
-    if(Class =="discrete") {
-        
-    }
-    if(Class =="display") {
-        
-    }
-    if(Class =="fan") {
-        
-    }
-    if(Class =="fpc") {
-        
-    }
-    if(Class =="gpio") {
-        
-    }
-    if(Class =="header") {
-        
-    }
-    if(Class =="heatsink") {
-        
-    }
-    if(Class =="ic") {
-        
-    }
-    if(Class =="jst") {
-        
-    }
-    if(Class =="memory") {
-        
-    }
-    if(Class =="molex") {
-        
-    }
-    if(Class =="pcb") {
-        
-    }
-    if(Class =="pcbhole") {
-        
-    }
-    if(Class =="pcbadd") {
-        
-    }
-    if(Class =="pcbsub") {
-        
-    }
-    if(Class =="pcbsoc") {
-        
-    }
-    if(Class =="pcie") {
-        
-    }
-    if(Class =="pillar") {
-        
-    }
-    if(Class =="power") {
-        
-    }
-    if(Class =="smd") {
-        
-    }
-    if(Class =="storage") {
-        
-    }
-    if(Class =="switch") {
-        
-    }
-    if(Class =="terminal") {
-        
-    }
-    if(Class =="uart") {
-        
-    }
-    if(Class =="usb2") {
-        
-    }
-    if(Class =="usb3") {
-        
-    }
-    if(Class =="usbc") {
-        
-    }
-    if(Class =="video") {
-        
     }
 }
