@@ -27,7 +27,7 @@ use <sbc_models_library.scad>
 /* [SBC and Micro-Controllers] */
 view = "3D Model"; // [3D Model, 2D Sections, Components, All SBC Models]
 
-sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","jetsonnano","licheerv+dock","visionfive2","atomicpi"]
+sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","lepotato","sweetpotato","tritium-h2+","tritium-h3","tritium-h5","solitude","alta","jetsonnano","licheerv+dock","visionfive2","atomicpi"]
 
 sbc_off = false;
 sbc_info = true;
@@ -42,7 +42,7 @@ gpio_mask = "default"; // ["disable", "off", "default", "none", "open", "block",
 uart_mask = "default"; // ["default", "none", "open", "knockout"]
 
 /* [Components] */
-Class = "heatsink"; // [antenna,audio,b2b,battery,button,cm,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbhole,pcbadd,pcbsub,pcbsoc,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
+Class = "jst"; // [antenna,audio,b2b,battery,button,cm,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbhole,pcbadd,pcbsub,pcbsoc,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
 
 /* [Hidden] */
 s = search([sbc_model], sbc_data);
@@ -52,7 +52,7 @@ pcbsize_y = sbc_data[s[0]][10][1];
 pcbsize_z = sbc_data[s[0]][10][2];
 pcbmaxsize_z = sbc_data[s[0]][11][5];
 text_offset = 10;
-text_height = sbc_data[s[0]][11][5] + 175;
+text_height = pcbmaxsize_z + 175;
 text_indent = [0,-37,4.5,0,-24,-11,4,4.5,-16,-16.5,-2.5,-9.5,-11,-3.5,-15,3,4,1,3,11,0,-8,-11.5,-2,-8];
 text_color = "#009900";
 
@@ -579,6 +579,18 @@ if(view == "All SBC Models") {
         linear_extrude(height = 2) {translate([400,485,0]) text("Star 64");}
         color("yellow",.3) translate([400,485,-1]) cube([43,10,1]);
 
+        translate([550,-90,0]) sbc("rpicm4");
+        linear_extrude(height = 2) { translate([550,-110,0]) text("RPi CM4"); }
+        color("green",.3) translate([550,-110,-1]) cube([55,10,1]);
+
+        translate([550,-170,0]) sbc("rpicm4l");
+        linear_extrude(height = 2) { translate([550,-190,0]) text("RPi CM4L"); }
+        color("green",.3) translate([550,-190,-1]) cube([63,10,1]);
+
+        translate([550,-240,0]) sbc("rpicm3");
+        linear_extrude(height = 2) { translate([550,-260,0]) text("RPi CM3"); }
+        color("green",.3) translate([550,-260,-1]) cube([55,10,1]);
+
         translate([535,0,0]) sbc("rpi5");
         linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 5"); }
         color("green",.3) translate([550,-20,-1]) cube([35,10,1]);
@@ -702,20 +714,51 @@ if(view == "All SBC Models") {
         linear_extrude(height = 2) { translate([1005,350,0]) text("OPi R1"); }
         color("green",.3) translate([1005,350,-1]) cube([45,10,1]);
 
-        translate ([1120,0,0]) sbc("jetsonnano");
-        linear_extrude(height = 2) {translate([1130,-20,0]) text("Jetson Nano");}
-        color("green",.5) translate([1130,-20,-1]) cube([76,10,1]);
+        translate ([1120,0,0]) sbc("alta");
+        linear_extrude(height = 2) {translate([1130,-20,0]) text("Alta");}
+        color("yellow",.5) translate([1130,-20,-1]) cube([24,10,1]);
 
-        translate ([1250,0,0]) sbc("licheerv+dock");
-        linear_extrude(height = 2) {translate([1230,-20,0]) text("LicheeRV + Dock");}
-        color("green",.5) translate([1230,-20,-1]) cube([105,10,1]);
+        translate ([1120,90,0]) sbc("solitude");
+        linear_extrude(height = 2) {translate([1130,70,0]) text("Solitude");}
+        color("yellow",.5) translate([1130,70,-1]) cube([50,10,1]);
 
-        translate ([1340,0,0]) sbc("visionfive2");
-        linear_extrude(height = 2) {translate([1350,-20,0]) text("VisionFive2");}
-        color("green",.5) translate([1348,-20,-1]) cube([73,10,1]);
+        translate ([1120,185,0]) sbc("sweetpotato");
+        linear_extrude(height = 2) {translate([1130,165,0]) text("Sweet Potato");}
+        color("yellow",.5) translate([1130,165,-1]) cube([80,10,1]);
 
-        translate ([1455,0,0]) sbc("atomicpi");
-        linear_extrude(height = 2) {translate([1490,-20,0]) text("AtomicPi");}
-        color("green",.5) translate([1488,-20,-1]) cube([56,10,1]);
+        translate ([1120,275,0]) sbc("lepotato");
+        linear_extrude(height = 2) {translate([1130,255,0]) text("Le Potato");}
+        color("yellow",.5) translate([1130,255,-1]) cube([57,10,1]);
+
+        translate ([1120,360,0]) sbc("tritium-h5");
+        linear_extrude(height = 2) {translate([1130,340,0]) text("Tritium H5");}
+        color("yellow",.5) translate([1130,340,-1]) cube([64,10,1]);
+
+        translate ([1120,450,0]) sbc("tritium-h3");
+        linear_extrude(height = 2) {translate([1130,430,0]) text("Tritium H3");}
+        color("yellow",.5) translate([1130,430,-1]) cube([64,10,1]);
+
+        translate ([1120,550,0]) sbc("tritium-h2+");
+        linear_extrude(height = 2) {translate([1130,530,0]) text("Tritium H2+");}
+        color("yellow",.5) translate([1130,530,-1]) cube([72,10,1]);
+
+
+
+
+        translate ([1230,0,0]) sbc("jetsonnano");
+        linear_extrude(height = 2) {translate([1240,-20,0]) text("Jetson Nano");}
+        color("green",.5) translate([1240,-20,-1]) cube([76,10,1]);
+
+        translate ([1360,0,0]) sbc("licheerv+dock");
+        linear_extrude(height = 2) {translate([1340,-20,0]) text("LicheeRV + Dock");}
+        color("green",.5) translate([1340,-20,-1]) cube([105,10,1]);
+
+        translate ([1450,0,0]) sbc("visionfive2");
+        linear_extrude(height = 2) {translate([1460,-20,0]) text("VisionFive2");}
+        color("green",.5) translate([1458,-20,-1]) cube([73,10,1]);
+
+        translate ([1565,0,0]) sbc("atomicpi");
+        linear_extrude(height = 2) {translate([1600,-20,0]) text("AtomicPi");}
+        color("green",.5) translate([1598,-20,-1]) cube([56,10,1]);
     }
 }

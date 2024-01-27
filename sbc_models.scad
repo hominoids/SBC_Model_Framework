@@ -34,6 +34,7 @@
                              "vim1","vim2","vim3l","vim3","vim4",
                              "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
                              "opi5","opizero","opizero2","opir1plus_lts","opir1",
+                             "lepotato","sweetpotate","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
                              "jetsonnano",
                              "licheerv+dock",
                              "visionfive2",
@@ -226,7 +227,7 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             if(type == "dxf") {
                                 color(pcb_color) shape(type, [pcbsize_x, pcbsize_y, pcbsize_z], [pcbcorner_radius, pcb_color, pcb_polygon,0]);
                             }
-                            if(type == "cm1" || type == "cm3" || type == "cm3l" || type == "cm4" || type == "cm4l" || type == "cm4s") {
+                            if(type == "cm1" || type == "cm3" || type == "cm3l" || type == "cm3+" || type == "cm4" || type == "cm4l" || type == "cm4s") {
                                 cm(type, pcbloc_x, pcbloc_y, pcbloc_z, pcb_side, pcb_rotation[2], sbc_data[s[0]][i+8], sbc_data[s[0]][i+9], pcbsize_z, false, 0);
                             }
                             // pcb additions

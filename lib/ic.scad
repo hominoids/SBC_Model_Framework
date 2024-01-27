@@ -22,6 +22,10 @@
           USAGE: ic(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                     type = "generic"
+                    size[0] = size_x
+                    size[1] = size_y
+                    size[2] = size_z
+                    data[0] = icolor
 
 */
 
@@ -31,11 +35,12 @@ module ic(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
     size_x = size[0];
     size_y = size[1];
     size_z = size[2];
+    icolor = data[0];
 
     // generic ic
     if (type == "generic" && enablemask == false) {
 
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-            color("dimgray") cube([size_x, size_y, size_z]);
+            color(icolor) cube([size_x, size_y, size_z]);
     }
 }

@@ -7,8 +7,8 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-###    Total Devices: 74
-###              SBC: 62
+###    Total Devices: 81
+###              SBC: 69
 ###   Carrier Boards:  3
 ###  Compute Modules:  8
 ### Micro Controllers: 1
@@ -21,25 +21,28 @@ include <sbc_models.scad>
 sbc("rpi5");
 ```
 ```
-USAGE: sbc(model, enableheatsink = "default", enablegpio =  "default", enablemask = false)
+          USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enablemask = false)
 
-
-     model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","m1","m1","m1s","n1","n2","n2l","n2lq","n2+","n2+","h2","show2"
-             "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
-             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1"rpicm4+ioboard"
-             "rock64","rockpro64","quartz64b","quartz64b,"h64b","star64"
-             "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
-             "vim1","vim2","vim3l","vim3","vim4",
-             "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
-             "opi5","opizero","opizero2","opir1plus_lts","opir1",
-             "jetsonnano",
-             "licheerv+dock",
-             "visionfive2",
-             "atomicpi"
-     enableheatsink = "disable", "off", "default", "none", open, open_fan, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom
-     enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", vent 
-     enableuart = "default", "none", "open", "knockout"
-     enablemask = true or false
+                     model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
+                             "m1","m1s","h2","h2+","h3","h3+","show2",
+                             "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+                             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
+                             "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
+                             "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
+                             "vim1","vim2","vim3l","vim3","vim4",
+                             "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
+                             "opi5","opizero","opizero2","opir1plus_lts","opir1",
+                             "lepotato","sweetpotate","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
+                             "jetsonnano",
+                             "licheerv+dock",
+                             "visionfive2",
+                             "atomicpi"
+            enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
+                             "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
+                   fansize = 0, 30, 40, 50, 60, 70, 80, 92
+                enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", "vent" 
+                enableuart = "default", "none", "open", "knockout"
+                enablemask = true or false
 ```
 ## Modifying and Adding Components
 The framework is setup so that both SBC and components can be easily added or modified and the resulting models can be used regardless of the state of completion. The framework consists of three parts, the SBC data set (sbc_models.cfg), the main module(sbc_models.scad) and a library of components(sbc_library.scad).
@@ -82,18 +85,18 @@ The rotation value does not rotate the component around the xy location. It is a
         battery  - "bat_hold_1", "rtc_micro"
      *  button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
                    "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
-        cm       - "jetsonnano", "cm1", "cm3", "cm3l", "cm4"
+        cm       - "cm1","cm3","cm3l","cm4","cm4l","jetsonnano"
      *  discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
      *  display  - "lcd_2.2"
-        fan      - "micro","encl_pmw","encl_pmw_h"
+        fan      - "fan_micro","encl_pmw","encl_pmw_h"
      *  fpc      - "fh19"(parametric), "fh12"(parametric)
      *  gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
         header   - "open"(parametric)
      *  heatsink - "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
-                   "c1+_oem", "c2_oem", c4_oem", "hc4_oem", "xu4_oem", xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
+                   "c1+_oem", "c2_oem", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
                    "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
                    "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub"
-                   "pine64_active_10", "pine64_passive_20", pine64_passive_30"
+                   "pine64_active_10", "pine64_passive_20", "pine64_passive_30"
         ic       - "generic"(parametric)
         jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
      *  memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
@@ -107,7 +110,7 @@ The rotation value does not rotate the component around the xy location. It is a
         pcbsoc   - "flat"(parametric), "raised"(parametric), "mid-raised", "rk3399", "rk3588"
         pcie     - "x1","x4"
         pillar   - "hex"(parametric), "round"(parametric)
-     *  power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "molex_4x1", "small_encl_satapwr"
+     *  power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"
         smd      - "led"(parametric)
      *  storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
                    "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
@@ -115,8 +118,8 @@ The rotation value does not rotate the component around the xy location. It is a
      *  terminal - "gtb"(parametric)
      *  uart     - ""molex_5267", "molex_5268" 
      *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"
-     *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc"
-     *  usbc     - "single_horizontal_a", "single_vertical_a"
+     *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"
+     *  usbc     - "single_horizontal", "single_vertical"
      *  video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini"
                    "dp_mini", "mipi_csi", "mipi_dsi"
 ```
@@ -267,6 +270,24 @@ opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information
 opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 opir1 - GREEN, verified to be correct using SBC Case Builder.
+
+
+
+### Libre Computer: 7
+
+lepotato - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+sweetpotate - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tirtium-h2+ - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tritium-h3 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+tritium-h5 - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+solitude - YELLOW, unverified mostlikely usable and/or missing minor information.
+
+alta - YELLOW, unverified mostlikely usable and/or missing minor information.
 
 
 

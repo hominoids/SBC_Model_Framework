@@ -21,8 +21,8 @@
 
           USAGE: cm(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                    type = "cm1","cm3","cm3l","cm4","cm4l","jetsonnano"
-                    data[0] = pcb color
+                    type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","jetsonnano"
+                    data[1] = pcb color
 
     DESCRIPTION: creates compute module holder
            TODO:
@@ -38,9 +38,9 @@
 module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     $fn=90;
-    if(type == "cm1" || type == "cm3" || type == "cm3l") {
+    if(type == "cm1" || type == "cm3" || type == "cm3l" || type == "cm3+" || type == "cm4s") {
 
-        pcbcolor = data[0];
+        pcbcolor = data[1];
         size_x = 67.6;
         size_y = type == "cm1" ? 30 : 31;
         size_z = 1;
@@ -73,7 +73,7 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
     }
     if(type == "cm4" || type == "cm4l") {
 
-        pcbcolor = data[0];
+        pcbcolor = data[1];
         size_x = 55;
         size_y = 40;
         size_z = 1.2;
