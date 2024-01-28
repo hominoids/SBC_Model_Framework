@@ -247,7 +247,7 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {    
                     color("silver") cube([size_x, size_y, 2]);
-                    color("white") translate([1, -.9, .5]) cube([2, 1.5, 1]);
+                    color("white") translate([1, -1.15, .5]) cube([2, 1.5, 1]);
                 }
         }
     }

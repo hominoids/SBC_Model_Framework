@@ -24,10 +24,10 @@
 include <sbc_models.scad>
 use <sbc_models_library.scad>
 
-/* [SBC and Micro-Controllers] */
+/* [SBC and MCU] */
 view = "3D Model"; // [3D Model, 2D Sections, Components, All SBC Models]
 
-sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","lepotato","sweetpotato","tritium-h2+","tritium-h3","tritium-h5","solitude","alta","jetsonnano","licheerv+dock","visionfive2","atomicpi"]
+sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpipico","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","lepotato","sweetpotato","tritium-h2+","tritium-h3","tritium-h5","solitude","alta","jetsonnano","licheerv+dock","visionfive2","atomicpi","rak19007"]
 
 sbc_off = false;
 sbc_info = true;
@@ -591,6 +591,14 @@ if(view == "All SBC Models") {
         linear_extrude(height = 2) { translate([550,-260,0]) text("RPi CM3"); }
         color("green",.3) translate([550,-260,-1]) cube([55,10,1]);
 
+        translate([550,-300,0]) sbc("rpipico");
+        linear_extrude(height = 2) { translate([550,-320,0]) text("RPi Pico"); }
+        color("green",.3) translate([550,-320,-1]) cube([52,10,1]);
+
+        translate([550,-360,0]) sbc("rpipicow");
+        linear_extrude(height = 2) { translate([550,-380,0]) text("RPi Pico W"); }
+        color("green",.3) translate([550,-380,-1]) cube([70,10,1]);
+
         translate([535,0,0]) sbc("rpi5");
         linear_extrude(height = 2) { translate([550,-20,0]) text("RPi 5"); }
         color("green",.3) translate([550,-20,-1]) cube([35,10,1]);
@@ -742,9 +750,6 @@ if(view == "All SBC Models") {
         linear_extrude(height = 2) {translate([1130,530,0]) text("Tritium H2+");}
         color("yellow",.5) translate([1130,530,-1]) cube([72,10,1]);
 
-
-
-
         translate ([1230,0,0]) sbc("jetsonnano");
         linear_extrude(height = 2) {translate([1240,-20,0]) text("Jetson Nano");}
         color("green",.5) translate([1240,-20,-1]) cube([76,10,1]);
@@ -760,5 +765,11 @@ if(view == "All SBC Models") {
         translate ([1565,0,0]) sbc("atomicpi");
         linear_extrude(height = 2) {translate([1600,-20,0]) text("AtomicPi");}
         color("green",.5) translate([1598,-20,-1]) cube([56,10,1]);
+
+        translate ([1730,0,0]) sbc("rak19007");
+        linear_extrude(height = 2) {translate([1730,-20,0]) text("WiseBlock");}
+        color("green",.5) translate([1728,-20,-1]) cube([63,10,1]);
+        linear_extrude(height = 2) {translate([1740,-40,0]) text("19007");}
+        color("green",.5) translate([1738,-40,-1]) cube([40,10,1]);
     }
 }

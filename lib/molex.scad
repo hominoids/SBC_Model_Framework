@@ -21,7 +21,7 @@
 
           USAGE: molex(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "7478"
+                       type = "7478","5046"
                        size[0] = #pins
                        data[0] = "thruhole", "smt"
                        data[1] = "top", "side"
@@ -47,23 +47,24 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     mstyle = mask[3];
 
 /*
-                                                                   p    p
-                                                                   i    i
-                                                                   n    n
+                                                                   p     p
+                                                                   i     i
+                                                                   n     n
                                                                 
-                                                                   b    t        p   p
-                                                 w                 o    o        i   i
-                                b                a     p     p     t    p    p   n   n
-                                o                l     i     i               i    
-                                d      s     s   l     n     n     h    h    n   o   r
-                           p    y      i     i                     e    e        f   a
-                   t       i           z     z   s     x     y     i    i    s   f   d
-                   y       t    a      e     e   i     a     a     g    g    i   s   i
-                   p       c    d                z     d     d     h    h    z   e   u
-                   e       h    j      y     z   e     j     j     t    t    e   t   s
+                                                                   b     t        p   p
+                                                 w                 o     o        i   i
+                                b                a     p     p     t     p    p   n   n
+                                o                l     i     i                i    
+                                d      s     s   l     n     n     h     h    n   o   r
+                           p    y      i     i                     e     e        f   a
+                   t       i           z     z   s     x     y     i     i    s   f   d
+                   y       t    a      e     e   i     a     a     g     g    i   s   i
+                   p       c    d                z     d     d     h     h    z   e   u
+                   e       h    j      y     z   e     j     j     t     t    e   t   s
 */
     molex_data = [
-                 ["7478", 2.54, 0,   6.5,  3.18, 0,    0, 3.25,  3.4, 9.25, .64, 3, 1.17]
+                 ["7478", 2.54, 0,   6.5,  3.18, 0,    0, 3.25,  3.4,  9.25, .64, 3, 1.17, 0],
+                 ["5046", 2.54, 0,   6.5,  3.18, 0,    0, 0.64,  6.25, 5.75, .64, 2, 1.17, 2.62]
                  ];
 
     adj = .01;
@@ -84,6 +85,7 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     pinsize = molex_data[s[0]][10];
     pinoffset = molex_data[s[0]][11];
     pinradius = molex_data[s[0]][12];
+    pinbhadj = molex_data[s[0]][13];
     smtlead = [pinsize,.925,.32];
 
 
@@ -172,8 +174,15 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                         color(bcolor) translate([pitch/4, -size_z-4.5, size_y-1]) rotate([0, 90, 0]) 
                             cylinder(d=2, h=size_x-pitch/2);
                     }
+                    if(type == "5046") {
+                        color(bcolor) translate([pitch/4,-size_z-5.5,size_y-3.5]) cube([size_x-pitch/2, size_z+5.5, 1]);
+                        color(bcolor) translate([pitch/4, -size_z-1.5, size_y-2.5]) rotate([0, 90, 0]) 
+                            cylinder(d=2, h=size_x-pitch/2);
+                        color(bcolor) translate([0,size_z,0]) cube([.75,3,3]);
+                        color(bcolor) translate([size_x-.75,size_z,0]) cube([.75,3,3]);
+                    }
                 }
-                if(type == "7478") {
+                if(type == "7478" || type == "5046") {
                     for(r=[pitch/2-(pinsize/2)-.5:pitch:size_x]) {
                         color(bcolor) translate([r, -1,-1]) cube([1.5, size_y+2, 1.5]);
                     }
@@ -181,12 +190,22 @@ module molex(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             }
             if(style == "thruhole") {
                 for(r=[pitch/2-(pinsize/2):pitch:size_x]) {
-                    color("silver") translate([r, -ptheight+adj, size_y-(pin_yadj+(pinsize/2))])
-                        cube([pinsize, ptheight+size_z+pinsize+pinsize/2, pinsize]);
-                    color("silver") translate([r, size_z+pinoffset-pinsize/2, -pbheight+adj])
-                        cube([pinsize, pinsize, pbheight+pinsize+pinsize/2]);
-                    rotate([0,270,0]) translate([pinsize+(pinsize/2.23), size_z+pinsize, r-size_x]) color("silver")
-                        rotate_extrude(angle=90, convexity = 10) translate([2, 0, 0]) square([pinsize, pinsize]);
+                    if(type == "7478") {
+                        color("silver") translate([r, -ptheight+adj, size_y-(pin_yadj+(pinsize/2))])
+                            cube([pinsize, ptheight+size_z+pinsize+pinsize/2, pinsize]);
+                        color("silver") translate([r, size_z+pinoffset-pinsize/2, -pbheight+adj+pinbhadj])
+                            cube([pinsize, pinsize, pbheight+pinsize+pinsize/2]);
+                        rotate([0,270,0]) translate([pinsize+(pinsize/2)+pinbhadj-(3*adj), size_z+pinsize+.04, r-size_x]) color("silver")
+                                rotate_extrude(angle=90, convexity = 10) translate([2, 0, 0]) square([pinsize, pinsize]);
+                    }
+                    if(type == "5046") {
+                        color("silver") translate([r, -ptheight+adj-3, size_y-(pin_yadj+(pinsize/2))])
+                            cube([pinsize, ptheight+size_z+pinsize+pinsize/2, pinsize]);
+                        color("silver") translate([r, size_z+pinoffset-pinsize/2, -pbheight+adj+pinbhadj])
+                            cube([pinsize, pinsize, pbheight+pinsize+pinsize/2]);
+                        rotate([0,270,0]) translate([pinsize+(pinsize/2)+pinbhadj-(3*adj), size_z+pinsize+.04-1, r-size_x]) color("silver")
+                                rotate_extrude(angle=90, convexity = 10) translate([2, 0, 0]) square([pinsize, pinsize]);
+                    }
                 }
             }
             if(style == "smt") {

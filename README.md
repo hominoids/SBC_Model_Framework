@@ -7,11 +7,11 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc.png)
 
-###    Total Devices: 81
+###    Total Devices: 84
 ###              SBC: 69
 ###   Carrier Boards:  3
 ###  Compute Modules:  8
-### Micro Controllers: 1
+### Micro Controllers: 4
 
 ## Using the Framework
 
@@ -25,7 +25,7 @@ sbc("rpi5");
 
                      model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
                              "m1","m1s","h2","h2+","h3","h3+","show2",
-                             "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+                             "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
                              "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
                              "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
                              "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
@@ -37,6 +37,7 @@ sbc("rpi5");
                              "licheerv+dock",
                              "visionfive2",
                              "atomicpi"
+                             "rak19007"
             enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                              "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
                    fansize = 0, 30, 40, 50, 60, 70, 80, 92
@@ -176,9 +177,13 @@ star64 - yellow, unverified mostlikely usable and/or missing minor information.
 a64 - red, unverified, not usable due to incomplete component data.
 
 
-### Raspberry Pi: 11
+### Raspberry Pi: 13
 
 All created from mechanical drawings and or 3D models except rpi3b+ which was contributed. The SOC data is missing for these SBC.
+
+rpipico - green, verified
+
+rpipicow - green, verified
 
 rpicm4+ioboard - YELLOW, unverified mostlikely usable and/or missing minor information.
 
@@ -311,7 +316,7 @@ atomicpi - YELLOW, unverified mostlikely usable and/or missing minor information
 
 ### RAK WisBlock: 1
 
-rak19007 - YELLOW, unverified mostlikely usable and/or missing minor information.
+rak19007 - GREEN, verified.
 
 
 License: GPLv3.

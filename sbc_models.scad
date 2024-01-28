@@ -27,7 +27,7 @@
 
                      model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
                              "m1","m1s","h2","h2+","h3","h3+","show2",
-                             "rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+                             "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
                              "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
                              "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
                              "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
@@ -39,6 +39,7 @@
                              "licheerv+dock",
                              "visionfive2",
                              "atomicpi"
+                             "rak19007"
             enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                              "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
                    fansize = 0, 30, 40, 50, 60, 70, 80, 92
@@ -334,17 +335,17 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                         class = sbc_data[s[0]][i];
                         type = sbc_data[s[0]][i+1];
                         id = sbc_data[s[0]][i+2];
-                        gpio_x = sbc_data[s[0]][i+3];
-                        gpio_y = sbc_data[s[0]][i+4];
-                        gpio_z = sbc_data[s[0]][i+5];
-                        gpio_side = sbc_data[s[0]][i+6];
-                        gpio_rotation = sbc_data[s[0]][i+7];
-                        gpio_size = sbc_data[s[0]][i+8];
+                        add_x = sbc_data[s[0]][i+3];
+                        add_y = sbc_data[s[0]][i+4];
+                        add_z = sbc_data[s[0]][i+5];
+                        add_side = sbc_data[s[0]][i+6];
+                        add_rotation = sbc_data[s[0]][i+7];
+                        add_size = sbc_data[s[0]][i+8];
 
 
                         if(class == "gpio" && id == pcb_id) {
-                            pcbpad("round", gpio_x+2.54/2, gpio_y+2.54/2, gpio_z, gpio_side, gpio_rotation[2], 
-                                gpio_size, ["thruhole","#fee5a6",2.1], pcbsize_z, false, 0);
+                            pcbpad("round", add_x+2.54/2, add_y+2.54/2, add_z, add_side, add_rotation[2], 
+                                add_size, [1.27,"#fee5a6",2.1], pcbsize_z, false, 0);
                         }
                     }
 
@@ -371,7 +372,7 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             if (class == "audio") {
                                 audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
-                           if (class == "b2b") {
+                            if (class == "b2b") {
                                 b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
                             if (class == "battery") {
@@ -398,10 +399,10 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             if (class == "fpc") {
                                 fpc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
-                           if (class == "gpio" && enablegpio != "disable" && enablegpio != "off") {
+                            if (class == "gpio" && enablegpio != "disable" && enablegpio != "off") {
                                 gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
-                           if (class == "header") {
+                            if (class == "header") {
                                 header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
                             if (class == "heatsink" && enableheatsink != "disable" && enableheatsink != "off") {
@@ -457,7 +458,7 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             }
                             if (class == "usb3") {
                                 usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
-                           }
+                            }
                             if (class == "usbc") {
                                 usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
