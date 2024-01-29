@@ -51,9 +51,9 @@ pcbsize_x = sbc_data[s[0]][10][0];
 pcbsize_y = sbc_data[s[0]][10][1];
 pcbsize_z = sbc_data[s[0]][10][2];
 pcbmaxsize_z = sbc_data[s[0]][11][5];
-text_offset = 10;
-text_height = pcbmaxsize_z + 175;
-text_indent = [0,-37,4.5,0,-24,-11,4,4.5,-16,-16.5,-2.5,-9.5,-11,-3.5,-15,3,4,1,3,11,0,-8,-11.5,-2,-8];
+text_offset = 15;
+text_height = pcbmaxsize_z + (len(sbc_data[s[0]][1]) * 7);
+text_indent = [0,-37,4.5,0,-24,-11,4,4.5,4.5,3.5,-16,-16.5,-2.5,-9.5,-11,-3.5,-15,3,4,1,3,11,0,-15.5,-8,-11.5,-2,-8];
 text_color = "#009900";
 
 adj = .01;
