@@ -35,7 +35,7 @@
                          size[0] = hole diameter
                          data[0] = style
                          data[1] = hole color
-                         data[2] = shape
+                         data[2] = sidewall support("none","left","right","rear","front")
                          data[3] = trace diameter
 
     DESCRIPTION: creates soc components
@@ -88,7 +88,7 @@ module pcbhole(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
         size_y = size[0];
         style = data[0];
         hcolor = data[1];
-        shape = data[2];
+        support = data[2];
         pad_size = data[3];
         hole_position = data[4];
 

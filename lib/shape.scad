@@ -157,12 +157,12 @@ module knockout(width,depth,gap,thick,fillet,shape) {
     if(shape == "slot") {
         difference() {
             slot(depth, width, thick);
-            translate([0, 0, -adj]) slot(depth-gap, width, thick+(2*adj));
+            translate([gap/2, 0, -adj]) slot(depth-gap, width-gap, thick+(2*adj));
             // cross ties    
-            translate([-1, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
+            translate([(depth/2), -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
             translate([(width/2)-1-(width/4)+4, -(depth/2)-1, -adj]) cube([2,depth+2, thick+(2*adj)]);
             translate([(width/2)-1+(width/4)-4, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
-            translate([width-1, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
+            translate([width-(depth/2)-2, -(depth/2)-1, -adj]) cube([2, depth+2, thick+(2*adj)]);
             }
         }
     if(shape == "rectangle") {
