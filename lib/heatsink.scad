@@ -16,6 +16,7 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: heatsink
     DESCRIPTION: creates heatsinks
            TODO: replace stl mesh heatsinks, custom dxf positioning
 
@@ -26,13 +27,18 @@
                                  "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
                                  "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub",
                                  "pine64_active_10", "pine64_passive_20", pine64_passive_30"
+                         loc_x = x location placement
+                         loc_y = y location placement
+                         loc_z = z location placement
+                          side = "top", "bottom"
+                    rotation[] = object rotation
                        data[0] = fan size
-                       enablemask = true produces mask, false produces model
-                       mask[0] = true enables component mask
-                       mask[1] = mask length
-                       mask[2] = mask setback
-                       mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", custom,
-                                            "m1", "n2", "n2+"
+                     pcbsize_z = pcb thickness
+                    enablemask = true produces mask, false produces model
+                       mask[0] = component mask true, false
+                       mask[1] = length
+                       mask[2] = set back
+                       mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", "custom", "m1", "n2", "n2+"
 
     DESCRIPTION: creates heatsink masks for openings
            TODO: 

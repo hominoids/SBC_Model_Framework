@@ -34,7 +34,7 @@
                              "vim1","vim2","vim3l","vim3","vim4",
                              "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
                              "opi5","opizero","opizero2","opir1plus_lts","opir1",
-                             "lepotato","sweetpotate","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
+                             "lepotato","sweetpotato","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
                              "jetsonnano",
                              "licheerv+dock",
                              "visionfive2",

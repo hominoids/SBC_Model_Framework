@@ -16,17 +16,24 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: display
     DESCRIPTION: creates flat panel displays
            TODO: 
 
           USAGE: display(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                         type = "lcd_2.2"
-                         enablemask = true produces mask, false produces model
-                         mask[0] = true enables component mask
-                         mask[1] = mask length
-                         mask[2] = mask setback
-                         mask[3] = mstyle "default"
+                         type = "lcd_2.2", "mipi_csi", "mipi_dsi"
+                        loc_x = x location placement
+                        loc_y = y location placement
+                        loc_z = z location placement
+                         side = "top", "bottom"
+                   rotation[] = object rotation
+                    pcbsize_z = pcb thickness
+                   enablemask = true produces mask, false produces model
+                      mask[0] = component mask true, false
+                      mask[1] = mask length
+                      mask[2] = mask setback
+                      mask[3] = mstyle "default"
 
 */
 
@@ -68,6 +75,53 @@ module display(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
                     }
                     color("dimgrey") translate([4.25, .9, 3.35]) cube([45, 34, .25]);
                 }
+        }
+    }
+    // mipi csi port
+    if(type=="mipi_csi" && enablemask == false) {
+        size_x = 21;
+        size_y = 3;
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {
+            difference() {
+                color("white") cube([size_x, size_y, 5]);
+                color("white") translate([-1, -1, 3.5]) cube([23, 3.5, 5]);
+                color("white") translate([-1, -1, 3.5]) cube([3, 5, 5]);
+                color("white") translate([19, -1, 3.5]) cube([3, 5, 5]);
+            }
+            difference() {
+                color("black") translate([-1, 0, 3.5]) cube([23, 3.5, 1]);
+                color("dimgrey") translate([2, 2.9, 3.49]) cube([17, 3, 2]);
+            }
+        }
+    }
+    // mipi csi port
+    if(type=="mipi_csi_90" && enablemask == false) {
+        size_x = 21;
+        size_y = 3;
+        place(loc_x, loc_y-3, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        rotate([90, 0, 0])
+        union() {
+            difference() {
+                color("white") cube([size_x, size_y, 5]);
+                color("white") translate([-1, -1, 3.5]) cube([23, 3.5, 5]);
+                color("white") translate([-1, -1, 3.5]) cube([3, 5, 5]);
+                color("white") translate([19, -1, 3.5]) cube([3, 5, 5]);
+            }
+            difference() {
+                color("black") translate([-1, 0, 3.5]) cube([23, 3.5 ,1]);
+                color("dimgrey") translate([2, 2.9, 3.49]) cube([17, 3, 2]);
+            }
+        }
+    }
+    // mipi dsi port
+    if(type=="mipi_dsi" && enablemask == false) {
+        size_x = 10;
+        size_y = 3;
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        union() {
+            color("black") cube([size_x, 1.5, 2]);
+            color("saddlebrown") translate([0, 1.5, 0]) cube([size_x, 1.5, 2]);
         }
     }
 }

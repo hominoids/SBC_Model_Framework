@@ -16,17 +16,24 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: uart
     DESCRIPTION: creates uart ports.
            TODO:
 
           USAGE: uart(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                       type = "molex_5267", "molex_5268" 
-                      enablemask = true produces mask, false produces model
-                      mask[0] = true enables component mask
-                      mask[1] = mask length
-                      mask[2] = mask setback
-                      mask[3] = mstyle "none", "open", "knockout"
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                 pcbsize_z = pcb thickness
+                enablemask = true produces mask, false produces model
+                   mask[0] = true enables component mask
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "none", "open", "knockout"
 
 */
 

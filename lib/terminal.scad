@@ -16,22 +16,29 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: terminal
     DESCRIPTION: creates terminal blocks
            TODO: add other styles
 
           USAGE: terminal(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
 
                           type = "gtb"
-                          size[0] = #positions
-                          size[1] = body depth
-                          size[2] = height
-                          data[0] = pitch
-                          data[1] = body color
-                          enablemask = true produces mask, false produces model
-                          mask[0] = true enables component mask
-                          mask[1] = mask length
-                          mask[2] = mask setback
-                          mask[3] = mstyle "default"
+                         loc_x = x location placement
+                         loc_y = y location placement
+                         loc_z = z location placement
+                          side = "top", "bottom"
+                    rotation[] = object rotation
+                       size[0] = #positions
+                       size[1] = body depth
+                       size[2] = height
+                       data[0] = pitch
+                       data[1] = body color
+                     pcbsize_z = pcb thickness
+                    enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "default"
 
 */
 

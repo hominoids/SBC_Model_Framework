@@ -15,26 +15,57 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
+    cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
+    cm_holder(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
 
-    DESCRIPTION: creates compute modules
-           TODO: CM1,CM3 SOC data
+*/
+
+/*
+
+     CLASS NAME: cm
+    DESCRIPTION: creates compute modules as library components
+           TODO: CM1,CM3,CM4S SOC location
 
           USAGE: cm(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                     type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","jetsonnano"
-                    data[0] = pcb color
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 data[0] = cm pcb color
+               pcbsize_z = pcb thickness
+              enablemask = true produces mask, false produces model
+                 mask[0] = true enables component mask
+                 mask[1] = mask length
+                 mask[2] = mask setback
+                 mask[3] = mstyle "default"
 
+
+     CLASS NAME: cm_holder
     DESCRIPTION: creates compute module holder
-           TODO:
+           TODO: "cm1","cm3","cm3l","cm4s"
 
           USAGE: cm_holder(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                           type = "jetsonnano","cm1","cm3","cm3l","cm4"
+                           type = "jetsonnano"
+                          loc_x = x location placement
+                          loc_y = y location placement
+                          loc_z = z location placement
+                           side = "top", "bottom"
+                     rotation[] = object rotation
+                        data[0] = cm pcb color
+                      pcbsize_z = pcb thickness
+                     enablemask = true produces mask, false produces model
+                        mask[0] = true enables component mask
+                        mask[1] = mask length
+                        mask[2] = mask setback
+                        mask[3] = mstyle "default"
 
 
 */
 
-// compute module class
 module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     $fn=90;
@@ -107,7 +138,6 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
         }
     }
 
-    // jetson nano
     if(type == "jetsonnano") {
         size_x = 70;
         size_y = 45;
@@ -171,7 +201,7 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
 }
 
 
-// compute module holder
+
 module cm_holder(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     // jetson nano

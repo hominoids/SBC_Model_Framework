@@ -16,16 +16,28 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: ic
     DESCRIPTION: creates intergrated circuits
            TODO: 
 
           USAGE: ic(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                     type = "generic"
-                    size[0] = size_x
-                    size[1] = size_y
-                    size[2] = size_z
-                    data[0] = icolor
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 size[0] = size_x
+                 size[1] = size_y
+                 size[2] = size_z
+                 data[0] = icolor
+               pcbsize_z = pcb thickness
+              enablemask = true produces mask, false produces model
+                 mask[0] = true, false
+                 mask[1] = length
+                 mask[2] = set back
+                 mask[3] = mstyle "default"
 
 */
 

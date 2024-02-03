@@ -16,6 +16,7 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: network
     DESCRIPTION: creates network components
            TODO: 
 
@@ -23,11 +24,17 @@
 
                          type = "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
                                 "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
-                         enablemask = true produces mask, false produces model
-                         mask[0] = true enables component mask
-                         mask[1] = mask length
-                         mask[2] = mask setback
-                         mask[3] = mstyle "default"
+                        loc_x = x location placement
+                        loc_y = y location placement
+                        loc_z = z location placement
+                         side = "top", "bottom"
+                   rotation[] = object rotation
+                    pcbsize_z = pcb thickness
+                   enablemask = true produces mask, false produces model
+                      mask[0] = true enables component mask
+                      mask[1] = mask length
+                      mask[2] = mask setback
+                      mask[3] = mstyle "default"
 
 */
 

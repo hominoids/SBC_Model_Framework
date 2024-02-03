@@ -15,7 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    20240124 Version 1.0.0  SBC Models Viewer initial release
+    20240204 Version 1.0.0  SBC Models Viewer initial release
 
     see https://github.com/hominoids/SBC_Model_Framework
 
@@ -42,7 +42,7 @@ gpio_mask = "default"; // ["disable", "off", "default", "none", "open", "block",
 uart_mask = "default"; // ["default", "none", "open", "knockout"]
 
 /* [Components] */
-Class = "jst"; // [antenna,audio,b2b,battery,button,cm,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbhole,pcbadd,pcbsub,pcbsoc,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
+Class = "b2b"; // [antenna,audio,b2b,battery,button,cm,cm_holder,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
 
 /* [Hidden] */
 s = search([sbc_model], sbc_data);
@@ -51,10 +51,18 @@ pcbsize_x = sbc_data[s[0]][10][0];
 pcbsize_y = sbc_data[s[0]][10][1];
 pcbsize_z = sbc_data[s[0]][10][2];
 pcbmaxsize_z = sbc_data[s[0]][11][5];
-text_offset = 15;
+
+text_offset = 25;
 text_height = pcbmaxsize_z + (len(sbc_data[s[0]][1]) * 7);
-text_indent = [0,-37,4.5,0,-24,-11,4,4.5,4.5,3.5,-16,-16.5,-2.5,-9.5,-11,-3.5,-15,3,4,1,3,11,0,-15.5,-8,-11.5,-2,-8];
+text_indent = [0,-32.5,4,0,-20.5,-8,4,4,4,4,-12,-16,-4,-12.5,-8,-4,-12,0,4,0,4,8,-.5,-12.5,-4.5,-8.5,0,-8];
 text_color = "#009900";
+
+text_font = "Nimbus Mono PS:style=Regular";
+//text_font = "Liberation Mono:style=Regular";
+//text_font = "Noto Sans Mono:style=Regular";
+
+ctext_offset = 15;
+ctext_height = 130;
 
 adj = .01;
 $fn=90;
@@ -87,7 +95,7 @@ if(view == "3D Model") {
     if(sbc_info == true) {
         for (i=[0:1:len(sbc_data[s[0]][1])-1]) {
                 color(text_color) translate([text_offset + text_indent[i], pcbsize_y, text_height-i*7]) 
-                    rotate([90, 0, 0]) text(sbc_data[s[0]][1][i], 5);
+                    rotate([90, 0, 0]) text(str(sbc_data[s[0]][1][i]), 5,  font = text_font);
         }
     }
     // sbc mask highlight
@@ -127,224 +135,1059 @@ if(view == "2D_Sections") {
 
 // view component classes
 if(view == "Components") {
-    antenna =  ["ipex"];
-    audio =    ["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"];
-    b2b =      ["df40"];
-    battery =  ["bat_hold_1", "rtc_micro"];
-    button =   ["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"];
-    cm =       ["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"];
-    discrete = ["ir_1", "ir_dual", "capacitor", "led"];
-    display =  ["lcd_2.2"];
-    fan =      ["fan_micro","encl_pmw","encl_pmw_h"];
-    fpc =      ["fh19", "fh12"];
-    gpio =     ["open", "encl_header_30", "encl_header_12"];
-    header =   ["open"];
-    heatsink = ["40mm_passive_10", "40mm_passive_25", "32mm_passive_10", "c1+_oem", "c2_oem", "40mm_active_10", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem", "n2_oem", "n2+_oem", "m1_oem", "h2_oem", "h3_oem", "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub", "pine64_active_10", "pine64_passive_20", "pine64_passive_30", "m1s_oem"];
-    ic =       ["generic"];
-    jst =      ["xh", "ph", "zh", "sh", "pa"];
-    memory =   ["emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"];
-    molex =    ["7478"];
-    network =  ["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"];
-
-    pcb =      ["round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"];
-    pcbhole =  ["round"];
-    pcbadd =   ["round", "slot", "rectangle", "polygon", "dxf"];
-    pcbsub =   ["round", "slot", "rectangle", "polygon", "dxf"];
-    pcbsoc =   ["flat", "raised", "mid-raised", "rk3399", "rk3588"];
-
-    pcie =     ["x1","x4"];
-    pillar =   ["hex", "round"];
-    power =    ["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"];
-    shape =    ["round","rectangle","slot","knockout"];   
-    smd =      ["led"];
-    storage =  ["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"];
-    switch =   ["slide_4x9"];
-    terminal = ["gtb"];
-    uart =     ["molex_5267", "molex_5268"];
-    usb2 =     ["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"];
-    usb3 =     ["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"];
-    usbc =     ["single_horizontal", "single_vertical"];
-    video =    ["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "mipi_csi", "mipi_dsi"];
+    antenna =  [["ipex"],[
+        " CLASS NAME: antenna",
+        "DESCRIPTION: creates antenna components",
+        "",
+        "      USAGE: antenna, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = ipex",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   mask[0] = component mask true, false",
+        "                   mask[1] = length",
+        "                   mask[2] = set back",
+        "                   mask[3] = mstyle default"
+        ]];
+    audio =    [["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"],[
+        " CLASS NAME: audio",
+        "DESCRIPTION: creates audio components",
+        "",
+        "      USAGE: audio, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                    type = audio_micro",
+        "                  pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 mask[0] = component mask true, false",
+        "                 mask[1] = length",
+        "                 mask[2] = set back",
+        "                 mask[3] = mstyle default",
+        "",
+        "                    type = jack_3.5",
+        "                  pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 size[0] = body size_x",
+        "                 size[1] = body size_y",
+        "                 size[2] = body size_z",
+        "                 data[0] = neck diameter",
+        "                 data[1] = z adjustment",
+        "                 mask[0] = component mask true, false",
+        "                 mask[1] = length",
+        "                 mask[2] = set back",
+        "                 mask[3] = mstyle default",
+        "",
+        "                    type = mic_round",
+        "                  pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 size[0] = body diameter",
+        "                 size[2] = body height",
+        "                 mask[0] = component mask true, false",
+        "                 mask[1] = length",
+        "                 mask[2] = set back",
+        "                 mask[3] = mstyle default",
+        "",
+        "                    type = out-in-spdif",
+        "                  pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 mask[0] = component mask true, false",
+        "                 mask[1] = length",
+        "                 mask[2] = set back",
+        "                 mask[3] = mstyle default",
+        ]];
+    b2b =      [["df40"],[
+        " CLASS NAME: b2b",
+        "DESCRIPTION: creates b2b headers in size, pitch and stacking height",
+        "",
+        "      USAGE: b2b, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                  type = df40",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               size[0] = #pins",
+        "               size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)",
+        "               data[0] = default",
+        "               data[1] = header color",
+        "               data[2] = male, female"    
+        ]];
+    battery =  [["bat_hold_1", "rtc_micro"],[
+        " CLASS NAME: battery",
+        "DESCRIPTION: creates batteries and support components",
+        "",
+        "      USAGE: battery, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = bat_hold_1, rtc_micro",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   mask[0] = true enables component mask",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
+        ]];
+    button =   [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"],[
+        " CLASS NAME: button",
+        "DESCRIPTION: creates buttons",
+        "",
+        "      USAGE: button, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = momentary_6x6x9, momentary_6x6x4, momentary_6x6x4_90, momentary_4x2x1_90,",
+        "                             momentary_4x2x1, momentary_7x3x3_90, momentary_4.5x3.5x2.5_90",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   mask[0] = true enables component mask",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
+        ]];
+    cm =       [["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"],[
+        " CLASS NAME: cm",
+        "DESCRIPTION: creates compute modules as library components",
+        "",
+        "      USAGE: cm, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                 type = cm1,cm3,cm3l,cm4s,cm4,cm4l,jetsonnano",
+        "               pcb_id = parent PCB",
+        "                loc_x = x location placement",
+        "                loc_y = y location placement",
+        "                loc_z = z location placement",
+        "                 side = top, bottom",
+        "           rotation[] = object rotation",
+        "              data[0] = cm pcb color",
+        "              mask[0] = true enables component mask",
+        "              mask[1] = mask length",
+        "              mask[2] = mask setback",
+        "              mask[3] = mstyle default"
+        ]];
+    cm_holder = [["jetsonnano"],[
+        " CLASS NAME: cm_holder",
+        "DESCRIPTION: creates compute module holder",
+        "",
+        "      USAGE: cm_holder(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])",
+        "",
+        "                       type = jetsonnano,cm1,cm3,cm3l,cm4s",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    data[0] = cm pcb color",
+        "                  pcbsize_z = pcb thickness",
+        "                 enablemask = true produces mask, false produces model",
+        "                    mask[0] = true enables component mask",
+        "                    mask[1] = mask length",
+        "                    mask[2] = mask setback",
+        "                    mask[3] = mstyle default"
+        ]];
+    discrete = [["ir_1", "ir_dual", "capacitor", "led"],[
+        " CLASS NAME: discrete",
+        "DESCRIPTION: creates discrete components",
+        "",
+        "      USAGE: discrete, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                       type = ir_dual,",
+        "                     pcb_id = parent PCB",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    mask[0] = true enables component mask",
+        "                    mask[1] = mask length",
+        "                    mask[2] = mask setback",
+        "                    mask[3] = mstyle default",
+        "",
+        "                       type = ir_1",
+        "                     pcb_id = parent PCB",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    size[2] = height",
+        "                    mask[0] = true enables component mask",
+        "                    mask[1] = mask length",
+        "                    mask[2] = mask setback",
+        "                    mask[3] = mstyle default",
+        "",
+        "                       type = capacitor",
+        "                     pcb_id = parent PCB",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    size[0] = diameter",
+        "                    size[2] = height",
+        "",
+        "                       type = led",
+        "                     pcb_id = parent PCB",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    size[0] = diameter",
+        "                    size[2] = height",
+        "                    data[0] = style default",
+        "                    data[1] = led color"
+        ]];
+    display =  [["lcd_2.2", "mipi_csi", "mipi_dsi"],[
+        " CLASS NAME: display",
+        "DESCRIPTION: creates flat panel displays",
+        "",
+        "      USAGE: display, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = lcd_2.2, mipi_csi, mipi_dsi",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   mask[0] = component mask true, false",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
+        ]];
+    fan =      [["fan_micro","encl_pmw","encl_pmw_h"],[
+        " CLASS NAME: fan",
+        "DESCRIPTION: creates fan support components",
+        "",
+        "      USAGE: fan, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                  type = fan_micro, encl_pmw, encl_pmw_h",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               mask[0] = component mask true, false",
+        "               mask[1] = mask length",
+        "               mask[2] = mask setback",
+        "               mask[3] = mstyle default"
+        ]];
+    fpc =      [["fh19", "fh12"],[
+        " CLASS NAME: fpc",
+        "DESCRIPTION: creates fpc connectors",
+        "",
+        "      USAGE: fpc, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                  type = fh19",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               size[0] = #pins",
+        "               data[0] = smt",
+        "               data[1] = side",
+        "               data[2] = body color",
+        "               data[3] = tab color",
+        "               mask[0] = true enables component mask",
+        "               mask[1] = mask length",
+        "               mask[2] = mask setback",
+        "               mask[3] = mstyle default",
+        "",
+        "                  type = fh12",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               size[0] = #pins",
+        "               data[0] = smt",
+        "               data[1] = top",
+        "               data[2] = body color",
+        "               data[3] = tab color",
+        "               mask[0] = true enables component mask",
+        "               mask[1] = mask length",
+        "               mask[2] = mask setback",
+        "               mask[3] = mstyle default"
+        ]];
+    gpio =     [["open", "encl_header_30", "encl_header_12"],[
+        " CLASS NAME: gpio",
+        "DESCRIPTION: creates gpio headers",
+        "",
+        "      USAGE: gpio, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                   type = open",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                size[0] = #row",
+        "                size[1] = #columns",
+        "                size[2] = pin height",
+        "                data[0] = style (straight)",
+        "                data[1] = header color",
+        "                data[2] = male, female",
+        "                data[3] = pitch",
+        "                data[4] = pin color",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle (none, open, block, knockout, vent)",
+        "",
+        "                   type = encl_header_30, encl_header_12",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle (none, open, block, knockout, vent)"
+        ]];
+    header =   [["open"],[
+        " CLASS NAME: header",
+        "DESCRIPTION: creates pin headers in any size or pitch",
+        "",
+        "      USAGE: header, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = open",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  size[0] = #row",
+        "                  size[1] = #columns",
+        "                  size[2] = pin height",
+        "                  data[0] = style (straight)",
+        "                  data[1] = header color",
+        "                  data[2] = male, female",
+        "                  data[3] = pitch",
+        "                  data[4] = pin color",
+        "                  mask[0] = component mask true, false",
+        "                  mask[1] = length",
+        "                  mask[2] = set back",
+        "                  mask[3] = mstyle (default)"
+        ]];
+    heatsink = [["40mm_passive_10", "40mm_passive_25", "32mm_passive_10", "c1+_oem", "c2_oem", "40mm_active_10", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem", "n2_oem", "n2+_oem", "m1_oem", "h2_oem", "h3_oem", "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub", "pine64_active_10", "pine64_passive_20", "pine64_passive_30", "m1s_oem"],[
+        " CLASS NAME: heatsink",
+        "DESCRIPTION: creates heatsinks",
+        "",
+        "      USAGE: heatsink, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                       type = 40mm_active_10, 40mm_passive_10, 40mm_passive_25, 32mm_passive_10,",
+        "                              c1+_oem, c2_oem, c4_oem, hc4_oem, xu4_oem, xu4q_oem, n1_oem, n2l_oem, n2lq_oem",
+        "                              n2_oem, n2+_oem, m1_oem, m1s_oem, h2_oem, h3_oem,",
+        "                              atomicpi, khadas_oem, khadas_fan_oem, radxa_oem, rpi5_oem, stub,",
+        "                              pine64_active_10, pine64_passive_20, pine64_passive_30",
+        "                     pcb_id = parent PCB",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    data[0] = fan size",
+        "                    mask[0] = component mask true, false",
+        "                    mask[1] = length",
+        "                    mask[2] = set back",
+        "                    mask[3] = mstyle (open, fan_open, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom)"
+        ]];
+    ic =       [["generic"],[
+        " CLASS NAME: ic",
+        "DESCRIPTION: creates intergrated circuits",
+        "",
+        "      USAGE: ic, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                 type = generic",
+        "               pcb_id = parent PCB",
+        "                loc_x = x location placement",
+        "                loc_y = y location placement",
+        "                loc_z = z location placement",
+        "                 side = top, bottom",
+        "           rotation[] = object rotation",
+        "              size[0] = size_x",
+        "              size[1] = size_y",
+        "              size[2] = size_z",
+        "              data[0] = icolor",
+        "              mask[0] = true, false",
+        "              mask[1] = length",
+        "              mask[2] = set back",
+        "              mask[3] = mstyle default"
+        ]];
+    jst =      [["xh", "ph", "zh", "sh", "pa"],[
+        " CLASS NAME: jst",
+        "DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa",
+        "",
+        "      USAGE: jst, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                  type = xh,ph,zh,sh,pa",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               size[0] = #pins",
+        "               data[0] = thruhole, smt",
+        "               data[1] = top, side",
+        "               data[2] = body color",
+        "               mask[0] = true, false",
+        "               mask[1] = length",
+        "               mask[2] = set back",
+        "               mask[3] = mstyle default"
+        ]];
+    memory =   [["emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"],[
+        " CLASS NAME: memory",
+        "DESCRIPTION: creates memory components",
+        "",
+        "      USAGE: memory, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = emmc, emmc_plug, sodimm_5.2, sodimm_9.2",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+        ]];
+    molex =    [["7478","5046"],[
+        " CLASS NAME: molex",
+        "DESCRIPTION: creates molex series connectors",
+        "",
+        "      USAGE: molex, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                    type = 7478,5046",
+        "                   pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 size[0] = #pins",
+        "                 data[0] = thruhole, smt",
+        "                 data[1] = top, side",
+        "                 mask[0] = true enables component mask",
+        "                 mask[1] = mask length",
+        "                 mask[2] = mask setback",
+        "                 mask[3] = mstyle default"
+        ]];
+    network =  [["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"],[
+        " CLASS NAME: network",
+        "DESCRIPTION: creates network components",
+        "",
+        "      USAGE: network, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = rj45_single, rj45_single_short, rj45_reverse_single, rj45_low_profile1,",
+        "                             rj45_low_profile2, rj45_double_stacked, rj45-usb2_double, rj45-usb3_double",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   mask[0] = true enables component mask",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
+        ]];
+    pcb =      [["round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"],[
+        " CLASS NAME: pcb",
+        "DESCRIPTION: creates pcb",
+        "",
+        "      USAGE: pcb, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                  type = rectangle, round, polygon, slot, dxf, cm1, cm3, cm4, nano",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               size[0] = x size",
+        "               size[1] = y size",
+        "               size[2] = z size",
+        "               data[0] = pcb corner radius",
+        "               data[1] = pcb color",
+        "               data[2] = polygon or dxf filename",
+        "               data[3] = dxf scale",
+        "               data[4] = top maximum component height",
+        "               data[5] = bottom maximum component height",
+        "               mask[0] = true enables component mask",
+        "               mask[1] = mask length",
+        "               mask[2] = mask setback",
+        "               mask[3] = mstyle default"
+        ]];
+    pcbsoc =   [["flat", "raised", "mid-raised", "rk3399", "rk3588"],[
+        " CLASS NAME: pcbsoc",
+        "DESCRIPTION: creates soc components",
+        "",
+        "      USAGE: pcbsoc, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = flat, raised, mid-raised, rk3399, rk3588",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  size[0] = size_x",
+        "                  size[1] = size_y",
+        "                  size[2] = size_z",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+        ]];
+    pcie =     [["x1","x4"],[
+        " CLASS NAME: pcie",
+        "DESCRIPTION: creates pcie components",
+        "",
+        "      USAGE: pcie, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                   type = x1, x4",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle default"
+        ]];
+    pillar =   [["hex", "round"],[
+        " CLASS NAME: pillar",
+        "DESCRIPTION: creates pillars",
+        "",
+        "      USAGE: pillar, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = hex, round",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  size[0] = outside dia",
+        "                  size[1] = inside dia",
+        "                  size[2] = height",
+        "                  data[1] = body color",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+]];
+    power =    [["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"],[
+        " CLASS NAME: power",
+        "DESCRIPTION: creates power delivery related components",
+        "",
+        "      USAGE: power, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                    type = pwr2.5_5x7.5, pwr5.5_7.5x11.5, pwr5.5_10x10, pwr5.5_9.5x7, pj-202ah,",
+        "                           molex_4x1, small_encl_satapwr",
+        "                  pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 mask[0] = true enables component mask",
+        "                 mask[1] = mask length",
+        "                 mask[2] = mask setback",
+        "                 mask[3] = mstyle default"
+        ]];
+    smd =      [["led"],[
+        " CLASS NAME: smd",
+        "DESCRIPTION: creates smd components",
+        "",
+        "      USAGE: smd, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                  type = led",
+        "                pcb_id = parent PCB",
+        "                 loc_x = x location placement",
+        "                 loc_y = y location placement",
+        "                 loc_z = z location placement",
+        "                  side = top, bottom",
+        "            rotation[] = object rotation",
+        "               size[0] = size_x",
+        "               size[1] = size_y",
+        "               size[2] = size_z",
+        "               data[0] = body color",
+        "               mask[0] = true enables component mask",
+        "               mask[1] = mask length",
+        "               mask[2] = mask setback",
+        "               mask[3] = mstyle default"
+        ]];
+    storage =  [["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"],[
+        " CLASS NAME: storage",
+        "DESCRIPTION: creates storage components",
+        "",
+        "      USAGE: storage, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = microsdcard, microsdcard2, microsdcard3, microsdcard3_i, sata_header,",
+        "                             sata_power_vrec, sata_encl_power, m.2_header, m.2_stud",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   mask[0] = true enables component mask",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
+        ]];
+    switch =   [["slide_4x9"],[
+        " CLASS NAME: switch",
+        "DESCRIPTION: creates switches",
+        "",
+        "      USAGE: switch, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = slide_4x9",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+        ]];
+    terminal = [["gtb"],[
+        " CLASS NAME: terminal",
+        "DESCRIPTION: creates terminal blocks",
+        "",
+        "      USAGE: terminal, type, pcb_id, loc_x, loc_y, loc_z, side, rotation, size, data, mask",
+        "",
+        "                       type = gtb",
+        "                     pcb_id = parent PCB",
+        "                      loc_x = x location placement",
+        "                      loc_y = y location placement",
+        "                      loc_z = z location placement",
+        "                       side = top, bottom",
+        "                 rotation[] = object rotation",
+        "                    size[0] = #positions",
+        "                    size[1] = body depth",
+        "                    size[2] = height",
+        "                    data[0] = pitch",
+        "                    data[1] = body color",
+        "                    mask[0] = true enables component mask",
+        "                    mask[1] = mask length",
+        "                    mask[2] = mask setback",
+        "                    mask[3] = mstyle default"
+        ]];
+    uart =     [["molex_5267", "molex_5268"],[
+        " CLASS NAME: uart",
+        "DESCRIPTION: creates uart ports",
+        "",
+        "      USAGE: uart, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                   type = molex_5267, molex_5268",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle (none, open, knockout)"
+        ]];
+    usb2 =     [["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"],[
+        " CLASS NAME: usb2",
+        "DESCRIPTION: creates usb2 ports",
+        "",
+        "      USAGE: usb2, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                   type = micro, double_stacked_a",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle default",
+        "",
+        "                   type = single_horizontal_a, single_vertical_a",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                size[1] = size_y",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle default"
+        ]];
+    usb3 =     [["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"],[
+        " CLASS NAME: usb3",
+        "DESCRIPTION: creates usb3 ports",
+        "",
+        "      USAGE: usb3, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                   type = single_horizontal_a, double_stacked_a, double_stacked_usb3-usbc",
+        "                          double_stacked_usb3-usb2",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle default",
+        "",
+        "                   type = single_vertical_a",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                size[1] = size_y",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle default"
+        ]];
+    usbc =     [["single_horizontal", "single_vertical"],[
+        " CLASS NAME: usbc",
+        "DESCRIPTION: creates usbc ports",
+        "",
+        "      USAGE: usbc, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                   type = single_horizontal_a, single_vertical_a",
+        "                 pcb_id = parent PCB",
+        "                  loc_x = x location placement",
+        "                  loc_y = y location placement",
+        "                  loc_z = z location placement",
+        "                   side = top, bottom",
+        "             rotation[] = object rotation",
+        "                mask[0] = true enables component mask",
+        "                mask[1] = mask length",
+        "                mask[2] = mask setback",
+        "                mask[3] = mstyle default"
+        ]];
+    video =    [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"],[
+        " CLASS NAME: video",
+        "DESCRIPTION: creates video connectors",
+        "",
+        "      USAGE: video, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                    type = hdmi_a, hdmi_a_vertical, dp-hdmi_a, hdmi_micro, hdmi_mini, dp_mini",
+        "                  pcb_id = parent PCB",
+        "                   loc_x = x location placement",
+        "                   loc_y = y location placement",
+        "                   loc_z = z location placement",
+        "                    side = top, bottom",
+        "              rotation[] = object rotation",
+        "                 mask[0] = true enables component mask",
+        "                 mask[1] = mask length",
+        "                 mask[2] = mask setback",
+        "                 mask[3] = mstyle default"
+        ]];
 
     if(Class =="antenna") {
-        for(i=[0:1:len(antenna)-1]) {
-            antenna(antenna[0], i*20, i*20, 0, "top", 0, [0,0,0], [0], 0, false, [0]);
-            color(text_color) translate([5+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(antenna[i]), direction="ltr");
+        for(i=[0:1:len(antenna[0])-1]) {
+            antenna(antenna[0][i], 130+(i*20), i*20, 0, "top", 0, [0,0,0], [0], 0, false, [0]);
+            color(text_color) translate([135+(i*20), i*20, 0]) 
+                text(str(antenna[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(antenna[1])-1]) {
+            color(text_color) translate([ctext_offset, 10, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(antenna[1][i], 5,  font = text_font);
         }
     }
     if(Class =="audio") {
-        for(i=[0:1:len(audio)-1]) {
-            audio(audio[i], i*20, i*20, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([15+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(audio[i]), direction="ltr");
+        for(i=[0:1:len(audio[0])-1]) {
+            audio(audio[0][i], 70+(i*20), i*20, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([85+i*20, i*20, 0]) 
+                text(str(audio[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(audio[1])-1]) {
+            color(text_color) translate([ctext_offset, 80, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(audio[1][i], 5,  font = text_font);
         }
     }
     if(Class =="b2b") {
-        for(i=[0:1:len(b2b)-1]) {
-            if(b2b[i] == "df40") {
+        for(i=[0:1:len(b2b[0])-1]) {
+            if(b2b[0][i] == "df40") {
                 for(c=[8:10:100]) {
-                    b2b(b2b[i], 0, c-8, 0, "top", 0, [c,0,1.5],["default","black", "male"], 
+                    b2b(b2b[0][i], 100, c-8, 0, "top", 0, [c,0,1.5],["default","black", "male"], 
                         0, false, [false,10,2,"default"]);
-                    b2b(b2b[i], 25, c-8, 0, "top", 0, [c,0,1.5],["default","black", "female"], 
+                    b2b(b2b[0][i], 135, c-8, 0, "top", 0, [c,0,1.5],["default","black", "female"], 
                         0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([0, -12, 0]) text(str(b2b[i]), direction="ltr");
+            color(text_color) translate([105, -12, 0]) text(str(b2b[0][i]), font = text_font, direction="ltr");
             }
+        }
+        for(i=[0:1:len(b2b[1])-1]) {
+            color(text_color) translate([ctext_offset, 100, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(b2b[1][i], 5,  font = text_font);
         }
     }
     if(Class =="battery") {
-        for(i=[0:1:len(battery)-1]) {
-            battery(battery[i], i*20, i*20, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([25+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(battery[i]), direction="ltr");
+        for(i=[0:1:len(battery[0])-1]) {
+            battery(battery[0][i], 75+(i*20), i*25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([108+(i*2), i*25, 0]) 
+                text(str(battery[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(battery[1])-1]) {
+            color(text_color) translate([ctext_offset, 50, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(battery[1][i], 5, font = text_font);
         }
     }
     if(Class =="button") {
-        for(i=[0:1:len(button)-1]) {
-            button(button[i], i*12, i*12, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([15+i*12, i*12, 0]) rotate([0, 0, 0]) text(str(button[i]), direction="ltr");
+        for(i=[0:1:len(button[0])-1]) {
+            button(button[0][i], 75+(i*12), i*15, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([90+(i*12), i*15, 0]) 
+                text(str(button[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(button[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(button[1][i], 5,  font = text_font);
         }
     }
     if(Class =="cm") {
-        for(i=[0:1:len(cm)-1]) {
-            cm(cm[i], 0, i*45, 0, "top", 0, [0,0,0],["#008066"], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([75, i*45, 0]) rotate([0, 0, 0]) text(str(cm[i]), direction="ltr");
+        for(i=[0:1:len(cm[0])-1]) {
+            cm(cm[0][i], 100, i*45, 0, "top", 0, [0,0,0],[0,"#008066"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([175, i*45, 0]) 
+                text(str(cm[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(cm[1])-1]) {
+            color(text_color) translate([ctext_offset, 330, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(cm[1][i], 5,  font = text_font);
+        }
+    }
+    if(Class =="cm_holder") {
+        for(i=[0:1:len(cm_holder[0])-1]) {
+            cm_holder(cm_holder[0][i], 100, i*45, 0, "top", 0, [0,0,0],["#008066"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([175, i*45, 0]) 
+                text(str(cm_holder[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(cm_holder[1])-1]) {
+            color(text_color) translate([ctext_offset, 60, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(cm_holder[1][i], 5,  font = text_font);
         }
     }
     if(Class =="discrete") {
-        for(i=[0:1:len(discrete)-1]) {
-            if(discrete[i] == "ir_1") {
+        for(i=[0:1:len(discrete[0])-1]) {
+            if(discrete[0][i] == "ir_1") {
                 for(c=[0:2:10]) {
-                    discrete(discrete[i], 8, c*8, 0, "top", 0, [0,0,c],[0], 0, false, [false,10,2,"default"]);
+                    discrete(discrete[0][i], 75, c*8, 0, "top", 0, [0,0,c],[0], 0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([0, -12, 0]) text(str(discrete[i]), direction="ltr");
+            color(text_color) translate([65, -12, 0]) text(str(discrete[0][i]), font = text_font, direction="ltr");
             }
-            if(discrete[i] == "ir_dual") {
-                discrete(discrete[i], 40, 0, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-                color(text_color) translate([28, -12, 0]) text(str(discrete[i]), direction="ltr");
+            if(discrete[0][i] == "ir_dual") {
+                discrete(discrete[0][i], 20, 0, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([3, -12, 0]) text(str(discrete[0][i]), font = text_font, direction="ltr");
             }
-            if(discrete[i] == "capacitor") {
+            if(discrete[0][i] == "capacitor") {
                 for(c=[0:2:10]) {
-                    discrete(discrete[i], 120, 5+(c*8), 0, "top", 0, [8,0,4+c],[0], 0, false, [false,10,2,"default"]);
+                    discrete(discrete[0][i], 160, 5+(c*8), 0, "top", 0, [8,0,4+c],[0], 0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([100, -12, 0]) text(str(discrete[i]), direction="ltr");
+            color(text_color) translate([160, -12, 0]) text(str(discrete[0][i]), font = text_font, direction="ltr");
             }
-            if(discrete[i] == "led") {
+            if(discrete[0][i] == "led") {
                 for(c=[0:2:10]) {
-                    discrete(discrete[i], 75, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","red"], 
+                    discrete(discrete[0][i], 105, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","red"], 
                         0, false, [false,10,2,"default"]);
-                    discrete(discrete[i], 85, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","green"], 
+                    discrete(discrete[0][i], 115, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","green"], 
                         0, false, [false,10,2,"default"]);
-                    discrete(discrete[i], 95, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","yellow"], 
+                    discrete(discrete[0][i], 125, 5+(c*8), 0, "top", 0, [5,0,4+c],["default","yellow"], 
                         0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([75, -12, 0]) text(str(discrete[i]), direction="ltr");
+            color(text_color) translate([105, -12, 0]) text(str(discrete[0][i]), font = text_font, direction="ltr");
             }
+        }
+        for(i=[0:1:len(discrete[1])-1]) {
+            color(text_color) translate([ctext_offset, 140, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(discrete[1][i], 5,  font = text_font);
         }
     }
     if(Class =="display") {
-        for(i=[0:1:len(display)-1]) {
-            display(display[i], 0, i*45, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([75, i*45, 0]) rotate([0, 0, 0]) text(str(display[i]), direction="ltr");
+        for(i=[0:1:len(display[0])-1]) {
+            display(display[0][i], 100, i*45, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([160, i*45, 0]) 
+                text(str(display[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(display[1])-1]) {
+            color(text_color) translate([ctext_offset, 130, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(display[1][i], 5,  font = text_font);
         }
     }
     if(Class =="fan") {
-        for(i=[0:1:len(fan)-1]) {
-            fan(fan[i], i*20, i*20, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([15+i*20, i*20, 0]) rotate([0, 0, 0]) text(str(fan[i]), direction="ltr");
+        for(i=[0:1:len(fan[0])-1]) {
+            fan(fan[0][i], 80+(i*20), i*20, 0, "top", 0, [6.5,10,4],[5,0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([95+(i*20), i*20, 0]) 
+                text(str(fan[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(fan[1])-1]) {
+            color(text_color) translate([ctext_offset, 80, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(fan[1][i], 5,  font = text_font);
         }
     }
     if(Class =="fpc") {
-        for(i=[0:1:len(fpc)-1]) {
-            if(fpc[i] == "fh19") {
+        for(i=[0:1:len(fpc[0])-1]) {
+            if(fpc[0][i] == "fh19") {
                 for(c=[8:4:28]) {
-                    fpc(fpc[i], 0, c-8, 0, "top", 0, [c,0,0],["smt","side", "#ede1ca","#a47c5b"], 
+                    fpc(fpc[0][i], 50, c-8, 0, "top", 0, [c,0,0],["smt","side", "#ede1ca","#a47c5b"], 
                             0, false, [false,10,2,"default"]);
-                    fpc(fpc[i], 25, c-8, 0, "top", 0, [c,0,0],["smt","side", "white", "black"], 
+                    fpc(fpc[0][i], 75, c-8, 0, "top", 0, [c,0,0],["smt","side", "white", "black"], 
                             0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([0, -12, 0]) text(str(fpc[i]), direction="ltr");
+            color(text_color) translate([50, -12, 0]) text(str(fpc[0][i]), font = text_font, direction="ltr");
             }
-            if(fpc[i] == "fh12") {
+            if(fpc[0][i] == "fh12") {
                 for(c=[8:4:28]) {
-                    fpc(fpc[i], 50, (c*2)-16, 0, "top", 0, [c,0,0],["smt","top", "#ede1ca","#a47c5b"], 
+                    fpc(fpc[0][i], 100, (c*2)-16, 0, "top", 0, [c,0,0],["smt","top", "#ede1ca","#a47c5b"], 
                         0, false, [false,10,2,"default"]);
-                    fpc(fpc[i], 75, (c*2)-16, 0, "top", 0, [c,0,0],["smt","top", "white", "black"], 
+                    fpc(fpc[0][i], 125, (c*2)-16, 0, "top", 0, [c,0,0],["smt","top", "white", "black"], 
                         0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([50, -12, 0]) text(str(fpc[i]), direction="ltr");
+            color(text_color) translate([100, -12, 0]) text(str(fpc[0][i]), font = text_font, direction="ltr");
             }
+        }
+        for(i=[0:1:len(fpc[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(fpc[1][i], 5,  font = text_font);
         }
     }
     if(Class =="gpio") {
-        gpio("open",0,0,0,"top",0,[20,2,6],["thruhole","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        color(text_color) translate([55, 0, 0]) text(str("open 20x2"));
-        translate([0, 20, 0])
-        gpio("open",0,0,0,"top",0,[13,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        color(text_color) translate([35, 20, 0]) text(str("open 13x2"));
-        translate([0, 40, 0])
-        gpio("open",0,0,0,"top",0,[10,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        color(text_color) translate([30, 40, 0]) text(str("open 10x2"));
-        translate([0, 60, 0])
-        gpio("open",0,0,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        color(text_color) translate([25, 60, 0]) text(str("open 7x2"));
-        translate([0, 80, 0])
-        gpio("encl_header_12",0,0,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        color(text_color) translate([25, 80, 0]) text(str("encl_header_12"));
-        translate([0, 100, 0])
-        gpio("encl_header_30",0,0,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        color(text_color) translate([45, 100, 0]) text(str("encl_header_30"));
+        gpio("open",90,0,0,"top",0,[20,2,6],["thruhole","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([150, 0, 0]) text(str("open 20x2"), font = text_font);
+        gpio("open",90,20,0,"top",0,[13,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([135, 20, 0]) text(str("open 13x2"), font = text_font);
+        gpio("open",90,40,0,"top",0,[10,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([130, 40, 0]) text(str("open 10x2"), font = text_font);
+        gpio("open",90,60,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([125, 60, 0]) text(str("open 7x2"), font = text_font);
+        gpio("encl_header_12",90,80,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([125, 80, 0]) text(str("encl_header_12"), font = text_font);
+        gpio("encl_header_30",90,100,0,"top",0,[7,2,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        color(text_color) translate([130, 100, 0]) text(str("encl_header_30"), font = text_font);
+        for(i=[0:1:len(gpio[1])-1]) {
+            color(text_color) translate([ctext_offset, 140, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(gpio[1][i], 5, font = text_font);
+        }
     }
     if(Class =="header") {
-        header("open",0,0,0,"top",0,[2,3,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",10,0,0,"top",0,[3,2,6],["thruhole","black","male",2.54,"silver",0,0,0],0,false,[10,2,"default"]);
-        header("open",22,0,0,"top",0,[3,2,6],["smt","black","female",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",32,0,0,"top",0,[1,6,6],["thruhole","black","female",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",100,40,0,"top",0,[2,3,6],["smt","black","male",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",110,40,0,"top",0,[3,2,6],["thruhole","black","male",2.54,"silver",0,0,0],0,false,[10,2,"default"]);
+        header("open",122,40,0,"top",0,[3,2,6],["smt","black","female",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",132,40,0,"top",0,[1,6,6],["thruhole","black","female",2.54,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
 
-        header("open",-8,0,0,"top",0,[2,8,4],["smt","black","male",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",-15,0,0,"top",0,[2,3,4],["thruhole","black","male",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",-23,0,0,"top",0,[2,8,4],["smt","black","female",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",-32,0,0,"top",0,[2,6,6],["thruhole","black","female",2,"silver",0,0,0],0,false,[10,2,"default"]);
+        header("open",92,40,0,"top",0,[2,8,4],["smt","black","male",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",85,40,0,"top",0,[2,3,4],["thruhole","black","male",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",77,40,0,"top",0,[2,8,4],["smt","black","female",2,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",68,40,0,"top",0,[2,6,6],["thruhole","black","female",2,"silver",0,0,0],0,false,[10,2,"default"]);
 
-        header("open",8,-20,0,"top",0,[2,8,3],["smt","black","male",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",15,-20,0,"top",0,[2,3,3],["thruhole","black","male",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
-        header("open",22,-20,0,"top",0,[2,8,4],["smt","black","female",1,"silver",0,0,0],0,false,[10,2,"default"]);
-        header("open",32,-20,0,"top",0,[2,6,7],["thruhole","black","female",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);        
+        header("open",108,20,0,"top",0,[2,8,3],["smt","black","male",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",115,20,0,"top",0,[2,3,3],["thruhole","black","male",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        header("open",122,20,0,"top",0,[2,8,4],["smt","black","female",1,"silver",0,0,0],0,false,[10,2,"default"]);
+        header("open",132,20,0,"top",0,[2,6,7],["thruhole","black","female",1,"#fee5a6",0,0,0],0,false,[10,2,"default"]);
+        for(i=[0:1:len(header[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(header[1][i], 5, font = text_font);
+        }
     }
     if(Class =="heatsink") {
-        for(i=[0:1:len(heatsink)-1]) {
+        for(i=[0:1:len(heatsink[0])-1]) {
             if(i <= 6) {
-                heatsink(heatsink[i], 0, i*55, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-                color(text_color) translate([50, i*55, 0]) text(str(heatsink[i]), direction="ltr");
+                heatsink(heatsink[0][i], 0, i*55, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([50, i*55, 0]) 
+                    text(str(heatsink[0][i]), font = text_font, direction="ltr");
             }
             if(i > 6 && i <= 12) {
-                heatsink(heatsink[i], 180, (i*50)-320, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-                color(text_color) translate([240, (i*50)-320, 0]) text(str(heatsink[i]), direction="ltr");
+                heatsink(heatsink[0][i], 180, (i*50)-320, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([240, (i*50)-320, 0]) 
+                    text(str(heatsink[0][i]), font = text_font, direction="ltr");
             }
             if(i > 12  && i <= 15) {
-                heatsink(heatsink[i], 320, (i*100)-1300, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-                color(text_color) translate([420, (i*100)-1300, 0]) text(str(heatsink[i]), direction="ltr");
+                heatsink(heatsink[0][i], 320, (i*100)-1300, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([420, (i*100)-1300, 0]) 
+                    text(str(heatsink[0][i]), font = text_font, direction="ltr");
             }
             if(i > 15 && i <= 21) {
-                heatsink(heatsink[i], 520, (i*85)-1350, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-                color(text_color) translate([605, (i*85)-1350, 0]) text(str(heatsink[i]), direction="ltr");
+                heatsink(heatsink[0][i], 520, (i*85)-1350, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([605, (i*85)-1350, 0]) 
+                    text(str(heatsink[0][i]), font = text_font, direction="ltr");
             }
             if(i > 21) {
-                heatsink(heatsink[i], 700, (i*50)-1100, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-                color(text_color) translate([790, (i*50)-1100, 0]) text(str(heatsink[i]), direction="ltr");
+                heatsink(heatsink[0][i], 700, (i*50)-1100, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+                color(text_color) translate([790, (i*50)-1100, 0]) 
+                    text(str(heatsink[0][i]), font = text_font, direction="ltr");
             }
-       }
+        }
+        for(i=[0:1:len(heatsink[1])-1]) {
+            color(text_color) translate([ctext_offset, 410, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(heatsink[1][i], 5, font = text_font);
+        }
     }
     if(Class =="ic") {
-        for(i=[0:1:len(ic)-1]) {
-            if(ic[i] == "generic") {
+        for(i=[0:1:len(ic[0])-1]) {
+            if(ic[0][i] == "generic") {
                 for(c=[4:2:16]) {
-                    ic(ic[i], (c*8)-32, 0, 0, "top", 0, [c,c,.8],[0], 0, false, [false,10,2,"default"]);
-                    ic(ic[i], (c*4)-16, 30, 0, "top", 0, [7,c,.8],[0], 0, false, [false,10,2,"default"]);
+                    ic(ic[0][i], (c*8)+30, 10, 0, "top", 0, [c,c,.8],["dimgrey"], 0, false, [false,10,2,"default"]);
+                    ic(ic[0][i], (c*4)+70, 30, 0, "top", 0, [7,c,.8],["dimgrey"], 0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([0, -12, 0]) text(str(ic[i]), direction="ltr");
+            color(text_color) translate([0, -12, 0]) text(str(ic[0][i]), font = text_font, direction="ltr");
             }
+        }
+        for(i=[0:1:len(ic[1])-1]) {
+            color(text_color) translate([ctext_offset, 80, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(ic[1][i], 5, font = text_font);
         }
     }
     if(Class =="jst") {
+        translate([100,90,0]) {
         // thruhole side entry
         jst("xh",-15,0,0,"top",0,[3,0,0],["thruhole","side","green"],0,false,[10,2,"default"]);
         jst("ph",-30,0,0,"top",0,[4,0,0],["thruhole","side","white"],0,false,[10,2,"default"]);
@@ -375,107 +1218,193 @@ if(view == "Components") {
         jst("ph",15,20,0,"top",0,[4,0,0],["smt","top","white"],0,false,[10,2,"default"]);
         jst("zh",30,20,0,"top",0,[3,0,0],["smt","top","white"],0,false,[10,2,"default"]);
         jst("sh",40,20,0,"top",0,[3,0,0],["smt","top","white"],0,false,[10,2,"default"]);
+        }
+        for(i=[0:1:len(jst[1])-1]) {
+            color(text_color) translate([ctext_offset, 140, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(jst[1][i], 5, font = text_font);
+        }
     }
     if(Class =="memory") {
-        for(i=[0:1:len(memory)-1]) {
-            memory(memory[i], 0, i*25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([80, i*25, 0]) rotate([0, 0, 0]) text(str(memory[i]), direction="ltr");
+        for(i=[0:1:len(memory[0])-1]) {
+            memory(memory[0][i], 80, i*25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([160, i*25, 0]) 
+                text(str(memory[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(memory[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(memory[1][i], 5, font = text_font);
         }
     }
     if(Class =="molex") {
-        for(i=[0:1:len(molex)-1]) {
-            if(molex[i] == "7478") {
+        for(i=[0:1:len(molex[0])-1]) {
+            if(molex[0][i] == "7478") {
                 for(c=[3:4:12]) {
-                    molex(molex[i], 0, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","top"], 
+                    molex(molex[0][i], 70, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","top"], 
                             0, false, [false,10,2,"default"]);
-                    molex(molex[i], 35, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","side"], 
+                    molex(molex[0][i], 105, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","side"], 
                             0, false, [false,10,2,"default"]);
                 }
-            color(text_color) translate([80, i*25, 0]) rotate([0, 0, 0]) text(str(molex[i]), direction="ltr");
+            color(text_color) translate([115, i*25, 0]) 
+                    text(str(molex[0][i]), font = text_font, direction="ltr");
             }
+            if(molex[0][i] == "5046") {
+                for(c=[3:4:12]) {
+                    molex(molex[0][i], 165, (c*4)-6, 0, "top", 0, [c,0,0],["thruhole","side"], 
+                            0, false, [false,10,2,"default"]);
+                }
+            color(text_color) translate([180, 0, 0]) 
+                    text(str(molex[0][i]), font = text_font, direction="ltr");
+            }
+        }
+        for(i=[0:1:len(molex[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(molex[1][i], 5, font = text_font);
         }
     }
     if(Class =="network") {
-        for(i=[0:1:len(network)-1]) {
-            network(network[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(network[i]), direction="ltr");
+        for(i=[0:1:len(network[0])-1]) {
+            network(network[0][i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) 
+                text(str(network[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(network[1])-1]) {
+            color(text_color) translate([ctext_offset, 340, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(network[1][i], 5, font = text_font);
         }
     }
     if(Class =="pcie") {
-        pcie("x4", 0, 25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-        color(text_color) translate([40, 0, 0]) rotate([0, 0, 0]) text(str("x1"), direction="ltr");
-        pcie("x1", 0, 0, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
-        color(text_color) translate([40, 25, 0]) rotate([0, 0, 0]) text(str("x4"), direction="ltr");
+        pcie("x4", 100, 25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+        color(text_color) translate([140, 0, 0]) 
+            text(str("x1"), font = text_font, direction="ltr");
+        pcie("x1", 100, 0, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
+        color(text_color) translate([145, 25, 0]) 
+            text(str("x4"), font = text_font, direction="ltr");
+        for(i=[0:1:len(pcie[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcie[1][i], 5, font = text_font);
+        }
     }
     if(Class =="pillar") {
         for(c=[5:1:12]) {
-            pillar("hex", 0, (c*15)-70, 0, "top", 0, [c,3,c],[0,"#fee5a6"], 
+            pillar("hex", 100, (c*15)-70, 0, "top", 0, [c,3,c],[0,"#fee5a6"], 
                     0, false, [false,10,2,"default"]);
-            pillar("round", 35, (c*15)-70, 0, "top", 0, [c,3,c],[0,"white"], 
+            pillar("round", 135, (c*15)-70, 0, "top", 0, [c,3,c],[0,"white"], 
                     0, false, [false,10,2,"default"]);
+        }
+        for(i=[0:1:len(pillar[1])-1]) {
+            color(text_color) translate([ctext_offset, 160, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pillar[1][i], 5, font = text_font);
         }
     }
     if(Class =="power") {
-        for(i=[0:1:len(power)-1]) {
-            power(power[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(power[i]), direction="ltr");
+        for(i=[0:1:len(power[0])-1]) {
+            power(power[0][i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) text(str(power[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(power[1])-1]) {
+            color(text_color) translate([ctext_offset, 290, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(power[1][i], 5, font = text_font);
         }
     }
     if(Class =="smd") {
-        for(i=[0:1:len(smd)-1]) {
-            smd(smd[i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([6+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(smd[i]), direction="ltr");
+        for(i=[0:1:len(smd[0])-1]) {
+            smd(smd[0][i], 100+(i*20), 10+(i*40), 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([106+(i*20), 10+(i*40), 0]) 
+                text(str(smd[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(smd[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(smd[1][i], 5, font = text_font);
         }
     }
     if(Class =="storage") {
-        for(i=[0:1:len(storage)-1]) {
-            storage(storage[i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([40+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(storage[i]), direction="ltr");
+        for(i=[0:1:len(storage[0])-1]) {
+            storage(storage[0][i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([40+(i*20), i*40, 0]) text(str(storage[0][i]), 
+                font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(storage[1])-1]) {
+            color(text_color) translate([ctext_offset, 350, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(storage[1][i], 5, font = text_font);
         }
     }
     if(Class =="switch") {
-        for(i=[0:1:len(switch)-1]) {
-            switch(switch[i], i*20, i*40, 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([40+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(switch[i]), direction="ltr");
+        for(i=[0:1:len(switch[0])-1]) {
+            switch(switch[0][i], 100+(i*20), 10+(i*40), 0, "top", 0, [3,2,1], ["red"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([120+(i*20), 10+(i*40), 0]) 
+                text(str(switch[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(switch[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(switch[1][i], 5, font = text_font);
         }
     }
     if(Class =="terminal") {
-        for(i=[0:1:len(terminal)-1]) {
+        for(i=[0:1:len(terminal[0])-1]) {
             for(c=[5:1:12]) {
-                terminal(terminal[i], 0, (c*20)-100, 0, "top", 0, [c,8.3,14], [5,"lightgreen"],
+                terminal(terminal[0][i], 100, (c*20)-100, 0, "top", 0, [c,8.3,14], [5,"lightgreen"],
                     0, false, [false,10,2,"default"]);
             }
-            color(text_color) translate([30, 0, 0]) rotate([0, 0, 0]) text(str(terminal[i]), direction="ltr");
+            color(text_color) translate([130, 0, 0]) 
+                text(str(terminal[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(terminal[1])-1]) {
+            color(text_color) translate([ctext_offset, 190, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(terminal[1][i], 5, font = text_font);
         }
     }
     if(Class =="uart") {
-        for(i=[0:1:len(uart)-1]) {
-            uart(uart[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([40+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(uart[i]), direction="ltr");
+        for(i=[0:1:len(uart[0])-1]) {
+            uart(uart[0][i], 80+(i*20), i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([120+(i*20), i*40, 0]) 
+                text(str(uart[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(uart[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(uart[1][i], 5, font = text_font);
         }
     }
     if(Class =="usb2") {
-        for(i=[0:1:len(usb2)-1]) {
-            usb2(usb2[i], i*20, i*40, 0, "top", 0, [10,10,10], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(usb2[i]), direction="ltr");
+        for(i=[0:1:len(usb2[0])-1]) {
+            usb2(usb2[0][i], i*20, i*40, 0, "top", 0, [10,10,10], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) 
+            text(str(usb2[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(usb2[1])-1]) {
+            color(text_color) translate([ctext_offset, 210, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(usb2[1][i], 5, font = text_font);
         }
     }
     if(Class =="usb3") {
-        for(i=[0:1:len(usb3)-1]) {
-            usb3(usb3[i], i*20, i*40, 0, "top", 0, [10,10,10], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(usb3[i]), direction="ltr");
+        for(i=[0:1:len(usb3[0])-1]) {
+            usb3(usb3[0][i], i*20, i*40, 0, "top", 0, [10,10,10], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) 
+                text(str(usb3[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(usb3[1])-1]) {
+            color(text_color) translate([ctext_offset, 220, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(usb3[1][i], 5, font = text_font);
         }
     }
     if(Class =="usbc") {
-        for(i=[0:1:len(usbc)-1]) {
-            usbc(usbc[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(usbc[i]), direction="ltr");
+        for(i=[0:1:len(usbc[0])-1]) {
+            usbc(usbc[0][i], 60+(i*20), i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([80+(i*20), i*40, 0]) 
+                text(str(usbc[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(usbc[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(usbc[1][i], 5, font = text_font);
         }
     }
     if(Class =="video") {
-        for(i=[0:1:len(video)-1]) {
-            video(video[i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
-            color(text_color) translate([20+(i*20), i*40, 0]) rotate([0, 0, 0]) text(str(video[i]), direction="ltr");
+        for(i=[0:1:len(video[0])-1]) {
+            video(video[0][i], i*20, i*40, 0, "top", 0, [0,0,0], [0], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([20+(i*20), i*40, 0]) 
+                text(str(video[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(video[1])-1]) {
+            color(text_color) translate([ctext_offset, 210, ctext_height-i*7]) rotate([90, 0, 0]) text(video[1][i], 5, font = text_font);
         }
     }
 }

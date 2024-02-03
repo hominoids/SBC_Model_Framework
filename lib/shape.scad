@@ -45,13 +45,13 @@
                      radius[2] = corner radius
                      radius[3] = corner radius
 
-          USAGE: slot(hole,length,depth)
+          USAGE: slot(hole, length, depth)
 
                      hole = radius diameter
                      length = total length
                      depth = thickness
 
-          USAGE: knockout(width,depth,gap,thick,fillet,shape)
+          USAGE: knockout(width, depth, gap, thick, fillet, shape)
 
                      width = length
                      depth = width
@@ -60,7 +60,7 @@
                      fillet = corner fillet
                      shape = "slot", "rectangle", "round"
 
-          USAGE: vent(width,length,height,gap,rows,columns,orientation)
+          USAGE: vent(width, length, height, gap, rows, columns, orientation)
 
                      width = coloumn size_x
                      length = column size_y

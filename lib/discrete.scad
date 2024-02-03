@@ -16,27 +16,62 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: discrete
     DESCRIPTION: creates discrete components
            TODO: 
 
           USAGE: discrete(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                           type = "ir_dual",
-                                 "ir_1"
-                                    size[2] = height
-                                    enablemask = true produces mask, false produces model
-                                    mask[0] = true enables component mask
-                                    mask[1] = mask length
-                                    mask[2] = mask setback
-                                    mask[3] = mstyle "default"
-                                 "capacitor"
-                                    size[0] = diameter
-                                    size[2] = height
-                                 "led"
-                                    size[0] = diameter
-                                    size[2] = height
-                                    data[0] = style "default"
-                                    data[1] = led color
+                         loc_x = x location placement
+                         loc_y = y location placement
+                         loc_z = z location placement
+                          side = "top", "bottom"
+                    rotation[] = object rotation
+                     pcbsize_z = pcb thickness
+                    enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "default"
+
+                          type = "ir_1"
+                         loc_x = x location placement
+                         loc_y = y location placement
+                         loc_z = z location placement
+                          side = "top", "bottom"
+                    rotation[] = object rotation
+                       size[2] = height
+                     pcbsize_z = pcb thickness
+                    enablemask = true produces mask, false produces model
+                       mask[0] = true enables component mask
+                       mask[1] = mask length
+                       mask[2] = mask setback
+                       mask[3] = mstyle "default"
+
+                          type = "capacitor"
+                         loc_x = x location placement
+                         loc_y = y location placement
+                         loc_z = z location placement
+                          side = "top", "bottom"
+                    rotation[] = object rotation
+                       size[0] = diameter
+                       size[2] = height
+                     pcbsize_z = pcb thickness
+                    enablemask = true produces mask, false produces model
+
+                          type = "led"
+                         loc_x = x location placement
+                         loc_y = y location placement
+                         loc_z = z location placement
+                          side = "top", "bottom"
+                    rotation[] = object rotation
+                       size[0] = diameter
+                       size[2] = height
+                       data[0] = style "default"
+                       data[1] = led color
+                     pcbsize_z = pcb thickness
+                    enablemask = true produces mask, false produces model
 
 */
 

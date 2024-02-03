@@ -15,17 +15,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-
+     CLASS NAME: jst
     DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa.
            TODO: flange for sh 
 
           USAGE: jst(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                      type = "xh","ph","zh","sh","pa"
-                     size[0] = #pins
-                     data[0] = "thruhole", "smt"
-                     data[1] = "top", "side"
-                     data[2] = body color
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = #pins
+                  data[0] = "thruhole", "smt"
+                  data[1] = "top", "side"
+                  data[2] = body color
+                pcbsize_z = pcb thickness
+               enablemask = true, false
+                  mask[0] = true, false
+                  mask[1] = length
+                  mask[2] = set back
+                  mask[3] = mstyle "default"
 
 */
 

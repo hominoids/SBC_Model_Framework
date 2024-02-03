@@ -16,16 +16,28 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: smd
     DESCRIPTION: creates smd components
-           TODO: add other styles 
+           TODO: add other components 
 
           USAGE: smd(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                      type = "led"
-                     size[0] = size_x
-                     size[1] = size_y
-                     size[2] = size_z
-                     data[0] = body color
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = size_x
+                  size[1] = size_y
+                  size[2] = size_z
+                  data[0] = body color
+                pcbsize_z = pcb thickness
+               enablemask = true produces mask, false produces model
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
 
 */
 

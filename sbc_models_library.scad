@@ -46,5 +46,7 @@ include <./lib/storage.scad>
 include <./lib/switch.scad>
 include <./lib/terminal.scad>
 include <./lib/uart.scad>
-include <./lib/usb.scad>
+include <./lib/usb2.scad>
+include <./lib/usb3.scad>
+include <./lib/usbc.scad>
 include <./lib/video.scad>

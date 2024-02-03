@@ -21,6 +21,15 @@
 
           USAGE: place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
 
+                       loc_x = x location placement
+                       loc_y = y location placement
+                       loc_z = z location placement
+                      size_x = object x dimension
+                      size_y = object y dimension
+                    rotation = object z-axis rotation
+                        side = "top", "bottom"
+                   pcbsize_z = pcb thickness
+
 */
 
 module place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z) {

@@ -16,6 +16,83 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: pcbhole
+    DESCRIPTION: creates pcb hole
+           TODO: cu edge shapes
+
+          USAGE: pcbhole(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+
+                         type = "round"
+                        loc_x = x location placement
+                        loc_y = y location placement
+                        loc_z = z location placement
+                         side = "top", "bottom"
+                   rotation[] = object rotation
+                      size[0] = hole diameter
+                      data[0] = style
+                      data[1] = hole color
+                      data[2] = sidewall support("none","left","right","rear","front")
+                      data[3] = trace diameter
+                      data[4] = position "left_rear","left_front","right_rear","right_front","middle_rear","middle_front",
+                                         "heatsink_left","heatsink_right","heatsink_rear","heatsink_front","pcie_1","gpio_1","misc_1"
+                    pcbsize_z = pcb thickness
+                   enablemask = true produces mask, false produces model
+                      mask[0] = true enables component mask
+                      mask[1] = mask length
+                      mask[2] = mask setback
+                      mask[3] = mstyle "default"
+
+
+     CLASS NAME: pcbsoc
+    DESCRIPTION: creates soc components
+           TODO: add other styles
+
+          USAGE: pcbsoc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+
+                        type = "flat", "raised", "mid-raised", "rk3399", "rk3588"
+                       loc_x = x location placement
+                       loc_y = y location placement
+                       loc_z = z location placement
+                        side = "top", "bottom"
+                  rotation[] = object rotation
+                     size[0] = size_x
+                     size[1] = size_y
+                     size[2] = size_z
+                   pcbsize_z = pcb thickness
+                  enablemask = true produces mask, false produces model
+                     mask[0] = true enables component mask
+                     mask[1] = mask length
+                     mask[2] = mask setback
+                     mask[3] = mstyle "default"
+
+
+     CLASS NAME: pcbpad
+    DESCRIPTION: creates pcb pads
+           TODO: 
+           
+          USAGE: pcbpad(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
+
+                        type = "round", "square", "sqround", "castellation"
+                       loc_x = x location placement
+                       loc_y = y location placement
+                       loc_z = z location placement
+                        side = "top", "bottom"
+                  rotation[] = object rotation
+                     size[0] = #pad x
+                     size[1] = #pad y
+                     data[0] = hole size
+                     data[1] = pad color
+                     data[2] = pad size
+                     data[5] = pad_trim ("front", "rear")
+                   pcbsize_z = pcb thickness
+                  enablemask = true produces mask, false produces model
+                     mask[0] = true enables component mask
+                     mask[1] = mask length
+                     mask[2] = mask setback
+                     mask[3] = mstyle "default"
+
+
+     CLASS NAME: pcb
     DESCRIPTION: creates pcb and features
            TODO: 
 
@@ -25,41 +102,6 @@
                      size[1] = size_y
                      size[2] = size_z
                      radius = corner radius
-
-    DESCRIPTION: creates pcb hole
-           TODO: cu edge shapes
-
-          USAGE: pcbhole(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-
-                         type = "round"
-                         size[0] = hole diameter
-                         data[0] = style
-                         data[1] = hole color
-                         data[2] = sidewall support("none","left","right","rear","front")
-                         data[3] = trace diameter
-
-    DESCRIPTION: creates soc components
-           TODO: add other styles
-
-          USAGE: pcbsoc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-
-                     type = "flat", "raised", "mid-raised", "rk3399", "rk3588"
-                     size[0] = size_x
-                     size[1] = size_y
-                     size[2] = size_z
-
-    DESCRIPTION: creates pcb pads
-           TODO: castellation edge hole
-           
-          USAGE: pcbpad(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
-
-                         type = "round", "square", "sqround", "castellation"
-                         size[0] = #pad x
-                         size[1] = #pad y
-                         data[0] = hole size
-                         data[1] = pad color
-                         data[2] = pad size
-                         data[5] = pad_trim ("front", "rear")
 
 */
 

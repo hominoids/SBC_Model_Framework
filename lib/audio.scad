@@ -16,28 +16,74 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: audio
     DESCRIPTION: creates audio components.
            TODO: 
 
           USAGE: audio(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
+                       type = "audio_micro"
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                  pcbsize_z = pcb thickness
+                 enablemask = true produces mask, false produces model
+                    mask[0] = component mask true, false
+                    mask[1] = length
+                    mask[2] = set back
+                    mask[3] = mstyle "default"
 
                        type = "jack_3.5"
-                       size[0] = body size_x
-                       size[1] = body size_y
-                       size[2] = body size_z
-                       data[0] = body diameter
-                       data[1] = z adjustment
-                       enablemask = true produces mask, false produces model
-                       mask[0] = true enables component mask
-                       mask[1] = mask length
-                       mask[2] = mask setback
-                       mask[3] = mstyle "default"
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    size[0] = body size_x
+                    size[1] = body size_y
+                    size[2] = body size_z
+                    data[0] = neck diameter
+                    data[1] = z adjustment
+                  pcbsize_z = pcb thickness
+                 enablemask = true produces mask, false produces model
+                    mask[0] = component mask true, false
+                    mask[1] = length
+                    mask[2] = set back
+                    mask[3] = mstyle "default"
+
+                       type = "mic_round"
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    size[0] = body diameter
+                    size[1] = 
+                    size[2] = body height
+                  pcbsize_z = pcb thickness
+                 enablemask = true produces mask, false produces model
+                    mask[0] = component mask true, false
+                    mask[1] = length
+                    mask[2] = set back
+                    mask[3] = mstyle "default"
+
+                       type = "out-in-spdif"
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                  pcbsize_z = pcb thickness
+                 enablemask = true produces mask, false produces model
+                    mask[0] = component mask true, false
+                    mask[1] = length
+                    mask[2] = set back
+                    mask[3] = mstyle "default"
 
 */
  
-// audio class
 module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];

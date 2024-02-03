@@ -16,16 +16,27 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: antenna
     DESCRIPTION: creates antenna components.
            TODO: 
 
           USAGE: antenna(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                          type = "ipex"
+                        loc_x = x location placement
+                        loc_y = y location placement
+                        loc_z = z location placement
+                         side = "top", "bottom"
+                   rotation[] = object rotation
+                    pcbsize_z = pcb thickness
+                   enablemask = true produces mask, false produces model
+                      mask[0] = component mask true, false
+                      mask[1] = length
+                      mask[2] = set back
+                      mask[3] = mstyle "default"
 
 */
 
-// antenna class
 module antenna(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     // type ipex surface mount

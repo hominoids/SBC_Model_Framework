@@ -16,6 +16,7 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
+     CLASS NAME: button
     DESCRIPTION: creates buttons
            TODO: 
 
@@ -23,15 +24,20 @@
 
                          type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
                                 "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
-                         enablemask = true produces mask, false produces model
-                         mask[0] = true enables component mask
-                         mask[1] = mask length
-                         mask[2] = mask setback
-                         mask[3] = mstyle "default"
+                        loc_x = x location placement
+                        loc_y = y location placement
+                        loc_z = z location placement
+                         side = "top", "bottom"
+                   rotation[] = object rotation
+                    pcbsize_z = pcb thickness
+                   enablemask = true produces mask, false produces model
+                      mask[0] = true enables component mask
+                      mask[1] = mask length
+                      mask[2] = mask setback
+                      mask[3] = mstyle "default"
 
 */
 
-// button class
 module button(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     cmask = mask[0];

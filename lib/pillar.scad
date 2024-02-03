@@ -15,16 +15,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
-    DESCRIPTION: creates smd components
-           TODO: add other styles
+
+     CLASS NAME: pillar
+    DESCRIPTION: creates pillars
+           TODO: add other genders and styles
 
           USAGE: pillar(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
                         type = "hex", "round"
-                        size[0] = outside dia
-                        size[1] = inside dia
-                        size[2] = height
-                        data[1] = body color
+                       loc_x = x location placement
+                       loc_y = y location placement
+                       loc_z = z location placement
+                        side = "top", "bottom"
+                  rotation[] = object rotation
+                     size[0] = outside dia
+                     size[1] = inside dia
+                     size[2] = height
+                     data[1] = body color
+                   pcbsize_z = pcb thickness
+                  enablemask = true produces mask, false produces model
+                     mask[0] = true enables component mask
+                     mask[1] = mask length
+                     mask[2] = mask setback
+                     mask[3] = mstyle "default"
 
 */
 

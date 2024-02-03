@@ -16,21 +16,28 @@
     Code released under GPLv3: http://www.gnu.org/licenses/gpl.html
 
 
-    DESCRIPTION: creates b2b headers in any size or pitch.
+     CLASS NAME: b2b
+    DESCRIPTION: creates b2b headers in size, pitch and stacking height.
            TODO: shielded 
 
           USAGE: b2b(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
                         
-                        type = "df40"
-                        size[0] = #pins
-                        size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)
-                        data[0] = "default"
-                        data[1] = header color
-                        data[2] = "male", "female"
+                     type = "df40"
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = #pins
+                  size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)
+                  data[0] = "default"
+                  data[1] = header color
+                  data[2] = "male", "female"
+                pcbsize_z = pcb thickness
+               enablemask = true produces mask, false produces model
 
 */
 
-// b2b header class
 module b2b(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask) {
 
     pins = size[0];
