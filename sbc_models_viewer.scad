@@ -30,16 +30,20 @@ view = "3D Model"; // [3D Model, 2D Sections, Components, All SBC Models]
 sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpipico","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","lepotato","sweetpotato","tritium-h2+","tritium-h3","tritium-h5","solitude","alta","jetsonnano","licheerv+dock","visionfive2","atomicpi","rak19007"]
 
 sbc_off = false;
-sbc_info = true;
 sbc_mask = false;
+sbc_info = true;
+text_color = "green"; // [green, black, dimgrey, white, yellow, orange, red, blue]
+text_font = "Nimbus Mono PS"; // [Nimbus Mono PS, Liberation Mono, Noto Sans Mono]
+//text_font = "Liberation Mono:style=Regular";
+//text_font = "Noto Sans Mono:style=Regular";
 
 /* [Command Line Options] */
-heatsink_mask = "default"; // ["disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex","vent", "vent_hex_5mm", "vent_hex_8mm", "custom"]
+heatsink_mask = "default"; // [disable, off, default, none, open, fan_open, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom]
 fan_size = 0; // [0,30,40,50,60,70,80,92]
 
-gpio_mask = "default"; // ["disable", "off", "default", "none", "open", "block", "knockout", "vent"]
+gpio_mask = "default"; // [disable, off, default, none, open, block, knockout, vent]
 
-uart_mask = "default"; // ["default", "none", "open", "knockout"]
+uart_mask = "default"; // [default, none, open, knockout]
 
 /* [Components] */
 Class = "b2b"; // [antenna,audio,b2b,battery,button,cm,cm_holder,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
@@ -55,11 +59,6 @@ pcbmaxsize_z = sbc_data[s[0]][11][5];
 text_offset = 25;
 text_height = pcbmaxsize_z + (len(sbc_data[s[0]][1]) * 7);
 text_indent = [0,-32.5,4,0,-20.5,-8,4,4,4,4,-12,-16,-4,-12.5,-8,-4,-12,0,4,0,4,8,-.5,-12.5,-4.5,-8.5,0,-8];
-text_color = "#009900";
-
-text_font = "Nimbus Mono PS:style=Regular";
-//text_font = "Liberation Mono:style=Regular";
-//text_font = "Noto Sans Mono:style=Regular";
 
 ctext_offset = 15;
 ctext_height = 130;
