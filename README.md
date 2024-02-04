@@ -4,7 +4,7 @@
 
 This project is a lightweight and dynamic framework for the generation of SBC and micro-controller models written in OpenSCAD.
 
-![Image](sbc.png)
+![Image](sbc_models.png)
 
 ### Current Library
 
@@ -563,10 +563,10 @@ DESCRIPTION: creates heatsinks
       USAGE: heatsink, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
                        type = "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
-                              "c1+_oem", "c2_oem", c4_oem", "hc4_oem", "xu4_oem", xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
+                              "c1+_oem", "c2_oem", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
                               "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
                               "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub",
-                              "pine64_active_10", "pine64_passive_20", pine64_passive_30"
+                              "pine64_active_10", "pine64_passive_20", "pine64_passive_30"
                      pcb_id = parent PCB
                       loc_x = x location placement
                       loc_y = y location placement
@@ -577,7 +577,7 @@ DESCRIPTION: creates heatsinks
                     mask[0] = component mask true, false
                     mask[1] = length
                     mask[2] = set back
-                    mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", "custom", "m1", "n2", "n2+"
+                    mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", "custom"
 ```
 ### ic
 ```
