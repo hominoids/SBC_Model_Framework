@@ -25,17 +25,15 @@ include <sbc_models.scad>
 use <sbc_models_library.scad>
 
 /* [SBC and MCU] */
-view = "3D Model"; // [3D Model, 2D Sections, Components, All SBC Models]
-
+view = "3D Model"; // [3D Model, 2D Sections, 3D Reference Manual, All SBC Models]
+section_position = 2; //[-2:.5:4]
 sbc_model = "c1+"; // ["c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq","m1","m1s","h2","h2+","h3","h3+","show2","rpipico","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5","rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm4+ioboard","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","vim1","vim2","vim3l","vim3","vim4","tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s","opi5","opizero","opizero2","opir1plus_lts","opir1","lepotato","sweetpotato","tritium-h2+","tritium-h3","tritium-h5","solitude","alta","jetsonnano","licheerv+dock","visionfive2","atomicpi","rak19007"]
 
 sbc_off = false;
 sbc_mask = false;
 sbc_info = true;
-text_color = "green"; // [green, black, dimgrey, white, yellow, orange, red, blue]
+text_color = "Green"; // [Green, Black, Dimgrey, White, Yellow, Orange, Red, DarkbBlue]
 text_font = "Nimbus Mono PS"; // [Nimbus Mono PS, Liberation Mono, Noto Sans Mono]
-//text_font = "Liberation Mono:style=Regular";
-//text_font = "Noto Sans Mono:style=Regular";
 
 /* [Command Line Options] */
 heatsink_mask = "default"; // [disable, off, default, none, open, fan_open, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom]
@@ -46,7 +44,7 @@ gpio_mask = "default"; // [disable, off, default, none, open, block, knockout, v
 uart_mask = "default"; // [default, none, open, knockout]
 
 /* [Components] */
-Class = "b2b"; // [antenna,audio,b2b,battery,button,cm,cm_holder,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
+Class = "b2b"; // [antenna,audio,b2b,battery,button,cm,cm_holder,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbadd,pcbhole,pcbsoc,pcbsub,pcbpad,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
 
 /* [Hidden] */
 s = search([sbc_model], sbc_data);
@@ -103,28 +101,28 @@ if(view == "3D Model") {
     }
 }
 // create 2d mask sections
-if(view == "2D_Sections") {
+if(view == "2D Sections") {
     projection(cut = true) {
         // rear section
         difference() {
             translate([0, -pcbmaxsize_z, 0]) cube([pcbsize_x, pcbmaxsize_z, .1]);
-            rotate([90, 0, 0]) sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
+            translate([0, 0, section_position]) rotate([90, 0, 0]) sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         }
         // left section
         difference() {
             translate([-pcbmaxsize_z-adj, 0, 0]) cube([pcbmaxsize_z, pcbsize_y, .1]);
-            translate([0, 0, -adj]) rotate([0, -90, 0]) sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
+            translate([0, 0, section_position]) rotate([0, -90, 0]) sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         }    
         // front section
         difference() {
             translate([0, pcbsize_y, 0]) cube([pcbsize_x, pcbmaxsize_z, .1]);
-            translate([0, pcbsize_y, pcbsize_y+adj]) rotate([-90, 0, 0]) 
+            translate([0, pcbsize_y, pcbsize_y+section_position]) rotate([-90, 0, 0]) 
                 sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         }
         // right section
         difference() {
             translate([pcbsize_x+adj, 0, 0]) cube([pcbmaxsize_z, pcbsize_y, .1]);
-            translate([pcbsize_x, 0, pcbsize_x+adj]) rotate([0, 90, 0]) 
+            translate([pcbsize_x, 0, pcbsize_x+section_position]) rotate([0, 90, 0]) 
                 sbc(sbc_model, "disable", 0, gpio_mask, uart_mask, true);
         } 
         // pcb section
@@ -133,8 +131,8 @@ if(view == "2D_Sections") {
 }
 
 // view component classes
-if(view == "Components") {
-    antenna =  [["ipex"],[
+if(view == "3D Reference Manual") {
+    antenna = [["ipex"],[
         " CLASS NAME: antenna",
         "DESCRIPTION: creates antenna components",
         "",
@@ -152,7 +150,7 @@ if(view == "Components") {
         "                   mask[2] = set back",
         "                   mask[3] = mstyle default"
         ]];
-    audio =    [["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"],[
+    audio = [["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"],[
         " CLASS NAME: audio",
         "DESCRIPTION: creates audio components",
         "",
@@ -213,7 +211,7 @@ if(view == "Components") {
         "                 mask[2] = set back",
         "                 mask[3] = mstyle default",
         ]];
-    b2b =      [["df40"],[
+    b2b = [["df40"],[
         " CLASS NAME: b2b",
         "DESCRIPTION: creates b2b headers in size, pitch and stacking height",
         "",
@@ -232,7 +230,7 @@ if(view == "Components") {
         "               data[1] = header color",
         "               data[2] = male, female"    
         ]];
-    battery =  [["bat_hold_1", "rtc_micro"],[
+    battery = [["bat_hold_1", "rtc_micro"],[
         " CLASS NAME: battery",
         "DESCRIPTION: creates batteries and support components",
         "",
@@ -250,7 +248,7 @@ if(view == "Components") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    button =   [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"],[
+    button = [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"],[
         " CLASS NAME: button",
         "DESCRIPTION: creates buttons",
         "",
@@ -269,7 +267,7 @@ if(view == "Components") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    cm =       [["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"],[
+    cm = [["cm1","cm3","cm3l","cm4","cm4l","jetsonnano"],[
         " CLASS NAME: cm",
         "DESCRIPTION: creates compute modules as library components",
         "",
@@ -361,7 +359,7 @@ if(view == "Components") {
         "                    data[0] = style default",
         "                    data[1] = led color"
         ]];
-    display =  [["lcd_2.2", "mipi_csi", "mipi_dsi"],[
+    display = [["lcd_2.2", "mipi_csi", "mipi_dsi"],[
         " CLASS NAME: display",
         "DESCRIPTION: creates flat panel displays",
         "",
@@ -379,7 +377,7 @@ if(view == "Components") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    fan =      [["fan_micro","encl_pmw","encl_pmw_h"],[
+    fan = [["fan_micro","encl_pmw","encl_pmw_h"],[
         " CLASS NAME: fan",
         "DESCRIPTION: creates fan support components",
         "",
@@ -397,7 +395,7 @@ if(view == "Components") {
         "               mask[2] = mask setback",
         "               mask[3] = mstyle default"
         ]];
-    fpc =      [["fh19", "fh12"],[
+    fpc = [["fh19", "fh12"],[
         " CLASS NAME: fpc",
         "DESCRIPTION: creates fpc connectors",
         "",
@@ -437,7 +435,7 @@ if(view == "Components") {
         "               mask[2] = mask setback",
         "               mask[3] = mstyle default"
         ]];
-    gpio =     [["open", "encl_header_30", "encl_header_12"],[
+    gpio = [["open", "encl_header_30", "encl_header_12"],[
         " CLASS NAME: gpio",
         "DESCRIPTION: creates gpio headers",
         "",
@@ -475,7 +473,7 @@ if(view == "Components") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle (none, open, block, knockout, vent)"
         ]];
-    header =   [["open"],[
+    header = [["open"],[
         " CLASS NAME: header",
         "DESCRIPTION: creates pin headers in any size or pitch",
         "",
@@ -524,7 +522,7 @@ if(view == "Components") {
         "                    mask[2] = set back",
         "                    mask[3] = mstyle (open, fan_open, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom)"
         ]];
-    ic =       [["generic"],[
+    ic = [["generic"],[
         " CLASS NAME: ic",
         "DESCRIPTION: creates intergrated circuits",
         "",
@@ -546,7 +544,7 @@ if(view == "Components") {
         "              mask[2] = set back",
         "              mask[3] = mstyle default"
         ]];
-    jst =      [["xh", "ph", "zh", "sh", "pa"],[
+    jst = [["xh", "ph", "zh", "sh", "pa"],[
         " CLASS NAME: jst",
         "DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa",
         "",
@@ -568,7 +566,7 @@ if(view == "Components") {
         "               mask[2] = set back",
         "               mask[3] = mstyle default"
         ]];
-    memory =   [["emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"],[
+    memory = [["emmc", "emmc_plug", "emmc_plug_double", "sodimm_5.2", "sodimm_9.2"],[
         " CLASS NAME: memory",
         "DESCRIPTION: creates memory components",
         "",
@@ -586,7 +584,7 @@ if(view == "Components") {
         "                  mask[2] = mask setback",
         "                  mask[3] = mstyle default"
         ]];
-    molex =    [["7478","5046"],[
+    molex = [["7478","5046"],[
         " CLASS NAME: molex",
         "DESCRIPTION: creates molex series connectors",
         "",
@@ -607,7 +605,7 @@ if(view == "Components") {
         "                 mask[2] = mask setback",
         "                 mask[3] = mstyle default"
         ]];
-    network =  [["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"],[
+    network = [["rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1","rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"],[
         " CLASS NAME: network",
         "DESCRIPTION: creates network components",
         "",
@@ -626,7 +624,7 @@ if(view == "Components") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    pcb =      [["round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"],[
+    pcb = [[],[
         " CLASS NAME: pcb",
         "DESCRIPTION: creates pcb",
         "",
@@ -653,7 +651,57 @@ if(view == "Components") {
         "               mask[2] = mask setback",
         "               mask[3] = mstyle default"
         ]];
-    pcbsoc =   [["flat", "raised", "mid-raised", "rk3399", "rk3588"],[
+    pcbadd = [[],[
+        " CLASS NAME: pcbadd",
+        "DESCRIPTION: creates pcb additions",
+        "",
+        "      USAGE: pcbadd, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = rectangle, round, polygon, slot, dxf",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  size[0] = x size",
+        "                  size[1] = y size",
+        "                  size[2] = z size",
+        "                  data[0] = corner radius or diameter",
+        "                  data[1] = pcb color",
+        "                  data[2] = polygon or dxf filename",
+        "                  data[3] = dxf scale",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+        ]];
+    pcbhole = [[],[
+        " CLASS NAME: pcbhole",
+        "DESCRIPTION: creates pcb hole",
+        "",
+        "      USAGE: pcbhole, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = round",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   size[0] = hole diameter",
+        "                   data[0] = style",
+        "                   data[1] = hole color",
+        "                   data[2] = sidewall support (none,left,right,rear,front)",
+        "                   data[3] = trace diameter",
+        "                   data[4] = position (left_rear,left_front,right_rear,right_front,middle_rear,middle_front,",
+        "                             heatsink_left,heatsink_right,heatsink_rear,heatsink_front,pcie_1,gpio_1,misc_1)",
+        "                   mask[0] = true enables component mask",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
+        ]];
+    pcbsoc = [["flat", "raised", "mid-raised", "rk3399", "rk3588"],[
         " CLASS NAME: pcbsoc",
         "DESCRIPTION: creates soc components",
         "",
@@ -674,7 +722,56 @@ if(view == "Components") {
         "                  mask[2] = mask setback",
         "                  mask[3] = mstyle default"
         ]];
-    pcie =     [["x1","x4"],[
+    pcbsub = [[],[
+        " CLASS NAME: pcbsub",
+        "DESCRIPTION: creates pcb subtractions",
+        "",
+        "      USAGE: pcbadd, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = rectangle, round, polygon, slot, dxf",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  size[0] = x size",
+        "                  size[1] = y size",
+        "                  size[2] = z size",
+        "                  data[0] = corner radius or diameter",
+        "                  data[1] = pcb color",
+        "                  data[2] = polygon or dxf filename",
+        "                  data[3] = dxf scale",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+        ]];
+    pcbpad = [[],[
+        " CLASS NAME: pcbpad",
+        "DESCRIPTION: creates pcb pads",
+        "",
+        "      USAGE: pcbpad, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                     type = round, square, sqround, castellation",
+        "                   pcb_id = parent PCB",
+        "                    loc_x = x location placement",
+        "                    loc_y = y location placement",
+        "                    loc_z = z location placement",
+        "                     side = top, bottom",
+        "               rotation[] = object rotation",
+        "                  size[0] = #pad x",
+        "                  size[1] = #pad y",
+        "                  data[0] = hole size",
+        "                  data[1] = pad color",
+        "                  data[2] = pad size",
+        "                  data[5] = pad_trim (front, rear)",
+        "                  mask[0] = true enables component mask",
+        "                  mask[1] = mask length",
+        "                  mask[2] = mask setback",
+        "                  mask[3] = mstyle default"
+        ]];
+    pcie = [["x1","x4"],[
         " CLASS NAME: pcie",
         "DESCRIPTION: creates pcie components",
         "",
@@ -692,7 +789,7 @@ if(view == "Components") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle default"
         ]];
-    pillar =   [["hex", "round"],[
+    pillar = [["hex", "round"],[
         " CLASS NAME: pillar",
         "DESCRIPTION: creates pillars",
         "",
@@ -714,7 +811,7 @@ if(view == "Components") {
         "                  mask[2] = mask setback",
         "                  mask[3] = mstyle default"
 ]];
-    power =    [["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"],[
+    power = [["pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"],[
         " CLASS NAME: power",
         "DESCRIPTION: creates power delivery related components",
         "",
@@ -733,7 +830,7 @@ if(view == "Components") {
         "                 mask[2] = mask setback",
         "                 mask[3] = mstyle default"
         ]];
-    smd =      [["led"],[
+    smd = [["led"],[
         " CLASS NAME: smd",
         "DESCRIPTION: creates smd components",
         "",
@@ -755,7 +852,7 @@ if(view == "Components") {
         "               mask[2] = mask setback",
         "               mask[3] = mstyle default"
         ]];
-    storage =  [["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"],[
+    storage = [["microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header", "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"],[
         " CLASS NAME: storage",
         "DESCRIPTION: creates storage components",
         "",
@@ -774,7 +871,7 @@ if(view == "Components") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    switch =   [["slide_4x9"],[
+    switch = [["slide_4x9"],[
         " CLASS NAME: switch",
         "DESCRIPTION: creates switches",
         "",
@@ -815,7 +912,7 @@ if(view == "Components") {
         "                    mask[2] = mask setback",
         "                    mask[3] = mstyle default"
         ]];
-    uart =     [["molex_5267", "molex_5268"],[
+    uart = [["molex_5267", "molex_5268"],[
         " CLASS NAME: uart",
         "DESCRIPTION: creates uart ports",
         "",
@@ -833,7 +930,7 @@ if(view == "Components") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle (none, open, knockout)"
         ]];
-    usb2 =     [["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"],[
+    usb2 = [["micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"],[
         " CLASS NAME: usb2",
         "DESCRIPTION: creates usb2 ports",
         "",
@@ -864,7 +961,7 @@ if(view == "Components") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle default"
         ]];
-    usb3 =     [["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"],[
+    usb3 = [["single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"],[
         " CLASS NAME: usb3",
         "DESCRIPTION: creates usb3 ports",
         "",
@@ -896,7 +993,7 @@ if(view == "Components") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle default"
         ]];
-    usbc =     [["single_horizontal", "single_vertical"],[
+    usbc = [["single_horizontal", "single_vertical"],[
         " CLASS NAME: usbc",
         "DESCRIPTION: creates usbc ports",
         "",
@@ -914,7 +1011,7 @@ if(view == "Components") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle default"
         ]];
-    video =    [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"],[
+    video = [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"],[
         " CLASS NAME: video",
         "DESCRIPTION: creates video connectors",
         "",
@@ -1230,7 +1327,7 @@ if(view == "Components") {
                 text(str(memory[0][i]), font = text_font, direction="ltr");
         }
         for(i=[0:1:len(memory[1])-1]) {
-            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+            color(text_color) translate([ctext_offset, 130, ctext_height-i*7]) rotate([90, 0, 0]) 
                 text(memory[1][i], 5, font = text_font);
         }
     }
@@ -1517,7 +1614,7 @@ if(view == "All SBC Models") {
 
         translate([550,-240,0]) sbc("rpicm3");
         linear_extrude(height = 2) { translate([550,-260,0]) text("RPi CM3"); }
-        color("green",.3) translate([550,-260,-1]) cube([55,10,1]);
+        color("yellow",.3) translate([550,-260,-1]) cube([55,10,1]);
 
         translate([550,-300,0]) sbc("rpipico");
         linear_extrude(height = 2) { translate([550,-320,0]) text("RPi Pico"); }
@@ -1537,7 +1634,7 @@ if(view == "All SBC Models") {
 
         translate([535,180,0]) sbc("rpi3b+");
         linear_extrude(height = 2) { translate([535,160,0]) text("RPi 3B+"); }
-        color("yellow",.3) translate([535,160,-1]) cube([50,10,1]);
+        color("green",.3) translate([535,160,-1]) cube([50,10,1]);
 
         translate([535, 270, 0]) sbc("rpi3b");
         linear_extrude(height = 2) { translate([535,250,0]) text("RPi 3B"); }

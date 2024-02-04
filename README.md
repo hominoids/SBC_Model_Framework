@@ -6,6 +6,9 @@ This project is a lightweight and dynamic framework for the generation of SBC an
 
 ![Image](sbc_models.png)
 
+SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier Boards.  In addition, the framework allows for the automatic generation of IO mask sets to use for creating corresponding device openings.  This includes support for multiple masks for individual components that can be altered by shape and projection to cover a wide range of needs. Technical meta-data is also implemented to store device characteristics for reference and design purposes.
+
+
 ### Current Library
 
 ```
@@ -17,9 +20,7 @@ This project is a lightweight and dynamic framework for the generation of SBC an
      Total Devices: 84
 ```
 
-SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier Boards.  In addition, the framework allows for the automatic generation of IO mask sets to use for creating corresponding device openings.  This includes support for multiple masks for individual components that can be altered by shape and projection to cover a wide range of needs. Technical meta-data is also implemented to store device characteristics for reference and design purposes.
-
-## Using the Framework
+## Using SBC Model Framework
 
 Any of the models can be called by passing the requested SBC model in the form of sbc("model"). Command line options allow for the control of the SBC's heatsink and mask, GPIO and mask, UART mask and component masks. The heatsink fan mask size can be changed to allow for the use of different fan sizes from 30mm-92mm.
 
@@ -62,7 +63,7 @@ There are 13 different command line options for the heatsink:
 "default" - heatsink model is on and uses the mask setting stored in sbc_models.cfg
 "none" - heatsink model is on and mask is off.
 "open", "fan_open", "fan_1", "fan_2", "fan_hex",
-"vent", "vent_hex_5mm", "vent_hex_8mm", "custom" - to use specfic mask
+"vent", "vent_hex_5mm", "vent_hex_8mm", "custom" - to use specific mask
 ```
 
 There are 8 different command line options for the GPIO:
@@ -72,7 +73,7 @@ There are 8 different command line options for the GPIO:
 "off" - GPIO model is off, mask is on and default will be used when called.
 "default" - GPIO model is on and uses the mask setting stored in sbc_models.cfg
 "none" - GPIO model is on and mask is off.
-"open", "block", "knockout", "vent" - to use specfic mask
+"open", "block", "knockout", "vent" - to use specific mask
 ```
 
 There are 4 different command line options for the UART:
@@ -80,7 +81,7 @@ There are 4 different command line options for the UART:
 ```
 "default" - UART model is on and uses the mask setting stored in sbc_models.cfg
 "none" - UART model is on and mask is off.
-"open", "knockout" - to use specfic mask
+"open", "knockout" - to use specific mask
 ```
 
 To call the 3D model or mask set
@@ -91,27 +92,38 @@ enablemask - false produces 3D model, true produces IO mask set
 
 ## SBC Model and Component Viewer
 
-The sbc_model_viewer has a Cusomizer UI and can be used to examine individual devices in the library, all of them at once or the component classes and types.  It has the follow features:
+The sbc_models_viewer has a Customizer UI and can be used to examine individual devices in the library, all of them at once or the component classes and types.  It has the follow features:
 
-- Display SBC and MCU Models
-- Technical Information Access
-- 5-way 2D sections for DXF
+- Display SBC, MCU and CM Models
+- Device Technical Information Access
+- 5-way 2D Sections for DXF export
   - PCB shape with PCB and GPIO Holes
   - Rear, Front, Left and Right Sides
 - Console text list of PCB size and PCB hole locations and uses
-- Display Component Classes and Types
+- 3D Reference Manual with Component Classes, Types and model.
 
-## Adding SBC and MCU
+The information display requires a monospaced font for proper presentation.  Several of the common open-source monospaced fonts are included in the pickbox under the Customizer UI.  Verify what fonts are installed and recognized by the system using the menu slection **Help->Font List**.  Any installed monospaced font can be used by updating the *text_font* variable on line 36.
 
-The framework is setup so that both SBC and MCU can be easily added or modified and the resulting models can be used regardless of the state of completion. The framework consists of three parts, the SBC data set (sbc_models.cfg), the main module(sbc_models.scad) and a library of components(sbc_library.scad).
+![Image](sbc_models_viewer.gif)
+
+## Adding Devices
+
+The framework is setup so that SBC, MCU and CM can be easily added or modified and the resulting models can be used regardless of the state of completion. The framework consists of three parts, the SBC data set (sbc_models.cfg), the main module(sbc_models.scad) and a library of components(sbc_library.scad).
 
 All devices are described in sbc_models.cfg, an ASCII file that can be modified with any text editor. It contains commands for the description of a given SBC model using the following schema:
 
 class, type, pcbid, loc_x, loc_y, loc_z, face, [rotation], [size_x, size_y, size_z], [data_1, data_2...], [mask]
 
-A SBC is defined by using the commands *pcb* and *pcbhole* to define the PCB shape and hole locations.  Each PCB in a device description is uniquely identified by the *pcb_id*.  All commands that share the same pcb_id are associated to that PCB which allows for multi-PCB devices such as an SBC that is comprised of two PCB or a compute module and it's carrier board. 
+A device is defined by using the commands *pcb* and *pcbhole* to define the PCB shape and hole locations.  Each PCB in a device description is uniquely identified by the *pcb_id*.  All commands that share the same pcb_id are associated to that PCB which allows for multi-PCB devices such as an SBC that is comprised of two PCB or a compute module and it's carrier board. Each device entry in the file sbc_models.cfg must have as it's first entries:
+
+- *device_model* - unique key identifying device
+- *pcb_info[]* - device information array
+- *pcb* - class entry for the first PCB in the device
+
+The remainder of the entries describing a device can be in any order.
 
 ```
+["device_model",[pcb_info],
                                    r                                                   s
                                    o                                                   e
                   p                t     s  s  s      d  d  d  d  d  d              l  t    m
@@ -128,11 +140,18 @@ A SBC is defined by using the commands *pcb* and *pcbhole* to define the PCB sha
 "pcbhole","round",0,61.5,52.5,0,"top",[0,0,0],[3,0,0],["solid","#fee5a6","front",5,"right_front"],[false,10,2,"default"],
 
 "pcbsoc","flat",0,23,23,0,"top",[0,0,0],[13,13,1.25],[1],[false,10,2,"default"],                            
+...
+]
 ```
 
-The next step is to populate the SBC model with it's components.  There are approximately 35 Classes of components with many having several types or parametric parameters to produce different sizes, genders or other features. The asterisk in the table below indicate use classes that have one or more masks for openings - component types that are parametric have parametric masks.
+The next step is to populate the SBC model's configuration entry with it's components.  There are approximately 35 Classes of components with many having several types or parametric parameters to produce different sizes, genders or other features. The asterisk in the Component Classes and Types table below indicate use classes that have one or more masks for openings - component types that are parametric have parametric masks.
+```
+"power","pwr2.5_5x7.5",0,46.5,0,0,"top",[0,0,0],[0,0,0],[0],[true,10,2,"default"],
+"video","hdmi_a",0,24.5,-1,0,"top",[0,0,0],[0,0,0],[0],[true,10,2,"default"],
+"network","rj45_single",0,65,2.25,0,"top",[0,0,270],[0,0,0],[0],[true,10,2,"default"],
+```
 
-## Component Classes and Types:
+### Component Classes and Types:
 
 ```
     antenna  - "ipex"
@@ -155,7 +174,7 @@ The next step is to populate the SBC model with it's components.  There are appr
                "pine64_active_10", "pine64_passive_20", "pine64_passive_30"
     ic       - "generic"(parametric)
     jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
- *  memory   - "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+ *  memory   - "emmc", "emmc_plug", "emmc_plug_double", "sodimm_5.2", "sodimm_9.2"
     molex    - "7478"(parametric),"5046"(parametric)
  *  network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
                "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
@@ -180,8 +199,21 @@ The next step is to populate the SBC model with it's components.  There are appr
                "dp_mini", "mipi_csi", "mipi_dsi"
 ```
 
-## Multi-PCB Devices
+### Component Entries
+The first eight data entries are used by all components and describe the Class, Type, XYZ Location, PCB Side and Rotation for component placement.  The size[] and data[] arrays are used by some but not all components and their specific uses for each Class-Type can be found in the Class and Type Reference section below.
 
+### Component Mask
+A Component's mask for using I/O openings is set in the mask array through the following variables:
+```
+mask[0] = enable component mask (true, false)
+mask[1] = length in mm
+mask[2] = set back in mm
+mask[3] = mstyle ("default")
+```
+The first mask array entry enables or disables that individual components mask.  If it is set to false all mask generation will be overridden.  The second mask variable length, sets the distance the mask will be projected to create an opening.  The third variable determines the setback.  Image a HDMI-A component that overhangs the PCB by 2mm.  If the mask opening starts at the face of the connector, there might not be an opening created because the face of the connector is beyond the wall.  The setback addresses this by pulling the mask backwards so an opening is created.  For the GPIO class only, the setback raises and lowers the opening instead of adjusting the setback.  The last entry in the mask array determines which mask to use if more then one is available.  All entries should indicate the *"default"* mask unless a specific mask is needed.  Some components, like heatsinks and GPIO, have many masks associated with them.
+
+### Multi-PCB Devices
+Multi-PCB devices are handled the same way as any other device, each PCB having a unique *pcb_id* that all it's components will share. The *pcb_id* zero will be the first PCB for all devices in the library and must be the first entry in the devices components.
 
 ## Class and Type Reference Manual
 
@@ -629,7 +661,7 @@ DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa.
 DESCRIPTION: creates memory components
       USAGE: memory, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                     type = "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+                     type = "emmc", "emmc_plug", "emmc_plug_double", "sodimm_5.2", "sodimm_9.2"
                    pcb_id = parent PCB
                     loc_x = x location placement
                     loc_y = y location placement

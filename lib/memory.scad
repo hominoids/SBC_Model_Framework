@@ -22,7 +22,7 @@
 
           USAGE: memory(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                        type = "emmc", "emmc_plug", "sodimm_5.2", "sodimm_9.2"
+                        type = "emmc", "emmc_plug", "emmc_plug_double", "sodimm_5.2", "sodimm_9.2"
                        loc_x = x location placement
                        loc_y = y location placement
                        loc_z = z location placement
@@ -104,7 +104,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     }
 
     // emmc plug
-    if(type == "emmc_plug") {
+    if(type == "emmc_plug" || type == "emmc_plug_double") {
 
         size_x = 8.3;
         size_y = 2.16;
@@ -158,6 +158,19 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                 for (i=[1.25:.4:7.2]) {
                     color("gold") translate ([i, -.05, 0]) cube([.16, .3, .82]);
                     color("gold") translate ([i, 1.9, 0]) cube([.16, .3, .82]);
+                }
+                if(type == "emmc_plug_double") {
+                   union (){
+                        difference() {
+                        translate([0,13,0]) color("black") cube([size_x, size_y, .82]);
+                        translate([0,13,0]) color("black") translate([1, .25, .15]) cube([6.3, 1.65, 1]); 
+                        translate([0,13,0]) color("black") translate([1, 0, .72]) cube([6.3, 2.5, 2]);
+                        }
+                        for (i=[1.25:.4:7.2]) {
+                            translate([0,13,0]) color("gold") translate ([i, -.05, 0]) cube([.16, .3, .82]);
+                            translate([0,13,0]) color("gold") translate ([i, 1.9, 0]) cube([.16, .3, .82]);
+                        }
+                    }
                 }
             }
         }
