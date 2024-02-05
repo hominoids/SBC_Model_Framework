@@ -1368,6 +1368,42 @@ if(view == "3D Reference Manual") {
                 text(network[1][i], 5, font = text_font);
         }
     }
+    if(Class =="pcb") {
+        for(i=[0:1:len(pcb[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcb[1][i], 5, font = text_font);
+        }
+    }
+    if(Class =="pcbadd") {
+        for(i=[0:1:len(pcbadd[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcbadd[1][i], 5, font = text_font);
+        }
+    }
+    if(Class =="pcbhole") {
+        for(i=[0:1:len(pcbhole[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcbhole[1][i], 5, font = text_font);
+        }
+    }
+    if(Class =="pcbsoc") {
+        for(i=[0:1:len(pcbsoc[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcbsoc[1][i], 5, font = text_font);
+        }
+    }
+    if(Class =="pcbsub") {
+        for(i=[0:1:len(pcbsub[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcbsub[1][i], 5, font = text_font);
+        }
+    }
+    if(Class =="pcbpad") {
+        for(i=[0:1:len(pcbpad[1])-1]) {
+            color(text_color) translate([ctext_offset, 110, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(pcbpad[1][i], 5, font = text_font);
+        }
+    }
     if(Class =="pcie") {
         pcie("x4", 100, 25, 0, "top", 0, [0,0,0],[0], 0, false, [false,10,2,"default"]);
         color(text_color) translate([140, 0, 0]) 
