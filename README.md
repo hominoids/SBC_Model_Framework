@@ -1,230 +1,1139 @@
 # SBC Model Framework
 
-
 ## Introduction
 
 This project is a lightweight and dynamic framework for the generation of SBC and micro-controller models written in OpenSCAD.
 
-![Image](sbc.png)
+![Image](sbc_models.png)
 
-### Current SBC: 62
+SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier Boards.  In addition, the framework allows for the automatic generation of IO mask sets to use for creating corresponding device openings.  This includes support for multiple masks for individual components that can be altered by shape and projection to cover a wide range of needs. Technical meta-data is also implemented to store device characteristics for reference and design purposes.
 
-## Using the Framework
 
-Any of the models can be called by passing the requested SBC model in the form of sbc("model"). 
+### Current Library
+
+```
+               SBC: 69
+    Carrier Boards:  3
+   Compute Modules:  8
+ Micro Controllers:  4
+
+     Total Devices: 84
+```
+
+## Using SBC Model Framework
+
+Any of the models can be called by passing the requested SBC model in the form of sbc("model"). Command line options allow for the control of the SBC's heatsink and mask, GPIO and mask, UART mask and component masks. The heatsink fan mask size can be changed to allow for the use of different fan sizes from 30mm-92mm.
+
 ```
 include <sbc_models.scad>
 sbc("rpi5");
 ```
 
-## Modifying and Adding Components
-The framework is setup so that both SBC and components can be easily added or modified and the resulting models can be used regardless of the state of completion. The framework consists of three parts, the SBC data set (sbc_models.cfg), the main module(sbc_models.scad) and a library of components(sbc_library.scad).
-
-sbc_models.cfg is an ASCII file that can be modified with any text editor. It contains a data set for the description of a given SBC.
-The schema is as follows:
 ```
-"model",pcbsize_x, pcbsize_y, pcbsize_z, pcbcorner_radius, topmax_component_z, bottommax_component_z
-pcb_hole1_x, pcb_hole1_y, pcb1_hole_size, pcb_hole2_x, pcb_hole2_y, pcb2_hole_size
-pcb_hole3_x, pcb_hole3_y, pcb3_hole_size, pcb_hole4_x, pcb_hole4_y, pcb4_hole_size
-pcb_hole5_x, pcb_hole5_y, pcb5_hole_size, pcb_hole6_x, pcb_hole6_y, pcb6_hole_size
-pcb_hole7_x, pcb_hole7_y, pcb7_hole_size, pcb_hole8_x, pcb_hole8_y, pcb8_hole_size
-pcb_hole9_x, pcb_hole9_y, pcb9_hole_size, pcb_hole10_x, pcb_hole10_y, pcb10_hole_size
-soc1size_x, soc1size_y, soc1size_z, soc1loc_x, soc1loc_y, soc1loc_z, soc1_rotation, "soc1_side",
-soc2size_x, soc2size_y, soc2size_z, soc2loc_x, soc2loc_y, soc2loc_z, soc2_rotation, "soc2_side",
-soc3size_x, soc3size_y, soc3size_z, soc3loc_x, soc3loc_y, soc3loc_z, soc3_rotation, "soc3_side",
-soc4size_x, soc4size_y, soc4size_z, soc4loc_x, soc4loc_y, soc4loc_z, soc4_rotation, "soc4_side",
-component_x, component_y, component_rotation, "component_side", "component_class","component_type"
+USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enablemask = false)
+
+         model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
+                 "m1","m1s","h2","h2+","h3","h3+","show2",
+                 "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
+                 "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
+                 "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
+                 "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b",
+                 "vim1","vim2","vim3l","vim3","vim4",
+                 "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
+                 "opi5","opizero","opizero2","opir1plus_lts","opir1",
+                 "lepotato","sweetpotato","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
+                 "jetsonnano",
+                 "licheerv+dock",
+                 "visionfive2",
+                 "atomicpi"
+                 "rak19007"
+enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
+                 "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
+       fansize = 0, 30, 40, 50, 60, 70, 80, 92
+    enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", "vent" 
+    enableuart = "default", "none", "open", "knockout"
+    enablemask = true or false
 ```
 
-Part of the schema has a fixed length and includes the SBC model, PCB xyz size, corner radius, top and bottom maximum component heights, up to 10 thru holes and up to 4 SOC. This part of the schema is the same length for all SBC definitions. The number of component entries is unlimited in quantity and I'll discuss that in a minute. I believe the basic PCB data is self explanatory. The physical dimensions(xyz) must be known in order to create it. The top and bottom maximum component Z height can be useful for designs using this library. PCB holes are limited to 10 defined by their xy center location and diameter. The number can be easily expanded if this becomes restrictive.
+There are 13 different command line options for the heatsink:
 
-I choose to accommodate multiple SOC and not include them as a component for a couple of reasons. There are already SBC's that are specialized and include multiple processing units. I refer to them all in this framework as SOC but they could also be micro-controllers, neural-net processors, or dedicated communication processors on the PCB, to name a few. By defining them separately from components, additional information such as size and height can be included without burdening every component entry with this additional information. Four entries should be sufficient but it too can be easily expanded in the future without significant modification of the program. SOC entries can be rotated and also be placed on either side of the PCB. If a hole or SOC is not needed leave scalar values as zero and text entries empty.
-
-The last entry in the schema is for components. A component is anything that is attached to the PCB. Any number of components from the library can be placed per SBC. The algorithm will automatically place as many or as few as defined. There are six values per component. The xy component location for the top of the PCB are measured from the lower left corner of PCB to the lower left corner of component or opening, with holes measured to the center. Bottom side components are measured from top left corner to top left corner of component when the PCB is rotated around the x axis. All measurements are in mm and as a general rule PCB orientation is with long side of the PCB along the x axis.
-
-The rotation value does not rotate the component around the xy location. It is a reference to the direction that the component faces and whichever corner of the component is in the lower left after rotation, will assume the xy location specified for the component entry. This allows a uniform means to measure the placement of components regardless of their orientation on the PCB. The schema entry labeled component_side is the side of the PCB the component is to be placed on. So far we covered component_x, component_y, component_rotation and component_side. The last two entries are component_class and component_type. These entries together determine what component is placed. Each component class contains one or more component types. There are currently 17 component classes with corresponding component types.
-
-## Component classes and types:
-
-![Image](sbc_test_components.png)
-    
 ```
-    memory  - "emmc","emmc_plug","sodimm_5.2","sodimm_9.2"
-    switch -  "slide_4x9"
-    button -  "momentary_6x6x9","momentary_6x6x4","momentary_6x6x4_90","momentary_4x2x1","momentary_7x3x3_90"
-    plug -    "pwr2.5_5x7.5","pwr5.5_7.5x11.5","pwr5.5_10x10","rtc_micro","audio_micro","uart_micro","molex_4x1",
-              "small_encl_satapwr"
-    usb2 -    "micro","single_vertical_a","double_stacked_a","single_horizontal_a"
-    usb3 -    "double_stacked_a","single_horizontal_a",
-    network - "rj45_single",
-    video -   "hdmi_a","hdmi_a_vertical","dp-hdmi_a","mipi_csi","mipi_dsi","hdmi_micro","dp_mini","hdmi_a_vertical"
-    fan -     "micro","encl_pmw","encl_pmw_h"
-    gpio -    "encl_header_12","encl_header_30","header_20","header_26","header_40"
-    ic -      "ic_2.8x2.8","ic_3x3","ic_3.7x3.7","ic_4x4","ic_4.7x4.7","ic_5x5","ic_5.75x5.75","ic_6x6","ic_6.4x6.4",
-              "ic_6.75x6.75","ic_7x7","ic_4.3x5.1","ic_5.4x5.3","ic_6.7x8.4","ic_9x9","ic_11x8","ic_13x8",
-              "ic_13x9","ic_16x10"
-    audio -   "out-in-spdif","jack_3.5"
-    storage - "sdcard","sdcard_i","sata_header","sata_encl_header","m.2_header","m.2_stud","sata_encl_power",
-              "sata_power_vrec","microsdcard"
-    combo -   "rj45-usb2_double","rj45-usb3_double","double_stacked_usb3-usbc"
-    jumper -  "header_2x1","header_3x1","header_3x2","header_5x1","header_6x1","header_7x1"
-    misc -    "ir_1","bat_hold_1","led_3x1.5","lcd_2.2"
-    heatsink -"hc4_oem","c4_oem","c2_oem","c1+_oem","xu4_oem","n1_oem","xu4q_oem","n2_oem","n2+_oem","m1_oem","h2_oem",
-               "khadas_oem","khadas_fan_oem","radxa_oem"
-    pcie -     "x4"
-    jst_ph -   number of pins from 2-16
+"disable" - turns off the heatsink model and mask
+"off" - heatsink model is off, mask is on and default will be used when called.
+"default" - heatsink model is on and uses the mask setting stored in sbc_models.cfg
+"none" - heatsink model is on and mask is off.
+"open", "fan_open", "fan_1", "fan_2", "fan_hex",
+"vent", "vent_hex_5mm", "vent_hex_8mm", "custom" - to use specific mask
 ```
-Simply put, new SBC are defined in sbc_model.cfg and new components are added to sbc_library.scad. To add an SBC, modify sbc_models.cfg by creating or copying of an existing SBC entry. Update the relative SBC data and components for the new SBC. When a component type needs to be added, simply add code that draws that component type in the class module the component belongs to, located in sbc_library.scad. There is no checking or validation of any kind so in reality any class can contain any component type. The names are simply the ones I choose to impose some structure that makes sense for my use of the library moving forward.
+
+There are 8 different command line options for the GPIO:
+
+```
+"disable" - turns off the GPIO model and mask
+"off" - GPIO model is off, mask is on and default will be used when called.
+"default" - GPIO model is on and uses the mask setting stored in sbc_models.cfg
+"none" - GPIO model is on and mask is off.
+"open", "block", "knockout", "vent" - to use specific mask
+```
+
+There are 4 different command line options for the UART:
+
+```
+"default" - UART model is on and uses the mask setting stored in sbc_models.cfg
+"none" - UART model is on and mask is off.
+"open", "knockout" - to use specific mask
+```
+
+To call the 3D model or mask set
+
+```
+enablemask - false produces 3D model, true produces IO mask set
+```
+
+## SBC Model and Component Viewer
+
+The sbc_models_viewer has a Customizer UI and can be used to examine individual devices in the library, all of them at once or the component classes and types.  It has the follow features:
+
+- Display SBC, MCU and CM Models
+- Device Technical Information Access
+- 5-way 2D Sections for DXF export
+  - PCB shape with PCB and GPIO Holes
+  - Rear, Front, Left and Right Sides
+- Console text list of PCB size and PCB hole locations and uses
+- 3D Reference Manual with Component Classes, Types and model.
+
+The information display requires a monospaced font for proper presentation.  Several of the common open-source monospaced fonts are included in the pickbox under the Customizer UI.  Verify what fonts are installed and recognized by the system using the menu slection **Help->Font List**.  Any installed monospaced font can be used by updating the *text_font* variable on line 36.
+
+![Image](sbc_models_viewer.gif)
+
+## Adding Devices
+
+The framework is setup so that SBC, MCU and CM can be easily added or modified and the resulting models can be used regardless of the state of completion. The framework consists of three parts, the SBC data set (sbc_models.cfg), the main module(sbc_models.scad) and a library of components(sbc_library.scad).
+
+All devices are described in sbc_models.cfg, an ASCII file that can be modified with any text editor. It contains commands for the description of a given SBC model using the following schema:
+
+class, type, pcbid, loc_x, loc_y, loc_z, face, [rotation], [size_x, size_y, size_z], [data_1, data_2...], [mask]
+
+A device is defined by using the commands *pcb* and *pcbhole* to define the PCB shape and hole locations.  Each PCB in a device description is uniquely identified by the *pcb_id*.  All commands that share the same pcb_id are associated to that PCB which allows for multi-PCB devices such as an SBC that is comprised of two PCB or a compute module and it's carrier board. Each device entry in the file sbc_models.cfg must have as it's first entries:
+
+- *device_model* - unique key identifying device
+- *pcb_info[]* - device information array
+- *pcb* - class entry for the first PCB in the device
+
+The remainder of the entries describing a device can be in any order.
+
+```
+["device_model",[pcb_info],
+                                   r                                                   s
+                                   o                                                   e
+                  p                t     s  s  s      d  d  d  d  d  d              l  t    m
+   c              c l l l          a     i  i  i      a  a  a  a  a  a              e       s
+   l       t      b o o o   f      t     z  z  z      t  t  t  t  t  t         m    n  b    t
+   a       y        c c c   a      i     e  e  e      a  a  a  a  a  a         a    g  a    y
+   s       p      i         c      o                                           s    t  c    l
+   s,      e,     d,x,y,z,  e,     n,   [x, y, z],   [1, 2, 3, 4, 5, 6]. . ., [k,   h, k,   e]
+"pcb","rectangle",0,0,0,0,"top",[0,0,0],[85,56,1],[3.5,"#1e2028",0,0,0,18,6],[false,10,2,"default"]
+
+"pcbhole","round",0,3.5,3.5,0,"top",[0,0,0],[3,0,0],["solid","#fee5a6","rear",5,"left_rear"],[false,10,2,"default"],
+"pcbhole","round",0,3.5,52.5,0,"top",[0,0,0],[3,0,0],["solid","#fee5a6","front",5,"left_front"],[false,10,2,"default"],
+"pcbhole","round",0,61.5,3.5,0,"top",[0,0,0],[3,0,0],["solid","#fee5a6","rear",5,"right_rear"],[false,10,2,"default"],
+"pcbhole","round",0,61.5,52.5,0,"top",[0,0,0],[3,0,0],["solid","#fee5a6","front",5,"right_front"],[false,10,2,"default"],
+
+"pcbsoc","flat",0,23,23,0,"top",[0,0,0],[13,13,1.25],[1],[false,10,2,"default"],                            
+...
+]
+```
+
+The next step is to populate the SBC model's configuration entry with it's components.  There are approximately 35 Classes of components with many having several types or parametric parameters to produce different sizes, genders or other features. The asterisk in the Component Classes and Types table below indicate use classes that have one or more masks for openings - component types that are parametric have parametric masks.
+```
+"power","pwr2.5_5x7.5",0,46.5,0,0,"top",[0,0,0],[0,0,0],[0],[true,10,2,"default"],
+"video","hdmi_a",0,24.5,-1,0,"top",[0,0,0],[0,0,0],[0],[true,10,2,"default"],
+"network","rj45_single",0,65,2.25,0,"top",[0,0,270],[0,0,0],[0],[true,10,2,"default"],
+```
+
+### Component Classes and Types:
+
+```
+    antenna  - "ipex"
+ *  audio    - "out-in-spdif", "jack_3.5", "audio_micro", "mic_round"
+    b2b      - "df40"(parametric)
+    battery  - "bat_hold_1", "rtc_micro"
+ *  button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
+               "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+    cm       - "cm1","cm3","cm3l","cm4","cm4l","jetsonnano"
+ *  discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
+ *  display  - "lcd_2.2"
+    fan      - "fan_micro","encl_pmw","encl_pmw_h"
+ *  fpc      - "fh19"(parametric), "fh12"(parametric)
+ *  gpio     - "encl_header_12", "encl_header_30", "header_40", "header_26", "header_20"
+    header   - "open"(parametric)
+ *  heatsink - "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
+               "c1+_oem", "c2_oem", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
+               "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
+               "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub"
+               "pine64_active_10", "pine64_passive_20", "pine64_passive_30"
+    ic       - "generic"(parametric)
+    jst      - "xh", "ph", "zh", "sh", "pa" (all parametric)
+ *  memory   - "emmc", "emmc_plug", "emmc_plug_double", "sodimm_5.2", "sodimm_9.2"
+    molex    - "7478"(parametric),"5046"(parametric)
+ *  network  - "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
+               "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
+    pcb      - "round", "slot", "rectangle", "polygon", "dxf", "cm1", "cm3", "cm4"
+    pcbhole  - "round"
+    pcbadd   - "round", "slot", "rectangle", "polygon", "dxf"
+    pcbsub   - "round", "slot", "rectangle", "polygon", "dxf"
+    pcbsoc   - "flat"(parametric), "raised"(parametric), "mid-raised", "rk3399", "rk3588"
+    pcie     - "x1","x4"
+    pillar   - "hex"(parametric), "round"(parametric)
+ *  power    - "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", "molex_4x1", "small_encl_satapwr"
+    smd      - "led"(parametric)
+ *  storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
+               "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
+ *  switch   - "slide_4x9"
+ *  terminal - "gtb"(parametric)
+ *  uart     - ""molex_5267", "molex_5268" 
+ *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"
+ *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"
+ *  usbc     - "single_horizontal", "single_vertical"
+ *  video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini"
+               "dp_mini", "mipi_csi", "mipi_dsi"
+```
+
+### Component Entries
+The first eight data entries are used by all components and describe the Class, Type, XYZ Location, PCB Side and Rotation for component placement.  The size[] and data[] arrays are used by some but not all components and their specific uses for each Class-Type can be found in the Class and Type Reference section below.
+
+### Component Mask
+A Component's mask for using I/O openings is set in the mask array through the following variables:
+```
+mask[0] = enable component mask (true, false)
+mask[1] = length in mm
+mask[2] = set back in mm
+mask[3] = mstyle ("default")
+```
+The first mask array entry enables or disables that individual components mask.  If it is set to false all mask generation will be overridden.  The second mask variable length, sets the distance the mask will be projected to create an opening.  The third variable determines the setback.  Image a HDMI-A component that overhangs the PCB by 2mm.  If the mask opening starts at the face of the connector, there might not be an opening created because the face of the connector is beyond the wall.  The setback addresses this by pulling the mask backwards so an opening is created.  For the GPIO class only, the setback raises and lowers the opening instead of adjusting the setback.  The last entry in the mask array determines which mask to use if more then one is available.  All entries should indicate the *"default"* mask unless a specific mask is needed.  Some components, like heatsinks and GPIO, have many masks associated with them.
+
+### Multi-PCB Devices
+Multi-PCB devices are handled the same way as any other device, each PCB having a unique *pcb_id* that all it's components will share. The *pcb_id* zero will be the first PCB for all devices in the library and must be the first entry in the devices components.
+
+## Class and Type Reference Manual
+
+### antenna
+
+```
+ CLASS NAME: antenna
+DESCRIPTION: creates antenna components.
+      USAGE: antenna, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "ipex"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   mask[0] = component mask true, false
+                   mask[1] = length
+                   mask[2] = set back
+                   mask[3] = mstyle "default"
+```
+
+### audio
+
+```
+ CLASS NAME: audio
+DESCRIPTION: creates audio components.
+      USAGE: audio, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                    type = "audio_micro"
+                  pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 mask[0] = component mask true, false
+                 mask[1] = length
+                 mask[2] = set back
+                 mask[3] = mstyle "default"
+
+                    type = "jack_3.5"
+                  pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 size[0] = body size_x
+                 size[1] = body size_y
+                 size[2] = body size_z
+                 data[0] = neck diameter
+                 data[1] = z adjustment
+                 mask[0] = component mask true, false
+                 mask[1] = length
+                 mask[2] = set back
+                 mask[3] = mstyle "default"
+
+                    type = "mic_round"
+                  pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 size[0] = body diameter
+                 size[2] = body height
+                 mask[0] = component mask true, false
+                 mask[1] = length
+                 mask[2] = set back
+                 mask[3] = mstyle "default"
+
+                    type = "out-in-spdif"
+                  pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 mask[0] = component mask true, false
+                 mask[1] = length
+                 mask[2] = set back
+                 mask[3] = mstyle "default"
+```
+### b2b
+```
+ CLASS NAME: b2b
+DESCRIPTION: creates b2b headers in size, pitch and stacking height.
+      USAGE: b2b, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+                    
+                  type = "df40"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               size[0] = #pins
+               size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)
+               data[0] = "default"
+               data[1] = header color
+               data[2] = "male", "female"
+
+```
+### battery
+```
+ CLASS NAME: battery
+DESCRIPTION: creates batteries and support components.
+      USAGE: battery, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "bat_hold_1", "rtc_micro"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   mask[0] = true enables component mask
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+```
+### button
+```
+ CLASS NAME: button
+DESCRIPTION: creates buttons
+      USAGE: buttons, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
+                             "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   mask[0] = true enables component mask
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+```
+### cm
+```
+ CLASS NAME: cm
+DESCRIPTION: creates compute modules as library components
+      USAGE: cm, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                 type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","jetsonnano"
+               pcb_id = parent PCB
+                loc_x = x location placement
+                loc_y = y location placement
+                loc_z = z location placement
+                 side = "top", "bottom"
+           rotation[] = object rotation
+              data[0] = cm pcb color
+              mask[0] = true enables component mask
+              mask[1] = mask length
+              mask[2] = mask setback
+              mask[3] = mstyle "default"
+```
+### cm_holder
+```
+ CLASS NAME: cm_holder
+DESCRIPTION: creates compute module holder
+      USAGE: cm_holder, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                        type = "jetsonnano","cm1","cm3","cm3l","cm4"
+                      pcb_id = parent PCB
+                       loc_x = x location placement
+                       loc_y = y location placement
+                       loc_z = z location placement
+                        side = "top", "bottom"
+                  rotation[] = object rotation
+                     data[0] = cm pcb color
+                     mask[0] = true enables component mask
+                     mask[1] = mask length
+                     mask[2] = mask setback
+                     mask[3] = mstyle "default"
+```
+
+### discrete
+```
+ CLASS NAME: discrete
+DESCRIPTION: creates discrete components
+      USAGE: discrete, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                       type = "ir_dual",
+                     pcb_id = parent PCB
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    mask[0] = true enables component mask
+                    mask[1] = mask length
+                    mask[2] = mask setback
+                    mask[3] = mstyle "default"
+
+                       type = "ir_1"
+                     pcb_id = parent PCB
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    size[2] = height
+                    mask[0] = true enables component mask
+                    mask[1] = mask length
+                    mask[2] = mask setback
+                    mask[3] = mstyle "default"
+
+                       type = "capacitor"
+                     pcb_id = parent PCB
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    size[0] = diameter
+                    size[2] = height
+
+                       type = "led"
+                     pcb_id = parent PCB
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    size[0] = diameter
+                    size[2] = height
+                    data[0] = style "default"
+                    data[1] = led color
+```
+### display
+```
+ CLASS NAME: display
+DESCRIPTION: creates flat panel displays
+      USAGE: display, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "lcd_2.2", "mipi_csi", "mipi_dsi"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   mask[0] = component mask true, false
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+```
+### fan
+```
+ CLASS NAME: fan
+DESCRIPTION: creates fan support components
+      USAGE: fan, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                  type = "fan_micro", "encl_pmw", "encl_pmw_h"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               mask[0] = component mask true, false
+               mask[1] = mask length
+               mask[2] = mask setback
+               mask[3] = mstyle "default"
+```
+### fpc
+```
+ CLASS NAME: fpc
+DESCRIPTION: creates fpc connectors
+      USAGE: fpc, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                  type = "fh19"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               size[0] = #pins
+               data[0] = "smt"
+               data[1] = "side"
+               data[2] = body color
+               data[3] = tab color
+               mask[0] = true enables component mask
+               mask[1] = mask length
+               mask[2] = mask setback
+               mask[3] = mstyle "default"
+
+                  type = "fh12"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               size[0] = #pins
+               data[0] = "smt"
+               data[1] = "top"
+               data[2] = body color
+               data[3] = tab color
+               mask[0] = true enables component mask
+               mask[1] = mask length
+               mask[2] = mask setback
+               mask[3] = mstyle "default"
+```
+### gpio
+```
+ CLASS NAME: gpio
+DESCRIPTION: creates gpio headers
+      USAGE: gpio, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                   type = "open"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                size[0] = #row
+                size[1] = #columns
+                size[2] = pin height
+                data[0] = style ("straight", "angled")
+                data[1] = header color
+                data[2] = "male", "female"
+                data[3] = pitch
+                data[4] = pin color
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle ("none", "open", "block", "knockout", "vent")
+
+                   type = "encl_header_30", "encl_header_12"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle ("none", "open", "block", "knockout", "vent")
+```
+### header
+```
+ CLASS NAME: header
+DESCRIPTION: creates pin headers in any size or pitch.
+      USAGE: header, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "open"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = #row
+                  size[1] = #columns
+                  size[2] = pin height
+                  data[0] = style ("straight", "angled")
+                  data[1] = header color
+                  data[2] = "male", "female"
+                  data[3] = pitch
+                  data[4] = pin color
+                  mask[0] = component mask true, false
+                  mask[1] = length
+                  mask[2] = set back
+                  mask[3] = mstyle "default"
+```
+### heatsink
+```
+ CLASS NAME: heatsink
+DESCRIPTION: creates heatsinks
+      USAGE: heatsink, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                       type = "40mm_active_10", "40mm_passive_10", "40mm_passive_25", "32mm_passive_10",
+                              "c1+_oem", "c2_oem", "c4_oem", "hc4_oem", "xu4_oem", "xu4q_oem", "n1_oem", "n2l_oem", "n2lq_oem"
+                              "n2_oem", "n2+_oem", "m1_oem", "m1s_oem", "h2_oem", "h3_oem",
+                              "atomicpi", "khadas_oem", "khadas_fan_oem", "radxa_oem", "rpi5_oem", "stub",
+                              "pine64_active_10", "pine64_passive_20", "pine64_passive_30"
+                     pcb_id = parent PCB
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    data[0] = fan size
+                    mask[0] = component mask true, false
+                    mask[1] = length
+                    mask[2] = set back
+                    mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", "custom"
+```
+### ic
+```
+ CLASS NAME: ic
+DESCRIPTION: creates intergrated circuits
+      USAGE: ic, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                 type = "generic"
+               pcb_id = parent PCB
+                loc_x = x location placement
+                loc_y = y location placement
+                loc_z = z location placement
+                 side = "top", "bottom"
+           rotation[] = object rotation
+              size[0] = size_x
+              size[1] = size_y
+              size[2] = size_z
+              data[0] = icolor
+              mask[0] = true, false
+              mask[1] = length
+              mask[2] = set back
+              mask[3] = mstyle "default"
+```
+### jst
+```
+ CLASS NAME: jst
+DESCRIPTION: creates jst connectors for xh, ph, zh, sh, pa.
+      USAGE: jst, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                  type = "xh","ph","zh","sh","pa"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               size[0] = #pins
+               data[0] = "thruhole", "smt"
+               data[1] = "top", "side"
+               data[2] = body color
+               mask[0] = true, false
+               mask[1] = length
+               mask[2] = set back
+               mask[3] = mstyle "default"
+```
+### memory
+```
+ CLASS NAME: memory
+DESCRIPTION: creates memory components
+      USAGE: memory, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "emmc", "emmc_plug", "emmc_plug_double", "sodimm_5.2", "sodimm_9.2"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### molex
+```
+ CLASS NAME: molex
+DESCRIPTION: creates molex series connectors.
+      USAGE: molex, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                    type = "7478","5046"
+                   pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 size[0] = #pins
+                 data[0] = "thruhole", "smt"
+                 data[1] = "top", "side"
+                 mask[0] = true enables component mask
+                 mask[1] = mask length
+                 mask[2] = mask setback
+                 mask[3] = mstyle "default"
+```
+### network
+```
+ CLASS NAME: network
+DESCRIPTION: creates network components
+      USAGE: network, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "rj45_single", "rj45_single_short", "rj45_reverse_single", "rj45_low_profile1",
+                             "rj45_low_profile2", "rj45_double_stacked", "rj45-usb2_double", "rj45-usb3_double"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   mask[0] = true enables component mask
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+```
+### pcb
+```
+ CLASS NAME: pcb
+DESCRIPTION: creates pcb
+      USAGE: pcb, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                  type = "rectangle", "round", "polygon", "slot", "dxf", "cm1", "cm3", "cm4", "nano"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               size[0] = x size
+               size[1] = y size
+               size[2] = z size
+               data[0] = pcb corner radius
+               data[1] = pcb color
+               data[2] = polygon or dxf filename
+               data[3] = dxf scale
+               data[4] = top maximum component height
+               data[5] = bottom maximum component height
+               mask[0] = true enables component mask
+               mask[1] = mask length
+               mask[2] = mask setback
+               mask[3] = mstyle "default"
+```
+### pcbadd
+```
+ CLASS NAME: pcbadd
+DESCRIPTION: creates pcb additions
+      USAGE: pcbadd, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "rectangle", "round", "polygon", "slot", "dxf"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = x size
+                  size[1] = y size
+                  size[2] = z size
+                  data[0] = corner radius or diameter
+                  data[1] = pcb color
+                  data[2] = polygon or dxf filename
+                  data[3] = dxf scale
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### pcbhole
+```
+ CLASS NAME: pcbhole
+DESCRIPTION: creates pcb hole
+      USAGE: pcbhole, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "round"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   size[0] = hole diameter
+                   data[0] = style
+                   data[1] = hole color
+                   data[2] = sidewall support("none","left","right","rear","front")
+                   data[3] = trace diameter
+                   data[4] = position "left_rear","left_front","right_rear","right_front","middle_rear","middle_front",
+                                      "heatsink_left","heatsink_right","heatsink_rear","heatsink_front","pcie_1","gpio_1","misc_1"
+                   mask[0] = true enables component mask
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+```
+### pcbsoc
+```
+ CLASS NAME: pcbsoc
+DESCRIPTION: creates soc components
+      USAGE: pcbsoc, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "flat", "raised", "mid-raised", "rk3399", "rk3588"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = size_x
+                  size[1] = size_y
+                  size[2] = size_z
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### pcbsub
+```
+ CLASS NAME: pcbsub
+DESCRIPTION: creates pcb subtractions
+      USAGE: pcbadd, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "rectangle", "round", "polygon", "slot", "dxf"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = x size
+                  size[1] = y size
+                  size[2] = z size
+                  data[0] = corner radius or diameter
+                  data[1] = pcb color
+                  data[2] = polygon or dxf filename
+                  data[3] = dxf scale
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### pcbpad
+```
+ CLASS NAME: pcbpad
+DESCRIPTION: creates pcb pads
+      USAGE: pcbpad, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "round", "square", "sqround", "castellation"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = #pad x
+                  size[1] = #pad y
+                  data[0] = hole size
+                  data[1] = pad color
+                  data[2] = pad size
+                  data[5] = pad_trim ("front", "rear")
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### pcie
+```
+ CLASS NAME: pcie
+DESCRIPTION: creates pcie components
+      USAGE: pcie, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                   type = "x1", "x4"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "default"
+```
+### pillar
+```
+ CLASS NAME: pillar
+DESCRIPTION: creates pillars
+      USAGE: pillar, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "hex", "round"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  size[0] = outside dia
+                  size[1] = inside dia
+                  size[2] = height
+                  data[1] = body color
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### power
+```
+ CLASS NAME: power
+DESCRIPTION: creates power delivery related components
+      USAGE: power, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                    type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", 
+                           "molex_4x1", "small_encl_satapwr"
+                  pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 mask[0] = true enables component mask
+                 mask[1] = mask length
+                 mask[2] = mask setback
+                 mask[3] = mstyle "default"
+```
+### smd
+```
+ CLASS NAME: smd
+DESCRIPTION: creates smd components
+      USAGE: smd, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                  type = "led"
+                pcb_id = parent PCB
+                 loc_x = x location placement
+                 loc_y = y location placement
+                 loc_z = z location placement
+                  side = "top", "bottom"
+            rotation[] = object rotation
+               size[0] = size_x
+               size[1] = size_y
+               size[2] = size_z
+               data[0] = body color
+               mask[0] = true enables component mask
+               mask[1] = mask length
+               mask[2] = mask setback
+               mask[3] = mstyle "default"
+```
+### storage
+```
+ CLASS NAME: storage
+DESCRIPTION: creates storage components
+      USAGE: storage, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                      type = "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
+                             "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   mask[0] = true enables component mask
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+
+```
+### switch
+```
+ CLASS NAME: switch
+DESCRIPTION: creates switches
+      USAGE: switch, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                     type = "slide_4x9"
+                   pcb_id = parent PCB
+                    loc_x = x location placement
+                    loc_y = y location placement
+                    loc_z = z location placement
+                     side = "top", "bottom"
+               rotation[] = object rotation
+                  mask[0] = true enables component mask
+                  mask[1] = mask length
+                  mask[2] = mask setback
+                  mask[3] = mstyle "default"
+```
+### terminal
+```
+ CLASS NAME: terminal
+DESCRIPTION: creates terminal blocks
+      USAGE: terminal, type, pcb_id, loc_x, loc_y, loc_z, side, rotation, size, data, mask
+
+                       type = "gtb"
+                     pcb_id = parent PCB
+                      loc_x = x location placement
+                      loc_y = y location placement
+                      loc_z = z location placement
+                       side = "top", "bottom"
+                 rotation[] = object rotation
+                    size[0] = #positions
+                    size[1] = body depth
+                    size[2] = height
+                    data[0] = pitch
+                    data[1] = body color
+                    mask[0] = true enables component mask
+                    mask[1] = mask length
+                    mask[2] = mask setback
+                    mask[3] = mstyle "default"
+```
+### uart
+```
+ CLASS NAME: uart
+DESCRIPTION: creates uart ports.
+      USAGE: uart, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                   type = "molex_5267", "molex_5268" 
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "none", "open", "knockout"
+
+```
+### usb2
+```
+ CLASS NAME: usb2
+DESCRIPTION: creates usb2 ports.
+      USAGE: usb2, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                   type = "micro", "double_stacked_a"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "default"
+
+                   type = "single_horizontal_a", "single_vertical_a"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                size[1] = size_y
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "default"
+```
+### usb3
+```
+ CLASS NAME: usb3
+DESCRIPTION: creates usb3 ports.
+      USAGE: usb3, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                   type = "single_horizontal_a", "double_stacked_a", "double_stacked_usb3-usbc"
+                          "double_stacked_usb3-usb2"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "default"
+
+                   type = "single_vertical_a"
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                size[1] = size_y
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "default"
+```
+### usbc
+```
+ CLASS NAME: usbc
+DESCRIPTION: creates usbc ports.
+      USAGE: usbc, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                   type = "single_horizontal_a", "single_vertical_a" 
+                 pcb_id = parent PCB
+                  loc_x = x location placement
+                  loc_y = y location placement
+                  loc_z = z location placement
+                   side = "top", "bottom"
+             rotation[] = object rotation
+                mask[0] = true enables component mask
+                mask[1] = mask length
+                mask[2] = mask setback
+                mask[3] = mstyle "default"
+```
+### video
+```
+ CLASS NAME: video
+DESCRIPTION: creates video connectors.
+      USAGE: video, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
+
+                    type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"
+                  pcb_id = parent PCB
+                   loc_x = x location placement
+                   loc_y = y location placement
+                   loc_z = z location placement
+                    side = "top", "bottom"
+              rotation[] = object rotation
+                 mask[0] = true enables component mask
+                 mask[1] = mask length
+                 mask[2] = mask setback
+                 mask[3] = mstyle "default"
+```
 
 ## Accuracy
-In the past there was been no way of validating whether a SBC Model Framework model and it’s components were dimensionaly accurate in their size and placement other then trial and error. SBC Case Builder provides a much needed model validation tool to assure model accuracy thru the use of test cases. It works on the very simple premise that if the real SBC fits the test case then the virtual model is accurate or otherwise shows were corrections are needed. This will further increased the overall accuracy of models.
 
-Some SBC in SBC Model Framework have not been validated or are missing component data and may produce one or more aspects of a case incorrectly. SBC status is noted in sbc.png, README.md and at the beginning of the SBC entry defined in sbc_models.cfg, all a part of SBC Model Framework. The color coded indicator of an SBC’s verification and completion as indicated in sbc.png is as follows:
+In the past there was been no way of validating whether a SBC Model Framework model and it’s components were accurate in their dimensions and placement other then trial and error. SBC Case Builder provides a model validation tool to assure model accuracy thru the use of test cases. It works on the very simple premise that if the real SBC fits the test case then the virtual model is accurate or otherwise shows were corrections are needed. This will further increased the overall accuracy of models.
 
-GREEN = verified and complete
-YELLOW = unverified, most likely usable and/or missing minor information
-ORANGE = unverified, may be usable but missing component data
-RED = unverified, not usable due to incomplete component data
-
-The SBC that I do not own have been created using manufacturer supplied mechanical drawings. Some of the drawings are missing information or have errors that effect all or part of the drawings and subsequent SBC models. If you own an SBC that is not represented or verified in SBC Model Framework, please consider adding it or helping to verify existing SBC data. An SBC can be verified to be accurate if a printed shell case from SBC Case Builder fits. Any misalignment is corrected in the SBC Model Framework model data(sbc_models.cfg).  PR's or other means of communication with corrections are much appreciated and needed to work towards 100% SBC model verification.  Please contribute if you can.  Got a dead SBC, contribute it so I can check and verify it's model with a SBC Case Builder test case.
+Some SBC in SBC Model Framework may not have been validated or are missing component data and may produce one or more aspects of a case incorrectly. SBC status is noted in sbc.png and at the beginning of the SBC entry defined in sbc_models.cfg, as a part of SBC Model Framework. The color coded indicator of an SBC’s verification and completion as indicated in sbc.png is as follows:
 ```
 GREEN = verified to be correct using SBC Case Builder.
 YELLOW = unverified, mostlikely usable and/or missing minor information.
 ORANGE = unverified, may be usable but missing component data.
 RED = unverified, not usable due to incomplete component data.
 ```
-
-### Hardkernel Odroid: 21
-
-c1+, c2, c4, xu4, xu4q, mc1, hc1, hc4, m1, m1_noheatsink, m1s, n1, n2, n2+, n2+_noheatsink, n2l, n2q, n2+, h2/h2+, h3/h3+ - GREEN, verified.
-
-show2 - ORANGE, unverified, unknown status.
-
-
-
-### Nividia: 1
-
-jetsonnano - GREEN, verified.
-
-
-
-### Pine64: 6
-
-All created from mechanical drawings except rockpro64 which was contributed. The SOC data is missing for many of these SBC.
-
-rock64 - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rockpro64 - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-quartz64a - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-quartz64b - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-h64b - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-star64 - yellow, unverified mostlikely usable and/or missing minor information.
-
-
-### Raspberry Pi: 10
-
-All created from mechanical drawings except rpi3b+ which was contributed. The SOC data is missing for these SBC.
-
-rpizero/rpizerow - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpizero2w - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi1a+ - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi1b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi3a+ - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi3b - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi3b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi4b - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rpi5, rpi5_noheatsink - green, verified.
-
-
-
-### Radxa: 5
-
-Created from mechanical drawings, the SOC data is missing for these SBC.
-
-rock4b+ - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rock4c - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rock4c+ - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rock5b-v1.3 - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-rock5b-v1.42 - GREEN, verified.
-
-rock5bq-v1.42 - GREEN, verified.
-
-
-### Khadas: 5
-
-Created from mechanical drawings, the height information is not correct for these SBC.
-The through RJ-45 component is not modeled correctly.
-
-vim1 - RED, unverified, not usable due to incomplete component data.
-
-vim2 - RED, unverified, not usable due to incomplete component data.
-
-vim3l - RED, unverified, not usable due to incomplete component data.
-
-vim3 - RED, unverified, not usable due to incomplete component data.
-
-vim4 - RED, unverified, not usable due to incomplete component data.
-
-
-
-### Asus: 6
-
-tinkerboard - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-tinkerboard-s - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-tinkerboard-2/2s - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-tinkerboard-r2/r2s - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-
-
-### OrangePi: 6
-
-opi5 - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-opizero/opizeroplus - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-opizero2 - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-opir1plus_lts - YELLOW, unverified mostlikely usable and/or missing minor information.
-
-opir1 - GREEN, verified to be correct using SBC Case Builder.
-
-
-
-### StarFive: 1
-
-visonfive2 - GREEN, verified to be correct using SBC Case Builder.
-
-
-
-### Sipeed: 1
-
-licheerv+dock - GREEN, verified to be correct using SBC Case Builder.
-
-
-
-License: GPLv3.
-
+The SBC that I do not own have been created using manufacturer supplied mechanical drawings, 3D models or have been contributed by another user. Some of the OEM drawings are missing information or have errors that effect all or part of the subsequent SBC models. If you own an SBC that is not represented or verified in SBC Model Framework, please consider adding it or helping to verify existing SBC data. An SBC can be verified to be accurate if a printed shell case from SBC Case Builder fits. Any misalignment is corrected in the SBC Model Framework model data(sbc_models.cfg).  PR's or other means of communication with corrections are much appreciated and needed to work towards 100% SBC model verification.  Please contribute if you can.
 
 ### Notes
 
-  More information can be found at this [Hard Kernel forum thread](https://forum.odroid.com/viewtopic.php?f=53&t=33823)
-
+  More information can be found at this [HardKernel forum thread](https://forum.odroid.com/viewtopic.php?f=53&t=33823)
