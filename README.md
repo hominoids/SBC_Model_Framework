@@ -30,7 +30,7 @@ sbc("rpi5");
 ```
 
 ```
-USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enablemask = false)
+USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false)
 
          model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
                  "m1","m1s","h2","h2+","h3","h3+","show2",
@@ -102,7 +102,7 @@ The sbc_models_viewer has a Customizer UI and can be used to examine individual 
 - Console text list of PCB size and PCB hole locations and uses
 - 3D Reference Manual with Component Classes, Types and model.
 
-The information display requires a monospaced font for proper presentation.  Several of the common open-source monospaced fonts are included in the pickbox under the Customizer UI.  Verify what fonts are installed and recognized by the system using the menu slection **Help->Font List**.  Any installed monospaced font can be used by updating the *text_font* variable on line 36.
+The information display requires a monospaced font for proper presentation.  Several of the common open-source monospaced fonts are included in the pickbox under the Customizer UI.  Verify what fonts are installed and recognized by the system using the menu selection **Help->Font List**.  Any installed monospaced font can be used by updating the *text_font* variable on line 36.
 
 ![Image](sbc_models_viewer.gif)
 
@@ -315,7 +315,7 @@ DESCRIPTION: creates b2b headers in size, pitch and stacking height.
                size[0] = #pins
                size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)
                data[0] = "default"
-               data[1] = header color
+               data[1] = body color
                data[2] = "male", "female"
 
 ```

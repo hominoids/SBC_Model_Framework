@@ -165,13 +165,6 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                     cube([size_xm, mlen, size_zm]);
             }
         }
-        if(enablemask == true && cmask == true && mstyle == "m1s") {
-            // single horizontal usb opening
-            if(side == "top" && rotation == 0) {
-                place(loc_x-.75, loc_y-mlen+back, loc_z+1, size_x, mlen, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, size_zm]);
-            }
-        }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
@@ -368,13 +361,6 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             if(side == "bottom" && rotation == 270) {
                 place(loc_x-mlen+back, loc_y-(size_xm-size_x)/2, loc_z, size_x, mlen, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
-            }
-        }
-        if(enablemask == true && mstyle == "m1s") {
-            // single horizontal usb opening
-            if(side == "top" && rotation == 0) {
-                place(loc_x-.5, loc_y-mlen+back, loc_z+.25, size_x, mlen, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, size_zm+1]);
             }
         }
         if(enablemask == false) {

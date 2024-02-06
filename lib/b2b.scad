@@ -31,7 +31,7 @@
                   size[0] = #pins
                   size[2] = stacking height (1.5, 2, 2.5, 3, 3.5, 4)
                   data[0] = "default"
-                  data[1] = header color
+                  data[1] = body color
                   data[2] = "male", "female"
                 pcbsize_z = pcb thickness
                enablemask = true produces mask, false produces model

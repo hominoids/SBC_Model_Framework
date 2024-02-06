@@ -23,7 +23,7 @@
     DESCRIPTION: creates SBC models and corresponding mask sets for openings.
            TODO: many
 
-          USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enablemask = false)
+          USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false)
 
                      model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
                              "m1","m1s","h2","h2+","h3","h3+","show2",

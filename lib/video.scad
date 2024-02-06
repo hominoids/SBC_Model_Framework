@@ -88,16 +88,6 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                 place(loc_x+back-size_ym/2, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("hdmi_a",mlen);
             }
         }
-        if(enablemask == true && cmask == true && mstyle == "m1s") {
-            // hdmi opening
-            if(side == "top" && rotation == 0) {
-                place(loc_x-.5, loc_y-mlen+5+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                union() {
-                    hdmi_open("hdmi_a", mlen);
-                    translate([1.875, 2, -.1]) cube([11.75, 9, 2]);
-                }
-            }
-        }
         if(enablemask == false) {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             translate([0, 0, .75])
