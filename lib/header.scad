@@ -31,7 +31,7 @@
                      size[0] = #row
                      size[1] = #columns
                      size[2] = pin height
-                     data[0] = style ("straight", "angled")
+                     data[0] = style ("thruhole", "smt")
                      data[1] = header color
                      data[2] = "male", "female"
                      data[3] = pitch

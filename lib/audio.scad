@@ -35,7 +35,7 @@
                     mask[2] = set back
                     mask[3] = mstyle "default"
 
-                       type = "jack_3.5"
+                       type = "jack_3.5", "jack_3.5-2
                       loc_x = x location placement
                       loc_y = y location placement
                       loc_z = z location placement
@@ -164,7 +164,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
     }
 
     // 3.5mm jack type
-    if(type == "jack_3.5") {
+    if(type == "jack_3.5" || type == "jack_3.5-2") {
 
         size_x = size[0];
         size_y = size[1];
@@ -234,6 +234,7 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             }    
         }
         if(enablemask == false) {                     
+            if(type == "jack_3.5") {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 union() {  
                     difference () {
@@ -245,6 +246,20 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                         color("dimgray") translate([size_x/2, -2.5, (size_z/2)+badj]) rotate([-90, 0, 0]) cylinder(d=3.5, h=6);
                     }
                 }
+            }
+            if(type == "jack_3.5-2") {
+                size_x = 6.5;
+                size_y = 13.5;        
+                place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                difference () {
+                    union() {  
+                        color("dimgray") cube([size_x,size_y,3]);
+                        color("dimgray") translate([0,size_y-5.6,0]) cube([size_x,5.6,4]);
+                        color("dimgray") translate([size_x/2,0,2.25]) rotate([270,0,0]) cylinder(d=6, h=size_y);
+                    }
+                    color("gray") translate([size_x/2,-1,2.25]) rotate([270,0,0]) cylinder(d=3, h=size_y+.01);
+                }    
+            }
         }
     }
 

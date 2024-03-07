@@ -150,7 +150,7 @@ if(view == "3D Reference Manual") {
         "                   mask[2] = set back",
         "                   mask[3] = mstyle default"
         ]];
-    audio = [["out-in-spdif", "jack_3.5", "audio_micro", "mic_round"],[
+    audio = [["out-in-spdif", "jack_3.5", "jack_3.5-2", "audio_micro", "mic_round"],[
         " CLASS NAME: audio",
         "DESCRIPTION: creates audio components",
         "",
@@ -248,7 +248,7 @@ if(view == "3D Reference Manual") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    button = [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"],[
+    button = [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90","momentary_4.5x4.5x4.5"],[
         " CLASS NAME: button",
         "DESCRIPTION: creates buttons",
         "",
@@ -1048,7 +1048,7 @@ if(view == "3D Reference Manual") {
                 text(str(audio[0][i]), font = text_font, direction="ltr");
         }
         for(i=[0:1:len(audio[1])-1]) {
-            color(text_color) translate([ctext_offset, 80, ctext_height-i*7]) rotate([90, 0, 0]) 
+            color(text_color) translate([ctext_offset, 100, ctext_height-i*7]) rotate([90, 0, 0]) 
                 text(audio[1][i], 5,  font = text_font);
         }
     }

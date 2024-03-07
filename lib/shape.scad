@@ -51,6 +51,12 @@
                      length = total length
                      depth = thickness
 
+          USAGE: long_slot(hole, length, depth)
+
+                     hole = radius diameter
+                     length = total length
+                     depth = thickness
+
           USAGE: knockout(width, depth, gap, thick, fillet, shape)
 
                      width = length
@@ -137,7 +143,18 @@ module slab_r(size, radius) {
 }
 
 
-/* slot module */
+/*
+           NAME: slot
+    DESCRIPTION: create slot shape to length
+           TODO: none
+
+          USAGE: slot(hole, length, depth)
+
+                      hole = diameter of slot
+                    length = length of slot
+                     depth = thickness of slot
+*/
+
 module slot(hole,length,depth) {
 
     hull() {
@@ -145,6 +162,27 @@ module slot(hole,length,depth) {
         translate([length-hole/2, 0, 0]) cylinder(d=hole, h=depth);
     }
 }
+
+
+/*
+           NAME: long_slot
+    DESCRIPTION: create slot shape with full movement of length
+           TODO: none
+
+          USAGE: long_slot(hole, length, depth)
+
+                      hole = diameter of slot
+                    length = length of slot
+                     depth = thickness of slot
+*/
+
+module long_slot(hole, length, depth) {
+
+    hull() {
+        translate([0,0,0]) cylinder(d=hole,h=depth);
+        translate([length,0,0]) cylinder(d=hole,h=depth);
+        }
+    } 
 
 
 /* knockout opening */
