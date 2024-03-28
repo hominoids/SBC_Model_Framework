@@ -18,7 +18,7 @@
 
      CLASS NAME: header
     DESCRIPTION: creates pin headers in any size or pitch.
-           TODO: "box", "angled" headers
+           TODO: "angled" female header, other male pitchs besides 2.54, "angled-boxed"
 
           USAGE: header(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
@@ -64,6 +64,8 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     pinsize = pitch == 2.54 ? .64 : .3;
     theight = bheight + pheight + height;
     smtlead = [pinsize, .925, .32];
+    wall = .1;
+    walloffset = pitch+wall;
 
     adj = .01;
     $fn = 90;
@@ -71,7 +73,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     // thruhole headers
     if(style == "thruhole" && enablemask == false) {
 
-        if(type == "open" && gender == "male") {
+        if((type == "open" || type == "boxed") && gender == "male") {
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 color(hcolor) cube([size_x, size_y, bheight]);
@@ -79,6 +81,12 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                     for(r=[pitch/2:pitch:size_y]) {
                         color(pcolor) translate([c-(pinsize/2), r-(pinsize/2), -pheight]) cube([pinsize, pinsize, theight+adj]);
                     }
+                }
+            }
+            if(type == "boxed") {
+                difference() {
+                    color(hcolor) translate([-walloffset,-wall,0]) cube([size_x+2*2.56, size_y+2*wall, height+bheight]);
+                    color(hcolor) translate([-walloffset+wall,0,wall]) cube([size_x+2*walloffset-4*wall, size_y, height+bheight+adj]);
                 }
             }
         }
@@ -129,16 +137,22 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
         }
     }
     // smt headers
-    if(type == "open" && style == "smt" && enablemask == false) {
+    if(style == "smt" && enablemask == false) {
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
         union() {
-            if(gender == "male") {
+            if((type == "open" || type == "boxed") && gender == "male") {
                 union() {
                     color(hcolor) cube([size_x, size_y, bheight]);
                     for(c=[pitch/2:pitch:size_x]) {
                         for(r=[pitch/2:pitch:size_y]) {
-                            color(pcolor) translate([c-(pinsize/2), r-(pinsize/2), bheight-adj]) cube([pinsize, pinsize, height+adj]);
+                            color(pcolor) translate([c-(pinsize/2), r-(pinsize/2), bheight-adj]) cube([pinsize, pinsize, height]);
                         }
+                    }
+                }
+                if(type == "boxed") {
+                    difference() {
+                        color(hcolor) translate([-walloffset,-wall,0]) cube([size_x+2*2.56, size_y+2*wall, height+bheight]);
+                        color(hcolor) translate([-walloffset+wall,0,wall]) cube([size_x+2*walloffset-4*wall, size_y, height+bheight+adj]);
                     }
                 }
             }
