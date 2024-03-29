@@ -35,7 +35,7 @@
                     mask[2] = mask setback
                     mask[3] = mstyle "default"
 
-                      type = "single_horizontal_a", "single_vertical_a"
+                      type = "single_horizontal_a", "single_vertical_a", "single_up_a"
                      loc_x = x location placement
                      loc_y = y location placement
                      loc_z = z location placement
@@ -58,6 +58,8 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
     mlen = mask[1];
     back = mask[2];
     mstyle = mask[3];
+    
+    adj = .01;
 
     // usb2 micro otg
     if(type == "micro") {
@@ -253,6 +255,70 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 color("white") translate([1, 0, 1.5]) cube([2, size[1]-.5, 11]);
                 for(i=[0:2:6]){ 
                     color("#fee5a6") translate([2.75, .5, 4.4+i]) rotate([-90,0,0]) cube([.5, .64, 10]);
+                }
+            }
+        }
+    }
+
+    // usb2 single upward socket
+    if(type == "single_up_a") {
+
+        size_x = 5.75;
+        size_y = 14.75;
+        size_z = size[1];
+        size_xm = 7.5;
+        size_ym = 16;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            // single vertical usb opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_x)/2, loc_y-.625/2-(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y, 
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-.25-(size_xm-size_x)/2, loc_y+.25+(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y, 
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x+(size_xm-size_x)/2, loc_y+.625/2+(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y, 
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+.25+(size_xm-size_x)/2, loc_y-.25-(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y,
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x+(size_xm-size_x)/2, loc_y-.625/2-(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y, 
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+.25+(size_xm-size_x)/2, loc_y+.25+(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y, 
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-(size_xm-size_x)/2, loc_y+.625/2+(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y, 
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-.25-(size_xm-size_x)/2, loc_y-.25-(size_ym-size_y)/2, loc_z+size_z-back, size_x, size_y,
+                    rotation, side, pcbsize_z) cube([size_xm, size_ym, mlen]);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {   
+                // usb 2.0 port
+                difference () {
+                    color("silver") cube([size_x, 14, size_z]);
+                    color("dimgray") translate([.5, .5, .75]) cube([4.75, 13, size[1]+2]);
+                }
+                color("silver") translate([-.65, 1, size[1]-.5]) cube([.65, 12, .5]);    
+                color("silver") translate([size_x-adj, 1, size[1]-.5]) cube([.65, 12, .5]);
+                color("silver") translate([1, -.64, size[1]-.5]) cube([3.8, .65, .5]);            
+                color("silver") translate([1, 13.99, size[1]-.5]) cube([3.8, .65, .5]);            
+                color("white") translate([1, 1.5, .5]) cube([2, 11, size[1]-.5]);
+                for(i=[0:2:6]){ 
+                    color("#fee5a6") translate([2.75, 3.9+i, adj]) rotate([0,0,0]) cube([.5, .64, 10]);
                 }
             }
         }
