@@ -18,7 +18,7 @@
 
      CLASS NAME: header
     DESCRIPTION: creates pin headers in any size or pitch.
-           TODO: "angled" female header, other male pitchs besides 2.54, "angled-boxed"
+           TODO: "angled-boxed" and male pitchs besides 2.54.
 
           USAGE: header(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
@@ -98,7 +98,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                     for(c=[pitch/2:pitch:size_x]) {
                         for(r=[pitch/2:pitch:size_y]) {
                             color("#888888") translate([c-(pinsize/2), r-(pinsize/2), height-5+adj]) cube([pinsize, pinsize, height-1]);
-                            color(pcolor) translate([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize, pinsize, pheight+adj]);
+                            color("#888888") translate([c-(pinsize/2),r-(pinsize/2),-pheight]) cube([pinsize, pinsize, pheight+adj]);
                         }
                     }
                 }
@@ -130,6 +130,43 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                                 cube([pinsize,pinsize,pheight+pitch]);
                             color(pcolor) translate([c-(pinsize/2), -height+pinsize/2, r-(pinsize/2)]) 
                                 cube([pinsize, pheight+height+pitch, pinsize]);
+                        }
+                    }
+                }
+            }
+        }
+        if(type == "angled" && gender == "female") {
+            size_y = pitch == 2.54 && style == "smt" ? (2.5 * column) : (pitch * column)+1;
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                difference() {
+                    color(hcolor) cube([size_x+2*pitch, height, size_y]);
+                    for(c=[pitch+pitch/2:pitch:size_x+pitch]) {
+                        for(r=[pitch/2:pitch:size_y]) {
+                            color("#888888") translate([c-(pinsize/2), r-(pinsize/2)-bheight, +1+pinsize/2]) 
+                                cube([pinsize, height-1, pinsize]);
+                            color("#888888") translate([c-(pinsize/2),r-(pinsize/2)-bheight, pheight+.5+pinsize/2]) 
+                                cube([pinsize, pheight+adj, pinsize]);
+                        }
+                    }
+                }
+                translate([pitch, height-1.5, .5]) for(c=[pitch/2:pitch:size_x]) {
+                    for(r=[pitch/2:pitch:size_y]) {
+                        if(r <= pitch) {
+                            color(pcolor) translate([c-(pinsize/2)+pinsize, pitch+1.5*pinsize, -(pitch/2)+r+(1.5*pinsize)-adj]) 
+                                rotate([0,270,0]) rotate_extrude(angle=90, convexity = 0) square([pinsize, pinsize]);
+                            color(pcolor) translate([c-(pinsize/2), pitch+1.5*pinsize, -pheight-(pitch/2)+r+(1.5*pinsize)-.5]) 
+                                cube([pinsize,pinsize,pheight+.5]);
+                            color(pcolor) translate([c-(pinsize/2), pinsize/2, r-(pinsize/2)]) 
+                                cube([pinsize, pheight, pinsize]);
+                        }
+                        else {
+                            color(pcolor) translate([c-(pinsize/2)+pinsize, (2*pitch)+1.5*pinsize, -(pitch/2)+r+(1.5*pinsize)-adj])
+                                rotate([0,270,0]) rotate_extrude(angle=90, convexity = 0) square([pinsize, pinsize]);
+                            color(pcolor) translate([c-(pinsize/2), 2*pitch+1.5*pinsize, -height-(pitch/2)+r+(2*pinsize)+(height-6)-.5])
+                                cube([pinsize,pinsize,pheight+pitch+.5]);
+                            color(pcolor) translate([c-(pinsize/2), pinsize/2, r-(pinsize/2)]) 
+                                cube([pinsize, pheight+pitch, pinsize]);
                         }
                     }
                 }
