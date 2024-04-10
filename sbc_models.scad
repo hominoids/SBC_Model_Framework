@@ -40,6 +40,7 @@
                              "visionfive2",
                              "atomicpi"
                              "rak19007"
+                             "atx"
             enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                              "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
                    fansize = 0, 30, 40, 50, 60, 70, 80, 92
