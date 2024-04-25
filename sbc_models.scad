@@ -30,7 +30,7 @@
                              "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
                              "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
                              "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
-                             "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","nio12",
+                             "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","nio12l",
                              "vim1","vim2","vim3l","vim3","vim4",
                              "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
                              "opi5","opizero","opizero2","opir1plus_lts","opir1",
@@ -110,6 +110,9 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             }
                             if (class == "button" && mask[0] == true) {
                                 button(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                            }
+                            if (class == "cm" && mask[0] == true) {
+                                cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
                             if (class == "discrete" && mask[0] == true) {
                                 discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);

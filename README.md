@@ -369,7 +369,8 @@ DESCRIPTION: creates compute modules as library components
                 loc_z = z location placement
                  side = "top", "bottom"
            rotation[] = object rotation
-              data[0] = cm pcb color
+              data[0] = fan size
+              data[1] = cm pcb color
               mask[0] = true enables component mask
               mask[1] = mask length
               mask[2] = mask setback
@@ -388,7 +389,6 @@ DESCRIPTION: creates compute module holder
                        loc_z = z location placement
                         side = "top", "bottom"
                   rotation[] = object rotation
-                     data[0] = cm pcb color
                      mask[0] = true enables component mask
                      mask[1] = mask length
                      mask[2] = mask setback
@@ -568,7 +568,7 @@ DESCRIPTION: creates gpio headers
 DESCRIPTION: creates pin headers in any size or pitch.
       USAGE: header, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                     type = "open"
+                     type = "open","boxed","angled"
                    pcb_id = parent PCB
                     loc_x = x location placement
                     loc_y = y location placement
@@ -578,7 +578,7 @@ DESCRIPTION: creates pin headers in any size or pitch.
                   size[0] = #row
                   size[1] = #columns
                   size[2] = pin height
-                  data[0] = style ("straight", "angled")
+                  data[0] = style ("thruhole", "smt")
                   data[1] = header color
                   data[2] = "male", "female"
                   data[3] = pitch
@@ -1039,7 +1039,7 @@ DESCRIPTION: creates usb2 ports.
                 mask[2] = mask setback
                 mask[3] = mstyle "default"
 
-                   type = "single_horizontal_a", "single_vertical_a"
+                   type = "single_horizontal_a", "single_vertical_a", "single_up_a"
                  pcb_id = parent PCB
                   loc_x = x location placement
                   loc_y = y location placement
