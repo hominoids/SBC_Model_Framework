@@ -120,7 +120,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_xm = 10;
         size_ym = 7;
         dia = 3.5;
-        diam = 3.75;
+        diam = 4;
         height = .5;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
