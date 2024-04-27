@@ -12,12 +12,12 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
 ### Current Library
 
 ```
-               SBC: 69
-    Carrier Boards:  3
-   Compute Modules:  8
- Micro Controllers:  4
-
-     Total Devices: 84
+                  SBC: 70
+       Carrier Boards:  3
+      Compute Modules:  8
+    Micro Controllers:  4
+Standard Motherboards: 14
+        Total Devices: 99
 ```
 
 ## Using SBC Model Framework
