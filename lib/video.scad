@@ -18,11 +18,11 @@
 
      CLASS NAME: video
     DESCRIPTION: creates video connectors.
-           TODO:
+           TODO: dp_horizontal, correct dp_vertical
 
           USAGE: video(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", 
+                       type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_vertical",
                               "dp_mini"
                       loc_x = x location placement
                       loc_y = y location placement
@@ -35,13 +35,6 @@
                     mask[1] = mask length
                     mask[2] = mask setback
                     mask[3] = mstyle "default"
-
-
-    DESCRIPTION: creates video connector masks.
-           TODO:
-          USAGE: hdmi_open(hdmi_style,mlen)
-
-                           hdmi_style = "hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"
 
 */
  
@@ -467,6 +460,31 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             if(side == "bottom" && rotation == 90) {
                 place(loc_x+6, loc_y-.5, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
             }
+            if(side == "bottom" && rotation == 180) {        size_x = 8.5;
+        size_y = 13.65;
+        size_xm = 9;
+        size_ym = mlen;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            // dp opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.125, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
+            if(rotation == 180) {
+                place(loc_x-.375, loc_y+6, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+6, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.675, loc_y, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+6, loc_y-.5, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x-.375, loc_y+6, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
             }
@@ -492,10 +510,107 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                 color("black") translate([1.5, .5, 2.25]) cube([5.5, size_y-.5, 1.2]);
             }
         }
+
+                place(loc_x-.375, loc_y+6, loc_z-1.5, size_xm, size_ym, rotation, side, pcbsize_z) hdmi_open("dp_mini", mlen);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z-1.5, size_xm, size_ym, rotation, side) hdmi_open("dp_mini", mlen);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                difference () {
+                    difference() {
+                        color("silver") cube([size_x, size_y, 5.6]);
+                        color("silver") translate([-7.5, -1, 1]) rotate([0, 45, 0]) cube([size_x, size_y+2, 5.6]);
+                        color("silver") translate([10, -1, -5]) rotate([0, -45, 0]) cube([size_x, size_y+2, 5.6]);
+                    }
+                    difference() {
+                        color("dimgray") translate([.5, -.25, .5]) cube([size_x-1, size_y-.5, 4.6]);
+                        color("silver") translate([-6.75, -1, 1]) rotate([0, 45, 0]) cube([size_x, size_y, 5.6]);
+                        color("silver") translate([9.4, -1, -5]) rotate([0, -45, 0]) cube([size_x, size_y, 5.6]);
+                    }
+                }
+                color("black") translate([1.5, .5, 2.25]) cube([5.5, size_y-.5, 1.2]);
+            }
+        }
+    }
+
+    // display port vertical connector
+    if(type == "dp_vertical") {
+
+        size_x = 5.5;
+        size_y = 11.5;
+        size_z = 16.5;
+        size_xm = 6.5;
+        size_ym = mlen;
+        size_zm = 17.5;
+        height = 0;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            // hdmi vertical opening
+            if(side == "top" && rotation == 0) {
+                place(loc_x-.5, loc_y-size_y+1.5+back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x+back-size_y+1.5, loc_y-(size_xm-size_x)/2, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-back+size_y, loc_y-.5, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-.5, loc_y-size_y+1.5+back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x-back+size_y, loc_y-(size_xm-size_x)/2, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x+back-size_y+1.5, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() { 
+                difference() {
+                    difference() {
+                        color("silver") translate([0, 0, height]) cube([size_x, size_y, size_z]);
+                        color("silver") translate([-4, -1, size_z+height+1.5]) rotate([0,45,0]) cube([5, size_y+2, 5]);
+                    }
+                    difference() {
+                        color("dimgray") translate([.5, -.1, height+.5]) cube([size_x-1, size_y-1, size_z-1]);
+                        color("silver") translate([-4, -1, size_z+height+.5]) rotate([0,45,0]) cube([5, size_y+2, 5]);
+                    }
+                }
+                color("black") translate([2, .5, height+2.25]) cube([1.55, 10.5, 11.25]);
+            }
+        }
     }
 }
 
-/* hdmi opening */
+
+/* 
+     CLASS NAME: hdmi_open
+    DESCRIPTION: creates video connector masks.
+           TODO:
+          USAGE: hdmi_open(hdmi_style,mlen)
+
+                           hdmi_style = "hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"
+*/
 module hdmi_open(hdmi_style,mlen) {
 
     if(hdmi_style == "hdmi_a") {

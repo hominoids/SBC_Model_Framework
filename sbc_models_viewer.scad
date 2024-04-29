@@ -27,7 +27,7 @@ use <sbc_models_library.scad>
 /* [SBC and MCU] */
 view = "3D Model"; // [3D Model, 2D Sections, 3D Reference Manual, All SBC Models]
 section_position = 2; //[-2:.5:4]
-sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "h2", "h2+", "h3", "h3+", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "licheerv+dock", "rak19007", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
+sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "licheerv+dock", "rak19007", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
 
 sbc_off = false;
 sbc_mask = false;
@@ -1011,7 +1011,7 @@ if(view == "3D Reference Manual") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle default"
         ]];
-    video = [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"],[
+    video = [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "dp_vertical"],[
         " CLASS NAME: video",
         "DESCRIPTION: creates video connectors",
         "",
@@ -1536,7 +1536,7 @@ if(view == "3D Reference Manual") {
                 text(str(video[0][i]), font = text_font, direction="ltr");
         }
         for(i=[0:1:len(video[1])-1]) {
-            color(text_color) translate([ctext_offset, 210, ctext_height-i*7]) rotate([90, 0, 0]) text(video[1][i], 5, font = text_font);
+            color(text_color) translate([ctext_offset, 240, ctext_height-i*7]) rotate([90, 0, 0]) text(video[1][i], 5, font = text_font);
         }
     }
 }
@@ -1608,13 +1608,21 @@ if(view == "All SBC Models") {
         linear_extrude(height = 2) {translate([120,450,0]) text("Odroid-N1");}
         color("green",.5) translate([120,450,-1]) cube([63,10,1]);
 
-        translate ([240,0,0]) sbc("h3");
-        linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H3/H3+");}
-        color("green",.5) translate([240,-20,-1]) cube([84,10,1]);
+        translate ([240,0,0]) sbc("h4_ultra");
+        linear_extrude(height = 2) {translate([240,-20,0]) text("Odroid-H4_Ultra/H3+");}
+        color("yellow",.5) translate([240,-20,-1]) cube([130,10,1]);
 
-        translate ([240,150,0]) sbc("h2");
-        linear_extrude(height = 2) {translate([240,135,0]) text("Odroid-H2/H2+");}
-        color("green",.5) translate([240,135,-1]) cube([84,10,1]);
+        translate ([240,150,0]) sbc("h4");
+        linear_extrude(height = 2) {translate([240,135,0]) text("Odroid-H4");}
+        color("yellow",.5) translate([240,135,-1]) cube([84,10,1]);
+
+        translate ([240,300,0]) sbc("h3");
+        linear_extrude(height = 2) {translate([240,280,0]) text("Odroid-H3/H3+");}
+        color("green",.5) translate([240,280,-1]) cube([84,10,1]);
+
+        translate ([240,450,0]) sbc("h2");
+        linear_extrude(height = 2) {translate([240,420,0]) text("Odroid-H2/H2+");}
+        color("green",.5) translate([240,420,-1]) cube([84,10,1]);
 
         translate ([380,0,0]) sbc("rockpro64");
         linear_extrude(height = 2) {translate([400,-20,0]) text("RockPro 64");}

@@ -12,12 +12,12 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
 ### Current Library
 
 ```
-                  SBC: 70
+                  SBC: 73
        Carrier Boards:  3
       Compute Modules:  8
     Micro Controllers:  4
 Standard Motherboards: 14
-        Total Devices: 99
+       Total Devices: 102
 ```
 
 ## Using SBC Model Framework
@@ -33,7 +33,7 @@ sbc("rpi5");
 USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false)
 
          model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
-                 "m1","m1s","h2","h2+","h3","h3+","show2",
+                 "m1","m1s","h2","h2+","h3","h3+","h4","h4+","h4_ultra","show2",
                  "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
                  "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
                  "rock64","rockpro64","quartz64a","quartz64b","h64b","star64",
@@ -1108,7 +1108,7 @@ DESCRIPTION: creates usbc ports.
 DESCRIPTION: creates video connectors.
       USAGE: video, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                    type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini"
+                    type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "dp_vertical"
                   pcb_id = parent PCB
                    loc_x = x location placement
                    loc_y = y location placement
