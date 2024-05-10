@@ -365,10 +365,10 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
 
         size_x = 17.5;
         size_y = 28.8;
-        size_z = 13.5;
+        size_z = 25;
         size_xm = 18;
         size_ym = mlen;
-        size_zm = 27.25;
+        size_zm = 25.5;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
@@ -410,18 +410,15 @@ module network(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z,
             union() {
                 difference () {
                     color("lightgray") cube([size_x,size_y,size_z]);
-                    color("darkgray") translate([2, -1, 4]) cube([13, 19.5, 8]);
-                    color("darkgray") translate([6, -2, 1.5]) cube([5, 19.5, 5]);
+                    color("darkgray") translate([2, -1, 3]) cube([13, 19.5, 8]);
+                    color("darkgray") translate([6, -2, .5]) cube([5, 19.5, 5]);
+                    color("darkgray") translate([2, -1, 14]) cube([13, 19.5, 8]);
+                    color("darkgray") translate([6, -2, 19.5]) cube([5, 19.5, 5]);
                 }
-                color("green") translate([2.5, -.1, 1.5]) cube([3, 2, 2]);
-                color("orange") translate([11.5, -.1, 1.5]) cube([3, 2, 2]);
-                difference () {
-                    color("lightgray") translate([0, 0, 13.5]) cube([size_x,size_y,13.5]);
-                    color("darkgray") translate([2, -1, 15]) cube([13, 19.5, 8]);
-                    color("darkgray") translate([6, -2, 20.5]) cube([5, 19.5, 5]);
-                }
-                color("green") translate([2.5, -.1, 23.5]) cube([3, 2, 2]);
-                color("orange") translate([11.5, -.1, 23.5]) cube([3, 2, 2]);
+                color("green") translate([2.5, -.1, .5]) cube([3, 2, 2]);
+                color("orange") translate([11.5, -.1, .5]) cube([3, 2, 2]);
+                color("green") translate([2.5, -.1, 22.5]) cube([3, 2, 2]);
+                color("orange") translate([11.5, -.1, 22.5]) cube([3, 2, 2]);
             }
         }
     }

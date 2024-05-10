@@ -115,11 +115,11 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
-                place(loc_x-(size_xm-size_x)/2, loc_y-offsetm, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_x)/2, loc_y-offsetm-12.34, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, size_zm]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-offsetm, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-offsetm-12.34, loc_y-(size_xm-size_x)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, size_zm]);
             }
             if(side == "top" && rotation == 180) {
@@ -131,7 +131,7 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                     cube([size_xm, size_ym, size_zm]);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-(size_xm-size_x)/2, loc_y-offsetm, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_x)/2, loc_y-offsetm-12.34, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, size_ym, size_zm]);
             }
             if(side == "bottom" && rotation == 90) {
@@ -162,13 +162,13 @@ module memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                 if(type == "emmc_plug_double") {
                    union (){
                         difference() {
-                        translate([0,13,0]) color("black") cube([size_x, size_y, .82]);
-                        translate([0,13,0]) color("black") translate([1, .25, .15]) cube([6.3, 1.65, 1]); 
-                        translate([0,13,0]) color("black") translate([1, 0, .72]) cube([6.3, 2.5, 2]);
+                        translate([0,-13,0]) color("black") cube([size_x, size_y, .82]);
+                        translate([0,-13,0]) color("black") translate([1, .25, .15]) cube([6.3, 1.65, 1]); 
+                        translate([0,-13,0]) color("black") translate([1, 0, .72]) cube([6.3, 2.5, 2]);
                         }
                         for (i=[1.25:.4:7.2]) {
-                            translate([0,13,0]) color("gold") translate ([i, -.05, 0]) cube([.16, .3, .82]);
-                            translate([0,13,0]) color("gold") translate ([i, 1.9, 0]) cube([.16, .3, .82]);
+                            translate([0,-13,0]) color("gold") translate ([i, -.05, 0]) cube([.16, .3, .82]);
+                            translate([0,-13,0]) color("gold") translate ([i, 1.9, 0]) cube([.16, .3, .82]);
                         }
                     }
                 }

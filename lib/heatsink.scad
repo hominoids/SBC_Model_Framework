@@ -3071,7 +3071,8 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
 /* heatsink mask for openings */
 module heatsink_mask(size, thick, style) {
 
-    hole_pos = size == 30 ? 3 :
+    hole_pos = size == 25 ? 2.5 :
+        size == 30 ? 3 :
         size == 40 ? 4 :
         size == 50 || size == 60 || size == 70 ? 5 :
         size >= 80 ? 3.75 : 3.75;
@@ -3086,6 +3087,34 @@ module heatsink_mask(size, thick, style) {
         translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
         translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
         translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+    }
+    if(style == "fan_1" && size == 25) {
+        
+        union() {
+            difference() {
+                union () {
+                    difference() {
+                        translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-2);
+                        translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-8);
+                    }
+                    difference() {
+                        translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-11);
+                        translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-17);
+                    }
+                    difference() {
+                        translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-20);
+                        translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-25);
+                    }
+                    // mount holes
+                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                }
+                translate([4, 3, -2]) rotate([0, 0, 45]) cube([size, 1.5, thick+4]);
+                translate([3, size-4, -2]) rotate([0, 0, -45]) cube([size, 1.5, thick+4]);
+            }
+        }
     }
     if(style == "fan_1" && size == 30) {
         
@@ -3233,7 +3262,8 @@ module heatsink_mask(size, thick, style) {
     }
     if(style == "fan_2") {
 
-        inner = size == 30 ? 24 :
+        inner = size == 25 ? 20 :
+            size == 30 ? 24 :
             size == 40 ? 32 :
             size == 50 ? 40 :
                 size == 60 ? 50 :
@@ -3277,7 +3307,8 @@ module heatsink_mask(size, thick, style) {
     }
     if(style == "fan_hex") {
         
-        hex_pos = size == 30 ? [-11.75, -4.5, 0] :
+        hex_pos = size == 25 ? [-14.25, -7, 0] :
+            size == 30 ? [-11.75, -4.5, 0] :
             size == 40 ? [-14, -11.25, 0] :
             size == 50 ? [-16, -6.5, 0] : 
             size == 60 ? [-11, -1.5, 0] : 
