@@ -45,7 +45,7 @@
 
             enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                              "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
-                   fansize = 0, 30, 40, 50, 60, 70, 80, 92
+                   fansize = 0, 25, 30, 40, 50, 60, 70, 80, 92
                 enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", "vent" 
                 enableuart = "default", "none", "open", "knockout"
                 enablemask = true or false
@@ -134,7 +134,7 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             }
                             if (class == "heatsink" && mask[0] == true && enableheatsink != "disable" && enableheatsink != "none")  {
                                 if(is_undef(enableheatsink)  == false && enableheatsink != "default" && enableheatsink != "off") {
-                                    if(fansize >= 30 && fansize <= 92) {
+                                    if(fansize >= 25 && fansize <= 92) {
                                         heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, [fansize], pcbsize_z, enablemask,
                                             [mask[0], mask[1], mask[2],enableheatsink]);
                                     }
