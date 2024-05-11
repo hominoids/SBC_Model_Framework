@@ -40,13 +40,12 @@
                        mask[2] = set back
                        mask[3] = mstyle "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", "custom", "m1", "n2", "n2+"
 
-    DESCRIPTION: creates heatsink masks for openings
+    DESCRIPTION: creates fan masks for openings
            TODO: 
 
-          USAGE: heatsink_mask(size, thick, style)
+          USAGE: fan_mask(size, thick, style)
 
-                          style = "open", "fan_open", "fan_1", "fan_2", "fan_hex", "vent, "vent_hex_5mm", "vent_hex_8mm", custom
-                                  "m1", "n2", "n2+"
+                          style = "open", "fan_open", "fan_1", "fan_2", "fan_hex", custom
 
 */
 
@@ -126,52 +125,52 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -528,52 +527,52 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -919,52 +918,52 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -1299,52 +1298,52 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && (rotation == 45 || rotation == -45)) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -1650,7 +1649,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -1752,7 +1751,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -1873,7 +1872,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -1998,7 +1997,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -2130,7 +2129,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(80-fsize)/2-(size_xm-size_x)/2+14, (80-fsize)/2-(size_ym-size_y)/2+11, -mlen-4]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2226,7 +2225,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(80-fsize)/2-(size_xm-size_x)/2+6, (80-fsize)/2-(size_ym-size_y)/2+7.5, -mlen-4]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2328,7 +2327,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(80-fsize)/2-(size_xm-size_x)/2+6, (80-fsize)/2-(size_ym-size_y)/2+25, -mlen-4]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2411,7 +2410,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(80-fsize)/2-(size_xm-size_x)/2+1, (80-fsize)/2-(size_ym-size_y)/2-8, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2493,7 +2492,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(80-fsize)/2-(size_xm-size_x)/2+19.5, (80-fsize)/2-(size_ym-size_y)/2-8, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2575,7 +2574,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "bottom" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(80-fsize)/2-(size_xm-size_x)/2+7, (80-fsize)/2-(size_ym-size_y)/2-12, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2657,7 +2656,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([-9+(80-fsize)/2-(size_xm-size_x)/2, -20+(80-fsize)/2-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
 
                 }
             }
@@ -2795,42 +2794,42 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 if(side == "top" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0]) 
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "top" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 0) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 90) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset+(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 180) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset+(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
                 if(side == "bottom" && rotation == 270) {
                     place(loc_x, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         translate([(40-fsize)/2+xoffset-(size_xm-size_x)/2, (40-fsize)/2+yoffset-(size_ym-size_y)/2, 0])
-                            heatsink_mask(fsize, mlen, mstyle);
+                            fan_mask(fsize, mlen, mstyle);
                 }
             }
             if(mstyle == "vent") {
@@ -3068,8 +3067,18 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
 }
 
 
-/* heatsink mask for openings */
-module heatsink_mask(size, thick, style) {
+/*
+    DESCRIPTION: creates fan masks for openings
+           TODO: 
+
+          USAGE: fan_mask(size, thick, style)
+
+                          size = size of fan
+                         thick = thickness of cover
+                         style = "fan_open", "fan_1", "fan_2", "fan_hex"
+*/
+
+module fan_mask(size, thick, style) {
 
     hole_pos = size == 25 ? 2.5 :
         size == 30 ? 3 :
@@ -3287,20 +3296,18 @@ module heatsink_mask(size, thick, style) {
             translate([-screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
 
             difference() {
-            union() {
-                for(i=[inner:-rings_spacing:0]) {
-                    difference() {
-                        cylinder(d=base_ring_size - i, h=thick+2);
-                        translate([0, 0, -1]) cylinder(d=base_ring_size - i - (rings_spacing/2), h=thick+4);
+                union() {
+                    for(i=[inner:-rings_spacing:0]) {
+                        difference() {
+                            cylinder(d=base_ring_size - i, h=thick+2);
+                            translate([0, 0, -1]) cylinder(d=base_ring_size - i - (rings_spacing/2), h=thick+4);
+                        }
                     }
                 }
-            }
-
-            translate([0, 0, 2]) 
                 union() {
-                    cylinder(d=bar_size*2+0.1, thick+2); // Add a circle to prevent any tiny holes around cross bar
-                    rotate([0, 0, 45]) cube([size, bar_size, thick+2], center=true);
-                    rotate([0, 0, 45]) cube([bar_size, size, thick+2], center=true);
+                    cylinder(d=bar_size*3+0.1, thick+2); // Add a circle to prevent any tiny holes around cross bar
+                    translate([0,0,1+thick/2]) rotate([0, 0, 45]) cube([size, bar_size, thick+2], center=true);
+                    translate([0,0,1+thick/2]) rotate([0, 0, 45]) cube([bar_size, size, thick+2], center=true);
                 }
             }
         }

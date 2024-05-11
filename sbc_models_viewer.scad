@@ -37,7 +37,7 @@ text_font = "Nimbus Mono PS"; // [Nimbus Mono PS, Liberation Mono, Noto Sans Mon
 
 /* [Command Line Options] */
 heatsink_mask = "default"; // [disable, off, default, none, open, fan_open, fan_1, fan_2, fan_hex, vent, vent_hex_5mm, vent_hex_8mm, custom]
-fan_size = 0; // [0,30,40,50,60,70,80,92]
+fan_size = 0; // [0,25,30,40,50,60,70,80,92]
 
 gpio_mask = "default"; // [disable, off, default, none, open, block, knockout, vent]
 

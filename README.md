@@ -49,7 +49,7 @@ USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                  "rak19007"
 enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                  "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
-       fansize = 0, 30, 40, 50, 60, 70, 80, 92
+       fansize = 0, 25, 30, 40, 50, 60, 70, 80, 92
     enablegpio = "disable", "off", "default", "none", "open", "block", "knockout", "vent" 
     enableuart = "default", "none", "open", "knockout"
     enablemask = true or false
