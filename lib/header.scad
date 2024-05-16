@@ -58,7 +58,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
     pcolor = data[4];
 
     size_y = pitch == 2.54 && style == "smt" ? (2.5 * column) : (pitch * column);
-    size_x = pitch == 2.54 && style == "smt" ? (2.5 * row) : (pitch * row);
+    size_x = pitch == 2.54 && style == "smt" ? (2.54 * row) : (pitch * row);
     bheight = pitch == 2.54 ? 2.5 : 1;
     pheight = pitch == 2.54 ? 3.2 : 2;
     pinsize = pitch == 2.54 ? .64 : .3;
