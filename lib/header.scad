@@ -140,8 +140,8 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 difference() {
-                    color(hcolor) cube([size_x+2*pitch, height, size_y]);
-                    for(c=[pitch+pitch/2:pitch:size_x+pitch]) {
+                    color(hcolor) cube([size_x, height, size_y]);
+                    for(c=[pitch/2:pitch:size_x+pitch]) {
                         for(r=[pitch/2:pitch:size_y]) {
                             color("#888888") translate([c-(pinsize/2), r-(pinsize/2)-bheight, +1+pinsize/2]) 
                                 cube([pinsize, height-1, pinsize]);
@@ -150,7 +150,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                         }
                     }
                 }
-                translate([pitch, height-1.5, .5]) for(c=[pitch/2:pitch:size_x]) {
+                translate([0, height-1.5, .5]) for(c=[pitch/2:pitch:size_x]) {
                     for(r=[pitch/2:pitch:size_y]) {
                         if(r <= pitch) {
                             color(pcolor) translate([c-(pinsize/2)+pinsize, pitch+1.5*pinsize, -(pitch/2)+r+(1.5*pinsize)-adj]) 

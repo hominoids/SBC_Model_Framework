@@ -120,6 +120,8 @@ A device is defined by using the commands *pcb* and *pcbhole* to define the PCB 
 - *pcb_info[]* - device information array
 - *pcb* - class entry for the first PCB in the device
 
+SBC Model Viewer can be used to view the new pcb by adding its unique name to the array on line 30 of sbc_model_viewer.scad which is used to populate the pick box of all known devices. Restarting the application since the OpenSCAD Customizer does not support dynamic changes to the user interface.
+  
 The remainder of the entries describing a device can be in any order.
 
 ```
@@ -779,7 +781,7 @@ DESCRIPTION: creates pcb hole
                       side = "top", "bottom"
                 rotation[] = object rotation
                    size[0] = hole diameter
-                   data[0] = style
+                   data[0] = standoff support("none","both","top","bottom")
                    data[1] = hole color
                    data[2] = sidewall support("none","left","right","rear","front")
                    data[3] = trace diameter
