@@ -234,10 +234,10 @@ module pcbpad(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                         color(hcolor) translate ([r, c, -.0635-pcbsize_z]) cylinder(d=pad_size, h=pcbsize_z+.127);
                         color(hcolor) translate([r, c, -1.127-pcbsize_z]) cylinder(d=hole_size, h=pcbsize_z+2);
                         if(pad_trim == "rear") {
-                            color(hcolor) translate([r, c-1.5-adj, -1.127-pcbsize_z]) cube([3,3,5], center=true);
+                            color(hcolor) translate([r, c-1.5-adj, 0]) cube([3,3,5], center=true);
                         }
                         if(pad_trim == "front") {
-                            color(hcolor) translate([r, c+1.5+adj, -1.127-pcbsize_z]) cube([3,3,5], center=true);
+                            color(hcolor) translate([r, c+1.5+adj, 0]) cube([3,3,5], center=true);
                         }
                     }
                 }
