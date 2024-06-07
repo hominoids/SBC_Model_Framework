@@ -12,13 +12,13 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
 ### Current Library
 
 ```
-                  SBC: 73
-       Carrier Boards:  3
-      Compute Modules:  8
-    Micro Controllers:  6
-Standard Motherboards: 14
-             Custom PCB 1
-       Total Devices: 105
+                  SBC:  74
+       Carrier Boards:   3
+      Compute Modules:   8
+    Micro Controllers:   6
+Standard Motherboards:  14
+           Custom PCB:   1
+        Total Devices: 106
 ```
 
 ## Using SBC Model Framework
@@ -44,10 +44,16 @@ USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                  "opi5","opizero","opizero2","opir1plus_lts","opir1",
                  "lepotato","sweetpotato","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
                  "jetsonnano",
+                 "bpif3",
                  "licheerv+dock",
                  "visionfive2",
-                 "atomicpi"
-                 "rak19007"
+                 "atomicpi",
+                 "rak19007",
+                 "cnano-avr128da48",
+                 "nodemcu-32s", "cs-solarmeter",
+                 "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", 
+                 "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
+
 enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                  "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
        fansize = 0, 25, 30, 40, 50, 60, 70, 80, 92

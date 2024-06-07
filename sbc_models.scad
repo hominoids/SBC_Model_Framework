@@ -38,6 +38,7 @@
                              "jetsonnano",
                              "licheerv+dock",
                              "visionfive2",
+                             "bpif3"
                              "atomicpi"
                              "rak19007"
                              "cnano-avr128da48"
