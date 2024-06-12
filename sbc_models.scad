@@ -43,6 +43,7 @@
                              "rak19007"
                              "cnano-avr128da48"
                              "nodemcu-32s", "cs-solarmeter"
+                             "feather-m0_wifi",
                              "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", 
                              "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
 
