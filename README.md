@@ -12,13 +12,13 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
 ### Current Library
 
 ```
-                  SBC:  74
+                  SBC:  75
        Carrier Boards:   3
       Compute Modules:   8
     Micro Controllers:   7
 Standard Motherboards:  14
            Custom PCB:   1
-        Total Devices: 107
+        Total Devices: 108
 ```
 
 ## Using SBC Model Framework
@@ -48,6 +48,7 @@ USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                  "licheerv+dock",
                  "visionfive2",
                  "atomicpi",
+                 "milk-v_duos",
                  "rak19007",
                  "cnano-avr128da48",
                  "nodemcu-32s", "cs-solarmeter",
@@ -198,7 +199,7 @@ The next step is to populate the SBC model's configuration entry with it's compo
     smd      - "led"(parametric)
  *  storage  - "microsdcard", "microsdcard2", "microsdcard3", "microsdcard3_i", "sata_header",
                "sata_power_vrec", "sata_encl_power", "m.2_header", "m.2_stud"
- *  switch   - "slide_4x9"
+ *  switch   - "slide_4x9", "slide_7x3.5x1"
  *  terminal - "gtb"(parametric)
  *  uart     - ""molex_5267", "molex_5268" 
  *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"
@@ -976,7 +977,7 @@ DESCRIPTION: creates storage components
 DESCRIPTION: creates switches
       USAGE: switch, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                     type = "slide_4x9"
+                     type = "slide_4x9", "slide_7x3.5x1"
                    pcb_id = parent PCB
                     loc_x = x location placement
                     loc_y = y location placement

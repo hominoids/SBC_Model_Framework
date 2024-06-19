@@ -40,6 +40,7 @@
                              "visionfive2",
                              "bpif3"
                              "atomicpi"
+                             "milk-v_duos",
                              "rak19007"
                              "cnano-avr128da48"
                              "nodemcu-32s", "cs-solarmeter"
