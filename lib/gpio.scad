@@ -141,19 +141,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 offsety = 7;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym+5.08, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym+5.08, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
             }
@@ -165,19 +165,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
             }
@@ -355,19 +355,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
             }
@@ -379,19 +379,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-4, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
             }
@@ -566,19 +566,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
             }
@@ -590,19 +590,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
             }
@@ -779,19 +779,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([size_xm, mlen, size_zm]);
                 }
             }
@@ -803,19 +803,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 27;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-10, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 90) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y+2.54, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 180) {
-                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x+2.54, loc_y-(size_ym-size_yt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
                 if(side == "top" && rotation == 270) {
-                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_ym-size_yt)/2, loc_y-9.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                         cube([mlen, size_ym,  size_zm]);
                 }
             }
@@ -963,19 +963,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             size_zm = 27;
 
             if(side == "top" && rotation == 0) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
         }
@@ -1078,19 +1078,19 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             size_zm = 27;
 
             if(side == "top" && rotation == 0) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_xt)/2, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-size_ym+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_xt)/2, loc_y-size_ym, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+2.54, loc_y-(size_xm-size_xt)/2, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
         }
