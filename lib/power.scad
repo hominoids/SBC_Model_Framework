@@ -22,7 +22,7 @@
 
           USAGE: power(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                       type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", 
+                       type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr2.5_8.5x5.5", "pj-202ah", 
                               "molex_4x1", "small_encl_satapwr"
                       loc_x = x location placement
                       loc_y = y location placement
@@ -215,46 +215,46 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         }
     }
 
-    // 5.5mm power plug 9.5mm x 7mm
-    if(type == "pwr5.5_9.5x7") {
+    // 2.5mm power plug 8.5mm x 5.5mm
+    if(type == "pwr2.5_8.5x5.5") {
 
-        size_x = 9.5;
-        size_y = 9.5;
-        size_xm = 10;
+        size_x = 8.5;
+        size_y = 9.55;
+        size_xm = 9;
         size_ym = mlen;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "top" && rotation == 90) {
                 place(loc_x-mlen+back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "top" && rotation == 180) {
                 place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "top" && rotation == 270) {
                 place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "bottom" && rotation == 0) {
                 place(loc_x-.25, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "bottom" && rotation == 90) {
                 place(loc_x+size_y-back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "bottom" && rotation == 180) {
                 place(loc_x-.25, loc_y+size_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
             if(side == "bottom" && rotation == 270) {
                 place(loc_x-mlen+back, loc_y-.25, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, size_ym, 7.5]);
+                    cube([size_xm, size_ym, 6]);
             }
 
         }
@@ -262,11 +262,11 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
             union() {
                 difference () {
-                    color("silver") cube([size_x, size_y, 7]);
-                    color("black") translate([5.7, 8.49, 3.5]) rotate([90, 0, 0])
+                    color("black") cube([size_x, size_y, 5.5]);
+                    color("#353535") translate([5.7, 8.49, 2.75]) rotate([90, 0, 0])
                     cylinder(d=3.35, h=8.5, $fn=30);
                 }
-                color("white") translate([5.7, 8.5, 3.5]) rotate([90, 0, 0])
+                color("white") translate([5.7, 8.5, 2.75]) rotate([90, 0, 0])
                 cylinder(d=1.4, h=8.5, $fn=30);
             }
         }

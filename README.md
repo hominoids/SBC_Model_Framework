@@ -916,7 +916,7 @@ DESCRIPTION: creates pillars
 DESCRIPTION: creates power delivery related components
       USAGE: power, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                    type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr5.5_9.5x7", "pj-202ah", 
+                    type = "pwr2.5_5x7.5", "pwr5.5_7.5x11.5", "pwr5.5_10x10", "pwr2.5_8.5x5.5", "pj-202ah", 
                            "molex_4x1", "small_encl_satapwr"
                   pcb_id = parent PCB
                    loc_x = x location placement
