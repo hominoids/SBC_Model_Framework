@@ -35,7 +35,7 @@
                        mask[2] = mask setback
                        mask[3] = mstyle "default"
 
-                          type = "ir_1"
+                          type = "ir_1", "ir_2"
                          loc_x = x location placement
                          loc_y = y location placement
                          loc_z = z location placement
@@ -137,6 +137,60 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
                 color("silver") translate ([1, 1.25, 0]) cube([.64, .5, size_z+adj]);
                 color("silver") translate ([3.25, 1.25, 0]) cube([.64, .5, size_z+adj]);
                 color("silver") translate ([5.5, 1.25, 0]) cube([.64, .5, size_z+adj]);
+            }
+        }
+    }
+
+    if(type=="ir_2") {
+
+        size_x = 5;
+        size_y = 3;
+        size_z = size[2];
+        size_xm = 5;
+        size_ym = 3.5;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x+size_x/2, loc_y+back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x+back, loc_y-2.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x-1.5, loc_y-.5-back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-back, loc_y+3.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x-1.5, loc_y+back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x-back, loc_y-2.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x+size_x/2, loc_y-.5-back, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x+back, loc_y+3.5, loc_z+size_z+3.5, size_xm, size_ym, rotation, side, pcbsize_z)
+                      rotate([90, 0, 0]) cylinder(d = size_xm, h = mlen);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("#353535") translate([0, 0, size_z]) cube([size_x, size_y, 6]);
+                color("dimgray") translate([2.5, .5, size_z+3.5]) sphere(d=4);
+                color("silver") translate ([.5, 1.25, 0]) cube([.64, .5, size_z+adj]);
+                color("silver") translate ([2.25, 1.25, 0]) cube([.64, .5, size_z+adj]);
+                color("silver") translate ([3.86, 1.25, 0]) cube([.64, .5, size_z+adj]);
             }
         }
     }
