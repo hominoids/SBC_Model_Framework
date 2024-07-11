@@ -51,7 +51,7 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
 
         size_x = 5;
         size_y = 7.5;
-        size_xm = 4;
+        size_xm = 5;
         size_ym = mlen;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
