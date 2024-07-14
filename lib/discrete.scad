@@ -22,7 +22,7 @@
 
           USAGE: discrete(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                          type = "ir_dual",
+                          type = "ir_dual", "ir_3"
                          loc_x = x location placement
                          loc_y = y location placement
                          loc_z = z location placement
@@ -195,6 +195,57 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
         }
     }
 
+    if(type=="ir_3") {
+
+        size_x = 4.75;
+        size_y = 6;
+        size_xm = 4;
+        size_ym = 4;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([size_x/2,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([1.625,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([1.625,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([size_x/2,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([1.625,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x-back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([1.625,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([size_x/2,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x+back, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                      translate([size_x/2,0,5.25]) rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("#353535") translate([0, 0, 0]) cube([size_x, size_y, 7.5]);
+                color("gray") translate([size_x/2, -2, 5.25]) rotate([270,0,0]) cylinder(d=4, h=2);
+                color("gray") translate([size_x/2, -2, 5.25]) sphere(d=4);
+            }
+        }
+    }
+
     if(type=="ir_dual") {
 
         size_x = 6.5;
@@ -245,6 +296,7 @@ module discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
             }
         }
     }
+
     // can capacitor
     if(type=="capacitor" && enablemask == false) {
 
