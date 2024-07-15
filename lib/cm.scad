@@ -28,7 +28,7 @@
 
           USAGE: cm(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                    type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","jetsonnano"
+                    type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","jetsonnano","soedge"
                    loc_x = x location placement
                    loc_y = y location placement
                    loc_z = z location placement
@@ -250,6 +250,40 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
             }
         }
     }
+
+
+    if(type == "soedge") {
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                union() {  
+                    difference () {
+                        color(pcbcolor) cube([size_x,size_y,size_z]);
+                        color(pcbcolor) translate([15.75+.5, -1, -1]) rotate([0, 0, 90]) slot(1, 5, 3);
+                        color(pcbcolor) translate([0, 21, -1]) cylinder(d=3, h=3);
+                        color(pcbcolor) translate([size_x, 21, -1]) cylinder(d=3, h=3);
+                    }
+                    for (i=[0:.5:14.5]) {
+                        color("#fee5a6") translate ([i+.5, 0, -.24]) cube([.25, 2, .25]);
+                        color("#fee5a6") translate ([i+.5, 0, .99]) cube([.25, 2, .25]);
+                    }
+                    for (i=[16.75:.5:66.5]) {
+                        color("#fee5a6") translate ([i+.5, 0, -.24]) cube([.25, 2, .25]);
+                        color("#fee5a6") translate ([i+.5, 0, .99]) cube([.25, 2, .25]);
+                    }
+                    ic("generic", 28.5, 9.5, 0, "top", 0, [14.5, 14.5, .8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 47.5, 6, 0, "top", 0, [13.5, 8.5, .8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 47.5, 18, 0, "top", 0, [13.5, 8.5, .8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 8.5, 14, 0, "top", 0, [7, 7, .8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    button("momentary_4x2x1", 22.5, 26.5, 0, "top", 0, [7, 7, .8], ["0"], size_z, false, [false,10,2,"default"]);
+                    memory("emmc_plug", 18, 26.5, 0, "bottom", 0, [7, 7, .8], ["0"], size_z, false, [false,10,2,"default"]);
+                }
+        }
+    }
+
 }
 
 

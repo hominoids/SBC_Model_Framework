@@ -27,7 +27,7 @@ use <sbc_models_library.scad>
 /* [SBC and MCU] */
 view = "3D Model"; // [3D Model, 2D Sections, 3D Reference Manual, All Devices]
 section_position = 2; //[-2:.5:4]
-sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_wifi", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
+sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_wifi", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
 
 sbc_off = false;
 sbc_mask = false;
@@ -1623,6 +1623,14 @@ if(view == "All Devices") {
     linear_extrude(height = 2) {translate([-220,430,0]) text("Odroid-H2/H2+");}
     color("green",.5) translate([-220,430,-1]) cube([84,10,1]);
 
+    translate ([-80,-202,0]) sbc("soedge_rk1808");
+    linear_extrude(height = 2) {translate([-75,-222,0]) text("SoEdge RK1808");}
+    color("green",.3) translate([-75,-222,-1]) cube([100,10,1]);
+
+    translate ([-80,-125,0]) sbc("soedge_a-baseboard");
+    linear_extrude(height = 2) {translate([-75,-145,0]) text("SoEdge A Baseboard");}
+    color("green",.3) translate([-75,-145,-1]) cube([130,10,1]);
+
     translate ([-80,0,0]) sbc("rockpro64");
     linear_extrude(height = 2) {translate([-60,-20,0]) text("RockPro 64");}
     color("green",.3) translate([-60,-20,-1]) cube([71,10,1]);
@@ -1647,13 +1655,13 @@ if(view == "All Devices") {
     linear_extrude(height = 2) {translate([-60,485,0]) text("Star 64");}
     color("green",.3) translate([-60,485,-1]) cube([43,10,1]);
 
-    translate ([-80,600,0]) sbc("a64");
-    linear_extrude(height = 2) {translate([-60,585,0]) text("A64");}
-    color("green",.3) translate([-60,585,-1]) cube([43,10,1]);
+    translate ([-80,610,0]) sbc("a64");
+    linear_extrude(height = 2) {translate([-60,595,0]) text("A64");}
+    color("green",.3) translate([-60,595,-1]) cube([33,10,1]);
 
-    translate ([-80,700,0]) sbc("a64lts");
-    linear_extrude(height = 2) {translate([-60,685,0]) text("A64-LTS");}
-    color("yellow",.3) translate([-60,685,-1]) cube([43,10,1]);
+    translate ([-80,715,0]) sbc("a64lts");
+    linear_extrude(height = 2) {translate([-60,700,0]) text("A64-LTS");}
+    color("green",.3) translate([-60,700,-1]) cube([43,10,1]);
 
     translate([90,-90,0]) sbc("rpicm4");
     linear_extrude(height = 2) { translate([90,-110,0]) text("RPi CM4"); }
