@@ -245,7 +245,7 @@ module gpio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                 size_zm = 9;
 
                 if(side == "top" && rotation == 0) {
-                    place(loc_x-(size_xm-size_xt)/2, loc_y+14, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
+                    place(loc_x-(size_xm-size_xt)/2, loc_y+mlen+5, loc_z-back, size_xm, size_ym, rotation, side, pcbsize_z)
                         vent(2, 10, mlen, 1, 1, 14, "vertical");
                 }
                 if(side == "top" && rotation == 90) {
