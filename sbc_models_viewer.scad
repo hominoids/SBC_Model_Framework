@@ -1543,13 +1543,17 @@ if(view == "3D Reference Manual") {
 
 // display all models
 if(view == "All Devices") {
-    translate ([-825,0,12]) sbc("m1s");
-    linear_extrude(height = 2) {translate([-820,-20,0]) text("Odroid-M1s");}
+    translate ([-825,0,0]) sbc("m2");
+    linear_extrude(height = 2) {translate([-820,-20,0]) text("Odroid-M2");}
     color("green",.5) translate([-815,-20,-1]) cube([65,10,1]);
 
-    translate ([-825,115,12]) sbc("m1");
-    linear_extrude(height = 2) {translate([-815,100,0]) text("Odroid-M1");}
+    translate ([-825,115,12]) sbc("m1s");
+    linear_extrude(height = 2) {translate([-820,100,0]) text("Odroid-M1s");}
     color("green",.5) translate([-815,100,-1]) cube([65,10,1]);
+
+    translate ([-825,215,12]) sbc("m1");
+    linear_extrude(height = 2) {translate([-815,200,0]) text("Odroid-M1");}
+    color("green",.5) translate([-815,200,-1]) cube([65,10,1]);
 
     translate ([-710,0,0]) sbc("hc4");
     linear_extrude(height = 2) {translate([-710,-20,0]) text("Odroid-HC4");}
