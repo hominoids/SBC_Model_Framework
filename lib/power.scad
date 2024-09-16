@@ -145,10 +145,10 @@ module power(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                     rotate([90, 0, 0]) cylinder(d=size_xm, h=mlen);
             }
         }
-        if(enablemask == true && cmask == true && mstyle == "rectangle") {
+        if(enablemask == true && cmask == true && mstyle == "thruwall") {
             if(side == "top" && rotation == 0) {
                 place(loc_x-.5, loc_y+back, loc_z, size_xm, mlen, rotation, side, pcbsize_z)
-                    rotate([90, 0, 0]) cube([size_x+1, 10.25, mlen]);
+                    rotate([90, 0, 0]) cube([size_x+1, 11.25, mlen]);
             }
         }
         if(enablemask == false) {

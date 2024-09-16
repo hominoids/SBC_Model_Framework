@@ -927,7 +927,7 @@ DESCRIPTION: creates power delivery related components
                  mask[0] = true enables component mask
                  mask[1] = mask length
                  mask[2] = mask setback
-                 mask[3] = mstyle "default", "rectangle" (pwr5.5_7.5x11.5 only)
+                 mask[3] = mstyle "default", "thruwall" (pwr5.5_7.5x11.5 only)
 ```
 ### smd
 ```

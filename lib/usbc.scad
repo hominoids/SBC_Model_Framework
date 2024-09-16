@@ -22,7 +22,7 @@
 
           USAGE: usbc(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                      type = "single_horizontal_a", "single_vertical_a" 
+                      type = "single_horizontal", "single_vertical" 
                      loc_x = x location placement
                      loc_y = y location placement
                      loc_z = z location placement
