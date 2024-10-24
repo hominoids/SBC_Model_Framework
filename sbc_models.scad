@@ -152,6 +152,10 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                                     heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);                                
                                 }
                             }
+
+                            if (class == "jst" && mask[0] == true) {
+                                jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                            }
                             if (class == "memory" && mask[0] == true) {
                                 memory(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }

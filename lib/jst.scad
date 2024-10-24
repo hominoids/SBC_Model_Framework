@@ -241,6 +241,6 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     }
     if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
         place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
-        translate([0,-mlen+back,0]) cube([size_x, mlen, size_y]);
+        translate([0-.5,-mlen+back,0]) cube([size_x+1, mlen, size_y+.5]);
     }
 }
