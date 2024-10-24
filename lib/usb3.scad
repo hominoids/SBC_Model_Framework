@@ -67,7 +67,7 @@ module usb3(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
         size_y = 14;
         size_xm = mstyle == "thruwall" ? 17 : 16;
         size_zm = mstyle == "thruwall" ? 8.75 : 7.75;
-        loc_z_adj = mstyle == "thruwall" ? loc_z-.5 : loc_z;
+        loc_z_adj = mstyle == "thruwall" ? loc_z-.75 : loc_z;
 
         if(enablemask == true && cmask == true  && (mstyle == "default" || mstyle == "thruwall")) {
             // single horizontal usb opening

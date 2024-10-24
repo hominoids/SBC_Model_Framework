@@ -27,7 +27,7 @@ use <sbc_models_library.scad>
 /* [SBC and MCU] */
 view = "3D Model"; // [3D Model, 2D Sections, 3D Reference Manual, All Devices]
 section_position = 2; //[-2:.5:4]
-sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "m2", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "rock5b+", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_wifi", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
+sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "m2", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "rock5b+", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_express", "feather-m0_wifi", "feather-m4_express", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
 
 sbc_off = false;
 sbc_mask = false;
@@ -1890,8 +1890,16 @@ if(view == "All Devices") {
     linear_extrude(height = 2) {translate([470,-180,0]) text("cs-solarmeter");}
     color("green",.5) translate([470,-180,-1]) cube([85,10,1]);
 
-    translate ([590,-160,0]) sbc("feather-m0_wifi");
-    linear_extrude(height = 2) {translate([570,-180,0]) text("feather-m0_wifi");}
+    translate ([590,-160,0]) sbc("feather-m0_express");
+    linear_extrude(height = 2) {translate([570,-180,0]) text("feather-m0_express");}
     color("green",.5) translate([570,-180,-1]) cube([85,10,1]);
+
+    translate ([590,-220,0]) sbc("feather-m0_wifi");
+    linear_extrude(height = 2) {translate([570,-230,0]) text("feather-m0_wifi");}
+    color("green",.5) translate([570,-230,-1]) cube([85,10,1]);
+
+    translate ([590,-270,0]) sbc("feather-m4_express");
+    linear_extrude(height = 2) {translate([570,-290,0]) text("feather-m4_express");}
+    color("green",.5) translate([570,-290,-1]) cube([85,10,1]);
 
 }

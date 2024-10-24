@@ -15,10 +15,10 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
                   SBC:  79
        Carrier Boards:   4
       Compute Modules:   9
-    Micro Controllers:   7
+    Micro Controllers:   9
 Standard Motherboards:  14
            Custom PCB:   1
-        Total Devices: 114
+        Total Devices: 116
 ```
 
 ## Using SBC Model Framework
@@ -52,6 +52,7 @@ USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                  "rak19007",
                  "cnano-avr128da48",
                  "nodemcu-32s", "cs-solarmeter",
+                 "feather-m0_express", "feather-m0_wifi", "feather-m4_express"
                  "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", 
                  "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
 
