@@ -48,6 +48,10 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
     entry = data[1];
     bcolor = data[2];
     pcolor = "silver";
+    cmask = mask[0];
+    mlen = mask[1];
+    back = mask[2];
+    mstyle = mask[3];
     
 /*
                                                                p    p
@@ -234,5 +238,9 @@ module jst(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, ena
                 }
             }
         }
+    }
+    if(entry == "side" && enablemask == true && cmask == true && mstyle == "default") {
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        translate([0,-mlen+back,0]) cube([size_x, mlen, size_y]);
     }
 }
