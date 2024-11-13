@@ -68,7 +68,7 @@ module usbc(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
                     rotate([90, 0, 0]) slot(diam, size_xm, mlen);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-(size_x-size_xm)/2, loc_y-3-back, loc_z+diam/2, size_x, mlen, rotation, side, pcbsize_z)
+                place(loc_x-(size_x-size_xm)/2, loc_y-3-back, loc_z-.375+diam/2, size_x, mlen, rotation, side, pcbsize_z)
                     rotate([90, 0, 0]) slot(diam, size_xm, mlen);
             }
             if(side == "top" && rotation == 270) {
