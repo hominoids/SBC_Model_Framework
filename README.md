@@ -744,8 +744,9 @@ DESCRIPTION: creates pcb
                data[1] = pcb color
                data[2] = polygon or dxf filename
                data[3] = dxf scale
-               data[4] = top maximum component height
-               data[5] = bottom maximum component height
+               data[4] = unused
+               data[5] = top maximum component height
+               data[6] = bottom maximum component height
                mask[0] = true enables component mask
                mask[1] = mask length
                mask[2] = mask setback
