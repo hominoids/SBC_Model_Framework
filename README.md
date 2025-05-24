@@ -12,13 +12,13 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
 ### Current Library
 
 ```
-                  SBC:  80
+                  SBC:  82
        Carrier Boards:   4
       Compute Modules:   9
     Micro Controllers:   9
 Standard Motherboards:  14
            Custom PCB:   1
-        Total Devices: 114
+        Total Devices: 116
 ```
 
 ## Using SBC Model Framework
@@ -33,7 +33,7 @@ sbc("rpi5");
 ```
 USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false)
 
-         model = "c1+","c2","c4","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
+         model = "c1+","c2","c4","hc4","c5","xu4","xu4q","mc1","hc1","n1","n2","n2+","n2l","n2lq",
                  "m1","m1s","m2","h2","h2+","h3","h3+","h4","h4+","h4_ultra","show2",
                  "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
                  "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
