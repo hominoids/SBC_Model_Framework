@@ -2272,7 +2272,7 @@ module heatsink(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z
             size_x = 90;
             size_y = 90;
 
-            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-3)
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side,-4.5)
                 color(fcolor) import("./lib/heatsinks/Odroid-N2+_Heatsink.stl", convexity=3);
         }
     }
