@@ -390,4 +390,64 @@ module usb2(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, en
             }
         }
     }
+
+    // usb2 single type-b socket
+    if(type == "single_b") {
+        size_x = 12;
+        size_y = 16.4;
+        size_z = 10.6;
+        size_xm = 13.5;
+        size_zm = 12.1;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x-(size_xm-size_x)/2, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x-mlen+back, loc_y+(size_xm-size_x)/2, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x+(size_xm-size_x)/2, loc_y+size_y-back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x+size_y-back, loc_y-(size_xm-size_x)/2, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x+(size_xm-size_x)/2, loc_y-mlen+back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x+size_y-back, loc_y+(size_xm-size_x)/2, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x-mlen+back, loc_y-(size_xm-size_x)/2, loc_z, size_x, mlen, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, size_zm]);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                difference () {
+                    color("silver") cube([size_x, size_y, size_z]);
+                    color("dimgray") translate([1.775, -.1, 1.8]) cube([8.45, 9, 7.78]);
+                }
+                color("silver") translate([2.8, -.1, 4.1]) cube([6.4, 9, 3.2]);
+                for(i=[0:2:2]){
+                    color("#fee5a6") translate([4.6+i, 1.5, 7.8]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                }
+                for(i=[0:2:2]){
+                    color("#fee5a6") translate([4.6+i, 1.5, 4.1]) rotate([-90,0,0]) cube([.64, .5, 10]);
+                }
+            }
+        }
+    }
 }
