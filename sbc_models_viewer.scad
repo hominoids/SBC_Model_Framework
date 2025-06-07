@@ -930,13 +930,13 @@ if(view == "3D Reference Manual") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle (none, open, knockout)"
         ]];
-    usb2 = [["micro", "single_horizontal_a", "single_vertical_a", "single_up_a", "double_stacked_a"],[
+    usb2 = [["micro", "single_horizontal_a", "single_vertical_a", "single_up_a", "double_stacked_a", "single_b"],[
         " CLASS NAME: usb2",
         "DESCRIPTION: creates usb2 ports",
         "",
         "      USAGE: usb2, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
         "",
-        "                   type = micro, double_stacked_a",
+        "                   type = micro, double_stacked_a, single_b,",
         "                 pcb_id = parent PCB",
         "                  loc_x = x location placement",
         "                  loc_y = y location placement",
@@ -1503,7 +1503,7 @@ if(view == "3D Reference Manual") {
             text(str(usb2[0][i]), font = text_font, direction="ltr");
         }
         for(i=[0:1:len(usb2[1])-1]) {
-            color(text_color) translate([ctext_offset, 210, ctext_height-i*7]) rotate([90, 0, 0]) 
+            color(text_color) translate([ctext_offset, 230, ctext_height-i*7]) rotate([90, 0, 0]) 
                 text(usb2[1][i], 5, font = text_font);
         }
     }

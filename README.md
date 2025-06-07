@@ -203,7 +203,7 @@ The next step is to populate the SBC model's configuration entry with it's compo
  *  switch   - "slide_4x9", "slide_7x3.5x1"
  *  terminal - "gtb"(parametric)
  *  uart     - ""molex_5267", "molex_5268" 
- *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a"
+ *  usb2     - "micro", "single_horizontal_a", "single_vertical_a", "double_stacked_a", "single_b"
  *  usb3     - "single_horizontal_a", "single_vertical_a", "double_stacked_a", "double_stacked_usb3-usbc","double_stacked_usb3-usb2"
  *  usbc     - "single_horizontal", "single_vertical"
  *  video    - "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini"
@@ -1039,7 +1039,7 @@ DESCRIPTION: creates uart ports.
 DESCRIPTION: creates usb2 ports.
       USAGE: usb2, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                   type = "micro", "double_stacked_a"
+                   type = "micro", "double_stacked_a", "single_b"
                  pcb_id = parent PCB
                   loc_x = x location placement
                   loc_y = y location placement
