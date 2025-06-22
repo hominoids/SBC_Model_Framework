@@ -22,7 +22,7 @@
 
           USAGE: terminal(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask)
 
-                          type = "gtb"
+                          type = "screw", "barrier"
                          loc_x = x location placement
                          loc_y = y location placement
                          loc_z = z location placement
