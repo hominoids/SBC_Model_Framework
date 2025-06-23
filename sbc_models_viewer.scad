@@ -1473,11 +1473,13 @@ if(view == "3D Reference Manual") {
     }
     if(Class =="terminal") {
         for(i=[0:1:len(terminal[0])-1]) {
-            for(c=[5:1:12]) {
-                terminal(terminal[0][i], 100, (c*20)-100, 0, "top", 0, [c,8.3,14], [5,"lightgreen"],
+            c_color = i == 0 ? "lightgreen" : "dimgray";
+            t_height = i == 0 ? 14 : 10;
+            for(c=[2:1:8]) {
+                terminal(terminal[0][i], 100*(i+1), (c*20)-30, 0, "top", 0, [c,8.3,t_height], [5,c_color,5],
                     0, false, [false,10,2,"default"]);
             }
-            color(text_color) translate([130, 0, 0]) 
+            color(text_color) translate([95*(i+1), 0, 0]) 
                 text(str(terminal[0][i]), font = text_font, direction="ltr");
         }
         for(i=[0:1:len(terminal[1])-1]) {
