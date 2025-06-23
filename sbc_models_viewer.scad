@@ -889,13 +889,13 @@ if(view == "3D Reference Manual") {
         "                  mask[2] = mask setback",
         "                  mask[3] = mstyle default"
         ]];
-    terminal = [["gtb"],[
+    terminal = [["screw", "barrier"],[
         " CLASS NAME: terminal",
         "DESCRIPTION: creates terminal blocks",
         "",
         "      USAGE: terminal, type, pcb_id, loc_x, loc_y, loc_z, side, rotation, size, data, mask",
         "",
-        "                       type = gtb",
+        "                       type = screw, barrier",
         "                     pcb_id = parent PCB",
         "                      loc_x = x location placement",
         "                      loc_y = y location placement",
