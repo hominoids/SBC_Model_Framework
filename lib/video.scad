@@ -627,6 +627,91 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
             }
         }
     }
+
+    // vga horizontal connector
+    if(type == "vga") {
+    size_x = 16;
+    size_y = 0;
+
+    adj = .01;
+    $fn = 90;
+
+    if(enablemask == true && cmask == true && mstyle == "default") {
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+        translate([8,back,6.5]) rotate([90,0,0]) union() {
+            hull() {
+                translate([-7,3,-5]) cylinder(d=3, h=11+mlen);
+                translate([7,3,-5]) cylinder(d=3, h=11+mlen);
+                translate([-6.25,-3,-5]) cylinder(d=3, h=11+mlen);
+                translate([6.25,-3,-5]) cylinder(d=3, h=11+mlen);
+            }
+            // mount holes
+            translate([-12.5,0,-5]) cylinder(d=3.5, h=11+mlen);
+            translate([12.5,0,-5]) cylinder(d=3.5, h=11+mlen);
+        }
+    }
+    if(enablemask == false) {
+        place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            translate([8,0,6.5]) rotate([90,0,0]) difference() {
+                union() {
+                    color("silver") hull() {
+                        translate([-6.5,2.5,-5]) cylinder(d=3, h=11);
+                        translate([6.5,2.5,-5]) cylinder(d=3, h=11);
+                        translate([-5.75,-2.5,-5]) cylinder(d=3, h=11);
+                        translate([5.75,-2.5,-5]) cylinder(d=3, h=11);
+                    }
+                    color("black") hull() {
+                        translate([-6,2.25,-6]) cylinder(d=3, h=12.25);
+                        translate([6,2.25,-6]) cylinder(d=3, h=12.25);
+                        translate([-5.25,-2.25,-6]) cylinder(d=3, h=12.25);
+                        translate([5.25,-2.25,-6]) cylinder(d=3, h=12.25);
+                    }
+                // mount plate
+                translate([-15.5,-6.5,-.25]) slab([31,13,.5], 2);
+                // rear pins
+                color("silver") translate([-4,2,-8]) cylinder(d=1, h=9);
+                color("silver") translate([-2,2,-8]) cylinder(d=1, h=9);
+                color("silver") translate([0,2,-8]) cylinder(d=1, h=9);
+                color("silver") translate([2,2,-8]) cylinder(d=1, h=9);
+                color("silver") translate([4,2,-8]) cylinder(d=1, h=9);
+
+                color("silver") translate([-3,.25,-8]) cylinder(d=1, h=9);
+                color("silver") translate([-1,.25,-8]) cylinder(d=1, h=9);
+                color("silver") translate([1,.25,-8]) cylinder(d=1, h=9);
+                color("silver") translate([3,.25,-8]) cylinder(d=1, h=9);
+                color("silver") translate([5,.25,-8]) cylinder(d=1, h=9);
+
+                color("silver") translate([-4,-1.65,-8]) cylinder(d=1, h=9);
+                color("silver") translate([-2,-1.65,-8]) cylinder(d=1, h=9);
+                color("silver") translate([0,-1.65,-8]) cylinder(d=1, h=9);
+                color("silver") translate([2,-1.65,-8]) cylinder(d=1, h=9);
+                color("silver") translate([4,-1.65,-8]) cylinder(d=1, h=9);
+
+                }
+                // mount holes
+                color("silver") translate([-12.5,0,-3]) cylinder(d=3.2, h=6);
+                color("silver") translate([12.5,0,-3]) cylinder(d=3.2, h=6);
+                // pin holes
+                color("silver") translate([-4,2,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([-2,2,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([0,2,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([2,2,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([4,2,-9]) cylinder(d=.75, h=16);
+
+                color("silver") translate([-3,.25,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([-1,.25,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([1,.25,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([3,.25,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([5,.25,-9]) cylinder(d=.75, h=16);
+
+                color("silver") translate([-4,-1.65,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([-2,-1.65,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([0,-1.65,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([2,-1.65,-9]) cylinder(d=.75, h=16);
+                color("silver") translate([4,-1.65,-9]) cylinder(d=.75, h=16);
+            }
+        }
+    }
 }
 
 

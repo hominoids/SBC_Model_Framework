@@ -23,6 +23,7 @@ include <./lib/b2b.scad>
 include <./lib/battery.scad>
 include <./lib/button.scad>
 include <./lib/cm.scad>
+include <./lib/db.scad>
 include <./lib/discrete.scad>
 include <./lib/display.scad>
 include <./lib/fan.scad>

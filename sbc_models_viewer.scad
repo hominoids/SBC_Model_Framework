@@ -44,7 +44,7 @@ gpio_mask = "default"; // [disable, off, default, none, open, block, knockout, v
 uart_mask = "default"; // [default, none, open, knockout]
 
 /* [Components] */
-Class = "b2b"; // [antenna,audio,b2b,battery,button,cm,cm_holder,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbadd,pcbhole,pcbsoc,pcbsub,pcbpad,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
+Class = "b2b"; // [antenna,audio,b2b,battery,button,cm,cm_holder,db,discrete,display,fan,fpc,gpio,header,heatsink,ic,jst,memory,molex,network,pcb,pcbadd,pcbhole,pcbsoc,pcbsub,pcbpad,pcie,pillar,power,smd,storage,switch,terminal,uart,usb2,usb3,usbc,video]
 
 /* [Hidden] */
 s = search([sbc_model], sbc_data);
@@ -305,6 +305,25 @@ if(view == "3D Reference Manual") {
         "                    mask[1] = mask length",
         "                    mask[2] = mask setback",
         "                    mask[3] = mstyle default"
+        ]];
+    db = [["db9"],[
+        " CLASS NAME: dsub",
+        "DESCRIPTION: creates dsub connectors",
+        "",
+        "      USAGE: display, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
+        "",
+        "                      type = db9",
+        "                    pcb_id = parent PCB",
+        "                     loc_x = x location placement",
+        "                     loc_y = y location placement",
+        "                     loc_z = z location placement",
+        "                      side = top, bottom",
+        "                rotation[] = object rotation",
+        "                   data[0] = male, female",
+        "                   mask[0] = component mask true, false",
+        "                   mask[1] = mask length",
+        "                   mask[2] = mask setback",
+        "                   mask[3] = mstyle default"
         ]];
     discrete = [["ir_1", "ir_dual", "capacitor", "led"],[
         " CLASS NAME: discrete",
@@ -1011,13 +1030,13 @@ if(view == "3D Reference Manual") {
         "                mask[2] = mask setback",
         "                mask[3] = mstyle default"
         ]];
-    video = [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "dp_vertical"],[
+    video = [["hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "dp_vertical", "vga"],[
         " CLASS NAME: video",
         "DESCRIPTION: creates video connectors",
         "",
         "      USAGE: video, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
         "",
-        "                    type = hdmi_a, hdmi_a_vertical, dp-hdmi_a, hdmi_micro, hdmi_mini, dp_mini",
+        "                    type = hdmi_a, hdmi_a_vertical, dp-hdmi_a, hdmi_micro, hdmi_mini, dp_mini, vga",
         "                  pcb_id = parent PCB",
         "                   loc_x = x location placement",
         "                   loc_y = y location placement",
@@ -1111,6 +1130,18 @@ if(view == "3D Reference Manual") {
         for(i=[0:1:len(cm_holder[1])-1]) {
             color(text_color) translate([ctext_offset, 60, ctext_height-i*7]) rotate([90, 0, 0]) 
                 text(cm_holder[1][i], 5,  font = text_font);
+        }
+    }
+    if(Class =="db") {
+        for(i=[0:1:len(db[0])-1]) {
+            db(db[0][i], 100, i*45, 0, "top", 0, [0,0,0],["male"], 0, false, [false,10,2,"default"]);
+            db(db[0][i], 140, i*45, 0, "top", 0, [0,0,0],["female"], 0, false, [false,10,2,"default"]);
+            color(text_color) translate([170, i*45, 0]) 
+                text(str(db[0][i]), font = text_font, direction="ltr");
+        }
+        for(i=[0:1:len(db[1])-1]) {
+            color(text_color) translate([ctext_offset, 130, ctext_height-i*7]) rotate([90, 0, 0]) 
+                text(db[1][i], 5,  font = text_font);
         }
     }
     if(Class =="discrete") {

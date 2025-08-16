@@ -172,6 +172,7 @@ The next step is to populate the SBC model's configuration entry with it's compo
  *  button   - "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
                "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
     cm       - "cm1","cm3","cm3l","cm4","cm4l","jetsonnano"
+ *  db       - "db9"
  *  discrete - "ir_1", "ir_dual", "capacitor"(parametric), "led"(parametric)
  *  display  - "lcd_2.2"
     fan      - "fan_micro","encl_pmw","encl_pmw_h"
@@ -405,7 +406,26 @@ DESCRIPTION: creates compute module holder
                      mask[2] = mask setback
                      mask[3] = mstyle "default"
 ```
+### db
+```
+ CLASS NAME: db
+DESCRIPTION: creates dsub connectors
+      USAGE: display, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
+                      type = "db9"
+                    pcb_id = parent PCB
+                     loc_x = x location placement
+                     loc_y = y location placement
+                     loc_z = z location placement
+                      side = "top", "bottom"
+                rotation[] = object rotation
+                   data[0] = "male","female"
+                   mask[0] = component mask true, false
+                   mask[1] = mask length
+                   mask[2] = mask setback
+                   mask[3] = mstyle "default"
+
+```
 ### discrete
 ```
  CLASS NAME: discrete
@@ -1122,7 +1142,7 @@ DESCRIPTION: creates usbc ports.
 DESCRIPTION: creates video connectors.
       USAGE: video, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
-                    type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "dp_vertical"
+                    type = "hdmi_a", "hdmi_a_vertical", "dp-hdmi_a", "hdmi_micro", "hdmi_mini", "dp_mini", "dp_vertical, vga"
                   pcb_id = parent PCB
                    loc_x = x location placement
                    loc_y = y location placement

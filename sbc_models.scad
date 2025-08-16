@@ -119,6 +119,9 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             if (class == "cm" && mask[0] == true) {
                                 cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
+                            if (class == "db" && mask[0] == true) {
+                                db(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                            }
                             if (class == "discrete" && mask[0] == true) {
                                 discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
@@ -401,6 +404,9 @@ module sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                             }
                             if (class == "cm_holder") {
                                 cm_holder(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
+                            }
+                            if (class == "db") {
+                                db(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
                             }
                             if (class == "discrete") {
                                 discrete(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enablemask, mask);
