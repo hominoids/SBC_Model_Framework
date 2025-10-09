@@ -84,6 +84,7 @@ module header(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                 }
             }
             if(type == "boxed") {
+                place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
                 difference() {
                     color(hcolor) translate([-walloffset,-wall,0]) cube([size_x+2*2.56, size_y+2*wall, height+bheight]);
                     color(hcolor) translate([-walloffset+wall,0,wall]) cube([size_x+2*walloffset-4*wall, size_y, height+bheight+adj]);
