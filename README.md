@@ -12,13 +12,13 @@ SBC Model Framework provides 3D models of SBC, MCU, Compute Modules and Carrier 
 ### Current Library
 
 ```
-                  SBC:  82
+                  SBC:  83
        Carrier Boards:   4
       Compute Modules:   9
     Micro Controllers:   9
 Standard Motherboards:  14
            Custom PCB:   1
-        Total Devices: 116
+        Total Devices: 117
 ```
 
 ## Using SBC Model Framework
@@ -41,7 +41,7 @@ USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "defaul
                  "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","rock5b+","nio12l"
                  "vim1","vim2","vim3l","vim3","vim4",
                  "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
-                 "opi5","opizero","opizero2","opir1plus_lts","opir1", "opi5max",
+                 "opi5","opizero","opizero2","opir1plus_lts","opir1", "opi5max","opi3b-v2.1",
                  "lepotato","sweetpotato","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
                  "jetsonnano",
                  "bpif3",
@@ -356,7 +356,8 @@ DESCRIPTION: creates buttons
       USAGE: buttons, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]
 
                       type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
-                             "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90"
+                             "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90",
+                             "momentary_4.5x4.5x4.5", "momentary_4.5x3.5x2.5_90"
                     pcb_id = parent PCB
                      loc_x = x location placement
                      loc_y = y location placement

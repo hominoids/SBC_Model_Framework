@@ -33,7 +33,7 @@
                              "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","rock5b+","nio12l",
                              "vim1","vim2","vim3l","vim3","vim4",
                              "tinkerboard","tinkerboard-s","tinkerboard-2","tinkerboard-2s","tinkerboard-r2","tinkerboard-r2s",
-                             "opi5","opizero","opizero2","opir1plus_lts","opir1","opi5max",
+                             "opi5","opizero","opizero2","opir1plus_lts","opir1","opi5max","opi3b-v2.1",
                              "lepotato","sweetpotato","tirtium-h2+","tritium-h3","tritium-h5","solitude","alta"
                              "jetsonnano",
                              "licheerv+dock",

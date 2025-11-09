@@ -23,7 +23,8 @@
           USAGE: button(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[]))
 
                          type = "momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90",
-                                "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90", "momentary_4.5x4.5x4.5"
+                                "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90", "momentary_4.5x4.5x4.5",
+                                "momentary_4.5x4.5x4.5_90"
                         loc_x = x location placement
                         loc_y = y location placement
                         loc_z = z location placement
@@ -409,6 +410,61 @@ module button(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, 
                 color("black") translate([.75,3.75,3]) sphere(d=.75);
                 color("black") translate([3.75,.75,3]) sphere(d=.75);
                 color("black") translate([3.75,3.75,3]) sphere(d=.75);
+            }
+        }
+    }
+    if(type == "momentary_4.5x4.5x4.5_90") {
+
+        size_x = 4.5;
+        size_y = 3.1;
+        size_z = 4.5;
+        size_xm = 3.5;
+        size_ym = 3.5;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+            if(side == "top" && rotation == 0) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/2,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "top" && rotation == 90) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/size_xm,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "top" && rotation == 180) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/size_xm,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "top" && rotation == 270) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/2,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 0) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/size_xm,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 90) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/size_xm,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 180) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/2,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+            if(side == "bottom" && rotation == 270) {
+                place(loc_x, loc_y, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
+                    translate([size_x/2,back,size_x/2]) rotate([90,0,0]) cylinder(d = size_xm, h = mlen);
+            }
+        }
+        if(enablemask == false) {
+            place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+            union() {
+                color("black") translate([0,0,0]) cube([size_x,size_y,size_z]);
+                color("silver") translate([0,0,0]) cube([size_x,.1,size_z]);
+                color("black") translate([2.25,.1,2.25]) rotate([90,0,0]) cylinder(d=2.35,h=1.50);
+                color("black") translate([.75,0,.75]) sphere(d=.75);
+                color("black") translate([.75,0,3.75]) sphere(d=.75);
+                color("black") translate([3.75,0,.75]) sphere(d=.75);
+                color("black") translate([3.75,0,3.75]) sphere(d=.75);
             }
         }
     }

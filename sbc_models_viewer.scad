@@ -27,7 +27,7 @@ use <sbc_models_library.scad>
 /* [SBC and MCU] */
 view = "3D Model"; // [3D Model, 2D Sections, 3D Reference Manual, All Devices]
 section_position = 2; //[-2:.5:4]
-sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "c5", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "m2", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "rock5b+", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi5", "opi5max", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_express", "feather-m0_wifi", "feather-m4_express", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
+sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "c5", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "m2", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "rock5b+", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi3b-v2.1", "opi5", "opi5max", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_express", "feather-m0_wifi", "feather-m4_express", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
 
 sbc_off = false;
 sbc_mask = false;
@@ -248,14 +248,14 @@ if(view == "3D Reference Manual") {
         "                   mask[2] = mask setback",
         "                   mask[3] = mstyle default"
         ]];
-    button = [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90","momentary_4.5x4.5x4.5"],[
+    button = [["momentary_6x6x9", "momentary_6x6x4", "momentary_6x6x4_90", "momentary_4x2x1_90", "momentary_4x2x1", "momentary_7x3x3_90", "momentary_4.5x3.5x2.5_90","momentary_4.5x4.5x4.5","momentary_4.5x4.5x4.5_90"],[
         " CLASS NAME: button",
         "DESCRIPTION: creates buttons",
         "",
         "      USAGE: button, type, pcb_id, loc_x, loc_y, loc_z, side, rotation[], size[], data[], mask[]",
         "",
         "                      type = momentary_6x6x9, momentary_6x6x4, momentary_6x6x4_90, momentary_4x2x1_90,",
-        "                             momentary_4x2x1, momentary_7x3x3_90, momentary_4.5x3.5x2.5_90",
+        "                             momentary_4x2x1, momentary_7x3x3_90, momentary_4.5x3.5x2.5_90, momentary_4.5x4.5x4.5, momentary_4.5x3.5x2.5_90",
         "                    pcb_id = parent PCB",
         "                     loc_x = x location placement",
         "                     loc_y = y location placement",
@@ -1858,6 +1858,10 @@ if(view == "All Devices") {
     translate([565,460,0]) sbc("opi5max");
     linear_extrude(height = 2) { translate([565,440,0]) text("OrangePi 5 Max"); }
     color("green",.3) translate([565,440,-1]) cube([95,10,1]);
+
+    translate([565,560,0]) sbc("opi3b-v2.1");
+    linear_extrude(height = 2) { translate([565,540,0]) text("OrangePi 3B v2.1"); }
+    color("orange",.3) translate([565,540,-1]) cube([95,10,1]);
 
     translate ([680,0,0]) sbc("alta");
     linear_extrude(height = 2) {translate([680,-20,0]) text("Alta");}
