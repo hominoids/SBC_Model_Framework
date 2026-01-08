@@ -45,8 +45,8 @@
                              "cnano-avr128da48"
                              "nodemcu-32s", "cs-solarmeter"
                              "feather-m0_express", "feather-m0_wifi", "feather-m4_express"
-                             "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "mini-itx", "mini-itx_thin", 
-                             "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
+                             "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "ebx", "mini-itx", 
+                            "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
 
             enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                              "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
