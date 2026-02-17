@@ -28,7 +28,7 @@
                      model = "c1+","c2","c4","c5","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
                              "m1","m1s","h2","h2+","h3","h3+","h4","h4+","h4_ultra","show2",
                              "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
-                             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm1","rpicm4+ioboard",
+                             "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm5","rpicm4+ioboard","rpicm5+ioboard",
                              "a64","a64lts","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","soedge_rk1808","soedge_a-baseboard"
                              "rock4a","rock4a+","rock4b","rock4b+","rock4c","rock4c+","rock5b-v1.3","rock5b","rock5b+","nio12l",
                              "vim1","vim2","vim3l","vim3","vim4",

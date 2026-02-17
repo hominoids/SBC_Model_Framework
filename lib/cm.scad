@@ -28,7 +28,7 @@
 
           USAGE: cm(type, loc_x, loc_y, loc_z, side, rotation[], size[], data[], pcbsize_z, enablemask, mask[])
 
-                    type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","jetsonnano","soedge"
+                    type = "cm1","cm3","cm3l","cm4s","cm4","cm4l","cm5","jetsonnano","soedge"
                    loc_x = x location placement
                    loc_y = y location placement
                    loc_z = z location placement
@@ -151,6 +151,60 @@ module cm(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, enab
                     ic("generic", 4.5, 9.25, 0, "top", 0, [5.25, 5.25, .8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
                     ic("generic", 8.75, 21, 0, "top", 0, [11, 14, .8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
                     antenna("ipex", 1.315, 29.675, 0, "top", 0, [0,0,0], [0], size_z, false, [false,10,2,"default"]);
+                }
+        }
+    }
+
+    if(type == "cm5") {
+
+        pcbcolor = data[1];
+        size_x = 55;
+        size_y = 40;
+        size_z = 1.2;
+
+        if(enablemask == true && cmask == true && mstyle == "default") {
+
+        }
+        if(enablemask == false) {
+
+                place(loc_x, loc_y, loc_z, size_x, size_y, rotation, side, pcbsize_z)
+                union() {  
+                    difference () {
+                        union() {
+                            color(pcbcolor) slab([size_x, size_y, size_z],3);
+                            color("#fee5a6") translate([3.5, 3.5, -.01]) cylinder(d=5, h=size_z+.2);
+                            color("#fee5a6") translate([3.5, size_y-3.5, -.01]) cylinder(d=5, h=size_z+.2);
+                            color("#fee5a6") translate([size_x-3.5, 3.5, -.01]) cylinder(d=5, h=size_z+.2);
+                            color("#fee5a6") translate([size_x-3.5, size_y-3.5, -.01]) cylinder(d=5, h=size_z+.2);
+                        }
+                        //color(pcbcolor) translate([-1, 18.5, -1]) cube([7.5, 11, 3]);
+                        color(pcbcolor) translate([2.56, 31, -1]) cylinder(d=1.5, h=3);
+                        color(pcbcolor) translate([3.5, 3.5, -1]) cylinder(d=2.5, h=3);
+                        color(pcbcolor) translate([3.5, size_y-3.5, -1]) cylinder(d=2.5, h=3);
+                        color(pcbcolor) translate([size_x-3.5, 3.5, -1]) cylinder(d=2.5, h=3);
+                        color(pcbcolor) translate([size_x-3.5, size_y-3.5, -1]) cylinder(d=2.5, h=3);
+                    }
+                    pcbsoc("mid-raised", 23.5, 8.5, 0,"top", 0, [17,17,1.25], [0,2.95,0,11,17,1.825,0,0], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 8.125, 21.25, 0,"top", 0, [11,14,1.75], ["silver"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 24.75, 26.5, 0, "top", 0, [14.4,10,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 42.375, 15.75, 0, "top", 0, [12,12,1.3], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 47.125, 7.125, 0, "top", 0, [7,7,1.25], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 7, 6.375, 0, "top", 0, [6,6,.75], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 7.5, 21, 0, "bottom", 0, [13,11.5,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 4.4, 15, 0, "top", 0, [2,2.5,1.1], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 7, 15, 0, "top", 0, [2,2.5,1.1], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 11, 15, 0, "top", 0, [2,2.5,1.1], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 13.75, 15, 0, "top", 0, [2,2.5,1.1], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 3.16, 7.5, 0, "top", 0, [2.,1.25,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 3.16, 10.85, 0,"top", 0, [2.,1.25,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 14.875, 7.5, 0, "top", 0, [2.,1.25,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 14.875, 10.85, 0, "top", 0, [2.,1.25,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 6.5, 2.575, 0, "top", 0, [1.3,2,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 9.875, 2.575, 0, "top", 0, [1.3,2,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    ic("generic", 12.5, 2.575, 0, "top", 0, [1.3,2,.8], ["dimgrey"], size_z, false, [false,10,2,"default"]);
+                    antenna("ipex", 1.315, 29.675, 0, "top", 0, [0,0,0], [0], size_z, false, [false,10,2,"default"]);
+                    b2b("df40", 14.25, 2, 0, "bottom", 0, [100,0,1.5], ["default","black","male"], size_z, false, [false,10,2,"default"]);
+                    b2b("df40", 14.25, 36, 0, "bottom", 0, [100,0,1.5], ["default","black","male"], size_z, false, [false,10,2,"default"]);
                 }
         }
     }

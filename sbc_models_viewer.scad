@@ -27,7 +27,7 @@ use <sbc_models_library.scad>
 /* [SBC and MCU] */
 view = "3D Model"; // [3D Model, 2D Sections, 3D Reference Manual, All Devices]
 section_position = 2; //[-2:.5:4]
-sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "c5", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "m2", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "rock5b+", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi3b-v2.1", "opi5", "opi5max", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_express", "feather-m0_wifi", "feather-m4_express", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "ebx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
+sbc_model = "c1+"; // ["c1+", "c2", "c4", "hc4", "c5", "xu4", "xu4q", "mc1", "hc1", "n1", "n2", "n2+", "n2l", "n2lq", "m1", "m1s", "m2", "h2", "h2+", "h3", "h3+", "h4", "h4+", "h4_ultra", "show2", "rpipico", "rpipicow", "rpicm4+ioboard", "rpicm5+ioboard", "rpicm1", "rpicm3", "rpicm3l", "rpicm3+", "rpicm4s", "rpicm4", "rpicm4l", "rpicm5", "rpizero", "rpizerow", "rpizero2w", "rpi1a+", "rpi1b+", "rpi2b", "rpi3a+", "rpi3b", "rpi3b+", "rpi4b", "rpi5", "a64", "a64lts", "rock64", "rockpro64", "quartz64a", "quartz64b", "h64b", "star64", "soedge_rk1808","soedge_a-baseboard", "rock4a", "rock4b", "rock4a+", "rock4b+", "rock4c", "rock4c+", "rock5b-v1.3", "rock5b", "rock5bq", "rock5b+", "nio12l", "vim1", "vim2", "vim3", "vim3l", "vim4", "tinkerboard", "tinkerboard-s", "tinkerboard-2", "tinkerboard-2s", "tinkerboard-r2", "tinkerboard-r2s", "opizero", "opizero2", "opir1plus_lts", "opir1", "opi3b-v2.1", "opi5", "opi5max", "jetsonnano", "lepotato", "sweetpotato", "tritium-h2+", "tritium-h3", "tritium-h5", "solitude", "alta", "atomicpi", "visionfive2", "visionfive2q", "bpif3", "licheerv+dock", "milk-v_duos","rak19007", "cnano-avr128da48", "nodemcu-32s", "cs-solarmeter", "feather-m0_express", "feather-m0_wifi", "feather-m4_express", "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "ebx", "mini-itx", "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"]
 
 sbc_off = false;
 sbc_mask = false;
@@ -1704,25 +1704,29 @@ if(view == "All Devices") {
     linear_extrude(height = 2) {translate([-60,700,0]) text("A64-LTS");}
     color("green",.3) translate([-60,700,-1]) cube([43,10,1]);
 
-    translate([90,-90,0]) sbc("rpicm4");
-    linear_extrude(height = 2) { translate([90,-110,0]) text("RPi CM4"); }
+    translate([90,-90,0]) sbc("rpicm5");
+    linear_extrude(height = 2) { translate([90,-110,0]) text("RPi CM5"); }
     color("green",.3) translate([90,-110,-1]) cube([55,10,1]);
 
-    translate([90,-170,0]) sbc("rpicm4l");
-    linear_extrude(height = 2) { translate([90,-190,0]) text("RPi CM4L"); }
-    color("green",.3) translate([90,-190,-1]) cube([63,10,1]);
+    translate([90,-170,0]) sbc("rpicm4");
+    linear_extrude(height = 2) { translate([90,-190,0]) text("RPi CM4"); }
+    color("green",.3) translate([90,-190,-1]) cube([55,10,1]);
 
-    translate([90,-240,0]) sbc("rpicm3");
-    linear_extrude(height = 2) { translate([90,-260,0]) text("RPi CM3"); }
-    color("yellow",.3) translate([90,-260,-1]) cube([55,10,1]);
+    translate([90,-250,0]) sbc("rpicm4l");
+    linear_extrude(height = 2) { translate([90,-270,0]) text("RPi CM4L"); }
+    color("green",.3) translate([90,-270,-1]) cube([63,10,1]);
 
-    translate([90,-300,0]) sbc("rpipico");
-    linear_extrude(height = 2) { translate([90,-320,0]) text("RPi Pico"); }
-    color("green",.3) translate([90,-320,-1]) cube([52,10,1]);
+    translate([90,-330,0]) sbc("rpicm3");
+    linear_extrude(height = 2) { translate([90,-350,0]) text("RPi CM3"); }
+    color("yellow",.3) translate([90,-350,-1]) cube([55,10,1]);
 
-    translate([90,-360,0]) sbc("rpipicow");
-    linear_extrude(height = 2) { translate([90,-380,0]) text("RPi Pico W"); }
-    color("green",.3) translate([90,-380,-1]) cube([70,10,1]);
+    translate([90,-390,0]) sbc("rpipico");
+    linear_extrude(height = 2) { translate([90,-410,0]) text("RPi Pico"); }
+    color("green",.3) translate([90,-410,-1]) cube([52,10,1]);
+
+    translate([90,-450,0]) sbc("rpipicow");
+    linear_extrude(height = 2) { translate([90,-470,0]) text("RPi Pico W"); }
+    color("green",.3) translate([90,-470,-1]) cube([70,10,1]);
 
     translate([75,0,0]) sbc("rpi5");
     linear_extrude(height = 2) { translate([90,-20,0]) text("RPi 5"); }
@@ -1763,6 +1767,10 @@ if(view == "All Devices") {
     translate([75,760,0]) sbc("rpicm4+ioboard");
     linear_extrude(height = 2) { translate([75,732,0]) text("RPi CM4 IO Board"); }
     color("yellow",.3) translate([75,732,-1]) cube([103,10,1]);
+
+    translate([75,880,0]) sbc("rpicm5+ioboard");
+    linear_extrude(height = 2) { translate([75,832,0]) text("RPi CM5 IO Board"); }
+    color("yellow",.3) translate([75,832,-1]) cube([103,10,1]);
 
     translate([190,700,0]) sbc("rock4b+");
     linear_extrude(height = 2) { translate([190,680,0]) text("ROCK 4A/B+"); }
