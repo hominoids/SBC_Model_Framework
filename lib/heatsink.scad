@@ -3084,7 +3084,13 @@ module fan_mask(size, thick, style) {
         size == 30 ? 3 :
         size == 40 ? 4 :
         size == 50 || size == 60 || size == 70 ? 5 :
-        size >= 80 ? 3.75 : 3.75;
+        size == 80 ? 3.75 :
+        size == 92 ? 4.75 : 4.75;
+
+    hole_size = size == 25 || size == 30 ? 2.5 :
+        size == 40 || size == 50 || size == 60 || size == 70 ? 3 :
+        size >= 80 ? 4.5 : 4.5;
+
     $fn = 90;
     adj = .01;
 
@@ -3092,10 +3098,10 @@ module fan_mask(size, thick, style) {
         
         translate([size/2, size/2, -1]) cylinder(h=thick+2, d=size-1);
         // mount holes
-        translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-        translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-        translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-        translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+        translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+        translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+        translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+        translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
     }
     if(style == "fan_1" && size == 25) {
         
@@ -3115,10 +3121,10 @@ module fan_mask(size, thick, style) {
                         translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-25);
                     }
                     // mount holes
-                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
                 }
                 translate([4, 3, -2]) rotate([0, 0, 45]) cube([size, 1.5, thick+4]);
                 translate([3, size-4, -2]) rotate([0, 0, -45]) cube([size, 1.5, thick+4]);
@@ -3143,10 +3149,10 @@ module fan_mask(size, thick, style) {
                         translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-25);
                     }
                     // mount holes
-                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
                 }
                 translate([5, 4, -2]) rotate([0, 0, 45]) cube([size, 1.5, thick+4]);
                 translate([4, size-5, -2]) rotate([0, 0, -45]) cube([size, 1.5, thick+4]);
@@ -3175,10 +3181,10 @@ module fan_mask(size, thick, style) {
                         translate([size/2, size/2, -2]) cylinder(h=thick+4, d=size-35);
                     }
                     // mount holes
-                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
                 }
                 translate([6.5, 5.5, -2]) rotate([0, 0, 45]) cube([size, 1.5, thick+4]);
                 translate([5, size-6, -2]) rotate([0, 0, -45]) cube([size, 1.5, thick+4]);
@@ -3209,10 +3215,10 @@ module fan_mask(size, thick, style) {
                         }
                     }
                     // mount holes
-                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
                 }
                 translate([8.5, 7, -2]) rotate([0, 0, 45]) cube([size > 60 ? size+4 : size+1, 2, thick+4]);
                 translate([6.5, size-8, -2]) rotate([0, 0, -45]) cube([size > 60 ? size+4 : size+1, 2, thick+4]);
@@ -3259,10 +3265,10 @@ module fan_mask(size, thick, style) {
                         }
                     }
                     // mount holes
-                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+                    translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+                    translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
                 }
                 translate([6.5, 4.25, -2]) rotate([0, 0, 45]) cube([size*1.2, 3, thick+4]);
                 translate([4.25, size-6.5, -2]) rotate([0, 0, -45]) cube([size*1.2, 3, thick+4]);
@@ -3290,10 +3296,10 @@ module fan_mask(size, thick, style) {
 
         translate([size/2, size/2, -1])
         union() {
-            translate([screw_offset, screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
-            translate([-screw_offset, screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
-            translate([screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
-            translate([-screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=3, h=thick+2, center=true);
+            translate([screw_offset, screw_offset, (thick+2)/2]) cylinder(d=hole_size, h=thick+2, center=true);
+            translate([-screw_offset, screw_offset, (thick+2)/2]) cylinder(d=hole_size, h=thick+2, center=true);
+            translate([screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=hole_size, h=thick+2, center=true);
+            translate([-screw_offset, -screw_offset, (thick+2)/2]) cylinder(d=hole_size, h=thick+2, center=true);
 
             difference() {
                 union() {
@@ -3334,9 +3340,9 @@ module fan_mask(size, thick, style) {
             }
         }
         // mount holes
-        translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-        translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
-        translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=3);
-        translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=3);
+        translate([size-hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+        translate([size-hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+        translate([hole_pos, size-hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
+        translate([hole_pos, hole_pos, -1]) cylinder(h=thick+2, d=hole_size);
     }
 }
