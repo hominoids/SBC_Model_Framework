@@ -143,20 +143,20 @@ module audio(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
                     difference () {
                         union() {
                             color("silver") cube([size_x, size_y, size_z]);
-                            color("black") translate([6.35, -3.2, 17]) rotate([-90, 0, 0])
+                            color("black") translate([6.35, -4.4, 17]) rotate([-90, 0, 0])
                                 cylinder(d=8, h=6.25);
-                            color("black") translate([6.35, -3.2, 29]) rotate([-90, 0, 0])
+                            color("black") translate([6.35, -4.4, 29]) rotate([-90, 0, 0])
                                 cylinder(d=8, h=6.25);
-                            color("dimgray") translate([1.85, -2.0, 2]) cube([9, 2, 9]);
+                            color("dimgray") translate([1.85, -3.2, 2]) cube([9, 4, 9]);
                         }
-                        color("dimgray") translate([6.35, -3.25, 17]) rotate([-90, 0, 0])
+                        color("dimgray") translate([6.35, -4.45, 17]) rotate([-90, 0, 0])
                                 cylinder(d=3.75, h=9);
-                        color("dimgray") translate([6.35, -3.25, 29]) rotate([-90, 0, 0])
+                        color("dimgray") translate([6.35, -4.45, 29]) rotate([-90, 0, 0])
                                 cylinder(d=3.75, h=9);
                         difference() {
-                            color("dimgray") translate([2.85, -2.1, 3]) cube([7, 9, 7]);
-                            color("dimgray") translate([1.85, -2, 3]) rotate([0, 45, 0]) cube([1.5, 9, 1.5]);
-                            color("dimgray") translate([8.75, -2, 3]) rotate([0, 45, 0]) cube([1.5, 9, 1.5]);
+                            color("dimgray") translate([2.85, -3.3, 3]) cube([7, 11, 7]);
+                            color("dimgray") translate([1.85, -3.2, 3]) rotate([0, 45, 0]) cube([1.5, 11, 1.5]);
+                            color("dimgray") translate([8.75, -3.2, 3]) rotate([0, 45, 0]) cube([1.5, 11, 1.5]);
                         }
                    }
                 }

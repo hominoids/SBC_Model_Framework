@@ -1769,8 +1769,8 @@ if(view == "All Devices") {
     color("yellow",.3) translate([75,732,-1]) cube([103,10,1]);
 
     translate([75,880,0]) sbc("rpicm5+ioboard");
-    linear_extrude(height = 2) { translate([75,832,0]) text("RPi CM5 IO Board"); }
-    color("yellow",.3) translate([75,832,-1]) cube([103,10,1]);
+    linear_extrude(height = 2) { translate([75,862,0]) text("RPi CM5 IO Board"); }
+    color("yellow",.3) translate([75,862,-1]) cube([103,10,1]);
 
     translate([190,700,0]) sbc("rock4b+");
     linear_extrude(height = 2) { translate([190,680,0]) text("ROCK 4A/B+"); }

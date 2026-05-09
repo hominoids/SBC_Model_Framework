@@ -226,42 +226,42 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
 
         size_x = 18;
         size_y = 17.75;
-        size_xm = 19;
+        size_xm = 21;
         size_ym = 18;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             // dp-hdmi_a opening
             if(side == "top" && rotation == 0) {
-                place(loc_x-.5, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x-1.5, loc_y-mlen+back, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x-mlen+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x-mlen+back, loc_y-1.5, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-.5, loc_y+mlen-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x-1.5, loc_y+mlen-back, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x+mlen-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x+mlen-back, loc_y-1.5, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-.5, loc_y-mlen+back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x-1.5, loc_y-mlen+back, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x+mlen-back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x+mlen-back, loc_y-1.5, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x-.5, loc_y+mlen-back, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x-1.5, loc_y+mlen-back, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x-mlen+back, loc_y-.5, loc_z, size_xm, size_ym, rotation, side, pcbsize_z)
-                    cube([size_xm, mlen, 19.25]);
+                place(loc_x-mlen+back, loc_y-1.5, loc_z-3, size_xm, size_ym, rotation, side, pcbsize_z)
+                    cube([size_xm, mlen, 22.25]);
             }
         }
         if(enablemask == false) {
@@ -570,43 +570,43 @@ module video(type, loc_x, loc_y, loc_z, side, rotation, size, data, pcbsize_z, e
         size_x = 5.5;
         size_y = 11.5;
         size_z = 16.5;
-        size_xm = 6.5;
+        size_xm = 11.5;
         size_ym = mlen;
-        size_zm = 17.5;
+        size_zm = 22.25;
         height = 0;
 
         if(enablemask == true && cmask == true && mstyle == "default") {
             // hdmi vertical opening
             if(side == "top" && rotation == 0) {
-                place(loc_x-.5, loc_y-size_y+1.5+back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-3, loc_y-mlen+back, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 90) {
-                place(loc_x+back-size_y+1.5, loc_y-(size_xm-size_x)/2, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+back-mlen, loc_y-(size_xm-size_x)/2, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 180) {
-                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "top" && rotation == 270) {
-                place(loc_x-back+size_y, loc_y-.5, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-back+size_y, loc_y-3, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 0) {
-                place(loc_x-.5, loc_y-size_y+1.5+back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-3, loc_y-mlen+back, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 90) {
-                place(loc_x-back+size_y, loc_y-(size_xm-size_x)/2, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-back+size_y, loc_y-(size_xm-size_x)/2, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 180) {
-                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z-.25+height, size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x-(size_xm-size_x)/2, loc_y+size_y-back, loc_z-3+height, size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
             if(side == "bottom" && rotation == 270) {
-                place(loc_x+back-size_y+1.5, loc_y-.5, loc_z,size_xm, size_ym, rotation, side, pcbsize_z)
+                place(loc_x+back-mlen, loc_y-3, loc_z-3,size_xm, size_ym, rotation, side, pcbsize_z)
                     cube([size_xm, mlen, size_zm]);
             }
         }
