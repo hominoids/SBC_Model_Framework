@@ -26,7 +26,7 @@
           USAGE: sbc(model, enableheatsink = "default", fansize = 0, enablegpio =  "default", enableuart =  "default", enablemask = false)
 
                      model = "c1+","c2","c4","c5","xu4","xu4q","mc1","hc1","hc4","n1","n2","n2+","n2l","n2lq",
-                             "m1","m1s","h2","h2+","h3","h3+","h4","h4+","h4_ultra","show2",
+                             "m1","m1s","h2","h2+","h3","h3+","h4","h4+","h4_ultra","h5","show2",
                              "rpipicow","rpipicow","rpizero","rpizero2w","rpi1a+","rpi1b+","rpi3a+","rpi3b","rpi3b+","rpi4b","rpi5",
                              "rpicm1","rpicm3","rpicm3l","rpicm3+","rpicm4","rpicm4l","rpicm5","rpicm4+ioboard","rpicm5+ioboard",
                              "a64","a64lts","rock64","rockpro64","quartz64a","quartz64b","h64b","star64","soedge_rk1808","soedge_a-baseboard"
@@ -46,7 +46,7 @@
                              "nodemcu-32s", "cs-solarmeter"
                              "feather-m0_express", "feather-m0_wifi", "feather-m4_express"
                              "ssi-eeb", "ssi-ceb", "atx", "micro-atx", "dtx", "flex-atx", "mini-dtx", "ebx", "mini-itx", 
-                            "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
+                             "mini-itx_thin", "mini-stx", "mini-stx_thin", "nano-itx", "nuc", "pico-itx"
 
             enableheatsink = "disable", "off", "default", "none", "open", "fan_open", "fan_1", "fan_2", "fan_hex", 
                              "vent", "vent_hex_5mm", "vent_hex_8mm", "custom"
